@@ -1,7 +1,8 @@
 #grid-container {
   width: 70px;
   height: 450px;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(218, 215, 215);
+  color: green;
   float: right;
   display: flex;
   flex-direction: column;
