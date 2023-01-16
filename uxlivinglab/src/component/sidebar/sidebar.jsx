@@ -1,13 +1,22 @@
 import "../sidebar/style.css";
 import { RxCross2 } from "react-icons/rx";
+import MyButton from "../popup/popup";
+import Payments from "../payments";
 
+const Check = (event,parameter) => {
+  const check_value = 'Login';
+}
 export default function Sidebar() {
   return (
-    <div id="total-container">
+    <div id="grid-container">
+      <div id="second-container">
+        <Payments />
+      </div>  
 
-      <div id="grid-container">
+      <div id="first-container">
+
         <div className="power">
-          <i aria-hidden="true" className="fas fa-power-off"></i>
+          <i aria-hidden="true" className="fas fa-power-off" onClick={event => Check(event,"Login") }></i>
         </div>
         <div className="power">
           <i aria-hidden="true" className="fas fa-sign-in-alt"></i>
@@ -34,18 +43,8 @@ export default function Sidebar() {
           <RxCross2 size={24} color="red" className="close" />
         </div>
       </div>
-      
-      <div className="popup-container">
-          <i id="space"></i>    
-          <button className="auth-button">
-            <i className="button-text">Logout</i>
-          </button>
-          <div className="cross">
-          <RxCross2 size={24} color="white" className="close" />
-          </div>
+  </div>
 
-      </div> 
-    </div>
 
   );
 }

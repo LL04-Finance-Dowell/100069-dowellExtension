@@ -3,7 +3,9 @@ import Sidebar from "./component/sidebar/sidebar";
 
 function App() {
   return (
-    <Sidebar />
+    <div className="group">
+      <Sidebar />
+    </div>
   );
 }
 
