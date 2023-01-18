@@ -1,9 +1,7 @@
 import "./payments.css";
-import MyButton from "./popup/popup";
 function Payments() {
   return (
     <div>
-      {/* <MyButton text="payments" /> */}
       <section
         className="elementor-section elementor-inner-section elementor-element elementor-element-5d7fce56 hidden elementor-section-boxed elementor-section-height-default"
         data-id="5d7fce56"
@@ -34,7 +32,7 @@ function Payments() {
                           style={{ textAlign: "center" }}
                         >
                           <b>
-                            <i>Payment</i>
+                            <i style={{ color: "white", fontWeight:'bold' }}>Payment</i>
                           </b>
                         </p>{" "}
                       </div>
@@ -48,6 +46,8 @@ function Payments() {
                   >
                     <div className="elementor-widget-container">
                       <iframe
+                        title="Payments iframe"
+                        style={{ alignItems:'center'}}
                         src="https://workflowai.online/shop/"
                         width="290"
                         height="400"

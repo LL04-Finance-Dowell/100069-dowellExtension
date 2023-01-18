@@ -1,0 +1,87 @@
+.customersupport{
+    overflow-y: scroll;
+    height: 1000px;
+    margin-left: 15px;
+}
+hr{
+    width: 290px;
+    margin-left: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    /* padding-bottom: 0.5px; */
+    padding-top: 0.5px;
+}
+.elementor-form-fields-wrapper{
+    margin-left: calc( -10px/2 );
+    margin-right: calc( -10px/2 );
+    margin-bottom: -20px;
+    text-align: center;
+}
+/* .elementor-form-fields-wrapper { */
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+/* } */
+.elementor-field-label{
+    font-family: "Roboto", Sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+.elementor *, .elementor :after, .elementor :before {
+    box-sizing: border-box;
+}
+
+.elementor-widget-container .elementor-form{
+    padding: 25px 25px 25px 25px;
+    transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s);
+
+}
+
+.elementor-element .elementor-widget-container{
+    transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s);
+}
+
+.elementor-select-wrapper{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    flex-basis: 100%;
+    padding-right: 20px;
+}
+.elementor-field-textual{
+    line-height: 1.4;
+    font-size: 15px;
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 40px;
+    padding: 5px 14px;
+    border-radius: 3px;
+
+}
+.elementor-field-group .elementor-field-textual {
+    /* width: 100%; */
+    max-width: 100%;
+    border: 1px solid #818a91;
+    background-color: transparent;
+    color: #373a3c;
+    vertical-align: middle;
+    flex-grow: 1;
+    background-color:#f5f5f5;
+    border-color:  #7a7a7a;
+}
+.elementor-button{
+    width: 250px;
+    height: 30px;
+    margin-right: 30px;
+    background-color: gray;
+    color: rgb(255, 246, 246);
+}

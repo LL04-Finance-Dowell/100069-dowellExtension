@@ -2,6 +2,7 @@ import "../sidebar/style.css";
 import { RxCross2 } from "react-icons/rx";
 import MyButton from "../popup/popup";
 import Payments from "../payments";
+import CustomerSupport from "../customer_support/customer_support";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -11,7 +12,7 @@ export default function Sidebar() {
     showHideLogout: false,
     showHideProduct: false,
     showHidePayments: false,
-    // showHideLogin: false,
+    showHideCustomerSupport: false,
     // showHideLogin: false,
     // showHideLogin: false,
   });
@@ -27,7 +28,10 @@ export default function Sidebar() {
       case "showHidePayments":
         setChanges({ showHidePayments: !changes.showHidePayments });
         break;
-
+      case "showHideCustomerSupport":
+        setChanges({ showHideCustomerSupport: !changes.showHideCustomerSupport });
+        break;
+  
       default:
         return null;
     }
@@ -39,6 +43,8 @@ export default function Sidebar() {
         {changes.showHideLogin && <MyButton text="Login" />}
         {changes.showHideLogout && <MyButton text="Logout" />}
         {changes.showHidePayments && <Payments text="Payments" />}
+        {changes.showHideCustomerSupport && <CustomerSupport />}
+
         {/* <RxCross2 size={24} color="white" className="close" /> */}
       </div>
 
@@ -70,7 +76,12 @@ export default function Sidebar() {
           <i aria-hidden="true" className="fas fa-user"></i>
         </div>
         <div className="power">
-          <i aria-hidden="true" className="fas fa-headset"></i>
+          <i 
+            aria-hidden="true"
+            className="fas fa-headset"
+            onClick={() => hideComponent("showHideCustomerSupport")}
+
+            ></i>
         </div>
         <div className="power">
           <i aria-hidden="true" className="fas fa-bell"></i>

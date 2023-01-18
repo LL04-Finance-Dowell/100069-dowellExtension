@@ -19,14 +19,4 @@ function MyButton(props) {
   );
 }
 
-function Popup(props) {
-  return (
-    <div className="popup-container">
-      <MyButton text={props.text} />
-      <div className="cross">
-        <RxCross2 size={24} color="white" className="close" />
-      </div>
-    </div>
-  );
-}
 export default MyButton;
