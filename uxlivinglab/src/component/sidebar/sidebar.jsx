@@ -1,8 +1,11 @@
 import "../sidebar/style.css";
+import "../popup/popup.css";
 import { RxCross2 } from "react-icons/rx";
 import MyButton from "../popup/popup";
 import Payments from "../payments";
 import CustomerSupport from "../customer_support/customer_support";
+import Products from "../products/products";
+import Profiles from "../profiles/profiles";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -10,9 +13,11 @@ export default function Sidebar() {
     name: "component",
     showHideLogin: false,
     showHideLogout: false,
-    showHideProduct: false,
+    showHideProducts: false,
     showHidePayments: false,
     showHideCustomerSupport: false,
+    showHideProfiles: false,
+
     // showHideLogin: false,
     // showHideLogin: false,
   });
@@ -31,7 +36,15 @@ export default function Sidebar() {
       case "showHideCustomerSupport":
         setChanges({ showHideCustomerSupport: !changes.showHideCustomerSupport });
         break;
-  
+      
+      case "showHideProducts":
+        setChanges({ showHideProducts: !changes.showHideProducts });
+        break;
+
+      case "showHideProfiles":
+          setChanges({ showHideProfiles: !changes.showHideProfiles });
+          break;
+
       default:
         return null;
     }
@@ -44,6 +57,9 @@ export default function Sidebar() {
         {changes.showHideLogout && <MyButton text="Logout" />}
         {changes.showHidePayments && <Payments text="Payments" />}
         {changes.showHideCustomerSupport && <CustomerSupport />}
+        {changes.showHideProducts && <Products text="Products" />}
+        {changes.showHideProfiles && <Profiles text="Profiles" />}
+
 
         {/* <RxCross2 size={24} color="white" className="close" /> */}
       </div>
@@ -73,7 +89,11 @@ export default function Sidebar() {
           ></i>
         </div>
         <div className="power">
-          <i aria-hidden="true" className="fas fa-user"></i>
+          <i 
+            aria-hidden="true" 
+            className="fas fa-user"
+            onClick={() => hideComponent("showHideProfiles")}
+            ></i>
         </div>
         <div className="power">
           <i 
@@ -87,7 +107,12 @@ export default function Sidebar() {
           <i aria-hidden="true" className="fas fa-bell"></i>
         </div>
         <div className="power">
-          <i aria-hidden="true" className="far fa-gem"></i>
+          <i 
+            aria-hidden="true" 
+            className="far fa-gem"
+            onClick={() => hideComponent("showHideProducts")}
+
+            ></i>
         </div>
         <div className="power">
           <i aria-hidden="true" className="fas fa-hand-holding-heart"></i>

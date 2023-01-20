@@ -1,7 +1,7 @@
 import "./customer_support.css"
 function CustomerSupport () {
     return (
-      <div >
+      <div className="customer">
   <div class="elementor-text-editor elementor-clearfix">
   <p
     className="auth-button"
@@ -15,7 +15,7 @@ function CustomerSupport () {
   <div className="customersupport">
 	<div class="elementor-widget-container">
     <iframe                         title="Customer Support iframe"
-loading="lazy" src="https://workflowai.online/support/" width="290px" height="400px" allow="fullscreen"></iframe>		
+loading="lazy" src="https://workflowai.online/support/" width="300px" height="400px" allow="fullscreen"></iframe>		
   </div>
 
   <div class="elementor-divider">

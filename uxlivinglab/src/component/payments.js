@@ -46,10 +46,11 @@ function Payments() {
                   >
                     <div className="elementor-widget-container">
                       <iframe
+                        id="frame"
                         title="Payments iframe"
                         style={{ alignItems:'center'}}
                         src="https://workflowai.online/shop/"
-                        width="290"
+                        width="300"
                         height="400"
                         allow="fullscreen"
                       ></iframe>{" "}

@@ -19,13 +19,15 @@
   padding: 15px 0px 0px 0px;
 }
 #second-container {
-  width: 320px;
+  width: 380px;
   height: 538px;
   display: block;
-  overflow-y: scroll;
   /* height: 900px; */
   background-color: #fffcde;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
+
   /* margin-left: 482px; */
 }
 .close-second {
@@ -104,5 +106,7 @@
 
 } */
 #second-container .customersupport {
-  height: 800px;
+  overflow-y: scroll;
+  height: 900px;
+  width: 300px;
 }

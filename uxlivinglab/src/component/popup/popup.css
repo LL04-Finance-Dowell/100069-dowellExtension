@@ -1,7 +1,7 @@
 .popup-container {
   margin-top: 0;
   height: 538px;
-  width: 320px;
+  width: 380px;
   float: right;
   background-color: beige;
   border-top-left-radius: 10px;
@@ -19,7 +19,7 @@
   cursor: pointer;
   margin: 20px 10px 20px 20px;
   padding: 20px 20px 20px 20px;
-  width: 250px;
+  width: 300px;
   background-color: #61ce70;
   border-style: none;
   border-radius: 15px 15px 15px 15px;
