@@ -6,6 +6,7 @@ import Payments from "../payments";
 import CustomerSupport from "../customer_support/customer_support";
 import Products from "../products/products";
 import Profiles from "../profiles/profiles";
+import Notifications from "../notifications/notifications";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -17,6 +18,7 @@ export default function Sidebar() {
     showHidePayments: false,
     showHideCustomerSupport: false,
     showHideProfiles: false,
+    showHideNotifications: false,
 
     // showHideLogin: false,
     // showHideLogin: false,
@@ -44,6 +46,10 @@ export default function Sidebar() {
       case "showHideProfiles":
           setChanges({ showHideProfiles: !changes.showHideProfiles });
           break;
+        
+      case "showHideNotifications":
+          setChanges({ showHideNotifications: !changes.showHideNotifications });
+          break;
 
       default:
         return null;
@@ -59,9 +65,10 @@ export default function Sidebar() {
         {changes.showHideCustomerSupport && <CustomerSupport />}
         {changes.showHideProducts && <Products text="Products" />}
         {changes.showHideProfiles && <Profiles text="Profiles" />}
+        {changes.showHideNotifications && <Notifications text="Notifications" />}
 
 
-        {/* <RxCross2 size={24} color="white" className="close" /> */}
+        <RxCross2 size={24} color="white" className="close" />
       </div>
 
       {/* </div> */}
@@ -104,7 +111,11 @@ export default function Sidebar() {
             ></i>
         </div>
         <div className="power">
-          <i aria-hidden="true" className="fas fa-bell"></i>
+          <i 
+          aria-hidden="true"
+          className="fas fa-bell"
+          onClick={() => hideComponent("showHideNotifications")}
+          ></i>
         </div>
         <div className="power">
           <i 
