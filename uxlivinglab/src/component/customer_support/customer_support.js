@@ -5,7 +5,7 @@ function CustomerSupport () {
   <div class="elementor-text-editor elementor-clearfix">
   <p
     className="auth-button"
-    style={{ textAlign: "center" }}
+    style={{ textAlign: "center",width:"300px",marginLeft:"48px" }}
     >
     <b>
       <i style={{ color: "white", fontWeight:'bold' }}>Customer Support</i>
@@ -15,7 +15,7 @@ function CustomerSupport () {
   <div className="customersupport">
 	<div class="elementor-widget-container">
     <iframe                         title="Customer Support iframe"
-loading="lazy" src="https://workflowai.online/support/" width="300px" height="400px" allow="fullscreen"></iframe>		
+loading="lazy" src="https://workflowai.online/support/" width="350px" height="700px" allow="fullscreen"></iframe>		
   </div>
 
   <div class="elementor-divider">

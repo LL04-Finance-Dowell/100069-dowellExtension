@@ -1,13 +1,14 @@
 import "../sidebar/style.css";
 import "../popup/popup.css";
 import { RxCross2 } from "react-icons/rx";
-import MyButton from "../popup/popup";
 import Payments from "../payments";
 import CustomerSupport from "../customer_support/customer_support";
 import Products from "../products/products";
 import Profiles from "../profiles/profiles";
 import Notifications from "../notifications/notifications";
 import { useState } from "react";
+import Login from "../Login"
+import Logout from "../Logout";
 
 export default function Sidebar() {
   const [changes, setChanges] = useState({
@@ -57,19 +58,17 @@ export default function Sidebar() {
   };
   return (
     <div id="grid-container">
-      <div id="second-container">
+      {changes.showHideLogin && <div id="second-container auth"> <Login /> </div>}
+      {changes.showHideLogout && <div id="second-container auth"><Logout /></div>}
         {/* <div className="close-second"> */}
-        {changes.showHideLogin && <MyButton text="Login" />}
-        {changes.showHideLogout && <MyButton text="Logout" />}
-        {changes.showHidePayments && <Payments text="Payments" />}
-        {changes.showHideCustomerSupport && <CustomerSupport />}
-        {changes.showHideProducts && <Products text="Products" />}
-        {changes.showHideProfiles && <Profiles text="Profiles" />}
-        {changes.showHideNotifications && <Notifications text="Notifications" />}
+        {changes.showHidePayments && <div id="second-container"><Payments text="Payments" /></div>}
+        {changes.showHideCustomerSupport && <div id="second-container"><CustomerSupport /></div>}
+        {changes.showHideProducts && <div id="second-container"><Products text="Products" /></div>}
+        {changes.showHideProfiles && <div id="second-container"><Profiles text="Profiles" /></div>}
+        {changes.showHideNotifications && <div id="second-container"><Notifications text="Notifications" /></div>}
 
 
-        <RxCross2 size={24} color="white" className="close" />
-      </div>
+        {/* <RxCross2 size={24} color="white" className="close" /> */}
 
       {/* </div> */}
 

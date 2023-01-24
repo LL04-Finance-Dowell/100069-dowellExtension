@@ -1,10 +1,10 @@
 #grid-container {
-  height: 538px;
+  max-height: 538px;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   align-items: center;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 #first-container {
@@ -19,8 +19,11 @@
   padding: 15px 0px 0px 0px;
 }
 #second-container {
-  width: 380px;
+  width: 430px;
+  overflow: scroll;
+  overflow-x: hidden;
   height: 538px;
+  border-radius: 10px;
   /* min-height: fit-content(538px); */
   display: block;
   /* height: 900px; */
@@ -30,6 +33,30 @@
   box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
 
   /* margin-left: 482px; */
+}
+
+#auth-container{
+  width: 430px;
+  overflow: hidden;
+  overflow-x: hidden;
+  height: 538px;
+  border-radius: 10px;
+  /* min-height: fit-content(538px); */
+  display: block;
+  /* height: 900px; */
+  background-color: #fffcde;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
+
+  /* margin-left: 482px; */
+
+}
+
+#second-container .popup-container{
+  overflow: hidden;
+  width: 430px;
+
 }
 .close-second {
   cursor: pointer;
@@ -106,8 +133,9 @@
   letter-spacing: normal;
 
 } */
-#second-container .customersupport {
+/* #second-container .customersupport {
   overflow-y: scroll;
   height: 900px;
   width: 300px;
-}
+} */
+

@@ -1,9 +1,28 @@
 import "./profiles.css"
 import "../popup/popup.css"
 import { useState } from "react";
+import { RxCross2 } from "react-icons/rx";
 
 
 function Profiles () {
+
+    const [arrows, setaArrows] = useState({
+        showArrow1: true,
+        showArrow2: false,
+        showArrow3: false,
+        showArrow4: false,
+        showArrow5: false,
+        showArrow6: false,
+        showArrow7: false,
+        showArrow8: false,
+        showArrow9: false,
+        showArrow10: false,
+        showArrow11: false,
+        showArrow12: false,
+        showArrow13: false,
+
+    })
+
     const [changes, setChanges] = useState({
         name: "component",
         show1: false,
@@ -78,7 +97,7 @@ function Profiles () {
         <div class="elementor-text-editor elementor-clearfix">
         <p
           className="auth-button"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", width:"300px",marginLeft:"45px" }}
           >
           <b>
             <i style={{ color: "white", fontWeight:'bold' }}>My Profile</i>
@@ -87,191 +106,216 @@ function Profiles () {
         </div>
       
         <div id="all">
+            <div className='all-border'>
             <div className="element-container">
-                <div className="item">
+                
+                <div className="item" onClick={() => setaArrows({showArrow1: !arrows.showArrow1})} 
+>
                 <i 
-                    className="fas inc fa-angles-down"
+                    // className="fas inc fa-angles-up"s inc fa-angles-up" : "fas inc fa-angles-up"}
                     aria-hidden="true"
-                    onClick={() => hideComponent("show1")}>
+                    className={arrows.showArrow1 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
+                    onClick={() => hideComponent("show1")}
+                    >
                     </i>
-                    <p> 01. My Profile</p>
+                    <p className={arrows.showArrow1 ? "selected":"unselected"}> 01. My Profile</p>
                 </div>
                 {/* condition to see if div is clicked */}
             </div>
-            {changes.show1 && <div className="space"></div>}
+            {arrows.showArrow1 && <div className="space"></div>}
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow2: !arrows.showArrow2})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow2 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show2")}>
                     </i>
 
-                    <p>02.Set Password</p>
+                    <p className={arrows.showArrow2 ? "selected":"unselected"} >02.Set Password</p>
                 </div>
             </div>
-            {changes.show2 && <div className="space"></div>}
+            {arrows.showArrow2 && <div className="space"></div>}
                 
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow3: !arrows.showArrow3})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow3 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show3")}>
                     </i>
 
-                        <p>03.Device IDs</p>
+                        <p className={arrows.showArrow3 ? "selected":"unselected"}>03.Device IDs</p>
                     </div>
             </div>
-            {changes.show3 && <div className="space"></div>}
+            {arrows.showArrow3 && <div className="space"></div>}
   
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow4: !arrows.showArrow4})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow4 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show4")}>
                     </i>
 
-                    <p>04.Personal IDs</p>
+                    <p className={arrows.showArrow4 ? "selected":"unselected"}>04.Personal IDs</p>
                 </div>                
             </div>
-            {changes.show4 && <div className="space"></div>}
+            {arrows.showArrow4 && <div className="space"></div>}
 
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow5: !arrows.showArrow5})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow5 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show5")}>
                     </i>
 
-                    <p>05.References</p>
+                    <p className={arrows.showArrow5 ? "selected":"unselected"}>05.References</p>
                 </div>
             </div>
-            {changes.show5 && <div className="space"></div>}
+            {arrows.showArrow5 && <div className="space"></div>}
     
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow6: !arrows.showArrow6})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow6 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show6")}>
                     </i>
 
-                    <p>06.ID Verification</p>
+                    <p className={arrows.showArrow6 ? "selected":"unselected"}>06.ID Verification</p>
                 </div>
                 
             </div>
-            {changes.show6 && <div className="space"></div>}
+            {arrows.showArrow6  && <div className="space"></div>}
     
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow7: !arrows.showArrow7})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow7 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show7")}>
                     </i>
 
-                    <p>07.My Organisation</p>
+                    <p className={arrows.showArrow7 ? "selected":"unselected"}>07.My Organisation</p>
                 </div>    
             </div>
-            {changes.show7 && <div className="space"></div>}
+            {arrows.showArrow7  && <div className="space"></div>}
     
 
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow8: !arrows.showArrow8})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow8 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show8")}>
                     </i>
 
-                    <p>08.Geographic Profile</p>
+                    <p className={arrows.showArrow8 ? "selected":"unselected"}>08.Geographic Profile</p>
                 </div>
        
             </div>
-            {changes.show8 && <div className="space"></div>}
+            {arrows.showArrow8  && <div className="space"></div>}
     
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow9: !arrows.showArrow9})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow9 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show9")}>
                     </i>
 
-                    <p>09.Demographic Profile</p>
+                    <p className={arrows.showArrow9 ? "selected":"unselected"}>09.Demographic Profile</p>
                 </div>
             </div>
-            {changes.show9 && <div className="space"></div>}
+            {arrows.showArrow9 && <div className="space"></div>}
     
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow10: !arrows.showArrow10})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow10 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show10")}>
                     </i>
 
-                    <p>10.Psychographic Profile</p>
+                    <p className={arrows.showArrow10 ? "selected":"unselected"}>10.Psychographic Profile</p>
                 </div>
             </div>
-            {changes.show10 && <div className="space"></div>}
+            {arrows.showArrow10 && <div className="space"></div>}
   
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow11: !arrows.showArrow11})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow11 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show11")}>
                     </i>
 
-                    <p>11.Behavioural Profile</p>
+                    <p className={arrows.showArrow11 ? "selected":"unselected"}>11.Behavioural Profile</p>
                 </div>
             </div>
-            {changes.show11 && <div className="space"></div>}
+            {arrows.showArrow11 && <div className="space"></div>}
 
 
             <div className="element-container">
-                <div className="item">
+                <div className="item" onClick={() => setaArrows({showArrow12: !arrows.showArrow12})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow12 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show12")}>
                     </i>
 
-                    <p>12.Usage Profile</p>
+                    <p className={arrows.showArrow12 ? "selected":"unselected"}>12.Usage Profile</p>
                 </div>
             </div>
-            {changes.show12 && <div className="space"></div>}
+            {arrows.showArrow12 && <div className="space"></div>}
  
 
-            <div className="element-container">
-                <div className="item">
+            <div className="element-container last">
+                <div className="item" onClick={() => setaArrows({showArrow13: !arrows.showArrow13})}>
                 <i 
-                    className="fas inc fa-angles-down"
                     aria-hidden="true"
+                    className={arrows.showArrow13 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     onClick={() => hideComponent("show13")}>
                     </i>
 
-                    <p>13.Section Permissions</p>
+                    <p className={arrows.showArrow13 ? "selected":"unselected"}>13.Section Permissions</p>
                 </div>
    
             </div>
-            {changes.show13 && <div className="space"></div>}
+            {arrows.showArrow13  && <div className="space ls"></div>}
  
+            </div>
+            <div className="button">
+                <a href="#" className="text"><span >Edit my profile</span></a>
 
+            </div>
+
+
+            <div onClick={() => window.close()}>
+          <RxCross2
+            size={24}
+            color="white"
+            className="close"
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              marginTop: 4,
+              marginRight: 350,
+              left: 0,
+            }}
+          />
+            </div>
 
         </div>
         </div>

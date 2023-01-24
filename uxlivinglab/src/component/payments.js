@@ -29,7 +29,7 @@ function Payments() {
                       <div className="elementor-text-editor elementor-clearfix">
                         <p
                           className="auth-button"
-                          style={{ textAlign: "center" }}
+                          style={{ textAlign: "center",width:"300px",marginLeft:"48px" }}
                         >
                           <b>
                             <i style={{ color: "white", fontWeight:'bold' }}>Payment</i>
@@ -50,8 +50,8 @@ function Payments() {
                         title="Payments iframe"
                         style={{ alignItems:'center'}}
                         src="https://workflowai.online/shop/"
-                        width="300"
-                        height="400"
+                        width="350"
+                        height="700"
                         allow="fullscreen"
                       ></iframe>{" "}
                     </div>
