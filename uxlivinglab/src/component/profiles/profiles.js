@@ -296,9 +296,13 @@ function Profiles () {
             {arrows.showArrow13  && <div className="space ls"></div>}
  
             </div>
-            <div className="button">
-                <a href="#" className="text"><span >Edit my profile</span></a>
 
+            <div class="button-div">
+              <button type="submit" 
+              style={{width: "350px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              class="elementor-field-textual bt" id="connectwebsite">
+                Edit my profile
+                </button>
             </div>
 
 

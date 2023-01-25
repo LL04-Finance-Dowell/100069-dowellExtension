@@ -18,10 +18,9 @@ function CustomerSupport () {
 loading="lazy" src="https://workflowai.online/support/" width="350px" height="700px" allow="fullscreen"></iframe>		
   </div>
 
-  <div class="elementor-divider">
-      <hr></hr>
-    </div>
-	<div class="elementor-element elementor-element-82d1611 elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="82d1611" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
+  <div class="elementor-divider"  style={{width:"370px",borderTop:"1.5px solid red",marginTop:'5px'}} 
+>		</div>
+    	<div class="elementor-element elementor-element-82d1611 elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="82d1611" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
     <div class="elementor-widget-container">
       <form class="elementor-form" method="post" name="Form1">
         <input type="hidden" name="post_id" value="8155"/>
@@ -40,21 +39,19 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
                 </select>
               </div>
             </div>
-            <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
-              <button type="submit" class="elementor-button elementor-size-xs" id="connectwebsite">
-                <span>
-                          <span class=" elementor-button-icon">
-                                                </span>
-                                        <span class="elementor-button-text">Connect to Website</span>
-                      </span>
+            <div class="button-div">
+              <button type="submit" 
+              style={{width: "300px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              class="elementor-field-textual bt" id="connectwebsite">
+                connect to Website
                 </button>
             </div>
         </div>
       </form>
     </div>
 	</div>
-  <div class="elementor-divider">
-      <hr></hr>
+  <div class="elementor-divider" style={{width:"370px",borderTop:"1.5px solid red",marginTop:'5px'}}>
+      {/* <hr></hr> */}
     </div>
   	<div class="elementor-widget-container">
 		<form class="elementor-form" method="post" name="Form1">
@@ -65,7 +62,8 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
 
       <div class="elementor-form-fields-wrapper elementor-labels-above">
 				<div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
-						<label for="form-field-level3name" class="elementor-field-label">
+						<div></div>
+            <label for="form-field-level3name" class="elementor-field-label">
 					    Select Product room							</label>
 					<div class="elementor-field elementor-select-wrapper ">
             <select name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
@@ -75,13 +73,11 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
 				    </select>
           </div>
 			  </div>
-				<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
-		      <button type="submit" class="elementor-button elementor-size-xs" id="chatcustomersupport">
-			        <span>
-							<span class=" elementor-button-icon">
-							</span>
-							<span class="elementor-button-text">Chat with Customer Support</span>
-							</span>
+				<div class="button-div">
+		      <button type="submit" 
+          style={{width: "300px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+          class="elementor-field-textual bt" id="chatcustomersupport">
+              Chat with Customer Support
 		      </button>
 	      </div>
       </div>
