@@ -1,4 +1,7 @@
 import "./payments.css";
+import { RxCross2 } from "react-icons/rx";
+
+
 function Payments() {
   return (
     <div>
@@ -62,6 +65,23 @@ function Payments() {
           </div>
         </div>
       </section>{" "}
+      <div style={{height:15}}></div>
+      <div style={{ display: "flex", marginLeft: 5 }}>
+          <RxCross2
+            size={24}
+            color="white"
+            className="close"
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              marginTop: 4,
+              marginRight: 300,
+              marginBottom:8,
+              left: 0,
+            }}
+          />
+        </div>
+
     </div>
   );
 }

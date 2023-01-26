@@ -13,15 +13,15 @@ export default function Login() {
               target="_blank"
               rel="noreferrer"
             >
-              <button className="login">
-                <i 
-                className="button-text" id="loginButton">Login
+              <button className="logout">
+                <i className="button-text" id="logoutButton">
+                  Login
                 </i>
               </button>
             </a>
           </div>
         </div>
-        <div onClick={() => window.close()}>
+        <div style={{ display: "flex", marginLeft: 5 }}>
           <RxCross2
             size={24}
             color="white"
@@ -30,12 +30,11 @@ export default function Login() {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 4,
-              marginRight: 350,
+              marginRight: 300,
               left: 0,
             }}
           />
-        </div>
-      </div>
+        </div>      </div>
     </>
   );
 }

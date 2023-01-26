@@ -172,7 +172,10 @@ function Notifications () {
             {arrows.showArrow7 && <div className="space ls"></div>}
 
             </div>
-            <div onClick={() => window.close()}>
+            <div style={{marginTop:"5px"}}></div>
+
+        </div>
+        <div style={{ display: "flex", marginLeft: 8 }}>
           <RxCross2
             size={24}
             color="white"
@@ -181,12 +184,11 @@ function Notifications () {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 4,
-              marginRight: 350,
-              left: 0,
+              marginRight:300,
+              marginBottom:6,                
+              left: 0
             }}
           />
-            </div>
-
         </div>
 
 

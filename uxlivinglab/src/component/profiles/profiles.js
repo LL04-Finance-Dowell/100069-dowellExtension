@@ -104,7 +104,6 @@ function Profiles () {
           </b>
           </p>{" "}		
         </div>
-      
         <div id="all">
             <div className='all-border'>
             <div className="element-container">
@@ -299,14 +298,15 @@ function Profiles () {
 
             <div class="button-div">
               <button type="submit" 
-              style={{width: "350px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              style={{width: "350px",marginTop:"15px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 Edit my profile
                 </button>
             </div>
 
 
-            <div onClick={() => window.close()}>
+
+            <div style={{ display: "flex", marginLeft: 5 }}>
           <RxCross2
             size={24}
             color="white"
@@ -315,13 +315,18 @@ function Profiles () {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 4,
-              marginRight: 350,
+              marginRight: 300,
+              marginBottom: 8,
               left: 0,
             }}
           />
-            </div>
+        </div>
 
         </div>
+
+
+        
+
         </div>
     );
 

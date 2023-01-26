@@ -21,7 +21,7 @@ export default function Logout() {
             </a>
           </div>
         </div>
-        <div onClick={() => window.close()}>
+        <div style={{ display: "flex", marginLeft: 5 }}>
           <RxCross2
             size={24}
             color="white"
@@ -30,12 +30,11 @@ export default function Logout() {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 4,
-              marginRight: 350,
+              marginRight: 300,
               left: 0,
             }}
           />
-        </div>
-      </div>
+        </div>      </div>
     </>
   );
 }

@@ -9,6 +9,7 @@ import Notifications from "../notifications/notifications";
 import { useState } from "react";
 import Login from "../Login"
 import Logout from "../Logout";
+import Favourites from "../favourites/favourites";
 
 export default function Sidebar() {
   const [changes, setChanges] = useState({
@@ -20,6 +21,8 @@ export default function Sidebar() {
     showHideCustomerSupport: false,
     showHideProfiles: false,
     showHideNotifications: false,
+    showHideFavourites: false,
+    showHideNone : true,
 
     // showHideLogin: false,
     // showHideLogin: false,
@@ -52,6 +55,10 @@ export default function Sidebar() {
           setChanges({ showHideNotifications: !changes.showHideNotifications });
           break;
 
+      case "showHideFavourites":
+          setChanges({ showHideFavourites: !changes.showHideFavourites})
+          break;
+
       default:
         return null;
     }
@@ -66,8 +73,8 @@ export default function Sidebar() {
         {changes.showHideProducts && <div id="second-container"><Products text="Products" /></div>}
         {changes.showHideProfiles && <div id="second-container"><Profiles text="Profiles" /></div>}
         {changes.showHideNotifications && <div id="second-container"><Notifications text="Notifications" /></div>}
-
-
+        {changes.showHideFavourites && <div id="second-container auth"><Favourites text="Favourites" /></div>}
+        {changes.showHideNone && <div id="second-container" style={{overflow:"hidden"}}></div>}
         {/* <RxCross2 size={24} color="white" className="close" /> */}
 
       {/* </div> */}
@@ -125,15 +132,28 @@ export default function Sidebar() {
             ></i>
         </div>
         <div className="power">
-          <i aria-hidden="true" className="fas fa-hand-holding-heart"></i>
+          <i 
+            aria-hidden="true" 
+            className="fas fa-hand-holding-heart"
+            onClick={() => hideComponent("showHideFavourites")}
+
+            ></i>
         </div>
-        <div
-          onClick={
-            () => window.close()
-            // (document.querySelector("second-container").style.display = "none")
-          }
-        >
-          <RxCross2 size={24} color="red" className="close" />
+        <div style={{ display: "flex", marginLeft: 5 }}>
+          <RxCross2
+            size={24}
+            color="white"
+            className="close"
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              marginTop: 10,
+              marginRight:10,
+              left: 0,
+              marginBottom: 10,
+              marginLeft:5
+            }}
+          />
         </div>
       </div>
     </div>

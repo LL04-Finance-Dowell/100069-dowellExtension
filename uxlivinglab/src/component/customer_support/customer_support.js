@@ -1,4 +1,7 @@
 import "./customer_support.css"
+import { RxCross2 } from "react-icons/rx";
+
+
 function CustomerSupport () {
     return (
       <div className="customer">
@@ -18,7 +21,7 @@ function CustomerSupport () {
 loading="lazy" src="https://workflowai.online/support/" width="350px" height="700px" allow="fullscreen"></iframe>		
   </div>
 
-  <div class="elementor-divider"  style={{width:"370px",borderTop:"1.5px solid red",marginTop:'5px'}} 
+  <div class="elementor-divider"  style={{width:"350px",borderTop:"1.5px solid red",marginTop:'5px'}} 
 >		</div>
     	<div class="elementor-element elementor-element-82d1611 elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="82d1611" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
     <div class="elementor-widget-container">
@@ -41,7 +44,7 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
             </div>
             <div class="button-div">
               <button type="submit" 
-              style={{width: "300px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              style={{width: "300px",fontSize:14,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 connect to Website
                 </button>
@@ -50,7 +53,7 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
       </form>
     </div>
 	</div>
-  <div class="elementor-divider" style={{width:"370px",borderTop:"1.5px solid red",marginTop:'5px'}}>
+  <div class="elementor-divider" style={{width:"350px",borderTop:"1.5px solid red",marginTop:'5px'}}>
       {/* <hr></hr> */}
     </div>
   	<div class="elementor-widget-container">
@@ -75,7 +78,7 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
 			  </div>
 				<div class="button-div">
 		      <button type="submit" 
-          style={{width: "300px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+          style={{width: "300px",fontSize:14,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
           class="elementor-field-textual bt" id="chatcustomersupport">
               Chat with Customer Support
 		      </button>
@@ -84,6 +87,25 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
     </form>
 	  </div>
     </div>
+    <div
+    style={{height:"40px"}}></div>
+    <div style={{ display: "flex", marginLeft: 5 }}>
+          <RxCross2
+            size={24}
+            color="white"
+            className="close"
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              marginTop: 4,
+              marginRight: 300,
+              left: 0,
+              marginBottom: 10,
+              marginLeft:5
+            }}
+          />
+        </div>
+
     </div>
     );
 }
