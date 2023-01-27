@@ -20,8 +20,7 @@ function Favourites () {
                 </p>{" "}		
             </div>
             <div className="columns" >
-            
-                <a href={"#"} class="elementor-button-link elementor-button elementor-size-xs" role="button">
+                <a href="/#" class="elementor-button-link elementor-button elementor-size-xs" role="button">
                                 <span class="elementor-button">
                         <i aria-hidden="true" class="fas fa-bars new"></i>			</span>
                             <span  class="elementor-button-text"></span>
