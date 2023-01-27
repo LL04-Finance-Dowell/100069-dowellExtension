@@ -17,8 +17,8 @@ export default function Logout() {
               target="_blank"
               rel="noreferrer"
             >
-              <button className="logout">
-                <i className="button-text" id="logoutButton">
+              <button className="logout" style={{width:350}}>
+                <i className="button-text" id="logoutButton" style={{fontSize:20}}>
                   Logout
                 </i>
               </button>

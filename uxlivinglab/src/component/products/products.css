@@ -1,6 +1,6 @@
 .products {
     /* overflow-y: scroll; */
-    width: 300px;
+    width: 350px;
     /* display: flex; */
     /* flex-direction: row; */
   }
@@ -9,7 +9,7 @@
   } */
   
   .items {
-    width: 300px;
+    width: 350px;
     /* display: flex; */
     flex-direction: column;
     /* flex-direction: row; */

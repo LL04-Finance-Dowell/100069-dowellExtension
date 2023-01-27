@@ -41,15 +41,15 @@ export const products = [
       title: "Workflow AI",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -61,15 +61,15 @@ export const products = [
       title: "Will QR Code",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],

@@ -60,15 +60,14 @@ function Notifications () {
 
     return (
         <div>
-        <div class="elementor-text-editor elementor-clearfix">
-        <p
-          className="auth-button"
-          style={{ textAlign: "center",width:"310px"}}
-          >
-          <b>
-            <i style={{ color: "white", fontWeight:'bold' }}>Notifications</i>
-          </b>
-          </p>{" "}		
+        <div className="item">
+          <div className="{ props.text }" >
+              <button className="logout" style={{width:350}}>
+                <i className="button-text" style={{fontSize:20,}}>
+                  Notifications
+                </i>
+              </button>
+          </div>
         </div>
 
 

@@ -71,8 +71,8 @@ export default function Sidebar() {
     <div id="grid-container">
       {show ? (
         <div>
-        {changes.showHideLogout && <div id="second-container auth"><Logout /></div>}
-        {changes.showHideLogin && <div id="second-container auth"><Login /></div>}
+        {changes.showHideLogout && <div id="second-container" style={{overflow:"hidden"}}><Logout /></div>}
+        {changes.showHideLogin && <div id="second-container" style={{overflow:"hidden"}}><Login /></div>}
 
         {/* <div className="close-second"> */}
         {changes.showHidePayments && <div id="second-container"><Payments text="Payments" /></div>}
@@ -80,8 +80,8 @@ export default function Sidebar() {
         {changes.showHideProducts && <div id="second-container"><Products text="Products" /></div>}
         {changes.showHideProfiles && <div id="second-container"><Profiles text="Profiles" /></div>}
         {changes.showHideNotifications && <div id="second-container"><Notifications text="Notifications" /></div>}
-        {changes.showHideFavourites && <div id="second-container auth"><Favourites text="Favourites" /></div>}
-        {changes.showHideNone && <div id="second-container" style={{overflow:"hidden",width:380}}><div className="popup-cotainer"></div></div>}
+        {changes.showHideFavourites && <div id="second-container"><Favourites text="Favourites" /></div>}
+        {changes.showHideNone && <div id="second-container" style={{overflow:"hidden"}}><div className="popup-cotainer"></div></div>}
         {/* <RxCross2 size={24} color="white" className="close" /> */}
       {/* </div> */}
       </div>

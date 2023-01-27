@@ -32,16 +32,15 @@ function Payments() {
                     data-widget_type="text-editor.default"
                   >
                     <div className="elementor-widget-container">
-                      <div className="elementor-text-editor elementor-clearfix">
-                        <p
-                          className="auth-button"
-                          style={{ textAlign: "center",width:"300px",marginLeft:"48px" }}
-                        >
-                          <b>
-                            <i style={{ color: "white", fontWeight:'bold' }}>Payment</i>
-                          </b>
-                        </p>{" "}
+                    <div className="item">
+                      <div className="{ props.text }" >
+                          <button className="logout" style={{width:350}}>
+                            <i className="button-text" style={{fontSize:20,}}>
+                              Payment
+                            </i>
+                          </button>
                       </div>
+                    </div>
                     </div>
                   </div>
                   <div

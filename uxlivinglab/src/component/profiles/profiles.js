@@ -94,15 +94,14 @@ function Profiles () {
 
     return (
         <div>
-        <div class="elementor-text-editor elementor-clearfix">
-        <p
-          className="auth-button"
-          style={{ textAlign: "center", width:"300px",marginLeft:"45px" }}
-          >
-          <b>
-            <i style={{ color: "white", fontWeight:'bold' }}>My Profile</i>
-          </b>
-          </p>{" "}		
+        <div className="item">
+          <div className="{ props.text }" >
+              <button className="logout" style={{width:345}}>
+                <i className="button-text" style={{fontSize:20,}}>
+                  My Profile
+                </i>
+              </button>
+          </div>
         </div>
         <div id="all">
             <div className='all-border'>

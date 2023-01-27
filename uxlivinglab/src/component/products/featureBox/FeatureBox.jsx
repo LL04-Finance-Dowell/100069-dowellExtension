@@ -13,8 +13,8 @@ const FeatureBox = ({ product }) => {
             </option>
           ))}
         </select>
-        <button className={styles.button}>
-          <i className={styles.btn}>Connect</i>
+        <button className={styles.button} style={{fontSize:20, width:150}}>
+          Connect
         </button>
       </div>
     </div>

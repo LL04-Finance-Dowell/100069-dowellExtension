@@ -6,6 +6,8 @@
     /* overflow-y:scroll;    */
     height:500px;
     /* overscroll-behavior-y:contain; */
+    transition:ease-in-out;
+    transition-duration: 0.3s;
 
 }
 .element-container{

@@ -2,14 +2,14 @@ import React from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
-import { useStateContext } from "../../contexts/ContextProvider.js";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 const Products = () => {
   const { handleShow } = useStateContext();
   return (
     <div className={styles.cover}>
       <button className={styles.productbtn}>
-        <i className={styles.txt}>Products</i>
+        <i style={{width:310, fontSize:20}} className={styles.txt}>Products</i>
       </button>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
@@ -45,15 +45,15 @@ export const products = [
       title: "Workflow AI",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -65,15 +65,15 @@ export const products = [
       title: "Will QR Code",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -88,15 +88,15 @@ export const products = [
       title: "Customer Support",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -107,15 +107,15 @@ export const products = [
       title: "UX Live",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -130,15 +130,15 @@ export const products = [
       title: "Permutation Calculator",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -150,15 +150,15 @@ export const products = [
       title: "Sales Agent",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -173,15 +173,15 @@ export const products = [
       title: "Live Dashboard",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -193,15 +193,15 @@ export const products = [
       title: "Team Management",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -216,15 +216,15 @@ export const products = [
       title: "Living Lab Monitoring",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -236,15 +236,15 @@ export const products = [
       title: "Socialmedia Automation",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -258,15 +258,15 @@ export const products = [
       title: "Dowell Scales",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -278,15 +278,15 @@ export const products = [
       title: "Logo Scan",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -301,15 +301,15 @@ export const products = [
       title: "Living Lab Chat",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -321,15 +321,15 @@ export const products = [
       title: "Living Lab Admin",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -344,15 +344,15 @@ export const products = [
       title: "Legal Zard",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -364,15 +364,15 @@ export const products = [
       title: "Living Lab Maps",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -387,15 +387,15 @@ export const products = [
       title: "Digital Queue",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -407,15 +407,15 @@ export const products = [
       title: "Customer Experience",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -430,15 +430,15 @@ export const products = [
       title: "Secure Repositories",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],
@@ -450,15 +450,15 @@ export const products = [
       title: "Secure Data",
       porfolios: [
         {
-          portfolio_name: "porfolio one",
+          portfolio_name: "Portfolio 01",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio two",
+          portfolio_name: "Portfolio 02",
           id: crypto.randomUUID(),
         },
         {
-          portfolio_name: "porfolio three",
+          portfolio_name: "Portfolio 3",
           id: crypto.randomUUID(),
         },
       ],

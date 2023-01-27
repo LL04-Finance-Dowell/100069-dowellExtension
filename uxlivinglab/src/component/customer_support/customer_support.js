@@ -8,16 +8,15 @@ function CustomerSupport () {
 
     return (
       <div className="customer">
-  <div class="elementor-text-editor elementor-clearfix">
-  <p
-    className="auth-button"
-    style={{ textAlign: "center",width:"300px",marginLeft:"48px" }}
-    >
-    <b>
-      <i style={{ color: "white", fontWeight:'bold' }}>Customer Support</i>
-    </b>
-    </p>{" "}		
-  </div>
+        <div className="item">
+          <div className="{ props.text }" >
+              <button className="logout" style={{width:350}}>
+                <i className="button-text" style={{fontSize:20,}}>
+                  Customer Support
+                </i>
+              </button>
+          </div>
+        </div>
   <div className="customersupport">
 	<div class="elementor-widget-container">
     <iframe                         title="Customer Support iframe"

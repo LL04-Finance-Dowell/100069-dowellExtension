@@ -8,17 +8,16 @@ function Favourites () {
   const { show, handleShow} = useStateContext();
 
   return (
-        <div className="popup-container favcontainer">
-            <div class="elementor-text-editor elementor-clearfix">
-                <p
-                className="auth-button"
-                style={{ textAlign: "center",width:"280px",marginLeft:30}}
-                >
-                <b>
-                    <i style={{ color: "white", fontWeight:'bold',fontSize:20 }}>Favourites</i>
-                </b>
-                </p>{" "}		
-            </div>
+        <div>
+        <div className="item">
+          <div className="{ props.text }" >
+              <button className="logout" style={{width:350}}>
+                <i className="button-text" style={{fontSize:20}}>
+                  Favourites
+                </i>
+              </button>
+          </div>
+        </div>
             <div className="columns" >
                 <a href="/#" class="elementor-button-link elementor-button elementor-size-xs" role="button">
                                 <span class="elementor-button">
@@ -32,7 +31,7 @@ function Favourites () {
             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
               <label for="form-field-level3name" class="elementor-field-label">Select Product</label>
               <div class="elementor-field elementor-select-wrapper ">
-                <select style={{width:310,marginTop:2,}} name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
+                <select style={{width:350,marginTop:2,}} name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
                   <option value="Product 01">Product 01</option>
                   <option value="Product 02">Product 02</option>
                   <option value="Product 03">Product 03</option>
@@ -42,7 +41,7 @@ function Favourites () {
             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
               <label for="form-field-level3name" class="elementor-field-label">Select Product</label>
               <div class="elementor-field elementor-select-wrapper ">
-                <select style={{width:310, marginTop:2}} name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
+                <select style={{width:350, marginTop:2}} name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
                   <option value="Product 01">Product 01</option>
                   <option value="Product 02">Product 02</option>
                   <option value="Product 03">Product 03</option>
@@ -58,7 +57,7 @@ function Favourites () {
 
             <div class="button-div">
               <button type="submit" 
-              style={{width:310,fontSize:15,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",marginBottom:80,color:"#ffffff"}}
+              style={{width:350,fontSize:15,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",marginBottom:80,color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 Save / Remove Favourites
                 </button>
