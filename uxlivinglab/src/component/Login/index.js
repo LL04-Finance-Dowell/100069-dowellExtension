@@ -1,8 +1,12 @@
 import "./style.css";
 import { RxCross2 } from "react-icons/rx";
+import { useStateContext } from "../../contexts/ContextProvider";
+
 
 export default function Login() {
+  const { show, handleShow} = useStateContext();
   return (
+
     <>
       <div className="popup-container">
         <div className="item">
@@ -33,6 +37,7 @@ export default function Login() {
               marginRight: 300,
               left: 0,
             }}
+            onClick={() => handleShow(!show)}
           />
         </div>      </div>
     </>

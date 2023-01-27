@@ -1,9 +1,13 @@
 import "./favourites.css"
 import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
+import { useStateContext } from "../../contexts/ContextProvider";
+
 
 function Favourites () {
-    return (
+  const { show, handleShow} = useStateContext();
+
+  return (
         <div className="popup-container favcontainer">
             <div class="elementor-text-editor elementor-clearfix">
                 <p
@@ -84,6 +88,7 @@ function Favourites () {
               marginBottom: 20,
               marginLeft:5
             }}
+            onClick={() => handleShow(!show)}
           />
         </div>
 

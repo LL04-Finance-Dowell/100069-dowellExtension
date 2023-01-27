@@ -2,9 +2,12 @@ import "./notifications.css"
 import "../popup/popup.css"
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 
 function Notifications () {
+    const { show, handleShow} = useStateContext();
+
 
     const [arrows, setaArrows] = useState({
         showArrow1: true,
@@ -188,6 +191,7 @@ function Notifications () {
               marginBottom:6,                
               left: 0
             }}
+            onClick={() => handleShow(!show)}
           />
         </div>
 

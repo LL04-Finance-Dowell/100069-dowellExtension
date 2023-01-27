@@ -1,8 +1,11 @@
 import "./customer_support.css"
 import { RxCross2 } from "react-icons/rx";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 
 function CustomerSupport () {
+  const { show, handleShow} = useStateContext();
+
     return (
       <div className="customer">
   <div class="elementor-text-editor elementor-clearfix">
@@ -44,7 +47,7 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
             </div>
             <div class="button-div">
               <button type="submit" 
-              style={{width: "300px",fontSize:14,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              style={{cursor:"pointer",width: "300px",fontSize:14,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 connect to Website
                 </button>
@@ -78,7 +81,7 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
 			  </div>
 				<div class="button-div">
 		      <button type="submit" 
-          style={{width: "300px",fontSize:14,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+          style={{cursor:"pointer",width: "300px",fontSize:14,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
           class="elementor-field-textual bt" id="chatcustomersupport">
               Chat with Customer Support
 		      </button>
@@ -103,6 +106,7 @@ loading="lazy" src="https://workflowai.online/support/" width="350px" height="70
               marginBottom: 10,
               marginLeft:5
             }}
+            onClick={() => handleShow(!show)}
           />
         </div>
 

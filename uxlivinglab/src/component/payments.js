@@ -1,8 +1,11 @@
 import "./payments.css";
 import { RxCross2 } from "react-icons/rx";
+import { useStateContext } from "../contexts/ContextProvider";
 
 
 function Payments() {
+  const { show, handleShow} = useStateContext();
+
   return (
     <div>
       <section
@@ -79,6 +82,7 @@ function Payments() {
               marginBottom:8,
               left: 0,
             }}
+            onClick={() => handleShow(!show)}
           />
         </div>
 

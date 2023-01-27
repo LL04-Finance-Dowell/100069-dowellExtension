@@ -2,10 +2,10 @@ import "./profiles.css"
 import "../popup/popup.css"
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-
+import { useStateContext } from "../../contexts/ContextProvider";
 
 function Profiles () {
-
+    const { show, handleShow} = useStateContext();
     const [arrows, setaArrows] = useState({
         showArrow1: true,
         showArrow2: false,
@@ -298,7 +298,7 @@ function Profiles () {
 
             <div class="button-div">
               <button type="submit" 
-              style={{width: "350px",marginTop:"15px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              style={{cursor:"pointer",width: "350px",marginTop:"15px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 Edit my profile
                 </button>
@@ -319,6 +319,7 @@ function Profiles () {
               marginBottom: 8,
               left: 0,
             }}
+            onClick={() => handleShow(!show)}
           />
         </div>
 

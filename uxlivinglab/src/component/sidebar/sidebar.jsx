@@ -10,8 +10,10 @@ import { useState } from "react";
 import Login from "../Login"
 import Logout from "../Logout";
 import Favourites from "../favourites/favourites";
+import { useStateContext } from "../../contexts/ContextProvider.js";
 
 export default function Sidebar() {
+  const { show, handleShow } = useStateContext();
   const [changes, setChanges] = useState({
     name: "component",
     showHideLogin: false,
@@ -27,8 +29,10 @@ export default function Sidebar() {
     // showHideLogin: false,
     // showHideLogin: false,
   });
+  
 
   const hideComponent = (name) => {
+    handleShow(true);
     switch (name) {
       case "showHideLogin":
         setChanges({ showHideLogin: !changes.showHideLogin });
@@ -65,8 +69,11 @@ export default function Sidebar() {
   };
   return (
     <div id="grid-container">
-      {changes.showHideLogin && <div id="second-container auth"> <Login /> </div>}
-      {changes.showHideLogout && <div id="second-container auth"><Logout /></div>}
+      {show ? (
+        <div>
+        {changes.showHideLogout && <div id="second-container auth"><Logout /></div>}
+        {changes.showHideLogin && <div id="second-container auth"><Login /></div>}
+
         {/* <div className="close-second"> */}
         {changes.showHidePayments && <div id="second-container"><Payments text="Payments" /></div>}
         {changes.showHideCustomerSupport && <div id="second-container"><CustomerSupport /></div>}
@@ -74,11 +81,11 @@ export default function Sidebar() {
         {changes.showHideProfiles && <div id="second-container"><Profiles text="Profiles" /></div>}
         {changes.showHideNotifications && <div id="second-container"><Notifications text="Notifications" /></div>}
         {changes.showHideFavourites && <div id="second-container auth"><Favourites text="Favourites" /></div>}
-        {changes.showHideNone && <div id="second-container" style={{overflow:"hidden"}}></div>}
+        {changes.showHideNone && <div id="second-container" style={{overflow:"hidden",width:380}}><div className="popup-cotainer"></div></div>}
         {/* <RxCross2 size={24} color="white" className="close" /> */}
-
       {/* </div> */}
-
+      </div>
+      ) : null}
       <div id="first-container">
         <div className="power">
           <i
