@@ -1,0 +1,83 @@
+.items {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.all {
+  padding: 40px 30px 40px 40px;
+  overflow-y: visible;
+  height: 650px;
+  overscroll-behavior-y: contain;
+  width: 100%;
+}
+
+.logout {
+  margin-top: 20px;
+  cursor: pointer;
+  padding: 22px;
+  /* padding: 15px 20px 15px 20px; */
+  /* width: 250px; */
+  background-color: #61ce70;
+  border-style: none;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
+}
+.allBorder {
+  border-right: solid 0.4px;
+  border-left: solid 0.4px;
+  border-bottom: solid 0.4px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-color: #61ce70;
+}
+
+.elementContainer {
+  cursor: pointer;
+  height: 12px;
+  padding-bottom: 35px;
+  color: #7a7a7a;
+  background-color: #f5f5f5;
+  font-family: "Roboto", Sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-top: solid 0.4px;
+  border-color: #61ce70;
+  display: flex;
+  flex-direction: row;
+}
+
+.spaceHide {
+  transition: all 0.7s;
+  height: 0px;
+}
+.spaceShow {
+  text-align: center;
+  height: 35px;
+  margin-bottom: 0px;
+  border-top: solid 0.4px;
+  border-color: #61ce70;
+  transition: height 0.7s;
+}
+.EditProfileBtn {
+  cursor: pointer;
+  font-size: 15px;
+  margin: 10px;
+  margin-top: 20px;
+  min-height: 40px;
+  padding: 5px 10px;
+  background-color: #7a7a7a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.EditProfileBtn:hover {
+  background-color: #61ce70;
+}
+
+.EditProfileBtn:focus {
+  border: none;
+  outline: none;
+}
