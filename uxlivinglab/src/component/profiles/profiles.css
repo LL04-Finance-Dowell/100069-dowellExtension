@@ -1,112 +1,116 @@
-
-#all{
-    /* border: solid 12px 12px 12px 12px; */
-    /* border-color: #4caf50; */
-    padding: 40px 30px 40px 40px; 
-    overflow-y:visible;   
-    height:500px;
-    overscroll-behavior-y:contain;
-
+#all {
+  /* border: solid 12px 12px 12px 12px; */
+  /* border-color: #4caf50; */
+  padding: 40px 30px 40px 40px;
+  overflow-y: visible;
+  height: 500px;
+  overscroll-behavior-y: contain;
 }
-.element-container{
-    
-    /* border-width: 10px; */
-    height: 10px;
-    width: 270px;
-    /* margin-top: 5px; */
-    /* margin: 4px 20px 10px 4px; */
-    /* padding-top: 2px; */
-    padding-bottom: 35px;
-    color: #7a7a7a;
-    background-color:#f5f5f5;
-    /* border-top:solid 0.05px;
+.element-container {
+  /* border-width: 10px; */
+  height: 10px;
+  width: 270px;
+  /* margin-top: 5px; */
+  /* margin: 4px 20px 10px 4px; */
+  /* padding-top: 2px; */
+  padding-bottom: 35px;
+  color: #7a7a7a;
+  background-color: #f5f5f5;
+  /* border-top:solid 0.05px;
  */
-    /* border-bottom:solid 0.05px; */
-    font-family: "Roboto", Sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    border-color: #61ce70;
-    /* box-shadow: 0px 0px 10px 0px rgba(104, 103, 103, 0.5); */
-
-
+  /* border-bottom:solid 0.05px; */
+  font-family: "Roboto", Sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border-color: #61ce70;
+  /* box-shadow: 0px 0px 10px 0px rgba(104, 103, 103, 0.5); */
 }
 
-.items{
-    text-align: center;
-    display: flex;
-    flex-direction:row;
+.items {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 .inc {
-    cursor: pointer;
-    font-size: 20px;
-    color: #61ce70;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 600;
-    /* padding-top: 10px; */
-    padding: 15px 20px 10px 20px;
-    /* padding-right: 30px; */
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-
-
+  cursor: pointer;
+  font-size: 20px;
+  color: #61ce70;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  /* padding-top: 10px; */
+  padding: 15px 20px 10px 20px;
+  /* padding-right: 30px; */
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
 }
 
-.space{
-    transition: ease-in-out;
-    transition-delay: 2s;
-    transition-duration: 2s;
-    text-align: center;
-    width: 270px;
-    height:35px;
-    padding-top: 30px;
-    margin-bottom: 0px;
-    /* border-top: solid 0.4px; */
-    border-bottom: solid 0.4px;
-    border-color: #61ce70;
-    animation: fadeIn 1s ease-in-out;
-
+.space {
+  transition: ease-in-out;
+  transition-delay: 2s;
+  transition-duration: 2s;
+  text-align: center;
+  width: 270px;
+  height: 35px;
+  padding-top: 30px;
+  margin-bottom: 0px;
+  /* border-top: solid 0.4px; */
+  border-bottom: solid 0.4px;
+  border-color: #61ce70;
+  animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    } to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.all-border{
-    
-    border:solid 0.4px;
-    border-right:solid 0.4px;
-    width: 270px;
-    border-color: #61ce70;
-    /* border-right: 300px; */
-  }
-  .last{
-    border:none;
-  }
-  .ls{
-    border-bottom: none;
-    border-top: #61ce70 solid 0.4px;
-  }
-.button{
-    margin-top: 40px;
-    margin-bottom: 20px;
-    width: 300px;
-    padding-top: 3px;
-    color:#61ce70;
-    text-align: center;
-    height: 39px;
-    background-color: #7a7a7a;
+.all-border {
+  border: solid 0.4px;
+  border-right: solid 0.4px;
+  width: 270px;
+  border-color: #61ce70;
+  /* border-right: 300px; */
 }
-.text{
-    text-decoration: none;
-    color: #fff;
-    padding-top: 15px;
-    font-weight: 600;
+.last {
+  border: none;
+}
+.ls {
+  border-bottom: none;
+  border-top: #61ce70 solid 0.4px;
+}
+.button {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 300px;
+  padding-top: 3px;
+  color: #61ce70;
+  text-align: center;
+  height: 39px;
+  background-color: #7a7a7a;
+}
+.text {
+  text-decoration: none;
+  color: #fff;
+  padding-top: 15px;
+  font-weight: 600;
+}
 
+.spaceHide {
+  transition: all 0.7s;
+  height: 0px;
+}
+.spaceShow {
+  text-align: center;
+  height: 35px;
+  margin-bottom: 0px;
+  border-bottom: solid 0.4px;
+  border-color: #61ce70;
+  transition: height 0.7s;
 }
