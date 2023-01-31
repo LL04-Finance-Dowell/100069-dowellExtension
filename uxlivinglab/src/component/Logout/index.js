@@ -17,7 +17,7 @@ export default function Logout() {
               target="_blank"
               rel="noreferrer"
             >
-              <button className="logout" style={{width:350}}>
+              <button className="logout" style={{width:250}}>
                 <i className="button-text" id="logoutButton" style={{fontSize:20}}>
                   Logout
                 </i>
@@ -25,16 +25,16 @@ export default function Logout() {
             </a>
           </div>
         </div>
-        <div style={{ display: "flex", marginLeft: 5 }}>
+        <div style={{ display: "flex"}}>
           <RxCross2
-            size={24}
+            size={22}
             color="white"
             className="close"
             style={{
               backgroundColor: "red",
               borderRadius: 20,
-              marginTop: 4,
-              marginRight: 300,
+              marginTop: 10,
+              marginLeft: 110,
               left: 0,
             }}
             onClick={() => handleShow(!show)}

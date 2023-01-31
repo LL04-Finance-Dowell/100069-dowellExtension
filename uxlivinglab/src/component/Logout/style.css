@@ -13,16 +13,19 @@
     text-align: center;
   }
   .logout{
-    margin: 20px 10px 20px 20px;
+    margin: 20px 0px 20px 80px;
     cursor: pointer;
-    padding: 20px 20px 20px 20px;
-    width: 300px;
+    padding: 15px 20px 15px 20px;
+    width: 250px;
     background-color: #61ce70;
     border-style: none;
     border-radius: 15px 15px 15px 15px;
     box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
   
   }
+/* .logout:hover{
+  color: #61CE77;
+} */
   
   
   .pad {

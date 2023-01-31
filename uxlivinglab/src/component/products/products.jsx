@@ -8,9 +8,15 @@ const Products = () => {
   const { handleShow } = useStateContext();
   return (
     <div className={styles.cover}>
-      <button className={styles.productbtn}>
-        <i style={{width:310, fontSize:20}} className={styles.txt}>Products</i>
-      </button>
+        <div className="item">
+          <div className="{ props.text }" >
+              <button className="logout" style={{width:270,marginRight:20,marginLeft:0}}>
+                <i className="button-text" style={{fontSize:20,}}>
+                  Products
+                </i>
+              </button>
+          </div>
+        </div>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
           <Box product={item.first} />
@@ -25,6 +31,7 @@ const Products = () => {
           style={{
             backgroundColor: "red",
             borderRadius: 20,
+            marginLeft:5,
           }}
           onClick={() => handleShow(false)}
         />

@@ -11,8 +11,8 @@ function Favourites () {
         <div>
         <div className="item">
           <div className="{ props.text }" >
-              <button className="logout" style={{width:350}}>
-                <i className="button-text" style={{fontSize:20}}>
+              <button className="logout" style={{width:270,marginLeft:14}}>
+                <i className="button-text" style={{fontSize:20,}}>
                   Favourites
                 </i>
               </button>
@@ -41,7 +41,7 @@ function Favourites () {
             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
               <label for="form-field-level3name" class="elementor-field-label">Select Product</label>
               <div class="elementor-field elementor-select-wrapper ">
-                <select style={{width:350, marginTop:2}} name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
+                <select style={{width:270, marginTop:2}} name="form_fields[level3name]" id="form-field-level3name" class="elementor-field-textual elementor-size-sm">
                   <option value="Product 01">Product 01</option>
                   <option value="Product 02">Product 02</option>
                   <option value="Product 03">Product 03</option>
@@ -57,7 +57,7 @@ function Favourites () {
 
             <div class="button-div">
               <button type="submit" 
-              style={{width:350,fontSize:15,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",marginBottom:80,color:"#ffffff"}}
+              style={{width:270,fontSize:15,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",marginBottom:80,color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 Save / Remove Favourites
                 </button>
@@ -72,23 +72,22 @@ function Favourites () {
 
         {/* <div
     style={{height:"40px"}}></div> */}
-    <div style={{ display: "flex", marginLeft: 5 }}>
+            <div style={{ display: "flex"}}>
           <RxCross2
-            size={24}
+            size={22}
             color="white"
             className="close"
             style={{
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 30,
-              marginRight: 300,
+              marginBottom:3,
+              marginLeft: 5,
               left: 0,
-              marginBottom: 20,
-              marginLeft:5
             }}
             onClick={() => handleShow(!show)}
           />
-        </div>
+          </div>
 
 
         </div>

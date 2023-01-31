@@ -34,8 +34,8 @@ function Payments() {
                     <div className="elementor-widget-container">
                     <div className="item">
                       <div className="{ props.text }" >
-                          <button className="logout" style={{width:350}}>
-                            <i className="button-text" style={{fontSize:20,}}>
+                          <button className="logout" style={{width:270, marginLeft:8}}>
+                            <i className="button-text" style={{fontSize:20}}>
                               Payment
                             </i>
                           </button>
@@ -49,13 +49,13 @@ function Payments() {
                     data-element_type="widget"
                     data-widget_type="html.default"
                   >
-                    <div className="elementor-widget-container">
+                    <div className="elementor-widget-container" style={{marginRight:10}}>
                       <iframe
                         id="frame"
                         title="Payments iframe"
                         style={{ alignItems:'center'}}
                         src="https://workflowai.online/shop/"
-                        width="350"
+                        width="270"
                         height="700"
                         allow="fullscreen"
                       ></iframe>{" "}

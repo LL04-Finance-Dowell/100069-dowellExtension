@@ -96,7 +96,7 @@ function Profiles () {
         <div>
         <div className="item">
           <div className="{ props.text }" >
-              <button className="logout" style={{width:345}}>
+              <button className="logout" style={{width:270,marginLeft:4}}>
                 <i className="button-text" style={{fontSize:20,}}>
                   My Profile
                 </i>
@@ -107,7 +107,7 @@ function Profiles () {
             <div className='all-border'>
             <div className="element-container">
                 
-                <div className="item" onClick={() => setaArrows({showArrow1: !arrows.showArrow1})} 
+                <div className="items" onClick={() => setaArrows({showArrow1: !arrows.showArrow1})} 
 >
                 <i 
                     // className="fas inc fa-angles-up"s inc fa-angles-up" : "fas inc fa-angles-up"}
@@ -123,7 +123,7 @@ function Profiles () {
             {arrows.showArrow1 && <div className="space"></div>}
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow2: !arrows.showArrow2})}>
+                <div className="items" onClick={() => setaArrows({showArrow2: !arrows.showArrow2})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow2 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -137,7 +137,7 @@ function Profiles () {
                 
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow3: !arrows.showArrow3})}>
+                <div className="items" onClick={() => setaArrows({showArrow3: !arrows.showArrow3})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow3 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -151,7 +151,7 @@ function Profiles () {
   
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow4: !arrows.showArrow4})}>
+                <div className="items" onClick={() => setaArrows({showArrow4: !arrows.showArrow4})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow4 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -165,7 +165,7 @@ function Profiles () {
 
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow5: !arrows.showArrow5})}>
+                <div className="items" onClick={() => setaArrows({showArrow5: !arrows.showArrow5})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow5 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -179,7 +179,7 @@ function Profiles () {
     
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow6: !arrows.showArrow6})}>
+                <div className="items" onClick={() => setaArrows({showArrow6: !arrows.showArrow6})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow6 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -194,7 +194,7 @@ function Profiles () {
     
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow7: !arrows.showArrow7})}>
+                <div className="items" onClick={() => setaArrows({showArrow7: !arrows.showArrow7})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow7 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -209,7 +209,7 @@ function Profiles () {
 
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow8: !arrows.showArrow8})}>
+                <div className="items" onClick={() => setaArrows({showArrow8: !arrows.showArrow8})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow8 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -224,7 +224,7 @@ function Profiles () {
     
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow9: !arrows.showArrow9})}>
+                <div className="items" onClick={() => setaArrows({showArrow9: !arrows.showArrow9})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow9 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -238,7 +238,7 @@ function Profiles () {
     
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow10: !arrows.showArrow10})}>
+                <div className="items" onClick={() => setaArrows({showArrow10: !arrows.showArrow10})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow10 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -252,7 +252,7 @@ function Profiles () {
   
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow11: !arrows.showArrow11})}>
+                <div className="items" onClick={() => setaArrows({showArrow11: !arrows.showArrow11})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow11 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -266,7 +266,7 @@ function Profiles () {
 
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow12: !arrows.showArrow12})}>
+                <div className="items" onClick={() => setaArrows({showArrow12: !arrows.showArrow12})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow12 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -280,7 +280,7 @@ function Profiles () {
  
 
             <div className="element-container last">
-                <div className="item" onClick={() => setaArrows({showArrow13: !arrows.showArrow13})}>
+                <div className="items" onClick={() => setaArrows({showArrow13: !arrows.showArrow13})}>
                 <i 
                     aria-hidden="true"
                     className={arrows.showArrow13 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
@@ -297,7 +297,7 @@ function Profiles () {
 
             <div class="button-div">
               <button type="submit" 
-              style={{cursor:"pointer",width: "350px",marginTop:"15px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
+              style={{cursor:"pointer",width: "270px",marginTop:"15px",height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 Edit my profile
                 </button>
@@ -314,13 +314,14 @@ function Profiles () {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 4,
-              marginRight: 300,
+              marginRight: 200,
               marginBottom: 8,
               left: 0,
             }}
             onClick={() => handleShow(!show)}
           />
         </div>
+
 
         </div>
 

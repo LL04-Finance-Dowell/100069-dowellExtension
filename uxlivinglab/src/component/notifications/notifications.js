@@ -62,7 +62,7 @@ function Notifications () {
         <div>
         <div className="item">
           <div className="{ props.text }" >
-              <button className="logout" style={{width:350}}>
+              <button className="logout" style={{width:270,marginLeft:4}}>
                 <i className="button-text" style={{fontSize:20,}}>
                   Notifications
                 </i>
@@ -79,7 +79,7 @@ function Notifications () {
             <div className='all-border'>
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow1: !arrows.showArrow1})}>
+                <div className="items" onClick={() => setaArrows({showArrow1: !arrows.showArrow1})}>
                     <i 
                     className={arrows.showArrow1 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -92,7 +92,7 @@ function Notifications () {
             {arrows.showArrow1 && <div className="space"></div>}
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow2: !arrows.showArrow2})}>
+                <div className="items" onClick={() => setaArrows({showArrow2: !arrows.showArrow2})}>
                     <i 
                     className={arrows.showArrow2 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -105,7 +105,7 @@ function Notifications () {
             {arrows.showArrow2 && <div className="space"></div>}
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow3: !arrows.showArrow3})}>
+                <div className="items" onClick={() => setaArrows({showArrow3: !arrows.showArrow3})}>
                     <i 
                     className={arrows.showArrow3 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -118,7 +118,7 @@ function Notifications () {
             {arrows.showArrow3 && <div className="space"></div>}
 
             <div className="element-container last">
-                <div className="item" onClick={() => setaArrows({showArrow4: !arrows.showArrow4})}>
+                <div className="items" onClick={() => setaArrows({showArrow4: !arrows.showArrow4})}>
                     <i 
                     className={arrows.showArrow4 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -135,7 +135,7 @@ function Notifications () {
             </div>
             <div className="all-border">
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow5: !arrows.showArrow5})}>
+                <div className="items" onClick={() => setaArrows({showArrow5: !arrows.showArrow5})}>
                     <i 
                     className={arrows.showArrow5 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -148,7 +148,7 @@ function Notifications () {
             {arrows.showArrow5 && <div className="space"></div>}
 
             <div className="element-container">
-                <div className="item" onClick={() => setaArrows({showArrow6: !arrows.showArrow6})}>
+                <div className="items" onClick={() => setaArrows({showArrow6: !arrows.showArrow6})}>
                     <i 
                     className={arrows.showArrow6 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -161,7 +161,7 @@ function Notifications () {
             {arrows.showArrow6 && <div className="space"></div>}
 
             <div className="element-container last">
-                <div className="item" onClick={() => setaArrows({showArrow7: !arrows.showArrow7})}>
+                <div className="items" onClick={() => setaArrows({showArrow7: !arrows.showArrow7})}>
                     <i 
                     className={arrows.showArrow7 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
                     aria-hidden="true"
@@ -177,7 +177,7 @@ function Notifications () {
             <div style={{marginTop:"5px"}}></div>
 
         </div>
-        <div style={{ display: "flex", marginLeft: 8 }}>
+        <div style={{ display: "flex", marginLeft: 5 }}>
           <RxCross2
             size={24}
             color="white"
@@ -186,9 +186,9 @@ function Notifications () {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 4,
-              marginRight:300,
-              marginBottom:6,                
-              left: 0
+              marginRight: 300,
+              marginBottom: 8,
+              left: 0,
             }}
             onClick={() => handleShow(!show)}
           />

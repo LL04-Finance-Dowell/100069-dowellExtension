@@ -12,6 +12,8 @@ import Logout from "../Logout";
 import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 
+
+
 export default function Sidebar() {
   const { show, handleShow } = useStateContext();
   const [changes, setChanges] = useState({
@@ -35,53 +37,164 @@ export default function Sidebar() {
     handleShow(true);
     switch (name) {
       case "showHideLogin":
-        setChanges({ showHideLogin: !changes.showHideLogin });
-        break;
+      setChanges({
+        showHideLogin: true,
+        showHideLogout: false,
+        showHideProducts: false,
+        showHidePayments: false,
+        showHideCustomerSupport: false,
+        showHideProfiles: false,
+        showHideNotifications:false,
+        showHideFavourites:false,
+        showHideNone:false,
+      });
+      break;
       case "showHideLogout":
-        setChanges({ showHideLogout: !changes.showHideLogout });
-        break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: true,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications:false,
+          showHideFavourites:false,
+          showHideNone:false,
+        });
+          break;
       case "showHidePayments":
-        setChanges({ showHidePayments: !changes.showHidePayments });
-        break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: true,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications:false,
+          showHideFavourites:false,
+          showHideNone:false,
+        });
+          break;
       case "showHideCustomerSupport":
-        setChanges({ showHideCustomerSupport: !changes.showHideCustomerSupport });
-        break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: true,
+          showHideProfiles: false,
+          showHideNotifications:false,
+          showHideFavourites:false,
+          showHideNone:false,
+        });
+          break;
       
       case "showHideProducts":
-        setChanges({ showHideProducts: !changes.showHideProducts });
-        break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: true,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications:false,
+          showHideFavourites:false,
+          showHideNone:false,
+        });
+          break;
 
       case "showHideProfiles":
-          setChanges({ showHideProfiles: !changes.showHideProfiles });
-          break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: true,
+          showHideNotifications:false,
+          showHideFavourites:false,
+          showHideNone:false,
+        });
+            break;
         
       case "showHideNotifications":
-          setChanges({ showHideNotifications: !changes.showHideNotifications });
-          break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications: true,
+          showHideFavourites:false,
+          showHideNone:false,
+        });
+            break;
 
       case "showHideFavourites":
-          setChanges({ showHideFavourites: !changes.showHideFavourites})
-          break;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications:false,
+          showHideFavourites:true,
+          showHideNone:false,
+        });
+            break;
 
       default:
-        return null;
+        setChanges({
+          showHideLogin: false,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications:false,
+          showHideFavourites:false,
+          showHideNone: true,
+        });
+          break;
     }
   };
   return (
     <div id="grid-container">
       {show ? (
         <div>
-        {changes.showHideLogout && <div id="second-container" style={{overflow:"hidden"}}><Logout /></div>}
-        {changes.showHideLogin && <div id="second-container" style={{overflow:"hidden"}}><Login /></div>}
+          <div id="second-container">
+            {changes.showHideLogout && <Logout />}
+            {changes.showHideLogin && <Login />}
+            {changes.showHidePayments && <Payments text="Payments" />}
+            {changes.showHideCustomerSupport && <CustomerSupport />}
+            {changes.showHideProducts && <Products text="Products" />}
+            {changes.showHideProfiles && <Profiles text="Profiles" />}
+            {changes.showHideNotifications && <Notifications text="Notifications" />}
+            {changes.showHideFavourites && <Favourites text="Favourites" />}
+            {changes.showHideNone &&             <div>
+              <p className="pad"></p>
+            <div style={{ display: "flex"}}>
+          <RxCross2
+            size={22}
+            color="white"
+            className="close"
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              marginTop: 108,
+              marginLeft: 5,
+              left: 0,
+            }}
+            onClick={() => handleShow(!show)}
+          />
+          </div>
+          </div>
+}
+          </div>
 
         {/* <div className="close-second"> */}
-        {changes.showHidePayments && <div id="second-container"><Payments text="Payments" /></div>}
-        {changes.showHideCustomerSupport && <div id="second-container"><CustomerSupport /></div>}
-        {changes.showHideProducts && <div id="second-container"><Products text="Products" /></div>}
-        {changes.showHideProfiles && <div id="second-container"><Profiles text="Profiles" /></div>}
-        {changes.showHideNotifications && <div id="second-container"><Notifications text="Notifications" /></div>}
-        {changes.showHideFavourites && <div id="second-container"><Favourites text="Favourites" /></div>}
-        {changes.showHideNone && <div id="second-container" style={{overflow:"hidden"}}><div className="popup-cotainer"></div></div>}
         {/* <RxCross2 size={24} color="white" className="close" /> */}
       {/* </div> */}
       </div>
@@ -148,7 +261,7 @@ export default function Sidebar() {
         </div>
         <div style={{ display: "flex", marginLeft: 5 }}>
           <RxCross2
-            size={24}
+            size={22}
             color="white"
             className="close"
             style={{
