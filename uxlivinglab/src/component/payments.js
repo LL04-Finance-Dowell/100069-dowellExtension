@@ -2,9 +2,8 @@ import "./payments.css";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../contexts/ContextProvider";
 
-
 function Payments() {
-  const { show, handleShow} = useStateContext();
+  const { show, handleShow } = useStateContext();
 
   return (
     <div>
@@ -32,15 +31,21 @@ function Payments() {
                     data-widget_type="text-editor.default"
                   >
                     <div className="elementor-widget-container">
-                    <div className="item">
-                      <div className="{ props.text }" >
-                          <button className="logout" style={{width:270, marginLeft:8}}>
-                            <i className="button-text" style={{fontSize:20}}>
+                      <div className="item">
+                        <div className="{ props.text }">
+                          <button
+                            className="logout"
+                            style={{ width: 270, marginLeft: 8 }}
+                          >
+                            <i
+                              className="button-text"
+                              style={{ fontSize: 17, fontStyle: "normal" }}
+                            >
                               Payment
                             </i>
                           </button>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
                   <div
@@ -49,16 +54,19 @@ function Payments() {
                     data-element_type="widget"
                     data-widget_type="html.default"
                   >
-                    <div className="elementor-widget-container" style={{marginRight:10}}>
+                    <div
+                      className="elementor-widget-container"
+                      style={{ marginRight: 10 }}
+                    >
                       <iframe
                         id="frame"
                         title="Payments iframe"
-                        style={{ alignItems:'center'}}
+                        style={{ alignItems: "center", border: 0 }}
                         src="https://workflowai.online/shop/"
-                        width="270"
+                        width="280"
                         height="700"
                         allow="fullscreen"
-                      ></iframe>{" "}
+                      ></iframe>
                     </div>
                   </div>
                 </div>
@@ -67,24 +75,23 @@ function Payments() {
           </div>
         </div>
       </section>{" "}
-      <div style={{height:15}}></div>
+      <div style={{ height: 15 }}></div>
       <div style={{ display: "flex", marginLeft: 5 }}>
-          <RxCross2
-            size={24}
-            color="white"
-            className="close"
-            style={{
-              backgroundColor: "red",
-              borderRadius: 20,
-              marginTop: 4,
-              marginRight: 300,
-              marginBottom:8,
-              left: 0,
-            }}
-            onClick={() => handleShow(!show)}
-          />
-        </div>
-
+        <RxCross2
+          size={24}
+          color="white"
+          className="close"
+          style={{
+            backgroundColor: "red",
+            borderRadius: 20,
+            marginTop: 4,
+            marginRight: 300,
+            marginBottom: 8,
+            left: 0,
+          }}
+          onClick={() => handleShow(!show)}
+        />
+      </div>
     </div>
   );
 }
