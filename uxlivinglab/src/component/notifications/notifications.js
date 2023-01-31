@@ -1,204 +1,267 @@
-import "./notifications.css"
-import "../popup/popup.css"
+import styles from "./styles.module.css";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 
+function Notifications() {
+  const { show, handleShow } = useStateContext();
 
-function Notifications () {
-    const { show, handleShow} = useStateContext();
+  const [arrows, setaArrows] = useState({
+    showArrow1: true,
+    showArrow2: false,
+    showArrow3: false,
+    showArrow4: false,
+    showArrow5: false,
+    showArrow6: false,
+    showArrow7: false,
+  });
 
+  const handleArrows = (show, bool) => {
+    setaArrows({ [show]: bool });
+  };
 
-    const [arrows, setaArrows] = useState({
-        showArrow1: true,
-        showArrow2: false,
-        showArrow3: false,
-        showArrow4: false,
-        showArrow5: false,
-        showArrow6: false,
-        showArrow7: false,
-        })
-    const [changes, setChanges] = useState({
-        name: "component",
-        showTeamMember: false,
-        showUser: false,
-        showPublic: false,
-        showUXLivingLab: false,
-        showWorkflowAI: false,
-        showDigitaQueue: false,
-        showUXLive: false,
-    });
+  return (
+    <>
+      <div className={styles.items}>
+        <button className={styles.logout}>
+          <i
+            style={{
+              fontSize: 20,
+              color: "#ffffff",
+              fontStyle: "normal",
+              fontWeight: 700,
+            }}
+          >
+            Notifications
+          </i>
+        </button>
+        <div className={styles.all}>
+          <p className={styles.texts}>Chat Messages</p>
 
-    const hideComponent = (name) =>{
-        switch (name) {
-            case "showTeamMember":
-                setChanges({ showTeamMember: !changes.showTeamMember });
-                break;
-            case "showUser":
-                setChanges({ showUser: !changes.showUser });
-                break;
-            case "showPublic":
-                setChanges({ showPublic: !changes.showPublic });
-                break;
-            case "showUXLivingLab":
-                setChanges({ showUXLivingLab: !changes.showUXLivingLab });
-                break;
-            case "showWorkflowAI":
-                setChanges({ showWorkflowAI: !changes.showWorkflowAI });
-                break;
-            case "showDigitaQueue":
-                setChanges({ showDigitaQueue: !changes.showDigitaQueue });
-                break;
-            case "showUXLive":
-                setChanges({ showUXLive: !changes.showUXLive });
-                break;
-            default:
-                return null;    
+          <div className={styles.allBorder}>
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow1", !arrows.showArrow1)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow1 ? "fas fa-angles-up" : "fas fa-angles-down"
                 }
-        }
-    
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
 
-    return (
-        <div>
-        <div className="item">
-          <div className="{ props.text }" >
-              <button className="logout" style={{width:270,marginLeft:4}}>
-                <i className="button-text" style={{fontSize:20,}}>
-                  Notifications
-                </i>
-              </button>
+              <p
+                style={{
+                  color: arrows.showArrow1 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                Team Member (009)
+              </p>
+            </div>
+            <div
+              className={
+                arrows.showArrow1 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow2 ? "fas fa-angles-up" : "fas fa-angles-down"
+                }
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
+
+              <p
+                style={{
+                  color: arrows.showArrow2 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                User (010)
+              </p>
+            </div>
+
+            <div
+              className={
+                arrows.showArrow2 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow3 ? "fas fa-angles-up" : "fas fa-angles-down"
+                }
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
+
+              <p
+                style={{
+                  color: arrows.showArrow3 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                Public (00200)
+              </p>
+            </div>
+
+            <div
+              className={
+                arrows.showArrow3 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow4", !arrows.showArrow4)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow4 ? "fas fa-angles-up" : "fas fa-angles-down"
+                }
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
+
+              <p
+                style={{
+                  color: arrows.showArrow4 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                UX Living Lab
+              </p>
+            </div>
+
+            <div
+              className={
+                arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+          </div>
+          <p className={styles.texts}>Tasks</p>
+
+          <div className={styles.allBorder}>
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow5", !arrows.showArrow5)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow5 ? "fas fa-angles-up" : "fas fa-angles-down"
+                }
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
+
+              <p
+                style={{
+                  color: arrows.showArrow5 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                Workflow AI (009)
+              </p>
+            </div>
+            <div
+              className={
+                arrows.showArrow5 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow6", !arrows.showArrow6)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow6 ? "fas fa-angles-up" : "fas fa-angles-down"
+                }
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
+
+              <p
+                style={{
+                  color: arrows.showArrow6 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                Digital Queue (010)
+              </p>
+            </div>
+
+            <div
+              className={
+                arrows.showArrow6 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+
+            <div
+              className={styles.elementContainer}
+              onClick={() => handleArrows("showArrow7", !arrows.showArrow7)}
+            >
+              <i
+                aria-hidden="true"
+                className={
+                  arrows.showArrow7 ? "fas fa-angles-up" : "fas fa-angles-down"
+                }
+                style={{ marginTop: 15, marginLeft: 5 }}
+              ></i>
+
+              <p
+                style={{
+                  color: arrows.showArrow7 && "#61ce70",
+                  marginLeft: 15,
+                }}
+              >
+                UX Live (00200)
+              </p>
+            </div>
+
+            <div
+              className={
+                arrows.showArrow7 ? styles.spaceShow : styles.spaceHide
+              }
+            ></div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              height: "100%",
+              marginLeft: "5px",
+              marginTop: "20px",
+            }}
+          >
+            <RxCross2
+              size={24}
+              color="white"
+              style={{
+                cursor: "pointer",
+                backgroundColor: "red",
+                borderRadius: 20,
+                marginTop: 4,
+                marginBottom: 8,
+                fontWeight: 1000,
+              }}
+              onClick={() => handleShow(!show)}
+            />
           </div>
         </div>
-
-
-        <div id="all">
-
-            <div>
-                <p className="texts">Chat Messages</p>
-            </div>
-            <div className='all-border'>
-
-            <div className="element-container">
-                <div className="items" onClick={() => setaArrows({showArrow1: !arrows.showArrow1})}>
-                    <i 
-                    className={arrows.showArrow1 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showTeamMember")}>
-                    </i>
-                    <p className={arrows.showArrow1 ? "selected":"unselected"}>Team Member (009)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow1 && <div className="space"></div>}
-
-            <div className="element-container">
-                <div className="items" onClick={() => setaArrows({showArrow2: !arrows.showArrow2})}>
-                    <i 
-                    className={arrows.showArrow2 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showUser")}>
-                    </i>
-                    <p className={arrows.showArrow2 ? "selected":"unselected"}>User (010)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow2 && <div className="space"></div>}
-
-            <div className="element-container">
-                <div className="items" onClick={() => setaArrows({showArrow3: !arrows.showArrow3})}>
-                    <i 
-                    className={arrows.showArrow3 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showPublic")}>
-                    </i>
-                    <p className={arrows.showArrow3 ? "selected":"unselected"}>Public (00200)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow3 && <div className="space"></div>}
-
-            <div className="element-container last">
-                <div className="items" onClick={() => setaArrows({showArrow4: !arrows.showArrow4})}>
-                    <i 
-                    className={arrows.showArrow4 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showUXLivingLab")}>
-                    </i>
-                    <p className={arrows.showArrow4 ? "selected":"unselected"}>UX Living Lab (00200)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow4 && <div className="space ls"></div>}
-            </div>
-            <div>
-                <p className="texts">Tasks</p>
-            </div>
-            <div className="all-border">
-            <div className="element-container">
-                <div className="items" onClick={() => setaArrows({showArrow5: !arrows.showArrow5})}>
-                    <i 
-                    className={arrows.showArrow5 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showWorkflowAI")}>
-                    </i>
-                    <p className={arrows.showArrow5 ? "selected":"unselected"}>Workflow AI (009)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow5 && <div className="space"></div>}
-
-            <div className="element-container">
-                <div className="items" onClick={() => setaArrows({showArrow6: !arrows.showArrow6})}>
-                    <i 
-                    className={arrows.showArrow6 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showDigitaQueue")}>
-                    </i>
-                    <p className={arrows.showArrow6 ? "selected":"unselected"}>Digita Queue (010)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow6 && <div className="space"></div>}
-
-            <div className="element-container last">
-                <div className="items" onClick={() => setaArrows({showArrow7: !arrows.showArrow7})}>
-                    <i 
-                    className={arrows.showArrow7 ? "fas inc fa-angles-up" : "fas inc fa-angles-down"}
-                    aria-hidden="true"
-                    onClick={() => hideComponent("showUXLive")}>
-                    </i>
-                    <p className={arrows.showArrow7 ? "selected":"unselected"}>UX Live (00200)</p>
-                </div>
-                {/* condition to see if div is clicked */}
-            </div>
-            {arrows.showArrow7 && <div className="space ls"></div>}
-
-            </div>
-            <div style={{marginTop:"5px"}}></div>
-
-        </div>
-        <div style={{ display: "flex", marginLeft: 5 }}>
-          <RxCross2
-            size={24}
-            color="white"
-            className="close"
-            style={{
-              backgroundColor: "red",
-              borderRadius: 20,
-              marginTop: 4,
-              marginRight: 300,
-              marginBottom: 8,
-              left: 0,
-            }}
-            onClick={() => handleShow(!show)}
-          />
-        </div>
-
-
-        </div>
-      
-    );
-
+      </div>
+    </>
+  );
 }
 
 export default Notifications;
