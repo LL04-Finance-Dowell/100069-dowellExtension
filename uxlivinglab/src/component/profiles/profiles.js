@@ -81,7 +81,9 @@ export default function Profile() {
           <div className={styles.allBorder}>
             {/* <div className={styles.items}> */}
             {dummData.map((data) => (
+              // <div onClick={()}>
               <UserProfile data={data} key={data.id} />
+              // </div>
             ))}
             {/* </div> */}
           </div>
