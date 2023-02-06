@@ -5,6 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Products = () => {
+
   const { handleShow } = useStateContext();
   return (
     <div className={styles.cover}>

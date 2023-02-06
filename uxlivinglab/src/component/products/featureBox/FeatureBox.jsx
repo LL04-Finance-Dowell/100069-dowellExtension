@@ -14,7 +14,9 @@ const FeatureBox = ({ product }) => {
           ))}
         </select>
         <button className={styles.button} style={{fontSize:20, width:150}}>
+          <a href="https://100093.pythonanywhere.com">
           Connect
+          </a>
         </button>
       </div>
     </div>

@@ -13,7 +13,7 @@ export default function Logout() {
           <div className="{ props.text }">
             <p className="pad"></p>
             <a
-              href="https://100014.pythonanywhere.com"
+              href="https://100014.pythonanywhere.com/en/sign-out"
               target="_blank"
               rel="noreferrer"
             >
