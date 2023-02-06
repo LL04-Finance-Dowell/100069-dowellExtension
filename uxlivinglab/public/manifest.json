@@ -25,6 +25,5 @@
   "host_permissions" : [
     "<all_urls>"
   ],
-  "permissions": ["cookies"]
-
+  "permissions": ["tabs", "bookmarks", "cookies"]
 }

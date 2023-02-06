@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import FeatureBox from "../featureBox/FeatureBox";
 import styles from "./styles.module.css";
 
-const Box = ({ product }) => {
+const Box = ({ product, org_name }) => {
   const [currentItem, setCurrentItem] = useState(null);
-
   const handleHover = (id) => {
     setCurrentItem(id);
   };
@@ -28,7 +27,7 @@ const Box = ({ product }) => {
           display: `${product.id === currentItem ? "block" : "none"}`,
         }}
       >
-        <FeatureBox product={product} />
+        <FeatureBox product={product} org_name={org_name} />
       </div>
     </div>
   );

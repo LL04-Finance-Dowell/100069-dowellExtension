@@ -15,7 +15,6 @@
      "run_at": "document_end",
      "matches": ["http://127.0.0.1.zxqpopw/*"]
   }],
-
   "icons": {
     "16": "16.png",
     "48": "48.png",
@@ -28,3 +27,4 @@
   "permissions": ["cookies"]
 
 }
+
