@@ -1,20 +1,20 @@
 .item {
-    height: 180px;
-    /* background-color: darkred; */
-    position: relative;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 200px 200px;
-    transition: all 0.3s ease-in-out;
-    width: 150px;
-  }
-  
-  .item:hover {
-    width: 360px;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  
-  /* @media (max-width: 700px) {
+  height: 180px;
+  /* background-color: darkred; */
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 200px 200px;
+  transition: all 0.3s ease-in-out;
+  width: 150px;
+}
+
+.item:hover {
+  width: 360px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* @media (max-width: 700px) {
     .item {
       height: 100px;
       background-size: 250px 250px;
