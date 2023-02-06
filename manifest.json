@@ -11,5 +11,7 @@
     "16": "dowlogo1.png",
     "48": "dowlogo1.png",
     "128": "dowlogo1.png"
-  }
+  },
+  "host_permissions": ["<all_urls>"],
+  "permissions": ["tabs", "bookmarks", "cookies"]
 }
