@@ -7,15 +7,13 @@ import Products from "../products/products";
 import Profiles from "../profiles/profiles";
 import Notifications from "../notifications/notifications";
 import { useState } from "react";
-import Login from "../Login"
+import Login from "../Login";
 import Logout from "../Logout";
 import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 
-
-
 export default function Sidebar() {
-  const { show, handleShow } = useStateContext();
+  const { show, handleShow, sessionId } = useStateContext();
   const [changes, setChanges] = useState({
     name: "component",
     showHideLogin: false,
@@ -26,29 +24,28 @@ export default function Sidebar() {
     showHideProfiles: false,
     showHideNotifications: false,
     showHideFavourites: false,
-    showHideNone : true,
+    showHideNone: true,
 
     // showHideLogin: false,
     // showHideLogin: false,
   });
-  
 
   const hideComponent = (name) => {
     handleShow(true);
     switch (name) {
       case "showHideLogin":
-      setChanges({
-        showHideLogin: true,
-        showHideLogout: false,
-        showHideProducts: false,
-        showHidePayments: false,
-        showHideCustomerSupport: false,
-        showHideProfiles: false,
-        showHideNotifications:false,
-        showHideFavourites:false,
-        showHideNone:false,
-      });
-      break;
+        setChanges({
+          showHideLogin: true,
+          showHideLogout: false,
+          showHideProducts: false,
+          showHidePayments: false,
+          showHideCustomerSupport: false,
+          showHideProfiles: false,
+          showHideNotifications: false,
+          showHideFavourites: false,
+          showHideNone: false,
+        });
+        break;
       case "showHideLogout":
         setChanges({
           showHideLogin: false,
@@ -57,11 +54,11 @@ export default function Sidebar() {
           showHidePayments: false,
           showHideCustomerSupport: false,
           showHideProfiles: false,
-          showHideNotifications:false,
-          showHideFavourites:false,
-          showHideNone:false,
+          showHideNotifications: false,
+          showHideFavourites: false,
+          showHideNone: false,
         });
-          break;
+        break;
       case "showHidePayments":
         setChanges({
           showHideLogin: false,
@@ -70,11 +67,11 @@ export default function Sidebar() {
           showHidePayments: true,
           showHideCustomerSupport: false,
           showHideProfiles: false,
-          showHideNotifications:false,
-          showHideFavourites:false,
-          showHideNone:false,
+          showHideNotifications: false,
+          showHideFavourites: false,
+          showHideNone: false,
         });
-          break;
+        break;
       case "showHideCustomerSupport":
         setChanges({
           showHideLogin: false,
@@ -83,12 +80,12 @@ export default function Sidebar() {
           showHidePayments: false,
           showHideCustomerSupport: true,
           showHideProfiles: false,
-          showHideNotifications:false,
-          showHideFavourites:false,
-          showHideNone:false,
+          showHideNotifications: false,
+          showHideFavourites: false,
+          showHideNone: false,
         });
-          break;
-      
+        break;
+
       case "showHideProducts":
         setChanges({
           showHideLogin: false,
@@ -97,11 +94,11 @@ export default function Sidebar() {
           showHidePayments: false,
           showHideCustomerSupport: false,
           showHideProfiles: false,
-          showHideNotifications:false,
-          showHideFavourites:false,
-          showHideNone:false,
+          showHideNotifications: false,
+          showHideFavourites: false,
+          showHideNone: false,
         });
-          break;
+        break;
 
       case "showHideProfiles":
         setChanges({
@@ -111,12 +108,12 @@ export default function Sidebar() {
           showHidePayments: false,
           showHideCustomerSupport: false,
           showHideProfiles: true,
-          showHideNotifications:false,
-          showHideFavourites:false,
-          showHideNone:false,
+          showHideNotifications: false,
+          showHideFavourites: false,
+          showHideNone: false,
         });
-            break;
-        
+        break;
+
       case "showHideNotifications":
         setChanges({
           showHideLogin: false,
@@ -126,10 +123,10 @@ export default function Sidebar() {
           showHideCustomerSupport: false,
           showHideProfiles: false,
           showHideNotifications: true,
-          showHideFavourites:false,
-          showHideNone:false,
+          showHideFavourites: false,
+          showHideNone: false,
         });
-            break;
+        break;
 
       case "showHideFavourites":
         setChanges({
@@ -139,11 +136,11 @@ export default function Sidebar() {
           showHidePayments: false,
           showHideCustomerSupport: false,
           showHideProfiles: false,
-          showHideNotifications:false,
-          showHideFavourites:true,
-          showHideNone:false,
+          showHideNotifications: false,
+          showHideFavourites: true,
+          showHideNone: false,
         });
-            break;
+        break;
 
       default:
         setChanges({
@@ -153,11 +150,11 @@ export default function Sidebar() {
           showHidePayments: false,
           showHideCustomerSupport: false,
           showHideProfiles: false,
-          showHideNotifications:false,
-          showHideFavourites:false,
+          showHideNotifications: false,
+          showHideFavourites: false,
           showHideNone: true,
         });
-          break;
+        break;
     }
   };
   return (
@@ -171,49 +168,57 @@ export default function Sidebar() {
             {changes.showHideCustomerSupport && <CustomerSupport />}
             {changes.showHideProducts && <Products text="Products" />}
             {changes.showHideProfiles && <Profiles text="Profiles" />}
-            {changes.showHideNotifications && <Notifications text="Notifications" />}
+            {changes.showHideNotifications && (
+              <Notifications text="Notifications" />
+            )}
             {changes.showHideFavourites && <Favourites text="Favourites" />}
-            {changes.showHideNone &&             <div>
-              <p className="pad"></p>
-            <div style={{ display: "flex"}}>
-          <RxCross2
-            size={22}
-            color="white"
-            className="close"
-            style={{
-              backgroundColor: "red",
-              borderRadius: 20,
-              marginTop: 108,
-              marginLeft: 5,
-              left: 0,
-            }}
-            onClick={() => handleShow(!show)}
-          />
-          </div>
-          </div>
-}
+            {changes.showHideNone && (
+              <div>
+                <p className="pad"></p>
+                <div style={{ display: "flex" }}>
+                  <RxCross2
+                    size={22}
+                    color="white"
+                    className="close"
+                    style={{
+                      backgroundColor: "red",
+                      borderRadius: 20,
+                      marginTop: 108,
+                      marginLeft: 5,
+                      left: 0,
+                    }}
+                    onClick={() => handleShow(!show)}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
-        {/* <div className="close-second"> */}
-        {/* <RxCross2 size={24} color="white" className="close" /> */}
-      {/* </div> */}
-      </div>
+          {/* <div className="close-second"> */}
+          {/* <RxCross2 size={24} color="white" className="close" /> */}
+          {/* </div> */}
+        </div>
       ) : null}
       <div id="first-container">
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-power-off"
-            onClick={() => hideComponent("showHideLogout")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-sign-in-alt"
-            onClick={() => hideComponent("showHideLogin")}
-          ></i>
-        </div>
+        {sessionId && (
+          <div className="power">
+            <i
+              aria-hidden="true"
+              className="fas fa-power-off"
+              onClick={() => hideComponent("showHideLogout")}
+            ></i>
+          </div>
+        )}
+        {!sessionId && (
+          <div className="power">
+            <i
+              aria-hidden="true"
+              className="fas fa-sign-in-alt"
+              onClick={() => hideComponent("showHideLogin")}
+            ></i>
+          </div>
+        )}
+
         <div className="power">
           <i
             aria-hidden="true"
@@ -222,42 +227,39 @@ export default function Sidebar() {
           ></i>
         </div>
         <div className="power">
-          <i 
-            aria-hidden="true" 
+          <i
+            aria-hidden="true"
             className="fas fa-user"
             onClick={() => hideComponent("showHideProfiles")}
-            ></i>
-        </div>
-        <div className="power">
-          <i 
-            aria-hidden="true"
-            className="fas fa-headset"
-            onClick={() => hideComponent("showHideCustomerSupport")}
-
-            ></i>
-        </div>
-        <div className="power">
-          <i 
-          aria-hidden="true"
-          className="fas fa-bell"
-          onClick={() => hideComponent("showHideNotifications")}
           ></i>
         </div>
         <div className="power">
-          <i 
-            aria-hidden="true" 
-            className="far fa-gem"
-            onClick={() => hideComponent("showHideProducts")}
-
-            ></i>
+          <i
+            aria-hidden="true"
+            className="fas fa-headset"
+            onClick={() => hideComponent("showHideCustomerSupport")}
+          ></i>
         </div>
         <div className="power">
-          <i 
-            aria-hidden="true" 
+          <i
+            aria-hidden="true"
+            className="fas fa-bell"
+            onClick={() => hideComponent("showHideNotifications")}
+          ></i>
+        </div>
+        <div className="power">
+          <i
+            aria-hidden="true"
+            className="far fa-gem"
+            onClick={() => hideComponent("showHideProducts")}
+          ></i>
+        </div>
+        <div className="power">
+          <i
+            aria-hidden="true"
             className="fas fa-hand-holding-heart"
             onClick={() => hideComponent("showHideFavourites")}
-
-            ></i>
+          ></i>
         </div>
         <div style={{ display: "flex", marginLeft: 5 }}>
           <RxCross2
@@ -268,10 +270,10 @@ export default function Sidebar() {
               backgroundColor: "red",
               borderRadius: 20,
               marginTop: 10,
-              marginRight:10,
+              marginRight: 10,
               left: 0,
               marginBottom: 10,
-              marginLeft:5
+              marginLeft: 5,
             }}
           />
         </div>

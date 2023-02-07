@@ -9,8 +9,8 @@
     "default_title": "Manage Your UX Living Lab Account"
   },    
   "content_scripts": [{
-    "css": [],
-    "js": ["/manifest.json"],
+    "css": ["static/css/main.87b6bfdb.css"],
+    "js": ["static/js/main.c9139b6e.js"],
     "all_frames": true,
      "run_at": "document_end",
      "matches": ["http://127.0.0.1.zxqpopw/*"]
@@ -25,6 +25,5 @@
   "host_permissions" : [
     "<all_urls>"
   ],
-  "permissions": ["cookies"]
-
+  "permissions": ["tabs", "bookmarks", "cookies"]
 }

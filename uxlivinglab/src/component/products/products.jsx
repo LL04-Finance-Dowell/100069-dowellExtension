@@ -1,27 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Products = () => {
-
-  const { handleShow } = useStateContext();
+  const { handleShow, data } = useStateContext();
+  const [org, setOrg] = useState("skjdh");
   return (
     <div className={styles.cover}>
-        <div className="item">
-          <div className="{ props.text }" >
-              <button className="logout" style={{width:270,marginRight:20,marginLeft:0}}>
-                <i className="button-text" style={{fontSize:20,}}>
-                  Products
-                </i>
-              </button>
-          </div>
+      <div className="item">
+        <div className="{ props.text }">
+          <button
+            className="logout"
+            style={{ width: 270, marginRight: 20, marginLeft: 0 }}
+          >
+            <i className="button-text" style={{ fontSize: 20 }}>
+              Products
+            </i>
+          </button>
         </div>
+        <select onChange={(e) => setOrg(e.target.value)}>
+          <option>select</option>
+          {data?.map((datum) => (
+            <option value={datum.org_name}>{datum.org_name}</option>
+          ))}
+        </select>
+      </div>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
-          <Box product={item.first} />
-          <Box product={item.second} />
+          <Box product={item.first} org_name={org} />
+          <Box product={item.second} org_name={org} />
         </div>
       ))}
       <div className={styles.cross}>
@@ -32,7 +41,7 @@ const Products = () => {
           style={{
             backgroundColor: "red",
             borderRadius: 20,
-            marginLeft:5,
+            marginLeft: 5,
           }}
           onClick={() => handleShow(false)}
         />
