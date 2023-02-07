@@ -261,7 +261,10 @@ export default function Sidebar() {
             onClick={() => hideComponent("showHideFavourites")}
           ></i>
         </div>
-        <div style={{ display: "flex", marginLeft: 5 }}>
+        <div
+          style={{ display: "flex", marginLeft: 5 }}
+          onClick={() => window.close()}
+        >
           <RxCross2
             size={22}
             color="white"
