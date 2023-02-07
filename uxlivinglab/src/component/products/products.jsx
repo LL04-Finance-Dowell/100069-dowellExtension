@@ -20,7 +20,10 @@ const Products = () => {
             </i>
           </button>
         </div>
-        <select onChange={(e) => setOrg(e.target.value)}>
+        <select
+          onChange={(e) => setOrg(e.target.value)}
+          style={{ marginRight: 20, marginBottom: 10 }}
+        >
           <option>select</option>
           {data?.map((datum) => (
             <option value={datum.org_name}>{datum.org_name}</option>
