@@ -1,8 +1,5 @@
+const ChatMessages = ({ data }) => {
+  return "";
+};
 
-const ChatMessages = ({data}) => {
-    return (
-
-    )
-}
-
-export default ChatMessages
+export default ChatMessages;

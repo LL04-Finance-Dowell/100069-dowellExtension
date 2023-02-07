@@ -10,13 +10,25 @@ function CustomerSupport() {
       <div className="item">
         <div className="{ props.text }">
           <button className="logout" style={{ width: 270, marginLeft: 8 }}>
+<<<<<<< HEAD
             <i className="button-text" style={{ fontSize: 20 }}>
+=======
+            <i
+              className="button-text"
+              style={{ fontSize: 18, fontStyle: "normal" }}
+            >
+>>>>>>> newer
               Customer Support
             </i>
           </button>
         </div>
       </div>
       <div className="customersupport" style={{ marginLeft: 0 }}>
+<<<<<<< HEAD
+=======
+        {/* title="Customer Support iframe"
+  src="https://workflowai.online/support/" */}
+>>>>>>> newer
         <div className="elementor-widget-container" style={{ marginRight: 10 }}>
           <iframe
             id="frame"
@@ -82,6 +94,7 @@ function CustomerSupport() {
                     </select>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div class="button-div">
                   <button
                     type="submit"
@@ -101,6 +114,17 @@ function CustomerSupport() {
                     Connect to Website
                   </button>
                 </div>
+=======
+                {/* <div class="button-div"> */}
+                <button
+                  type="submit"
+                  class="connectWebsite"
+                  id="connectwebsite"
+                >
+                  Connect to Website
+                </button>
+                {/* </div> */}
+>>>>>>> newer
               </div>
             </form>
           </div>
@@ -118,14 +142,24 @@ function CustomerSupport() {
         </div>
         <div class="elementor-widget-container">
           <form class="elementor-form" method="post" name="Form1">
+<<<<<<< HEAD
             {/* <input type="hidden" name="post_id" value="8155" />
             <input type="hidden" name="form_id" value="2d0c3a0" /> */}
             {/* <input
+=======
+            <input type="hidden" name="post_id" value="8155" />
+            <input type="hidden" name="form_id" value="2d0c3a0" />
+            <input
+>>>>>>> newer
               type="hidden"
               name="referer_title"
               value="uxlivinglab - innovating from people's mind"
             />
+<<<<<<< HEAD
             <input type="hidden" name="queried_id" value="8155" /> */}
+=======
+            <input type="hidden" name="queried_id" value="8155" />
+>>>>>>> newer
 
             <div
               class="elementor-form-fields-wrapper elementor-labels-above"
@@ -155,6 +189,7 @@ function CustomerSupport() {
               <div class="button-div">
                 <button
                   type="submit"
+<<<<<<< HEAD
                   style={{
                     cursor: "pointer",
                     width: 230,
@@ -166,6 +201,9 @@ function CustomerSupport() {
                   }}
                   class="elementor-field-textual bt"
                   className="chatSupport"
+=======
+                  class="connectWebsite"
+>>>>>>> newer
                   id="chatcustomersupport"
                 >
                   Chat with Customer Support
@@ -185,7 +223,11 @@ function CustomerSupport() {
             backgroundColor: "red",
             borderRadius: 20,
             marginTop: 4,
+<<<<<<< HEAD
             marginRight: 300,
+=======
+            marginRight: 30,
+>>>>>>> newer
             left: 0,
             marginBottom: 10,
             marginLeft: 5,

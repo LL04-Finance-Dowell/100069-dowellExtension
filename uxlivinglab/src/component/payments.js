@@ -32,15 +32,15 @@ function Payments() {
                   >
                     <div className="elementor-widget-container">
                       <div className="item">
-                        <div
-                          className="{ props.text }"
-                          style={{ marginBottom: 51 }}
-                        >
+                        <div className="{ props.text }">
                           <button
                             className="logout"
                             style={{ width: 270, marginLeft: 8 }}
                           >
-                            <i className="button-text" style={{ fontSize: 20 }}>
+                            <i
+                              className="button-text"
+                              style={{ fontSize: 17, fontStyle: "normal" }}
+                            >
                               Payment
                             </i>
                           </button>
@@ -66,7 +66,6 @@ function Payments() {
                         width="280"
                         height="700"
                         allow="fullscreen"
-                        frma
                       ></iframe>
                     </div>
                   </div>
