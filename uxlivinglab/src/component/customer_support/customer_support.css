@@ -70,6 +70,12 @@ hr {
 }
 label {
   text-align: left;
+<<<<<<< HEAD
+}
+button {
+  width: 300px;
+=======
+>>>>>>> newer
 }
 /* button {
   width: 300px;
@@ -106,6 +112,9 @@ label {
 .elementor-divider-separator {
   width: 100%;
   border-top: 1.5px solid #ff0000;
+<<<<<<< HEAD
+}
+=======
 }
 .connectWebsite {
   cursor: pointer;
@@ -123,3 +132,4 @@ label {
 .connectWebsite:hover {
   background-color: #61ce70;
 }
+>>>>>>> newer

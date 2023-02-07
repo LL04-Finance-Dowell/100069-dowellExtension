@@ -1,7 +1,9 @@
 import styles from "./styles.module.css";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import UserProfile from "./UserProfile";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { useState } from "react";
 
 function Profiles() {
   const { show, handleShow } = useStateContext();
