@@ -21,7 +21,7 @@ const Products = () => {
           </button>
         </div>
         <select onChange={(e) => setOrg(e.target.value)}>
-          <option>select</option>
+          <option>select organization</option>
           {data?.map((datum) => (
             <option value={datum.org_name}>{datum.org_name}</option>
           ))}

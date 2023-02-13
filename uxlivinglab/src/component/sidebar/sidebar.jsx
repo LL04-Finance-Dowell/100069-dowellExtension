@@ -172,7 +172,7 @@ export default function Sidebar() {
               <Notifications text="Notifications" />
             )}
             {changes.showHideFavourites && <Favourites text="Favourites" />}
-            {changes.showHideNone && (
+            {/* {changes.showHideNone && (
               <div>
                 <p className="pad"></p>
                 <div style={{ display: "flex" }}>
@@ -191,7 +191,7 @@ export default function Sidebar() {
                   />
                 </div>
               </div>
-            )}
+            )} */}
           </div>
 
           {/* <div className="close-second"> */}

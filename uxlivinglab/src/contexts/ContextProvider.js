@@ -5,7 +5,7 @@ import axios from "axios";
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
 

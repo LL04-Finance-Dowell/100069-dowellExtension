@@ -38,11 +38,11 @@
   482px; */
 }
 
-#second-container::-webkit-scrollbar{
+#second-container::-webkit-scrollbar {
   display: none;
 }
 
-#auth-container{
+#auth-container {
   width: 430px;
   overflow: hidden;
   overflow-x: hidden;
@@ -57,14 +57,11 @@
   box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
 
   /* margin-left: 482px; */
-
 }
 
-
-#second-container .popup-container{
+#second-container .popup-container {
   overflow: hidden;
   width: 430px;
-
 }
 .close-second {
   cursor: pointer;
@@ -146,4 +143,3 @@
   height: 900px;
   width: 300px;
 } */
-
