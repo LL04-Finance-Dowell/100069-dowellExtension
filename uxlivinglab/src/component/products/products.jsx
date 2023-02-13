@@ -20,12 +20,35 @@ const Products = () => {
             </i>
           </button>
         </div>
-        <select onChange={(e) => setOrg(e.target.value)}>
+        <div
+          class="elementor-form-fields-wrapper elementor-labels-above"
+          style={{ marginLeft: 30 }}
+        >
+          <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+            <div class="elementor-field elementor-select-wrapper ">
+              <select
+                name="form_fields[level3name]"
+                id="form-field-level3name"
+                class="elementor-field-textual elementor-size-sm"
+                style={{ width: 200, height: 15 }}
+                onChange={(e) => setOrg(e.target.value)}
+              >
+                <option>Select Organization</option>
+                {data?.map((datum) => (
+                  <option value={datum.org_name}>{datum.org_name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* </div> */}
+        </div>
+        {/* <select onChange={(e) => setOrg(e.target.value)}>
           <option>select organization</option>
           {data?.map((datum) => (
             <option value={datum.org_name}>{datum.org_name}</option>
           ))}
-        </select>
+        </select> */}
       </div>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>

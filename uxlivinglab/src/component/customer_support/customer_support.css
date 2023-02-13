@@ -1,6 +1,4 @@
 .customersupport {
-  /* overflow-y: scroll;
-    height: 700px; */
   margin-left: 20px;
 }
 hr {
@@ -8,20 +6,12 @@ hr {
   margin-left: 0px;
   margin-top: 20px;
   margin-bottom: 20px;
-
-  /* padding-bottom: 0.5px; */
   padding-top: 0.5px;
 }
 .elementor-form-fields-wrapper {
-  /* margin-left: calc( -10px/2 ); */
-  /* margin-right: calc( -10px/2 ); */
   margin-bottom: -20px;
   text-align: left;
 }
-/* .elementor-form-fields-wrapper { */
-/* display: flex; */
-/* flex-wrap: wrap; */
-/* } */
 .elementor-field-label {
   font-family: "Roboto", Sans-serif;
   font-size: 14px;
@@ -36,12 +26,7 @@ hr {
 
 .elementor-widget-container .elementor-form {
   padding: 25px 25px 25px 25px;
-  /* transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s); */
 }
-
-/* .elementor-element .elementor-widget-container{
-    transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s);
-} */
 
 .elementor-select-wrapper {
   -webkit-appearance: none;
@@ -71,16 +56,11 @@ hr {
 label {
   text-align: left;
 }
-/* button {
-  width: 300px;
-} */
 .elementor-field-group .elementor-field-textual {
-  /* width: 100%; */
   max-width: 100%;
   border: 1px solid #818a91;
   background-color: transparent;
   color: #373a3c;
-  /* vertical-align: middle; */
   flex-grow: 1;
   background-color: #f5f5f5;
   border-color: #7a7a7a;
@@ -89,14 +69,11 @@ label {
   width: 290px;
   height: 33px;
   margin-left: 10px;
-  /* background-color: gray; */
   color: #fff;
 }
 
 .elementor-divider .elementor-divider-separator {
   border-top: 1.5px solid #ff0000;
-  /* color: var(--e-global-color-1c88b1b );
-    border-width: 1.5px; */
 }
 
 .elementor-button:hover {

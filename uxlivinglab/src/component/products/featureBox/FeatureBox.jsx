@@ -17,30 +17,28 @@ const FeatureBox = ({ product, org_name }) => {
             .map((dat) => (
               <option>{dat?.portfolio_name}</option>
             ))}
-          {/* {product.porfolios.map((item) => (
-            <option key={item.id} className={styles.opt}>
-              {item.portfolio_name}
-            </option>
-          ))} */}
         </select>
-        <a
-          href={
-            sessionId && product.title === "Workflow AI"
-              ? `https://ll04-finance-dowell.github.io/100018-dowellWorkflowAi-testing/#/?session_id=${sessionId}`
-              : ""
-          }
-          target={
-            sessionId && product.title === "Workflow AI" ? "_blank" : null
-          }
-          rel="noreferrer"
-        >
+        {sessionId && product.title === "Workflow AI" ? (
+          <a
+            href={`https://ll04-finance-dowell.github.io/100018-dowellWorkflowAi-testing/#/?session_id=${sessionId}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <button
+              className={styles.button}
+              style={{ fontSize: 20, width: 150 }}
+            >
+              Connect
+            </button>
+          </a>
+        ) : (
           <button
             className={styles.button}
             style={{ fontSize: 20, width: 150 }}
           >
             Connect
           </button>
-        </a>
+        )}
       </div>
     </div>
   );

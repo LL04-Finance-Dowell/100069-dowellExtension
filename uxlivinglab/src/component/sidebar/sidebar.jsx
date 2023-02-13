@@ -25,9 +25,6 @@ export default function Sidebar() {
     showHideNotifications: false,
     showHideFavourites: false,
     showHideNone: true,
-
-    // showHideLogin: false,
-    // showHideLogin: false,
   });
 
   const hideComponent = (name) => {
@@ -172,31 +169,7 @@ export default function Sidebar() {
               <Notifications text="Notifications" />
             )}
             {changes.showHideFavourites && <Favourites text="Favourites" />}
-            {/* {changes.showHideNone && (
-              <div>
-                <p className="pad"></p>
-                <div style={{ display: "flex" }}>
-                  <RxCross2
-                    size={22}
-                    color="white"
-                    className="close"
-                    style={{
-                      backgroundColor: "red",
-                      borderRadius: 20,
-                      marginTop: 108,
-                      marginLeft: 5,
-                      left: 0,
-                    }}
-                    onClick={() => handleShow(!show)}
-                  />
-                </div>
-              </div>
-            )} */}
           </div>
-
-          {/* <div className="close-second"> */}
-          {/* <RxCross2 size={24} color="white" className="close" /> */}
-          {/* </div> */}
         </div>
       ) : null}
       <div id="first-container">

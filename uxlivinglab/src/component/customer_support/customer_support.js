@@ -20,8 +20,6 @@ function CustomerSupport() {
         </div>
       </div>
       <div className="customersupport" style={{ marginLeft: 0 }}>
-        {/* title="Customer Support iframe"
-  src="https://workflowai.online/support/" */}
         <div className="elementor-widget-container" style={{ marginRight: 10 }}>
           <iframe
             id="frame"
@@ -87,7 +85,7 @@ function CustomerSupport() {
                     </select>
                   </div>
                 </div>
-                {/* <div class="button-div"> */}
+
                 <button
                   type="submit"
                   class="connectWebsite"
@@ -108,9 +106,7 @@ function CustomerSupport() {
             marginTop: "5px",
             marginLeft: 30,
           }}
-        >
-          {/* <hr></hr> */}
-        </div>
+        ></div>
         <div class="elementor-widget-container">
           <form class="elementor-form" method="post" name="Form1">
             <input type="hidden" name="post_id" value="8155" />
