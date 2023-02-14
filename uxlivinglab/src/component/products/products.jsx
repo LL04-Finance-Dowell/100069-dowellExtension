@@ -20,7 +20,7 @@ const Products = () => {
             </i>
           </button>
         </div>
-        <select onChange={(e) => setOrg(e.target.value)}>
+        <select onChange={(e) => setOrg(e.target.value)} className={styles.dropdwn}>
           <option>select organization</option>
           {data?.map((datum) => (
             <option value={datum.org_name}>{datum.org_name}</option>

@@ -68,6 +68,9 @@ hr {
   padding: 5px 10px;
   border-radius: 3px;
 }
+.bt:hover{
+  background-color: #61ce70;
+}
 label {
   text-align: left;
 }

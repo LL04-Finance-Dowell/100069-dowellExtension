@@ -2,6 +2,7 @@ import "./favourites.css"
 import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 
 function Favourites () {
@@ -57,7 +58,7 @@ function Favourites () {
 
             <div class="button-div">
               <button type="submit" 
-              style={{width:270,fontSize:15,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",marginBottom:80,color:"#ffffff"}}
+              style={{width:270,cursor:"pointer",fontSize:15,height: "13px",borderWidth:"1px",backgroundColor:"#7a7a7a",marginBottom:80,color:"#ffffff"}}
               class="elementor-field-textual bt" id="connectwebsite">
                 Save / Remove Favourites
                 </button>
