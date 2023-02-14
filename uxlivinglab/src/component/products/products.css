@@ -1,0 +1,163 @@
+.products {
+    /* overflow-y: scroll; */
+    width: 350px;
+    /* display: flex; */
+    /* flex-direction: row; */
+  }
+  /* .overlay{
+      width: 174px;
+  } */
+  
+  .items {
+    width: 350px;
+    /* display: flex; */
+    flex-direction: column;
+    /* flex-direction: row; */
+    /* overflow-y: scroll; */
+    /* overflow: scroll;
+    overflow-x: hidden; */
+  }
+  
+  p {
+    text-align: center;
+  }
+  
+  .it-1 {
+    display: flex;
+    flex-direction: row;
+    width: 381px;
+  }
+  
+  .item1 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Workflow-AI-2.png);
+    height: 256px;
+    width: 200px;
+    position: relative;
+    /* padding-right: 100px; */
+    /* position: relative; */
+  }
+  
+  .item2 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Wifi-QR-Code-1.png);
+    height: 256px;
+    width: 200px;
+    position: relative;
+    /* position: relative;
+    left: 150px; */
+  }
+  
+  .item3 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2023/01/customer-support-centre.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item4 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/UX-Live-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item5 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2023/01/Permutation-calculator.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item6 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2023/01/Sales-agent-app.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item7 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2023/01/live-dashboard-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item8 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Social-media-automation-2.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item9 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Living-Lab-Admin-2.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item10 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Social-media-automation-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item11 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Scales-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  .item12 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Logo-Scan-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item13 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Livinglab-chat-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item14 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Living-Lab-Admin-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item15 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Legalzard-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item16 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/dowell-maps-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item17 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Digital-Q-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item18 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2022/12/Customer-experience-1.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item19 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2023/01/Living-Lab-Admin-2.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .item20 {
+    background-image: url(https://uxlivinglab.com/wp-content/uploads/2023/01/secure-data.png);
+    height: 256px;
+    width: 256px;
+  }
+  
+  .overlay-inner {
+    background-color: black;
+    z-index: 1;
+    opacity: 3;
+    transform-style: preserve-3d;
+    height: 256px;
+    width: 300px;
+  }
