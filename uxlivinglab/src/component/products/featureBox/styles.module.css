@@ -41,6 +41,7 @@
   margin-bottom: 20px;
   size: 1rem;
   width: 60%;
+  cursor: pointer;
 }
 
 select {
