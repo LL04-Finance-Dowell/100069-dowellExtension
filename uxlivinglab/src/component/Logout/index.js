@@ -4,20 +4,25 @@ import { useStateContext } from "../../contexts/ContextProvider";
 
 
 export default function Logout() {
-  const { show, handleShow} = useStateContext();
+  const { show, handleShow, userinfo} = useStateContext();
 
   return (
     <>
       <div className="popup-container">
         <div className="item">
+          {userinfo?.username}
+          {userinfo?.email}
+          {userinfo?.country}
+          {userinfo?.dowell_time}
+
           <div className="{ props.text }">
-            <p className="pad"></p>
+            {/* <p className="pad"></p> */}
             <a
               href="https://100014.pythonanywhere.com/en/sign-out"
               target="_blank"
               rel="noreferrer"
             >
-              <button className="logout" style={{width:250}}>
+              <button className="logout" style={{width:250,position:"absolute",top:400,left:0,marginLeft:38}}>
                 <i className="button-text" id="logoutButton" style={{fontSize:20}}>
                   Logout
                 </i>
@@ -25,7 +30,7 @@ export default function Logout() {
             </a>
           </div>
         </div>
-        <div style={{ display: "flex"}}>
+        <div style={{ display: "flex",position:"absolute",top:500}}>
           <RxCross2
             size={22}
             color="white"

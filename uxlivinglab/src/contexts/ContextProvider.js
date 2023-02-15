@@ -1,4 +1,4 @@
-/* global chrome */
+/*global chrome */
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -8,6 +8,7 @@ export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
   const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
+  const [userInfo, setUserInfo] = useState();
 
   const handleShow = (show) => {
     setShow(show);
@@ -29,22 +30,33 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (sessionId.length > 0) {
-      async function getUserInfo() {
+    async function getUserInfo() {
+      try {
         const response = await axios.post(
           "https://100014.pythonanywhere.com/api/userinfo/",
           {
             session_id: sessionId,
           }
         );
+        setUserInfo(response.data.userinfo);
+
         setData(response.data.other_org);
+      } catch (e) {
+        if (e.message === "Network Error") {
+          console.log("error network");
+        } else {
+          console.log(e);
+        }
       }
+
+    }
+    if (sessionId.length > 0) {
       getUserInfo();
     }
   }, [sessionId]);
 
   return (
-    <StateContext.Provider value={{ show, handleShow, sessionId, data }}>
+    <StateContext.Provider value={{ show, handleShow, sessionId, data, userInfo }}>
       {children}
     </StateContext.Provider>
   );
