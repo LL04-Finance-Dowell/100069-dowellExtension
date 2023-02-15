@@ -7,6 +7,7 @@ import { useStateContext } from "../../contexts/ContextProvider";
 const Products = () => {
   const { handleShow, data } = useStateContext();
   const [org, setOrg] = useState("skjdh");
+
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -20,11 +21,18 @@ const Products = () => {
             </i>
           </button>
         </div>
-        <select onChange={(e) => setOrg(e.target.value)} className={styles.dropdwn}>
+        <select
+          onChange={(e) => setOrg(e.target.value)}
+          className={styles.dropdwn}
+        >
           <option>select organization</option>
-          {data?.map((datum) => (
-            <option value={datum.org_name}>{datum.org_name}</option>
-          ))}
+          {data
+            ?.filter((datum) => !datum?.portfolio)
+            .map((datum, index) => (
+              <option key={index} value={datum.org_name}>
+                {datum.org_name}
+              </option>
+            ))}
         </select>
       </div>
       {products.map((item) => (
