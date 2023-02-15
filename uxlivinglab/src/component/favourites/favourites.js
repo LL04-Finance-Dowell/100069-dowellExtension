@@ -2,7 +2,6 @@ import "./favourites.css"
 import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
-import { hover } from "@testing-library/user-event/dist/hover";
 
 
 function Favourites () {
