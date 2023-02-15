@@ -226,13 +226,15 @@ export default function Sidebar() {
             onClick={() => hideComponent("showHidePayments")}
           ></i>
         </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-user"
-            onClick={() => hideComponent("showHideProfiles")}
-          ></i>
-        </div>
+        {sessionId && (
+          <div className="power">
+            <i
+              aria-hidden="true"
+              className="fas fa-user"
+              onClick={() => hideComponent("showHideProfiles")}
+            ></i>
+          </div>
+        )}
         <div className="power">
           <i
             aria-hidden="true"
@@ -240,27 +242,31 @@ export default function Sidebar() {
             onClick={() => hideComponent("showHideCustomerSupport")}
           ></i>
         </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-bell"
-            onClick={() => hideComponent("showHideNotifications")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="far fa-gem"
-            onClick={() => hideComponent("showHideProducts")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-hand-holding-heart"
-            onClick={() => hideComponent("showHideFavourites")}
-          ></i>
-        </div>
+        {sessionId && (
+          <>
+            <div className="power">
+              <i
+                aria-hidden="true"
+                className="fas fa-bell"
+                onClick={() => hideComponent("showHideNotifications")}
+              ></i>
+            </div>
+            <div className="power">
+              <i
+                aria-hidden="true"
+                className="far fa-gem"
+                onClick={() => hideComponent("showHideProducts")}
+              ></i>
+            </div>
+            <div className="power">
+              <i
+                aria-hidden="true"
+                className="fas fa-hand-holding-heart"
+                onClick={() => hideComponent("showHideFavourites")}
+              ></i>
+            </div>
+          </>
+        )}
         <div
           style={{ display: "flex", marginLeft: 5 }}
           onClick={() => window.close()}
