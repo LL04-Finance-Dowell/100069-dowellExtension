@@ -30,6 +30,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function getUserInfo() {
+      console.log(sessionId);
       try {
         const response = await axios.post(
           "https://100014.pythonanywhere.com/api/userinfo/",

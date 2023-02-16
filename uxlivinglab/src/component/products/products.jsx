@@ -26,13 +26,24 @@ const Products = () => {
           className={styles.dropdwn}
         >
           <option>select organization</option>
-          {data
+
+          {Array.from(
+            new Set(
+              data
+                ?.filter((datum) => !datum?.portfolio)
+                .map((datum) => datum.org_name)
+            )
+          ).map((org_name) => (
+            <option value={`${org_name}`}>{org_name}</option>
+          ))}
+
+          {/* {data
             ?.filter((datum) => !datum?.portfolio)
             .map((datum, index) => (
               <option key={index} value={datum.org_name}>
                 {datum.org_name}
               </option>
-            ))}
+            ))} */}
         </select>
       </div>
       {products.map((item) => (
