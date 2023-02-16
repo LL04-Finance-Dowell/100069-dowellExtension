@@ -9,11 +9,42 @@ export default function Logout() {
     <>
       <div className="popup-container">
         <div className="item">
-          <h4> {userInfo?.username}</h4>
-          <h4>{userInfo?.email}</h4>
-          <h4>{userInfo?.country}</h4>
-          <h4>{userInfo?.dowell_time}</h4>
-
+          <div style={{color:"gray", fontSize:15, width:300,marginLeft:100, textAlign:'left'}}>
+            <h4>Username: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.username}</h3></h4>
+            <div
+          class="elementor-divider"
+          style={{
+            width: "270px",
+            borderTop: "1.5px solid green",
+            marginTop: "5px",
+          }}
+        >
+          {" "}
+        </div>
+            <h4>Email: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.email}</h3></h4>
+            <div
+          class="elementor-divider"
+          style={{
+            width: "270px",
+            borderTop: "1.5px solid green",
+            marginTop: "5px",
+          }}
+        >
+          {" "}
+        </div>
+            <h4>Country: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.country}</h3></h4>
+            <div
+          class="elementor-divider"
+          style={{
+            width: "270px",
+            borderTop: "1.5px solid green",
+            marginTop: "5px",
+          }}
+        >
+          {" "}
+        </div>
+            <h4>Time: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.dowell_time}</h3></h4>
+          </div>
           <div className="{ props.text }">
             {/* <p className="pad"></p> */}
             <a
