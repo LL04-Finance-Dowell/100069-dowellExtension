@@ -7,23 +7,22 @@
     "default_icon": "128.png",
     "default_popup": "index.html",
     "default_title": "Manage Your UX Living Lab Account"
-  },    
-  "content_scripts": [{
-    "css": ["static/css/main.d4f78e48.css"],
-    "js": ["static/js/main.3ed7fc6a.js"],
-    "all_frames": true,
-     "run_at": "document_end",
-     "matches": ["http://127.0.0.1.zxqpopw/*"]
-  }],
+  },
+  "content_scripts": [
+    {
+      "css": ["static/css/main.8cb5a9fb.css"],
+      "js": ["static/js/main.be462562.js"],
+      "all_frames": true,
+      "run_at": "document_end",
+      "matches": ["http://127.0.0.1.zxqpopw/*"]
+    }
+  ],
 
   "icons": {
     "16": "16.png",
     "48": "48.png",
     "128": "128.png"
-
   },
-  "host_permissions" : [
-    "<all_urls>"
-  ],
+  "host_permissions": ["<all_urls>"],
   "permissions": ["tabs", "bookmarks", "cookies"]
 }

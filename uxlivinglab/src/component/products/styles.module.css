@@ -1,20 +1,17 @@
 .cover {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+
   align-items: center;
-  -ms-overflow-style: none; /* IE and Edge */
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .container {
   width: 300px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
-
 .productbtn {
   cursor: pointer;
   margin: 20px 10px 20px 20px;
@@ -39,8 +36,7 @@
       flex-direction: column;
     }
   } */
-.dropdwn{
-  
+.dropdwn {
   max-width: 100%;
   border: 1px solid #818a91;
   background-color: transparent;
@@ -51,5 +47,4 @@
   border-color: #7a7a7a;
   width: 250px;
   margin-left: 10px;
-
 }

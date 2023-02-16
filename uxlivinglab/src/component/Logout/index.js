@@ -2,9 +2,8 @@ import "./style.css";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-
 export default function Logout() {
-  const { show, handleShow, userinfo} = useStateContext();
+  const { show, handleShow, userinfo } = useStateContext();
 
   return (
     <>
@@ -22,15 +21,28 @@ export default function Logout() {
               target="_blank"
               rel="noreferrer"
             >
-              <button className="logout" style={{width:250,position:"absolute",top:400,left:0,marginLeft:38}}>
-                <i className="button-text" id="logoutButton" style={{fontSize:20}}>
+              <button
+                className="logout"
+                style={{
+                  width: 250,
+                  position: "absolute",
+                  top: 400,
+                  left: 0,
+                  marginLeft: 38,
+                }}
+              >
+                <i
+                  className="button-text"
+                  id="logoutButton"
+                  style={{ fontSize: 20 }}
+                >
                   Logout
                 </i>
               </button>
             </a>
           </div>
         </div>
-        <div style={{ display: "flex",position:"absolute",top:500}}>
+        <div style={{ display: "flex", position: "absolute", top: 500 }}>
           <RxCross2
             size={22}
             color="white"
@@ -44,7 +56,8 @@ export default function Logout() {
             }}
             onClick={() => handleShow(!show)}
           />
-        </div>      </div>
+        </div>
+      </div>
     </>
   );
 }
