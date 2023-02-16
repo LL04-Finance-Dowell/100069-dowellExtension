@@ -23,7 +23,7 @@ export default function Sidebar() {
     showHideCustomerSupport: false,
     showHideProfiles: false,
     showHideNotifications: false,
-    showHideFavourites: false,
+    showHideFavourites: true,
     showHideNone: true,
   });
 
@@ -156,22 +156,46 @@ export default function Sidebar() {
   };
   return (
     <div id="grid-container">
-      {show ? (
-        <div>
-          <div id="second-container">
-            {changes.showHideLogout && <Logout />}
-            {changes.showHideLogin && <Login />}
-            {changes.showHidePayments && <Payments text="Payments" />}
-            {changes.showHideCustomerSupport && <CustomerSupport />}
-            {changes.showHideProducts && <Products text="Products" />}
-            {changes.showHideProfiles && <Profiles text="Profiles" />}
-            {changes.showHideNotifications && (
-              <Notifications text="Notifications" />
-            )}
-            {changes.showHideFavourites && <Favourites text="Favourites" />}
-          </div>
+      {/* {show ? ( */}
+      <div>
+        <div id="second-container">
+          {changes.showHideLogout && <Logout />}
+          {changes.showHideLogin && <Login />}
+          {changes.showHidePayments && <Payments text="Payments" />}
+          {changes.showHideCustomerSupport && <CustomerSupport />}
+          {changes.showHideProducts && <Products text="Products" />}
+          {changes.showHideProfiles && <Profiles text="Profiles" />}
+          {changes.showHideNotifications && (
+            <Notifications text="Notifications" />
+          )}
+          {changes.showHideFavourites && <Favourites text="Favourites" />}
+          {/* {changes.showHideNone && (
+              <div>
+                <p className="pad"></p>
+                <div style={{ display: "flex" }}>
+                  <RxCross2
+                    size={22}
+                    color="white"
+                    className="close"
+                    style={{
+                      backgroundColor: "red",
+                      borderRadius: 20,
+                      marginTop: 108,
+                      marginLeft: 5,
+                      left: 0,
+                    }}
+                    onClick={() => handleShow(!show)}
+                  />
+                </div>
+              </div>
+            )} */}
         </div>
-      ) : null}
+
+        {/* <div className="close-second"> */}
+        {/* <RxCross2 size={24} color="white" className="close" /> */}
+        {/* </div> */}
+      </div>
+      {/* ) : null} */}
       <div id="first-container">
         {sessionId && (
           <div className="power">
@@ -199,13 +223,15 @@ export default function Sidebar() {
             onClick={() => hideComponent("showHidePayments")}
           ></i>
         </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-user"
-            onClick={() => hideComponent("showHideProfiles")}
-          ></i>
-        </div>
+        {sessionId && (
+          <div className="power">
+            <i
+              aria-hidden="true"
+              className="fas fa-user"
+              onClick={() => hideComponent("showHideProfiles")}
+            ></i>
+          </div>
+        )}
         <div className="power">
           <i
             aria-hidden="true"
@@ -213,27 +239,31 @@ export default function Sidebar() {
             onClick={() => hideComponent("showHideCustomerSupport")}
           ></i>
         </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-bell"
-            onClick={() => hideComponent("showHideNotifications")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="far fa-gem"
-            onClick={() => hideComponent("showHideProducts")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-hand-holding-heart"
-            onClick={() => hideComponent("showHideFavourites")}
-          ></i>
-        </div>
+        {sessionId && (
+          <>
+            <div className="power">
+              <i
+                aria-hidden="true"
+                className="fas fa-bell"
+                onClick={() => hideComponent("showHideNotifications")}
+              ></i>
+            </div>
+            <div className="power">
+              <i
+                aria-hidden="true"
+                className="far fa-gem"
+                onClick={() => hideComponent("showHideProducts")}
+              ></i>
+            </div>
+            <div className="power">
+              <i
+                aria-hidden="true"
+                className="fas fa-hand-holding-heart"
+                onClick={() => hideComponent("showHideFavourites")}
+              ></i>
+            </div>
+          </>
+        )}
         <div
           style={{ display: "flex", marginLeft: 5 }}
           onClick={() => window.close()}

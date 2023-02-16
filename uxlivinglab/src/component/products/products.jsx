@@ -7,6 +7,7 @@ import { useStateContext } from "../../contexts/ContextProvider";
 const Products = () => {
   const { handleShow, data } = useStateContext();
   const [org, setOrg] = useState("skjdh");
+
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -20,6 +21,7 @@ const Products = () => {
             </i>
           </button>
         </div>
+<<<<<<< HEAD
         <div
           class="elementor-form-fields-wrapper elementor-labels-above"
           style={{ marginLeft: 30 }}
@@ -44,11 +46,36 @@ const Products = () => {
           {/* </div> */}
         </div>
         {/* <select onChange={(e) => setOrg(e.target.value)}>
+=======
+        <select
+          onChange={(e) => setOrg(e.target.value)}
+          className={styles.dropdwn}
+        >
+>>>>>>> final_latest
           <option>select organization</option>
-          {data?.map((datum) => (
-            <option value={datum.org_name}>{datum.org_name}</option>
+
+          {Array.from(
+            new Set(
+              data
+                ?.filter((datum) => !datum?.portfolio)
+                .map((datum) => datum.org_name)
+            )
+          ).map((org_name) => (
+            <option value={`${org_name}`}>{org_name}</option>
           ))}
+<<<<<<< HEAD
         </select> */}
+=======
+
+          {/* {data
+            ?.filter((datum) => !datum?.portfolio)
+            .map((datum, index) => (
+              <option key={index} value={datum.org_name}>
+                {datum.org_name}
+              </option>
+            ))} */}
+        </select>
+>>>>>>> final_latest
       </div>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
@@ -125,7 +152,7 @@ export const products = [
       image:
         "https://uxlivinglab.com/wp-content/uploads/2023/01/customer-support-centre.png",
       id: crypto.randomUUID(),
-      title: "Customer Support",
+      title: "Customer Support Centre",
       porfolios: [
         {
           portfolio_name: "Portfolio 01",
@@ -295,7 +322,7 @@ export const products = [
     first: {
       image: "https://uxlivinglab.com/wp-content/uploads/2022/12/Scales-1.png",
       id: crypto.randomUUID(),
-      title: "Dowell Scales",
+      title: "Scales",
       porfolios: [
         {
           portfolio_name: "Portfolio 01",

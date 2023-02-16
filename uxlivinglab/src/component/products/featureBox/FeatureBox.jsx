@@ -14,8 +14,8 @@ const FeatureBox = ({ product, org_name }) => {
                 (datum?.org_name === org_name) &
                 (datum?.product === product.title)
             )
-            .map((dat) => (
-              <option>{dat?.portfolio_name}</option>
+            .map((dat, index) => (
+              <option key={index}>{dat?.portfolio_name}</option>
             ))}
         </select>
         {sessionId && product.title === "Workflow AI" ? (
