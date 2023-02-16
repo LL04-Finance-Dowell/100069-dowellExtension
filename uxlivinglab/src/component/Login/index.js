@@ -8,7 +8,7 @@ export default function Login() {
     <>
       <div className="popup-container">
         {/* <p className="pad"></p> */}
-        <div className="item" style={{ marginLeft: 78, marginTop: 20 }}>
+        <div className="item" style={{ marginLeft: 78, marginTop: 50 }}>
           <div className="{ props.text }">
             {/* <p className="pad"></p> */}
             <div className="elementor-widget-container">

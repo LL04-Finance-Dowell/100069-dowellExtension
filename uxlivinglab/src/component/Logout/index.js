@@ -43,7 +43,7 @@ export default function Logout() {
         >
           {" "}
         </div>
-            <h4>Time: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.dowell_time}</h3></h4>
+            <h4>Date & Time: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.dowell_time}</h3></h4>
           </div>
           <div className="{ props.text }">
             {/* <p className="pad"></p> */}
