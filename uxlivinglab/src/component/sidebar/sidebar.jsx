@@ -13,7 +13,7 @@ import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 
 export default function Sidebar() {
-  const { handleShow, sessionId } = useStateContext();
+  const { show, handleShow, sessionId } = useStateContext();
   const [changes, setChanges] = useState({
     name: "component",
     showHideLogin: false,
@@ -156,20 +156,23 @@ export default function Sidebar() {
   };
   return (
     <div id="grid-container">
-      <div>
-        <div id="second-container">
-          {changes.showHideLogout && <Logout />}
-          {changes.showHideLogin && <Login />}
-          {changes.showHidePayments && <Payments text="Payments" />}
-          {changes.showHideCustomerSupport && <CustomerSupport />}
-          {changes.showHideProducts && <Products text="Products" />}
-          {changes.showHideProfiles && <Profiles text="Profiles" />}
-          {changes.showHideNotifications && (
-            <Notifications text="Notifications" />
-          )}
-          {changes.showHideFavourites && <Favourites text="Favourites" />}
+      {show && (
+        <div>
+          <div id="second-container">
+            {changes.showHideLogout && <Logout />}
+            {changes.showHideLogin && <Login />}
+            {changes.showHidePayments && <Payments text="Payments" />}
+            {changes.showHideCustomerSupport && <CustomerSupport />}
+            {changes.showHideProducts && <Products text="Products" />}
+            {changes.showHideProfiles && <Profiles text="Profiles" />}
+            {changes.showHideNotifications && (
+              <Notifications text="Notifications" />
+            )}
+
+            {changes.showHideFavourites && <Favourites text="Favourites" />}
+          </div>
         </div>
-      </div>
+      )}
       <div id="first-container">
         {sessionId && (
           <div className="power">

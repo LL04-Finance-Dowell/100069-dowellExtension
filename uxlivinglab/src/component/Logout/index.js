@@ -3,16 +3,16 @@ import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 export default function Logout() {
-  const { show, handleShow, userinfo } = useStateContext();
+  const { show, handleShow, userInfo } = useStateContext();
 
   return (
     <>
       <div className="popup-container">
         <div className="item">
-          {userinfo?.username}
-          {userinfo?.email}
-          {userinfo?.country}
-          {userinfo?.dowell_time}
+          <h4> {userInfo?.username}</h4>
+          <h4>{userInfo?.email}</h4>
+          <h4>{userInfo?.country}</h4>
+          <h4>{userInfo?.dowell_time}</h4>
 
           <div className="{ props.text }">
             {/* <p className="pad"></p> */}
