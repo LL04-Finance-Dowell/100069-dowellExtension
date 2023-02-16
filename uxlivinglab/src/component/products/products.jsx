@@ -21,7 +21,6 @@ const Products = () => {
             </i>
           </button>
         </div>
-<<<<<<< HEAD
         <div
           class="elementor-form-fields-wrapper elementor-labels-above"
           style={{ marginLeft: 30 }}
@@ -35,47 +34,26 @@ const Products = () => {
                 style={{ width: 200, height: 15 }}
                 onChange={(e) => setOrg(e.target.value)}
               >
-                <option>Select Organization</option>
-                {data?.map((datum) => (
-                  <option value={datum.org_name}>{datum.org_name}</option>
+                <option>select organization</option>
+
+                {Array.from(
+                  new Set(
+                    data
+                      ?.filter((datum) => !datum?.portfolio)
+                      .map((datum) => datum.org_name)
+                  )
+                ).map((org_name) => (
+                  <option value={`${org_name}`}>{org_name}</option>
                 ))}
               </select>
             </div>
           </div>
-
-          {/* </div> */}
         </div>
-        {/* <select onChange={(e) => setOrg(e.target.value)}>
-=======
+
         <select
           onChange={(e) => setOrg(e.target.value)}
           className={styles.dropdwn}
-        >
->>>>>>> final_latest
-          <option>select organization</option>
-
-          {Array.from(
-            new Set(
-              data
-                ?.filter((datum) => !datum?.portfolio)
-                .map((datum) => datum.org_name)
-            )
-          ).map((org_name) => (
-            <option value={`${org_name}`}>{org_name}</option>
-          ))}
-<<<<<<< HEAD
-        </select> */}
-=======
-
-          {/* {data
-            ?.filter((datum) => !datum?.portfolio)
-            .map((datum, index) => (
-              <option key={index} value={datum.org_name}>
-                {datum.org_name}
-              </option>
-            ))} */}
-        </select>
->>>>>>> final_latest
+        ></select>
       </div>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
