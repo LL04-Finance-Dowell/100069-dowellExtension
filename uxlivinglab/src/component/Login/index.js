@@ -7,15 +7,37 @@ export default function Login() {
   return (
     <>
       <div className="popup-container">
-        <div className="item">
+        {/* <p className="pad"></p> */}
+        <div className="item" style={{ marginLeft: 78, marginTop: 20 }}>
           <div className="{ props.text }">
-            <p className="pad"></p>
+            {/* <p className="pad"></p> */}
+            <div className="elementor-widget-container">
+              <iframe
+                width="320"
+                height="315"
+                src="https://www.youtube.com/embed/videoseries?list=PLa-BPmUzAKKfVgomvrIsWd9ZGQFTiT0Xb"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>{" "}
+            </div>
+
             <a
               href="https://100014.pythonanywhere.com"
               target="_blank"
               rel="noreferrer"
             >
-              <button className="logout" style={{ width: 250 }}>
+              <button
+                className="logout"
+                style={{
+                  width: 250,
+                  position: "absolute",
+                  top: 400,
+                  left: 0,
+                  marginLeft: 38,
+                }}
+              >
                 <i
                   className="button-text"
                   id="logoutButton"
@@ -27,7 +49,7 @@ export default function Login() {
             </a>
           </div>
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", position: "absolute", top: 500 }}>
           <RxCross2
             size={22}
             color="white"

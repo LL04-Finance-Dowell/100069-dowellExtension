@@ -25,7 +25,7 @@ function CustomerSupport() {
             id="frame"
             title="Customer Support iframe"
             style={{ alignItems: "center", border: 0 }}
-            src="https://workflowai.online/support/"
+            src="https://uxlivinglab.com/en/faq/"
             width="283"
             height="700"
             allow="fullscreen"

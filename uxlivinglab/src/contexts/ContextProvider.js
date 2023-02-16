@@ -10,6 +10,7 @@ export const ContextProvider = ({ children }) => {
     "sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5"
   );
   const [data, setData] = useState();
+  const [userInfo, setUserInfo] = useState();
 
   const handleShow = (show) => {
     setShow(show);
@@ -40,6 +41,8 @@ export const ContextProvider = ({ children }) => {
             session_id: sessionId,
           }
         );
+        setUserInfo(response.data.userinfo);
+
         setData(response.data.other_org);
       } catch (e) {
         if (e.message === "Network Error") {
@@ -48,6 +51,7 @@ export const ContextProvider = ({ children }) => {
           console.log(e);
         }
       }
+
     }
     if (sessionId.length > 0) {
       getUserInfo();
@@ -55,7 +59,7 @@ export const ContextProvider = ({ children }) => {
   }, [sessionId]);
 
   return (
-    <StateContext.Provider value={{ show, handleShow, sessionId, data }}>
+    <StateContext.Provider value={{ show, handleShow, sessionId, data, userInfo }}>
       {children}
     </StateContext.Provider>
   );
