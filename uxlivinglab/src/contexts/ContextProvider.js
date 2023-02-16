@@ -6,33 +6,31 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
-  const [sessionId, setSessionId] = useState(
-    "sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5"
-  );
+  const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
+  const [userInfo, setUserInfo] = useState();
 
   const handleShow = (show) => {
     setShow(show);
   };
 
-  // useEffect(() => {
-  //   function logCookies(cookies) {
-  //     for (const cookie of cookies) {
-  //       if (cookie.domain === "100014.pythonanywhere.com") {
-  //         setSessionId(cookie.value);
-  //       }
-  //     }
-  //   }
-  //   chrome.cookies
-  //     .getAll({
-  //       name: "sessionid",
-  //     })
-  //     .then((cookies) => logCookies(cookies));
-  // }, []);
+  useEffect(() => {
+    function logCookies(cookies) {
+      for (const cookie of cookies) {
+        if (cookie.domain === "100014.pythonanywhere.com") {
+          setSessionId(cookie.value);
+        }
+      }
+    }
+    chrome.cookies
+      .getAll({
+        name: "sessionid",
+      })
+      .then((cookies) => logCookies(cookies));
+  }, []);
 
   useEffect(() => {
     async function getUserInfo() {
-      console.log(sessionId);
       try {
         const response = await axios.post(
           "https://100014.pythonanywhere.com/api/userinfo/",
@@ -40,6 +38,8 @@ export const ContextProvider = ({ children }) => {
             session_id: sessionId,
           }
         );
+        setUserInfo(response.data.userinfo);
+
         setData(response.data.other_org);
       } catch (e) {
         if (e.message === "Network Error") {
@@ -55,7 +55,9 @@ export const ContextProvider = ({ children }) => {
   }, [sessionId]);
 
   return (
-    <StateContext.Provider value={{ show, handleShow, sessionId, data }}>
+    <StateContext.Provider
+      value={{ show, handleShow, sessionId, data, userInfo }}
+    >
       {children}
     </StateContext.Provider>
   );
