@@ -49,11 +49,6 @@ const Products = () => {
             </div>
           </div>
         </div>
-
-        <select
-          onChange={(e) => setOrg(e.target.value)}
-          className={styles.dropdwn}
-        ></select>
       </div>
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
