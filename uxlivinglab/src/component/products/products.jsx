@@ -121,7 +121,7 @@ export const products = [
       image:
         "https://uxlivinglab.com/wp-content/uploads/2023/01/customer-support-centre.png",
       id: crypto.randomUUID(),
-      title: "Customer Support",
+      title: "Customer Support Centre",
       porfolios: [
         {
           portfolio_name: "Portfolio 01",
@@ -291,7 +291,7 @@ export const products = [
     first: {
       image: "https://uxlivinglab.com/wp-content/uploads/2022/12/Scales-1.png",
       id: crypto.randomUUID(),
-      title: "Dowell Scales",
+      title: "Scales",
       porfolios: [
         {
           portfolio_name: "Portfolio 01",

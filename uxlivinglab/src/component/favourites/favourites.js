@@ -2,9 +2,11 @@ import "./favourites.css";
 import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { useState } from "react";
 
 function Favourites() {
   const { show, handleShow } = useStateContext();
+  const [showProducts, setShowProducts] = useState(false);
 
   return (
     <div>
@@ -18,16 +20,12 @@ function Favourites() {
         </div>
       </div>
       <div className="columns">
-        <a
-          href="/#"
-          class="elementor-button-link elementor-button elementor-size-xs"
-          role="button"
+        <span
+          class="elementor-button"
+          onClick={() => setShowProducts(!showProducts)}
         >
-          <span class="elementor-button">
-            <i aria-hidden="true" class="fas fa-bars new"></i>{" "}
-          </span>
-          <span class="elementor-button-text"></span>
-        </a>
+          <i aria-hidden="true" className="fas fa-bars new"></i>
+        </span>
       </div>
 
       <div className="all">
@@ -100,9 +98,11 @@ function Favourites() {
           </div>
         </div>
       </div>
-      <div>
-        <Products />
-      </div>
+      {showProducts && (
+        <div>
+          <Products />
+        </div>
+      )}
 
       <div style={{ display: "flex" }}>
         <RxCross2

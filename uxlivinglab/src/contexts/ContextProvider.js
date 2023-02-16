@@ -6,27 +6,29 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(false);
-  const [sessionId, setSessionId] = useState("");
+  const [sessionId, setSessionId] = useState(
+    "sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5"
+  );
   const [data, setData] = useState();
 
   const handleShow = (show) => {
     setShow(show);
   };
 
-  useEffect(() => {
-    function logCookies(cookies) {
-      for (const cookie of cookies) {
-        if (cookie.domain === "100014.pythonanywhere.com") {
-          setSessionId(cookie.value);
-        }
-      }
-    }
-    chrome.cookies
-      .getAll({
-        name: "sessionid",
-      })
-      .then((cookies) => logCookies(cookies));
-  }, []);
+  // useEffect(() => {
+  //   function logCookies(cookies) {
+  //     for (const cookie of cookies) {
+  //       if (cookie.domain === "100014.pythonanywhere.com") {
+  //         setSessionId(cookie.value);
+  //       }
+  //     }
+  //   }
+  //   chrome.cookies
+  //     .getAll({
+  //       name: "sessionid",
+  //     })
+  //     .then((cookies) => logCookies(cookies));
+  // }, []);
 
   useEffect(() => {
     async function getUserInfo() {

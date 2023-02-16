@@ -23,7 +23,7 @@ export default function Sidebar() {
     showHideCustomerSupport: false,
     showHideProfiles: false,
     showHideNotifications: false,
-    showHideFavourites: false,
+    showHideFavourites: true,
     showHideNone: true,
 
     // showHideLogin: false,
@@ -159,20 +159,20 @@ export default function Sidebar() {
   };
   return (
     <div id="grid-container">
-      {show ? (
-        <div>
-          <div id="second-container">
-            {changes.showHideLogout && <Logout />}
-            {changes.showHideLogin && <Login />}
-            {changes.showHidePayments && <Payments text="Payments" />}
-            {changes.showHideCustomerSupport && <CustomerSupport />}
-            {changes.showHideProducts && <Products text="Products" />}
-            {changes.showHideProfiles && <Profiles text="Profiles" />}
-            {changes.showHideNotifications && (
-              <Notifications text="Notifications" />
-            )}
-            {changes.showHideFavourites && <Favourites text="Favourites" />}
-            {/* {changes.showHideNone && (
+      {/* {show ? ( */}
+      <div>
+        <div id="second-container">
+          {changes.showHideLogout && <Logout />}
+          {changes.showHideLogin && <Login />}
+          {changes.showHidePayments && <Payments text="Payments" />}
+          {changes.showHideCustomerSupport && <CustomerSupport />}
+          {changes.showHideProducts && <Products text="Products" />}
+          {changes.showHideProfiles && <Profiles text="Profiles" />}
+          {changes.showHideNotifications && (
+            <Notifications text="Notifications" />
+          )}
+          {changes.showHideFavourites && <Favourites text="Favourites" />}
+          {/* {changes.showHideNone && (
               <div>
                 <p className="pad"></p>
                 <div style={{ display: "flex" }}>
@@ -192,13 +192,13 @@ export default function Sidebar() {
                 </div>
               </div>
             )} */}
-          </div>
-
-          {/* <div className="close-second"> */}
-          {/* <RxCross2 size={24} color="white" className="close" /> */}
-          {/* </div> */}
         </div>
-      ) : null}
+
+        {/* <div className="close-second"> */}
+        {/* <RxCross2 size={24} color="white" className="close" /> */}
+        {/* </div> */}
+      </div>
+      {/* ) : null} */}
       <div id="first-container">
         {sessionId && (
           <div className="power">
