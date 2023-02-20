@@ -42,8 +42,10 @@ const Products = () => {
                       ?.filter((datum) => !datum?.portfolio)
                       .map((datum) => datum.org_name)
                   )
-                ).map((org_name) => (
-                  <option value={`${org_name}`}>{org_name}</option>
+                ).map((org_name, index) => (
+                  <option value={`${org_name}`} key={index}>
+                    {org_name}
+                  </option>
                 ))}
               </select>
             </div>

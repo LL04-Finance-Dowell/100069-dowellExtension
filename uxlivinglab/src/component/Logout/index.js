@@ -9,44 +9,67 @@ export default function Logout() {
     <>
       <div className="popup-container">
         <div className="item">
-          <div style={{color:"gray", fontSize:15, width:300,marginLeft:100, textAlign:'left'}}>
-            <h4>Username: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.username}</h3></h4>
+          <div
+            style={{
+              color: "gray",
+              fontSize: 15,
+              width: 300,
+              marginLeft: 100,
+              textAlign: "left",
+            }}
+          >
+            <h4>
+              Username:{" "}
+              <p style={{ color: "#61ce70", fontSize: 20 }}>
+                {userInfo?.username}
+              </p>
+            </h4>
             <div
-          class="elementor-divider"
-          style={{
-            width: "270px",
-            borderTop: "1.5px solid green",
-            marginTop: "5px",
-          }}
-        >
-          {" "}
-        </div>
-            <h4>Email: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.email}</h3></h4>
+              className="elementor-divider"
+              style={{
+                width: "270px",
+                borderTop: "1.5px solid green",
+                marginTop: "5px",
+              }}
+            />
+
+            <h4>
+              Email:{" "}
+              <p style={{ color: "#61ce70", fontSize: 20 }}>
+                {userInfo?.email}
+              </p>
+            </h4>
             <div
-          class="elementor-divider"
-          style={{
-            width: "270px",
-            borderTop: "1.5px solid green",
-            marginTop: "5px",
-          }}
-        >
-          {" "}
-        </div>
-            <h4>Country: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.country}</h3></h4>
+              className="elementor-divider"
+              style={{
+                width: "270px",
+                borderTop: "1.5px solid green",
+                marginTop: "5px",
+              }}
+            />
+
+            <h4>
+              Country:{" "}
+              <p style={{ color: "#61ce70", fontSize: 20 }}>
+                {userInfo?.country}
+              </p>
+            </h4>
             <div
-          class="elementor-divider"
-          style={{
-            width: "270px",
-            borderTop: "1.5px solid green",
-            marginTop: "5px",
-          }}
-        >
-          {" "}
-        </div>
-            <h4>Date & Time: <h3 style={{color:'#61ce70',fontSize:20}}>{userInfo?.dowell_time}</h3></h4>
+              className="elementor-divider"
+              style={{
+                width: "270px",
+                borderTop: "1.5px solid green",
+                marginTop: "5px",
+              }}
+            />
+            <h4>
+              Date & Time:{" "}
+              <p style={{ color: "#61ce70", fontSize: 20 }}>
+                {userInfo?.dowell_time}
+              </p>
+            </h4>
           </div>
           <div className="{ props.text }">
-            {/* <p className="pad"></p> */}
             <a
               href="https://100014.pythonanywhere.com/en/sign-out"
               target="_blank"
@@ -56,7 +79,7 @@ export default function Logout() {
                 className="logout"
                 style={{
                   width: 250,
-                  position: "absolute",
+
                   top: 400,
                   left: 0,
                   marginLeft: 38,

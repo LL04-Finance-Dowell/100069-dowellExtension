@@ -14,20 +14,20 @@ export const ContextProvider = ({ children }) => {
     setShow(show);
   };
 
-  useEffect(() => {
-    function logCookies(cookies) {
-      for (const cookie of cookies) {
-        if (cookie.domain === "100014.pythonanywhere.com") {
-          setSessionId(cookie.value);
-        }
-      }
-    }
-    chrome.cookies
-      .getAll({
-        name: "sessionid",
-      })
-      .then((cookies) => logCookies(cookies));
-  }, []);
+  // useEffect(() => {
+  //   function logCookies(cookies) {
+  //     for (const cookie of cookies) {
+  //       if (cookie.domain === "100014.pythonanywhere.com") {
+  //         setSessionId(cookie.value);
+  //       }
+  //     }
+  //   }
+  //   chrome.cookies
+  //     .getAll({
+  //       name: "sessionid",
+  //     })
+  //     .then((cookies) => logCookies(cookies));
+  // }, []);
 
   useEffect(() => {
     async function getUserInfo() {

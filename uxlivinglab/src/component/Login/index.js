@@ -7,20 +7,18 @@ export default function Login() {
   return (
     <>
       <div className="popup-container">
-        {/* <p className="pad"></p> */}
         <div className="item" style={{ marginLeft: 78, marginTop: 50 }}>
           <div className="{ props.text }">
-            {/* <p className="pad"></p> */}
             <div className="elementor-widget-container">
               <iframe
                 width="320"
                 height="315"
                 src="https://www.youtube.com/embed/videoseries?list=PLa-BPmUzAKKfVgomvrIsWd9ZGQFTiT0Xb"
                 title="YouTube video player"
-                frameborder="0"
+                style={{ border: 0 }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>{" "}
+                allowFullScreen
+              />
             </div>
 
             <a
@@ -32,7 +30,6 @@ export default function Login() {
                 className="logout"
                 style={{
                   width: 250,
-                  position: "absolute",
                   top: 400,
                   left: 0,
                   marginLeft: 38,

@@ -11,232 +11,60 @@ import Login from "../Login";
 import Logout from "../Logout";
 import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
+import SideButtons from "./SideButtons";
 
 export default function Sidebar() {
-  const { show, handleShow, sessionId } = useStateContext();
-  const [changes, setChanges] = useState({
-    name: "component",
-    showHideLogin: false,
-    showHideLogout: false,
-    showHideProducts: false,
-    showHidePayments: false,
-    showHideCustomerSupport: false,
-    showHideProfiles: false,
-    showHideNotifications: false,
-    showHideFavourites: true,
-    showHideNone: true,
-  });
-
-  const hideComponent = (name) => {
-    handleShow(true);
-    switch (name) {
-      case "showHideLogin":
-        setChanges({
-          showHideLogin: true,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-      case "showHideLogout":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: true,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-      case "showHidePayments":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: true,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-      case "showHideCustomerSupport":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: true,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-
-      case "showHideProducts":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: true,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-
-      case "showHideProfiles":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: true,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-
-      case "showHideNotifications":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: true,
-          showHideFavourites: false,
-          showHideNone: false,
-        });
-        break;
-
-      case "showHideFavourites":
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: true,
-          showHideNone: false,
-        });
-        break;
-
-      default:
-        setChanges({
-          showHideLogin: false,
-          showHideLogout: false,
-          showHideProducts: false,
-          showHidePayments: false,
-          showHideCustomerSupport: false,
-          showHideProfiles: false,
-          showHideNotifications: false,
-          showHideFavourites: false,
-          showHideNone: true,
-        });
-        break;
-    }
+  const { show } = useStateContext();
+  const initialState = {
+    login: false,
+    logout: false,
+    payments: false,
+    profiles: false,
+    customer: false,
+    notifications: false,
+    products: false,
+    favourites: true,
   };
+  const [hover, setHover] = useState(initialState);
+  const icons = {
+    login: "fas fa-sign-in-alt",
+    logout: "fas fa-power-off",
+    payments: "fas fa-credit-card",
+    profiles: "fas fa-user",
+    customer: "fas fa-headset",
+    notifications: "fas fa-bell",
+    products: "far fa-gem",
+    favourites: "fas fa-hand-holding-heart",
+  };
+
   return (
     <div id="grid-container">
       {show && (
         <div>
           <div id="second-container">
-            {changes.showHideLogout && <Logout />}
-            {changes.showHideLogin && <Login />}
-            {changes.showHidePayments && <Payments text="Payments" />}
-            {changes.showHideCustomerSupport && <CustomerSupport />}
-            {changes.showHideProducts && <Products text="Products" />}
-            {changes.showHideProfiles && <Profiles text="Profiles" />}
-            {changes.showHideNotifications && (
-              <Notifications text="Notifications" />
-            )}
+            {hover.logout && <Logout />}
+            {hover.login && <Login />}
+            {hover.payments && <Payments text="Payments" />}
+            {hover.customer && <CustomerSupport />}
+            {hover.products && <Products text="Products" />}
+            {hover.profiles && <Profiles text="Profiles" />}
+            {hover.notifications && <Notifications text="Notifications" />}
 
-            {changes.showHideFavourites && <Favourites text="Favourites" />}
+            {hover.favourites && <Favourites text="Favourites" />}
           </div>
         </div>
       )}
       <div id="first-container">
-        {sessionId && (
-          <div className="power">
-            <i
-              aria-hidden="true"
-              className="fas fa-power-off"
-              onClick={() => hideComponent("showHideLogout")}
-            ></i>
-          </div>
-        )}
-        {!sessionId && (
-          <div className="power">
-            <i
-              aria-hidden="true"
-              className="fas fa-sign-in-alt"
-              onClick={() => hideComponent("showHideLogin")}
-            ></i>
-          </div>
-        )}
-
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-credit-card"
-            onClick={() => hideComponent("showHidePayments")}
-          ></i>
-        </div>
-
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-user"
-            onClick={() => sessionId && hideComponent("showHideProfiles")}
-          ></i>
-        </div>
-
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-headset"
-            onClick={() => hideComponent("showHideCustomerSupport")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-bell"
-            onClick={() => sessionId && hideComponent("showHideNotifications")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="far fa-gem"
-            onClick={() => sessionId && hideComponent("showHideProducts")}
-          ></i>
-        </div>
-        <div className="power">
-          <i
-            aria-hidden="true"
-            className="fas fa-hand-holding-heart"
-            onClick={() => sessionId && hideComponent("showHideFavourites")}
-          ></i>
-        </div>
+        {Object.entries(icons).map(([keys, value]) => (
+          <SideButtons
+            setHover={setHover}
+            keys={keys}
+            value={value}
+            initialState={initialState}
+            key={keys}
+            hover={hover}
+          />
+        ))}
         <div
           style={{ display: "flex", marginLeft: 5 }}
           onClick={() => window.close()}
