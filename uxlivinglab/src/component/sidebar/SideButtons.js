@@ -38,7 +38,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
               (keys === "notifications") |
               (keys === "products")
                 ? { backgroundColor: "red" }
-                : { color: "" }
+                : {}
             }
             onClick={() =>
               sessionId

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useStateContext } from "../../../contexts/ContextProvider";
 import FeatureBox from "../featureBox/FeatureBox";
 import styles from "./styles.module.css";
 
 const Box = ({ product, org_name }) => {
   const [currentItem, setCurrentItem] = useState(null);
+
   const handleHover = (id) => {
     setCurrentItem(id);
   };
