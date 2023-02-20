@@ -35,7 +35,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             className="power"
             style={
               (keys === "profiles") |
-              (keys === "notifications") |
+              (keys === "notifications")
               (keys === "products") 
                 ? { cursor: "not-allowed", pointerEvents:'none' }
                 : { color: "" }

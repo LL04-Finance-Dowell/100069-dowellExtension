@@ -14,7 +14,8 @@ import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
 
 export default function Sidebar() {
-  const { show } = useStateContext();
+  const { show, data } = useStateContext();
+
   const initialState = {
     login: false,
     logout: false,
@@ -23,7 +24,7 @@ export default function Sidebar() {
     customer: false,
     notifications: false,
     products: false,
-    favourites: true,
+    favourites: false,
   };
   const [hover, setHover] = useState(initialState);
   const icons = {
