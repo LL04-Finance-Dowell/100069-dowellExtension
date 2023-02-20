@@ -42,15 +42,29 @@ function Favourites() {
                   id="form-field-level3name"
                   class="elementor-field-textual elementor-size-sm"
                 >
+
                   <option value="Product 01">Product 01</option>
-                  <option value="Product 02">Product 02</option>
-                  <option value="Product 03">Product 03</option>
+
+                {/* {Array.from(
+                  new Set(
+                    data
+                      ?.filter((datum) => !datum?.portfolio)
+                      .map((datum) => datum.org_name)
+                  )
+                ).map((org_name, index) => (
+                  <option value={`${org_name}`} key={index}>
+                    {org_name}
+                  </option>
+                ))} */}
+
+
+
                 </select>
               </div>
             </div>
             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
               <label for="form-field-level3name" class="elementor-field-label">
-                Select Product
+                Select Portfolio
               </label>
               <div class="elementor-field elementor-select-wrapper ">
                 <select

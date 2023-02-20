@@ -36,8 +36,8 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             style={
               (keys === "profiles") |
               (keys === "notifications") |
-              (keys === "products")
-                ? { backgroundColor: "red" }
+              (keys === "products") 
+                ? { cursor: "not-allowed", pointerEvents:'none' }
                 : { color: "" }
             }
             onClick={() =>
@@ -52,6 +52,20 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}
           >
+
+          {/* <div
+          class="elementor-divider"
+          style={
+            (keys === "profiles") |
+            (keys === "notifications") |
+            (keys === "products")
+              ?
+            {position:"absolute",width: "58px", borderTop: "2px solid green",marginTop: "5px",marginLeft: 0,transform: "rotate(140deg)"}:
+            {color: ""}
+              }
+            ></div> */}
+
+
             {showText && (
               <p
                 style={{
