@@ -35,10 +35,9 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             className="power"
             style={
               (keys === "profiles") |
-              (keys === "notifications") |
-              (keys === "products")
-                ? { backgroundColor: "red" }
-                : {}
+              (keys === "notifications")(keys === "products")
+                ? { cursor: "not-allowed" }
+                : { color: "" }
             }
             onClick={() =>
               sessionId
@@ -52,6 +51,18 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}
           >
+            {/* <div
+          class="elementor-divider"
+          style={
+            (keys === "profiles") |
+            (keys === "notifications") |
+            (keys === "products")
+              ?
+            {position:"absolute",width: "58px", borderTop: "2px solid green",marginTop: "5px",marginLeft: 0,transform: "rotate(140deg)"}:
+            {color: ""}
+              }
+            ></div> */}
+
             {showText && (
               <p
                 style={{

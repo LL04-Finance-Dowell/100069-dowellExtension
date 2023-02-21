@@ -5,7 +5,10 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import { useState } from "react";
 
 function Favourites() {
-  const { show, handleShow } = useStateContext();
+  const [org, setOrg] = useState("skjdh");
+  const [product, setProduct] = useState("skjdh");
+  const [portfolio, setPortfolio] = useState("skjdh");
+  const {data, show, handleShow } = useStateContext();
   const [showProducts, setShowProducts] = useState(false);
 
   return (
@@ -30,6 +33,35 @@ function Favourites() {
 
       {showProducts && (
         <div className="all">
+            <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+            <label for="form-field-level3name" class="elementor-field-label">
+                Select Organization
+              </label>
+            <div class="elementor-field elementor-select-wrapper ">
+              <select
+                name="form_fields[level3name]"
+                id="form-field-level3name"
+                class="elementor-field-textual elementor-size-sm"
+                style={{ width: 270, marginTop: 2 }}
+                onChange={(e) => setOrg(e.target.value)}
+              >
+                {/* <option>select organization</option> */}
+
+                {Array.from(
+                  new Set(
+                    data
+                      ?.filter((datum) => !datum?.portfolio)
+                      .map((datum) => datum.org_name)
+                  )
+                ).map((org_name, index) => (
+                  <option value={`${org_name}`} key={index}>
+                    {org_name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div class="elementor-form-fields-wrapper elementor-labels-above">
             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
               <label for="form-field-level3name" class="elementor-field-label">
@@ -37,31 +69,55 @@ function Favourites() {
               </label>
               <div class="elementor-field elementor-select-wrapper ">
                 <select
-                  style={{ width: 350, marginTop: 2 }}
-                  name="form_fields[level3name]"
-                  id="form-field-level3name"
+                onChange={(e) => setProduct(e.target.value)}
+                style={{ width: 350, marginTop: 2 }}
+                  name="products"
+                  id="products-select"
                   class="elementor-field-textual elementor-size-sm"
                 >
-                  <option value="Product 01">Product 01</option>
-                  <option value="Product 02">Product 02</option>
-                  <option value="Product 03">Product 03</option>
+
+                  {/* <option value="Product 01">{products[0].name}</option> */}
+                  
+                  {Array.from(
+                  new Set(
+                    data
+                      ?.filter((datum) => !datum?.portfolio)
+                      .map((datum) => datum.product)
+                  )
+                ).map((product, index) => (
+                  <option value={`${product}`} key={index}>
+                    {product}
+                  </option>
+                ))}
+
+
                 </select>
               </div>
             </div>
             <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
               <label for="form-field-level3name" class="elementor-field-label">
-                Select Product
+                Select Portfolio
               </label>
               <div class="elementor-field elementor-select-wrapper ">
                 <select
+                  onChange={(e) => setPortfolio(e.target.value)}
                   style={{ width: 270, marginTop: 2 }}
                   name="form_fields[level3name]"
                   id="form-field-level3name"
                   class="elementor-field-textual elementor-size-sm"
                 >
-                  <option value="Product 01">Product 01</option>
-                  <option value="Product 02">Product 02</option>
-                  <option value="Product 03">Product 03</option>
+                  {Array.from(
+                  new Set(
+                    data
+                      ?.filter((datum) => !datum?.portfolio)
+                      .map((datum) => datum.portfolio_name)
+                  )
+                ).map((portfolio_name, index) => (
+                  <option value={`${portfolio_name}`} key={index}>
+                    {portfolio_name}
+                  </option>
+                ))}
+
                 </select>
               </div>
             </div>
