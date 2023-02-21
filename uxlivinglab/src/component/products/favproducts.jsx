@@ -5,26 +5,12 @@ import styles from "./styles.module.css";
 const Products = () => {
   return (
     <div className={styles.cover}>
-      {/* <button className={styles.productbtn}>
-        <i style={{fontSize:20}} className={styles.txt}>Products</i>
-      </button> */}
       {products.map((item) => (
         <div key={item.id} class={styles.container}>
           <Box product={item.first} />
           <Box product={item.second} />
         </div>
       ))}
-      {/* <div className={styles.cross} style={{marginTop:30, marginLeft:10}}>
-        <RxCross2
-          size={24}
-          color="white"
-          className="close"
-          style={{
-            backgroundColor: "red",
-            borderRadius: 20,
-          }}
-        />
-      </div> */}
     </div>
   );
 };

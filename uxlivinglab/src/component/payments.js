@@ -62,7 +62,7 @@ function Payments() {
                         id="frame"
                         title="Payments iframe"
                         style={{ alignItems: "center", border: 0 }}
-                        src="https://workflowai.online/shop/"
+                        src="https://workflowai.online/en/pricing/"
                         width="280"
                         height="700"
                         allow="fullscreen"

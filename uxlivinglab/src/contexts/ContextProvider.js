@@ -5,10 +5,10 @@ import axios from "axios";
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState({});
 
   const handleShow = (show) => {
     setShow(show);
@@ -56,7 +56,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <StateContext.Provider
-      value={{ show, handleShow, sessionId, data, userInfo }}
+      value={{ show, handleShow, sessionId, data, userInfo, setData }}
     >
       {children}
     </StateContext.Provider>

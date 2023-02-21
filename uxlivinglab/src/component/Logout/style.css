@@ -1,13 +1,10 @@
 .popup-container {
-  /* logout */
   margin-top: 0;
   height: 538px;
   width: 380px;
-  /* float: right; */
   background-color: #fffcde;
   border-style: none;
   border-radius: 15px 15px 15px 15px;
-  /* box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%); */
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -22,9 +19,6 @@
   border-radius: 15px 15px 15px 15px;
   box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
 }
-/* .logout:hover{
-  color: #61CE77;
-} */
 
 .pad {
   margin-bottom: 400px;
