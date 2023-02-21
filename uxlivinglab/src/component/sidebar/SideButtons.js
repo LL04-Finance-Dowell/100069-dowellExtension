@@ -10,7 +10,11 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
       {sessionId && keys !== "login" ? (
         <div
           className="power"
-          onClick={() => setHover({ ...initialState, [keys]: true })}
+          onClick={() =>
+            keys !== "favourites"
+              ? setHover({ ...initialState, [keys]: true, favourites: false })
+              : setHover({ ...initialState, [keys]: true })
+          }
           onMouseEnter={() => setShowText(true)}
           onMouseLeave={() => setShowText(false)}
         >
@@ -37,11 +41,27 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
               (keys === "profiles") |
               (keys === "notifications") |
               (keys === "products")
-                ? { backgroundColor: "red" }
+                ? { cursor: "not-allowed" }
                 : {}
             }
             onClick={() =>
-              sessionId
+              keys !== "favourites"
+                ? sessionId
+                  ? setHover({
+                      ...initialState,
+                      [keys]: true,
+                      favourites: false,
+                    })
+                  : keys !== "profiles" &&
+                    keys !== "notifications" &&
+                    keys !== "products"
+                  ? setHover({
+                      ...initialState,
+                      [keys]: true,
+                      favourites: false,
+                    })
+                  : {}
+                : sessionId
                 ? setHover({ ...initialState, [keys]: true })
                 : keys !== "profiles" &&
                   keys !== "notifications" &&
@@ -52,6 +72,18 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}
           >
+            {/* <div
+          class="elementor-divider"
+          style={
+            (keys === "profiles") |
+            (keys === "notifications") |
+            (keys === "products")
+              ?
+            {position:"absolute",width: "58px", borderTop: "2px solid green",marginTop: "5px",marginLeft: 0,transform: "rotate(140deg)"}:
+            {color: ""}
+              }
+            ></div> */}
+
             {showText && (
               <p
                 style={{
