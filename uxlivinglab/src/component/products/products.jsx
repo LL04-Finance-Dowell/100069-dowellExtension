@@ -22,15 +22,15 @@ const Products = () => {
           </button>
         </div>
         <div
-          class="elementor-form-fields-wrapper elementor-labels-above"
+          className="elementor-form-fields-wrapper elementor-labels-above"
           style={{ marginLeft: 30 }}
         >
-          <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
-            <div class="elementor-field elementor-select-wrapper ">
+          <div className="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+            <div className="elementor-field elementor-select-wrapper ">
               <select
                 name="form_fields[level3name]"
                 id="form-field-level3name"
-                class="elementor-field-textual elementor-size-sm"
+                className="elementor-field-textual elementor-size-sm"
                 style={{ width: 200, height: 15 }}
                 onChange={(e) => setOrg(e.target.value)}
               >
@@ -53,14 +53,28 @@ const Products = () => {
         </div>
       </div>
 
-      <div class={styles.container}>
+      <div className={styles.container}>
         {products.map((item) => {
-          return data
-            ?.filter(
+          return [
+            ...new Map(
+              data?.map((item) => [item["portfolio_name"], item])
+            ).values(),
+          ]
+            .filter(
               (datum) =>
                 (datum?.org_name === org) & (datum?.product === item.title)
             )
-            .map((index) => <Box key={index} product={item} org_name={org} />);
+            .map((index) => (
+              <Box key={`${item.id + index}`} product={item} org_name={org} />
+            ));
+          //   return data
+          // ?.filter(
+          //   (datum) =>
+          //     (datum?.org_name === org) & (datum?.product === item.title)
+          // )
+          // .map((index) => (
+          //   <Box key={`${item.id + index}`} product={item} org_name={org} />
+          // ));
         })}
       </div>
 
@@ -88,6 +102,7 @@ const Products = () => {
             </>
           ));
       })} */}
+
       {/* {products.map((item) => (
         <div key={item?.id} class={styles.container}>
           <Box product={item?.first} org_name={org} />
@@ -547,10 +562,8 @@ export default Products;
 export const products = [
   {
     id: crypto.randomUUID(),
-
     image:
       "https://uxlivinglab.com/wp-content/uploads/2022/12/Workflow-AI-2.png",
-    id: crypto.randomUUID(),
     title: "Workflow AI",
   },
   {
@@ -562,10 +575,8 @@ export const products = [
 
   {
     id: crypto.randomUUID(),
-
     image:
       "https://uxlivinglab.com/wp-content/uploads/2023/01/customer-support-centre.png",
-    id: crypto.randomUUID(),
     title: "Customer Support Centre",
   },
   {
@@ -589,10 +600,8 @@ export const products = [
   },
   {
     id: crypto.randomUUID(),
-
     image:
       "https://uxlivinglab.com/wp-content/uploads/2023/01/live-dashboard-1.png",
-    id: crypto.randomUUID(),
     title: "Live Dashboard",
   },
   {
@@ -604,10 +613,8 @@ export const products = [
 
   {
     id: crypto.randomUUID(),
-
     image:
       "https://uxlivinglab.com/wp-content/uploads/2022/12/Living-Lab-Admin-2.png",
-    id: crypto.randomUUID(),
     title: "Living Lab Monitoring",
   },
   {
@@ -619,9 +626,7 @@ export const products = [
 
   {
     id: crypto.randomUUID(),
-
     image: "https://uxlivinglab.com/wp-content/uploads/2022/12/Scales-1.png",
-    id: crypto.randomUUID(),
     title: "Scales",
   },
   {
@@ -632,10 +637,8 @@ export const products = [
 
   {
     id: crypto.randomUUID(),
-
     image:
       "https://uxlivinglab.com/wp-content/uploads/2022/12/Livinglab-chat-1.png",
-    id: crypto.randomUUID(),
     title: "Living Lab Chat",
   },
   {
@@ -647,9 +650,7 @@ export const products = [
 
   {
     id: crypto.randomUUID(),
-
     image: "https://uxlivinglab.com/wp-content/uploads/2022/12/Legalzard-1.png",
-    id: crypto.randomUUID(),
     title: "Legal Zard",
   },
   {
@@ -661,9 +662,7 @@ export const products = [
 
   {
     id: crypto.randomUUID(),
-
     image: "https://uxlivinglab.com/wp-content/uploads/2022/12/Digital-Q-1.png",
-    id: crypto.randomUUID(),
     title: "Digital Queue",
   },
   {
@@ -674,10 +673,8 @@ export const products = [
   },
   {
     id: crypto.randomUUID(),
-
     image:
       "https://uxlivinglab.com/wp-content/uploads/2023/01/Living-Lab-Admin-2.png",
-    id: crypto.randomUUID(),
     title: "Secure Repositories",
   },
   {

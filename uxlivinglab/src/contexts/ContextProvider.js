@@ -53,7 +53,7 @@ export const ContextProvider = ({ children }) => {
       getUserInfo();
     }
   }, [sessionId]);
-
+  console.log(data);
   return (
     <StateContext.Provider
       value={{ show, handleShow, sessionId, data, userInfo, setData }}

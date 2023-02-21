@@ -10,9 +10,9 @@
   width: 300px;
   overflow: hidden;
   display: flex;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
 }
 .productbtn {
   cursor: pointer;

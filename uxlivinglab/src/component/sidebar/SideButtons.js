@@ -19,8 +19,8 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
               style={{
                 color: "black",
                 position: "absolute",
-                marginBottom: 70,
-                marginLeft: 20,
+                // marginBottom: 70,
+                // marginLeft: 20,
               }}
             >
               {keys}
@@ -68,7 +68,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
                 style={{
                   color: "black",
                   position: "absolute",
-                  marginBottom: 70,
+                  // marginBottom: 70,
                 }}
               >
                 {keys}

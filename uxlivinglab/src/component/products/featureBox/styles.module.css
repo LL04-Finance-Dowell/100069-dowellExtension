@@ -17,7 +17,7 @@
   justify-content: space-between;
   height: 100%;
   padding-block: 10px;
-  transform: translateY(100%);
+  transform: translateY(30%);
   transition: 0.3s all ease;
   transition-delay: 0.3s;
 }
@@ -27,14 +27,14 @@
 }
 
 .title {
-  font-size: 22px;
+  font-size: 17px;
   text-transform: capitalize;
   color: white;
   align-self: center;
 }
 
 .button {
-  padding: 12px;
+  padding: 10px;
   color: white;
   font-weight: 600;
   background-color: black;
