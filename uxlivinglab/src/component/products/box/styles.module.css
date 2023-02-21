@@ -7,9 +7,11 @@
   transition: all 0.3s ease-in-out;
   width: 150px;
   margin-top: 10px;
+  flex: 50%;
 }
 
 .item:hover {
   width: 360px;
+  flex: 60%;
   background-color: rgba(0, 0, 0, 0.1);
 }
