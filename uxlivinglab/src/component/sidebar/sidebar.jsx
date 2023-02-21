@@ -24,7 +24,7 @@ export default function Sidebar() {
     customer: false,
     notifications: false,
     products: false,
-    favourites: false,
+    favourites: true,
   };
   const [hover, setHover] = useState(initialState);
   const icons = {
