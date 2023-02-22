@@ -34,7 +34,7 @@ const Products = () => {
                 style={{ width: 200, height: 15 }}
                 onChange={(e) => setOrg(e.target.value)}
               >
-                <option>select organization</option>
+                <option>Select Organization</option>
 
                 {Array.from(
                   new Set(

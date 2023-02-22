@@ -8,7 +8,7 @@ function Favourites() {
   const [org, setOrg] = useState("skjdh");
   const [product, setProduct] = useState("skjdh");
   const [portfolio, setPortfolio] = useState("skjdh");
-  const {data, show, handleShow } = useStateContext();
+  const { data, show, handleShow } = useStateContext();
   const [showProducts, setShowProducts] = useState(false);
 
   return (
@@ -33,10 +33,10 @@ function Favourites() {
 
       {showProducts && (
         <div className="all">
-            <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+          <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
             <label for="form-field-level3name" class="elementor-field-label">
-                Select Organization
-              </label>
+              Select Organization
+            </label>
             <div class="elementor-field elementor-select-wrapper ">
               <select
                 name="form_fields[level3name]"
@@ -69,28 +69,25 @@ function Favourites() {
               </label>
               <div class="elementor-field elementor-select-wrapper ">
                 <select
-                onChange={(e) => setProduct(e.target.value)}
-                style={{ width: 350, marginTop: 2 }}
+                  onChange={(e) => setProduct(e.target.value)}
+                  style={{ width: 350, marginTop: 2 }}
                   name="products"
                   id="products-select"
                   class="elementor-field-textual elementor-size-sm"
                 >
-
                   {/* <option value="Product 01">{products[0].name}</option> */}
-                  
+
                   {Array.from(
-                  new Set(
-                    data
-                      ?.filter((datum) => !datum?.portfolio)
-                      .map((datum) => datum.product)
-                  )
-                ).map((product, index) => (
-                  <option value={`${product}`} key={index}>
-                    {product}
-                  </option>
-                ))}
-
-
+                    new Set(
+                      data
+                        ?.filter((datum) => !datum?.portfolio)
+                        .map((datum) => datum.product)
+                    )
+                  ).map((product, index) => (
+                    <option value={`${product}`} key={index}>
+                      {product}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -107,17 +104,16 @@ function Favourites() {
                   class="elementor-field-textual elementor-size-sm"
                 >
                   {Array.from(
-                  new Set(
-                    data
-                      ?.filter((datum) => !datum?.portfolio)
-                      .map((datum) => datum.portfolio_name)
-                  )
-                ).map((portfolio_name, index) => (
-                  <option value={`${portfolio_name}`} key={index}>
-                    {portfolio_name}
-                  </option>
-                ))}
-
+                    new Set(
+                      data
+                        ?.filter((datum) => !datum?.portfolio)
+                        .map((datum) => datum.portfolio_name)
+                    )
+                  ).map((portfolio_name, index) => (
+                    <option value={`${portfolio_name}`} key={index}>
+                      {portfolio_name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -126,7 +122,7 @@ function Favourites() {
                 for="form-field-field_a91fc81"
                 class="elementor-field-label"
               >
-                Upload Image{" "}
+                Upload Image
               </label>
               <input
                 type="file"
