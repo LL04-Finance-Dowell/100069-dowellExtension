@@ -14,7 +14,7 @@ import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
 
 export default function Sidebar() {
-  const { show, data } = useStateContext();
+  const { show } = useStateContext();
 
   const initialState = {
     login: false,
