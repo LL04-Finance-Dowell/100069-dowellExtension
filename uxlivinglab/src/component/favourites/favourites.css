@@ -18,6 +18,13 @@
   padding-bottom: 3px;
   cursor: pointer;
 }
+.bt{
+  background-color: #7a7a7a;
+}
+.bt:hover{
+  background-color: #61ce70;
+  color: #666666;
+}
 .fa-bars {
   font-size: 12px;
   color: #ffffff;
