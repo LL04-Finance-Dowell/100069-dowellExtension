@@ -6,9 +6,7 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
-  const [sessionId, setSessionId] = useState(
-    "sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5"
-  );
+  const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
 
@@ -51,20 +49,20 @@ export const ContextProvider = ({ children }) => {
     setShow(show);
   };
 
-  // useEffect(() => {
-  //   function logCookies(cookies) {
-  //     for (const cookie of cookies) {
-  //       if (cookie.domain === "100014.pythonanywhere.com") {
-  //         setSessionId(cookie.value);
-  //       }
-  //     }
-  //   }
-  //   chrome.cookies
-  //     .getAll({
-  //       name: "sessionid",
-  //     })
-  //     .then((cookies) => logCookies(cookies));
-  // }, []);
+  useEffect(() => {
+    function logCookies(cookies) {
+      for (const cookie of cookies) {
+        if (cookie.domain === "100014.pythonanywhere.com") {
+          setSessionId(cookie.value);
+        }
+      }
+    }
+    chrome.cookies
+      .getAll({
+        name: "sessionid",
+      })
+      .then((cookies) => logCookies(cookies));
+  }, []);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -82,7 +80,6 @@ export const ContextProvider = ({ children }) => {
             response?.data.other_org,
             response?.data.own_organisations,
             portfolio_info.filter((datum) => datum.org_name)
-            // response.data.portfolio_info
           )
         );
       } catch (e) {

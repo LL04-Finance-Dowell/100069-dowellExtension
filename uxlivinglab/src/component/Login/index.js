@@ -8,37 +8,33 @@ export default function Login() {
   const [showIframe, setIframe] = useState(false);
   const { show, handleShow } = useStateContext();
 
-
-
   return (
     <>
       <div className="popup-container">
-
-         <div className="item" style={{ marginLeft: 78, marginTop: 50 }}>
+        <div className="item" style={{ marginLeft: 78, marginTop: 50 }}>
           <div className="{ props.text }">
             <div className="elementor-widget-container">
-            {showIframe ?
-
-              <iframe
-                width="320"
-                height="315"
-                src="https://www.youtube.com/embed/videoseries?list=PLa-BPmUzAKKfVgomvrIsWd9ZGQFTiT0Xb"
-                title="YouTube video player"
-                style={{ border: 0 }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-              : 
-              <div style={{'marginTop':200,'marginLeft':140}}>
-                <LoadingSpinner>
-                  {setTimeout(()=>{
-                  setIframe(true);
-                  }, 4000)}
-                </LoadingSpinner>
-                {/* {() => showIframe(true)} */}
-                </div>  }
-
-              </div>
+              {showIframe ? (
+                <iframe
+                  width="320"
+                  height="315"
+                  src="https://www.youtube.com/embed/videoseries?list=PLa-BPmUzAKKfVgomvrIsWd9ZGQFTiT0Xb"
+                  title="YouTube video player"
+                  style={{ border: 0 }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              ) : (
+                <div style={{ marginTop: 200, marginLeft: 140 }}>
+                  <LoadingSpinner>
+                    {setTimeout(() => {
+                      setIframe(true);
+                    }, 4000)}
+                  </LoadingSpinner>
+                  {/* {() => showIframe(true)} */}
+                </div>
+              )}
+            </div>
 
             <a
               href="https://100014.pythonanywhere.com"
