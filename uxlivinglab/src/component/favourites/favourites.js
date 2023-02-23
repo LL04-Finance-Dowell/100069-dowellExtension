@@ -106,7 +106,7 @@ function Favourites() {
                   {Array.from(
                     new Set(
                       data
-                        ?.filter((datum) => (datum?.org_name === org))
+                        ?.filter((datum) => (datum?.product === product))
                         .map((datum) => datum.portfolio_name)
                     )
                   ).map((portfolio_name, index) => (
