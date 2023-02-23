@@ -106,7 +106,7 @@ function Favourites() {
                   {Array.from(
                     new Set(
                       data
-                        ?.filter((datum) => !datum?.portfolio)
+                        ?.filter((datum) => (datum?.org_name === org))
                         .map((datum) => datum.portfolio_name)
                     )
                   ).map((portfolio_name, index) => (
@@ -142,7 +142,6 @@ function Favourites() {
                   fontSize: 15,
                   height: "13px",
                   borderWidth: "1px",
-                  backgroundColor: "#7a7a7a",
                   marginBottom: 80,
                   color: "#ffffff",
                 }}
@@ -167,9 +166,11 @@ function Favourites() {
             backgroundColor: "red",
             borderRadius: 20,
             marginTop: 30,
-            marginBottom: 3,
+            marginBottom: 10,
             marginLeft: 5,
             left: 0,
+            top:80,
+            position:'relative'
           }}
           onClick={() => handleShow(!show)}
         />
