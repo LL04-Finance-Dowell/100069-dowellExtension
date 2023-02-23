@@ -1,15 +1,24 @@
 import "./style.css";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { useState } from "react";
+import LoadingSpinner from "../spinner/spinner";
 
 export default function Login() {
+  const [showIframe, setIframe] = useState(false);
   const { show, handleShow } = useStateContext();
+
+
+
   return (
     <>
       <div className="popup-container">
-        <div className="item" style={{ marginLeft: 78, marginTop: 50 }}>
+
+         <div className="item" style={{ marginLeft: 78, marginTop: 50 }}>
           <div className="{ props.text }">
             <div className="elementor-widget-container">
+            {showIframe ?
+
               <iframe
                 width="320"
                 height="315"
@@ -19,7 +28,17 @@ export default function Login() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
-            </div>
+              : 
+              <div style={{'marginTop':200,'marginLeft':140}}>
+                <LoadingSpinner>
+                  {setTimeout(()=>{
+                  setIframe(true);
+                  }, 4000)}
+                </LoadingSpinner>
+                {/* {() => showIframe(true)} */}
+                </div>  }
+
+              </div>
 
             <a
               href="https://100014.pythonanywhere.com"
@@ -31,7 +50,6 @@ export default function Login() {
                 style={{
                   width: 250,
                   top: 400,
-                  left: 0,
                   marginLeft: 38,
                 }}
               >

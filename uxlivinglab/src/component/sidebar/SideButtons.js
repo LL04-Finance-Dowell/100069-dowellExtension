@@ -41,7 +41,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
               (keys === "profiles") |
               (keys === "notifications") |
               (keys === "products")
-                ? { cursor: "not-allowed" }
+                ? { cursor:"not-allowed" }
                 : {}
             }
             onClick={() =>
