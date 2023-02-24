@@ -11,7 +11,7 @@
   "content_scripts": [
     {
       "css": ["static/css/main.6f17d1a3.css"],
-      "js": ["static/js/main.44229fa5.js"],
+      "js": ["static/js/main.c30cabf4.js"],
       "all_frames": true,
       "run_at": "document_end",
       "matches": ["http://127.0.0.1.zxqpopw/*"]
