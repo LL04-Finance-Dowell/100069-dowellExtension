@@ -41,12 +41,13 @@ export default function Login() {
               target="_blank"
               rel="noreferrer"
             >
+              {!showIframe ? <p style={{marginBottom:108}}></p> : null}
               <button
                 className="logout"
                 style={{
                   width: 250,
                   top: 400,
-                  marginLeft: 38,
+                  marginLeft: 10,
                 }}
               >
                 <i
