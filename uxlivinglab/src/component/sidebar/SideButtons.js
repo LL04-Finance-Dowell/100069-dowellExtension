@@ -11,9 +11,10 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
         <div
           className="power"
           onClick={() =>
-            keys !== "favourites"
-              ? setHover({ ...initialState, [keys]: true, favourites: false })
-              : setHover({ ...initialState, [keys]: true })
+            // keys !== "login"
+            //   ? setHover({ ...initialState, [keys]: true, login: false })
+            //   : setHover({ ...initialState, [keys]: true })
+            setHover({ ...initialState, [keys]: true, login: false })
           }
           onMouseEnter={() => setShowText(true)}
           onMouseLeave={() => setShowText(false)}
@@ -40,32 +41,35 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             style={
               (keys === "profiles") |
               (keys === "notifications") |
-              (keys === "products")
-                ? { cursor:"not-allowed" }
+              (keys === "products") |
+              (keys === "favourites")
+                ? { cursor: "not-allowed" }
                 : {}
             }
             onClick={() =>
-              keys !== "favourites"
+              keys !== "login"
                 ? sessionId
                   ? setHover({
                       ...initialState,
                       [keys]: true,
-                      favourites: false,
+                      login: false,
                     })
                   : keys !== "profiles" &&
                     keys !== "notifications" &&
-                    keys !== "products"
+                    keys !== "products" &&
+                    keys !== "favourites"
                   ? setHover({
                       ...initialState,
                       [keys]: true,
-                      favourites: false,
+                      login: false,
                     })
                   : {}
                 : sessionId
                 ? setHover({ ...initialState, [keys]: true })
                 : keys !== "profiles" &&
                   keys !== "notifications" &&
-                  keys !== "products"
+                  keys !== "products" &&
+                  keys !== "favourites"
                 ? setHover({ ...initialState, [keys]: true })
                 : {}
             }
