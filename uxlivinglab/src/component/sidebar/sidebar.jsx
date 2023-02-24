@@ -6,7 +6,7 @@ import CustomerSupport from "../customer_support/customer_support";
 import Products from "../products/products";
 import Profiles from "../profiles/profiles";
 import Notifications from "../notifications/notifications";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Login from "../Login";
 import Logout from "../Logout";
 import Favourites from "../favourites/favourites";
@@ -14,10 +14,10 @@ import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
 
 export default function Sidebar() {
-  const { show } = useStateContext();
+  const { show, sessionId } = useStateContext();
 
   const initialState = {
-    login: true,
+    login: false,
     logout: false,
     payments: false,
     profiles: false,
@@ -37,6 +37,14 @@ export default function Sidebar() {
     products: "far fa-gem",
     favourites: "fas fa-hand-holding-heart",
   };
+
+  useEffect(() => {
+    if (sessionId) {
+      setHover({ ...initialState, favourites: true });
+    } else {
+      setHover({ ...initialState, favourites: false, login: true });
+    }
+  }, []);
 
   return (
     <div id="grid-container">
