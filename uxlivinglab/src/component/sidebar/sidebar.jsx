@@ -17,14 +17,14 @@ export default function Sidebar() {
   const { show } = useStateContext();
 
   const initialState = {
-    login: false,
+    login: true,
     logout: false,
     payments: false,
     profiles: false,
     customer: false,
     notifications: false,
     products: false,
-    favourites: true,
+    favourites: false,
   };
   const [hover, setHover] = useState(initialState);
   const icons = {
