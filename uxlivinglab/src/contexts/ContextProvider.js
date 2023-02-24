@@ -40,7 +40,13 @@ export const ContextProvider = ({ children }) => {
         );
         setUserInfo(response.data.userinfo);
 
-        setData(response.data.other_org);
+        setData(
+          [].concat(
+            response?.data.other_org,
+            response?.data.own_organisations,
+            response?.data.portfolio_info.filter((datum) => datum.org_name)
+          )
+        );
       } catch (e) {
         if (e.message === "Network Error") {
           console.log("error network");
