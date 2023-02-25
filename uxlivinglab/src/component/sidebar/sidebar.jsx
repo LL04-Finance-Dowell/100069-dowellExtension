@@ -44,7 +44,7 @@ export default function Sidebar() {
     } else {
       setHover({ ...initialState, favourites: false, login: true });
     }
-  }, []);
+  }, [sessionId]);
 
   return (
     <div id="grid-container">
