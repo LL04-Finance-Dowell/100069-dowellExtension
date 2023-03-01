@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
+  const [notifications, setNotifications] = useState();
 
   const handleShow = (show) => {
     setShow(show);
@@ -28,6 +29,13 @@ export const ContextProvider = ({ children }) => {
       })
       .then((cookies) => logCookies(cookies));
   }, []);
+
+  useEffect(()=>{
+    fetch("http://100092.pythonanywhere.com/api/get-notification/")
+      .then((response) => response.json())
+      .then((data) => setNotifications(data))
+  })
+
 
   useEffect(() => {
     async function getUserInfo() {
@@ -62,7 +70,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <StateContext.Provider
-      value={{ show, handleShow, sessionId, data, userInfo, setData }}
+      value={{ show, notifications, handleShow, sessionId, data, userInfo, setData }}
     >
       {children}
     </StateContext.Provider>

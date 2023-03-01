@@ -2,9 +2,13 @@ import styles from "./styles.module.css";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
-
+ 
 function Notifications() {
-  const { show, handleShow } = useStateContext();
+  const { show, handleShow,notifications, userInfo } = useStateContext();
+
+  const user = userInfo.username;
+  const product = "Workflow AI"
+
 
   const [arrows, setaArrows] = useState({
     showArrow1: true,
@@ -175,9 +179,24 @@ function Notifications() {
             </div>
             <div
               className={
-                arrows.showArrow5 ? styles.spaceShow : styles.spaceHide
+                arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
               }
-            ></div>
+            >
+              <div className={styles.messages}>
+              {/* {console.log(user)} */}
+              {Array.from(
+                  new Set(notifications.filter(name => (name.username === user) && (name.product_name === product)))).map((data) => (
+                <div className={styles.Message}>
+                  <h3 style={{paddingBottom:10, fontWeight:"lighter"}} className={styles.Title}>{data.title}</h3>
+                  <p>{data.message}</p>  
+                  <hr style={{width:230}}></hr>
+                </div>
+
+          ))}            
+        
+
+              </div>
+            </div>
             <div
               className={styles.elementContainer}
               onClick={() => handleArrows("showArrow6", !arrows.showArrow6)}

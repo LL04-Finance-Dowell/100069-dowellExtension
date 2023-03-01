@@ -49,14 +49,44 @@
 .spaceHide {
   transition: all 0.7s;
   height: 0px;
+  display: none;
+  display: ease-in-out;
 }
-.spaceShow {
+
+.spaceShow{
   text-align: center;
+  display: ease-in-out;
   height: 35px;
   margin-bottom: 0px;
   border-top: solid 0.4px;
   border-color: #61ce70;
   transition: height 0.7s;
+}
+.spaceShowContent {
+  display: ease-in-out;
+  text-align: center;
+  height: 150px;
+  margin-bottom: 0px;
+  border-top: solid 0.4px;
+  border-color: #61ce70;
+  transition: height 0.7s;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.spaceShowContent::-webkit-scrollbar {
+  display: none;
+}
+.Title{
+  text-align: left;
+  color: #61ce70;
+}
+
+.Message{
+  padding-top: 10px;
+  font-size:0.9em;
+  text-align: left;
+  color: #7a7a7a;
+  padding-left: 20px;
 }
 
 .texts {
