@@ -8,7 +8,6 @@ const Products = () => {
   const { handleShow, data } = useStateContext();
   const [org, setOrg] = useState("skjdh");
 
-
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -22,34 +21,33 @@ const Products = () => {
             </i>
           </button>
         </div>
-        <div
-          className="elementor-form-fields-wrapper elementor-labels-above"
-          style={{ marginLeft: 30 }}
-        >
-          <div className="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
-            <div className="elementor-field elementor-select-wrapper ">
-              <select
-                name="form_fields[level3name]"
-                id="form-field-level3name"
-                className="elementor-field-textual elementor-size-sm"
-                style={{ width: 200, height: 15 }}
-                onChange={(e) => setOrg(e.target.value)}
-              >
-                <option>Select Organization</option>
+        <div className="elementor-form-fields-wrapper elementor-labels-above">
+          <div className="elementor-field elementor-select-wrapper ">
+            <select
+              className="elementor-field-textual elementor-size-sm"
+              onChange={(e) => setOrg(e.target.value)}
+              style={{
+                width: 270,
+                marginRight: 20,
+                marginLeft: 0,
+                marginBottom: 20,
+                height: 15,
+              }}
+            >
+              <option>Select Organization</option>
 
-                {Array.from(
-                  new Set(
-                    data
-                      ?.filter((datum) => !datum?.portfolio)
-                      .map((datum) => datum.org_name)
-                  )
-                ).map((org_name, index) => (
-                  <option value={`${org_name}`} key={index}>
-                    {org_name}
-                  </option>
-                ))}
-              </select>
-            </div>
+              {Array.from(
+                new Set(
+                  data
+                    ?.filter((datum) => !datum?.portfolio)
+                    .map((datum) => datum.org_name)
+                )
+              ).map((org_name, index) => (
+                <option value={`${org_name}`} key={index}>
+                  {org_name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
@@ -68,48 +66,9 @@ const Products = () => {
             .map((index) => (
               <Box key={`${item.id + index}`} product={item} org_name={org} />
             ));
-          //   return data
-          // ?.filter(
-          //   (datum) =>
-          //     (datum?.org_name === org) & (datum?.product === item.title)
-          // )
-          // .map((index) => (
-          //   <Box key={`${item.id + index}`} product={item} org_name={org} />
-          // ));
         })}
       </div>
 
-      {/* {products.map((item) => {
-        return data
-          ?.filter(
-            (datum) =>
-              (datum?.org_name === org) & (datum?.product === item.first.title)
-          )
-          .map((index) => (
-            <>
-              <div className={styles.container}>
-                <Box key={index} product={item.first} org_name={org} />
-
-                {data
-                  ?.filter(
-                    (datum) =>
-                      (datum?.org_name === org) &
-                      (datum?.product === item.second.title)
-                  )
-                  .map((index) => (
-                    <Box key={index} product={item.second} org_name={org} />
-                  ))}
-              </div>
-            </>
-          ));
-      })} */}
-
-      {/* {products.map((item) => (
-        <div key={item?.id} class={styles.container}>
-          <Box product={item?.first} org_name={org} />
-          <Box product={item?.second} org_name={org} />
-        </div>
-      ))} */}
       <div className={styles.cross}>
         <RxCross2
           size={24}
