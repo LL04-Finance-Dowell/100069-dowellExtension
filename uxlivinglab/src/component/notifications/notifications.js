@@ -185,11 +185,11 @@ function Notifications() {
               <div className={styles.messages}>
               {/* {console.log(user)} */}
               {Array.from(
-                  new Set(notifications.filter(name => (name.username === user) && (name.product_name === product)))).map((data) => (
+                  new Set(notifications.filter(name => (name.username === user) && (name.product_name === product) ))).map((data) => (
                 <div className={styles.Message}>
                   <h3 style={{paddingBottom:10, fontWeight:"lighter"}} className={styles.Title}>{data.title}</h3>
                   <p>{data.message}</p>  
-                  <hr style={{width:230}}></hr>
+                  <hr style={{width:230, color:"green"}}></hr>
                 </div>
 
           ))}            
