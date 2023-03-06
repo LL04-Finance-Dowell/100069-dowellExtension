@@ -5,13 +5,9 @@ const FeatureBox = ({ product, org_name }) => {
   const { data, sessionId, userInfo } = useStateContext();
   const [portfolio, setPortfolio] = useState("");
   const handleClick = () => {
-    console.log(
-      "link",
+    window.open(
       `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${org_name}&product=${product.title}&portfolio=${portfolio}&username=${userInfo?.username}`
     );
-    // window.open(
-    //   `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${org_name}&product=${product.title}&portfolio=${portfolio}&username=${userInfo?.username}`
-    // );
   };
 
   return (
