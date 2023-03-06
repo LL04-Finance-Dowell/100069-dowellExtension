@@ -7,7 +7,11 @@ import { useStateContext } from "../../contexts/ContextProvider";
 const Products = () => {
   const { handleShow, data } = useStateContext();
   const [org, setOrg] = useState("skjdh");
+<<<<<<< HEAD
 
+=======
+  let productes = [];
+>>>>>>> c131d6717999426edc3da9d8c4acfac2e42d049f
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -54,18 +58,21 @@ const Products = () => {
 
       <div className={styles.container}>
         {products.map((item) => {
-          return [
+          productes = [
             ...new Map(
               data?.map((item) => [item["portfolio_name"], item])
             ).values(),
-          ]
-            .filter(
-              (datum) =>
-                (datum?.org_name === org) & (datum?.product === item.title)
-            )
-            .map((index) => (
-              <Box key={`${item.id + index}`} product={item} org_name={org} />
-            ));
+          ].filter(
+            (datum) =>
+              (datum?.org_name === org) & (datum?.product === item.title)
+          );
+          const productTitle = productes.map((o) => o.product);
+          const filteredProduct = productes.filter(
+            ({ product }, index) => !productTitle.includes(product, index + 1)
+          );
+          return filteredProduct.map((index) => (
+            <Box key={`${item.id + index}`} product={item} org_name={org} />
+          ));
         })}
       </div>
 

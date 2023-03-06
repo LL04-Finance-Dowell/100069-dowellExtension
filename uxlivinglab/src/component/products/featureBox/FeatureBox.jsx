@@ -14,7 +14,11 @@ const FeatureBox = ({ product, org_name }) => {
     <div className={styles.container}>
       <div className={styles.box}>
         <div className={styles.title}>{product.title}</div>
-        <select onChange={(e) => setPortfolio(e.target.value)}>
+        <select
+          onChange={(e) => {
+            setPortfolio(e.target.value);
+          }}
+        >
           <option>Select Portfolio</option>
           {[
             ...new Map(

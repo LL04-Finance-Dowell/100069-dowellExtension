@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/100069-dowellExtension-V2.0/static/css/main.f06ce4dd.css",
     "main.js": "/100069-dowellExtension-V2.0/static/js/main.bae6552f.js",
     "static/js/787.3be110e1.chunk.js": "/100069-dowellExtension-V2.0/static/js/787.3be110e1.chunk.js",
@@ -13,3 +14,15 @@
     "static/js/main.bae6552f.js"
   ]
 }
+=======
+    "main.css": "/static/css/main.c0e7ab82.css",
+    "main.js": "/static/js/main.d03cbbcb.js",
+    "static/js/787.3be110e1.chunk.js": "/static/js/787.3be110e1.chunk.js",
+    "index.html": "index.html",
+    "main.c0e7ab82.css.map": "/static/css/main.c0e7ab82.css.map",
+    "main.d03cbbcb.js.map": "/static/js/main.d03cbbcb.js.map",
+    "787.3be110e1.chunk.js.map": "/static/js/787.3be110e1.chunk.js.map"
+  },
+  "entrypoints": ["static/css/main.c0e7ab82.css", "static/js/main.d03cbbcb.js"]
+}
+>>>>>>> c131d6717999426edc3da9d8c4acfac2e42d049f
