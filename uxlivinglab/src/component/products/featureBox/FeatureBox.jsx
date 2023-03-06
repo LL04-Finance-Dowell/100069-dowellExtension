@@ -5,16 +5,24 @@ const FeatureBox = ({ product, org_name }) => {
   const { data, sessionId, userInfo } = useStateContext();
   const [portfolio, setPortfolio] = useState("");
   const handleClick = () => {
-    window.open(
+    console.log(
+      "link",
       `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${org_name}&product=${product.title}&portfolio=${portfolio}&username=${userInfo?.username}`
     );
+    // window.open(
+    //   `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${org_name}&product=${product.title}&portfolio=${portfolio}&username=${userInfo?.username}`
+    // );
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.box}>
         <div className={styles.title}>{product.title}</div>
-        <select onChange={(e) => setPortfolio(e.target.value)}>
+        <select
+          onChange={(e) => {
+            setPortfolio(e.target.value);
+          }}
+        >
           <option>Select Portfolio</option>
           {[
             ...new Map(
