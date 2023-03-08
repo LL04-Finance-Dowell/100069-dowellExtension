@@ -31,7 +31,7 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(()=>{
-    fetch("http://100092.pythonanywhere.com/api/get-notification/")
+    fetch("https://100092.pythonanywhere.com/notification/sendProductNotification/")
       .then((response) => response.json())
       .then((data) => setNotifications(data))
   })

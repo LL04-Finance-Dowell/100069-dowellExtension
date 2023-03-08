@@ -1,14 +1,46 @@
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
- 
+import ChatMessage from "./ChatMessages";
+import ChatTitles from "./ChatTitles"; 
+
 function Notifications() {
   const { show, handleShow,notifications, userInfo } = useStateContext();
 
+  const [userClicked, setClick] = useState(false);
   const user = userInfo.username;
   const product = "Workflow AI"
 
+
+  const allNotifications = Array.from(
+    new Set(notifications));
+
+  function clicked () {
+    setClick(!userClicked);
+    
+  }
+
+  const markSeenClick = (pk) => {
+      fetch(`https://100092.pythonanywhere.com/notification/putProductNotification/${pk}`,{
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({"seen":true})
+      })
+    
+    
+  };
+
+  const timeOut = (pk,time) => {
+    setTimeout(()=>markSeenClick(pk),time)
+  }
+
+
+
+  const redirectClick = (data) => {
+    window.open(
+      `https://www.${data}`)
+  };
 
   const [arrows, setaArrows] = useState({
     showArrow1: true,
@@ -182,20 +214,32 @@ function Notifications() {
                 arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
               }
             >
-              <div className={styles.messages}>
-              {/* {console.log(user)} */}
-              {Array.from(
-                  new Set(notifications.filter(name => (name.username === user) && (name.product_name === product) ))).map((data) => (
-                <div className={styles.Message}>
-                  <h3 style={{paddingBottom:10, fontWeight:"lighter"}} className={styles.Title}>{data.title}</h3>
-                  <p>{data.message}</p>  
-                  <hr style={{width:230, color:"green"}}></hr>
-                </div>
+                  {notifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data)=>(
+                  // remember to filter based on product name and seen status before pushing (Workflow AI)
+                  
+                  <div className={styles.messages}>
+                      <div className={styles.badges} onClick={clicked}>        
+                        <ChatTitles title={data.title}/>
+                      </div>
+                      {userClicked &&
+                      <div className={styles.content}>
+                        <h4 className={styles.littleDetails}>{data.portfolio}</h4>
+                        <h4 className={styles.littleDetails}>{data.companyID}</h4>
+                        <h4 className={styles.littleDetails}>{data.productName}</h4>
+                        <h3 style={{marginTop:70,marginBottom:20}}>{data.message}</h3>
 
-          ))}            
-        
+                        <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
+                        <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
+                      </div>
+                      
+                      }
+                      {userClicked?timeOut(data.ID,parseInt(data.duration)*(3,600)):null}
+                      
+                  </div>
+                  
 
-              </div>
+                  ))}
+
             </div>
             <div
               className={styles.elementContainer}

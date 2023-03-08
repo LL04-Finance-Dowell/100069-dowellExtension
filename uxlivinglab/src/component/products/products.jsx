@@ -7,11 +7,7 @@ import { useStateContext } from "../../contexts/ContextProvider";
 const Products = () => {
   const { handleShow, data } = useStateContext();
   const [org, setOrg] = useState("skjdh");
-<<<<<<< HEAD
-
-=======
   let productes = [];
->>>>>>> c131d6717999426edc3da9d8c4acfac2e42d049f
   return (
     <div className={styles.cover}>
       <div className="item">
