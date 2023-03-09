@@ -22,7 +22,7 @@ function Notifications() {
   }
 
   const markSeenClick = (pk) => {
-      fetch(`https://100092.pythonanywhere.com/notification/putProductNotification/${pk}`,{
+      fetch(`https://100092.pythonanywhere.com/notification/notification/${pk}`,{
         method: "PUT",
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({"seen":true})
