@@ -5,12 +5,16 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
   const { sessionId,notifications,userInfo } = useStateContext();
 
   const [showText, setShowText] = useState(false);
+
+  const allNotifications = Array.from(
+    new Set(notifications));
+
   
   const user = userInfo.username;
   // const notification = [];
 
   const notifs = notifications || []
-  const notificationNumber =(notifs.filter((datum)=>(datum.seen===false && datum.username === user ))).length
+  const notificationNumber =(allNotifications.filter((datum)=>(datum.seen===false && datum.username === user ))).length
   
 
   

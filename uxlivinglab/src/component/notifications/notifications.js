@@ -214,7 +214,8 @@ function Notifications() {
                 arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
               }
             >
-                  {notifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data)=>(
+           
+                  {allNotifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data)=>(
                   // remember to filter based on product name and seen status before pushing (Workflow AI)
                   
                   <div className={styles.messages}>
@@ -226,7 +227,7 @@ function Notifications() {
                         <h4 className={styles.littleDetails}>{data.portfolio}</h4>
                         <h4 className={styles.littleDetails}>{data.companyID}</h4>
                         {/* <h4 className={styles.littleDetails}>{data.productName}</h4> */}
-                        <h3 style={{marginTop:40,marginBottom:20}}>{data.message}</h3>
+                        <h3 style={{marginTop:10,marginBottom:20}}>{data.message}</h3>
 
                         <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
                         <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
@@ -234,7 +235,6 @@ function Notifications() {
                       
                       }
                       {userClicked?timeOut(data.ID,parseInt(data.duration)):null}
-                      
                   </div>
                   
 
