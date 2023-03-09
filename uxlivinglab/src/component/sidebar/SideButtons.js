@@ -2,9 +2,18 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId } = useStateContext();
-  const [showText, setShowText] = useState(false);
+  const { sessionId,notifications,userInfo } = useStateContext();
 
+  const [showText, setShowText] = useState(false);
+  
+  const user = userInfo.username;
+  // const notification = [];
+
+  const notifs = notifications || []
+  const notificationNumber =(notifs.filter((datum)=>(datum.seen===false && datum.username === user ))).length
+  
+
+  
   return (
     <>
       {sessionId && keys !== "login" ? (
@@ -32,6 +41,9 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             </p>
           )}
           <i aria-hidden="true" className={value}></i>
+          {keys==='notifications' && notificationNumber>0 && <p style={{position:'absolute',border:"3px solid white",padding:"2px 8px 8px 8px",height:15,marginBottom:55,marginLeft:50,borderRadius:100,color:'white',backgroundColor:"#ff0000"}}>
+            {notificationNumber}</p>}
+            {/* {console.log(notifNumber)} */}
         </div>
       ) : (
         !sessionId &&

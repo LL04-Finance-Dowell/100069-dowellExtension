@@ -32,7 +32,7 @@ function Notifications() {
   };
 
   const timeOut = (pk,time) => {
-    setTimeout(()=>markSeenClick(pk),time)
+    setTimeout(()=>markSeenClick(pk),time*(3600))
   }
 
 
@@ -225,15 +225,15 @@ function Notifications() {
                       <div className={styles.content}>
                         <h4 className={styles.littleDetails}>{data.portfolio}</h4>
                         <h4 className={styles.littleDetails}>{data.companyID}</h4>
-                        <h4 className={styles.littleDetails}>{data.productName}</h4>
-                        <h3 style={{marginTop:70,marginBottom:20}}>{data.message}</h3>
+                        {/* <h4 className={styles.littleDetails}>{data.productName}</h4> */}
+                        <h3 style={{marginTop:40,marginBottom:20}}>{data.message}</h3>
 
                         <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
                         <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
                       </div>
                       
                       }
-                      {userClicked?timeOut(data.ID,parseInt(data.duration)*(3,600)):null}
+                      {userClicked?timeOut(data.ID,parseInt(data.duration)):null}
                       
                   </div>
                   
