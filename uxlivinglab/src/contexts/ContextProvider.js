@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
+  const [favProducts, setFavProducts] = useState([]);
 
   const handleShow = (show) => {
     setShow(show);
@@ -62,7 +63,16 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <StateContext.Provider
-      value={{ show, handleShow, sessionId, data, userInfo, setData }}
+      value={{
+        show,
+        handleShow,
+        sessionId,
+        data,
+        userInfo,
+        setData,
+        setFavProducts,
+        favProducts,
+      }}
     >
       {children}
     </StateContext.Provider>
