@@ -10,8 +10,13 @@
   },
   "content_scripts": [
     {
+<<<<<<< HEAD
       "css": ["static/css/main.0a8b9484.css"],
       "js": ["static/js/main.a35153dc.js"],
+=======
+      "css": ["static/css/main.3d2ab304.css"],
+      "js": ["static/js/main.db890645.js"],
+>>>>>>> 2899e5980d0ffb3a8fe2acf94cb8ecb5d9ba3441
       "all_frames": true,
       "run_at": "document_end",
       "matches": ["http://127.0.0.1.zxqpopw/*"]

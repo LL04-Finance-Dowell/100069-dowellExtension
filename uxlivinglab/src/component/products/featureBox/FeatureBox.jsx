@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import { useStateContext } from "../../../contexts/ContextProvider";
 import { useState } from "react";
+
 const FeatureBox = ({ product, org_name }) => {
   const { data, sessionId, userInfo } = useStateContext();
   const [portfolio, setPortfolio] = useState("");
@@ -9,7 +10,6 @@ const FeatureBox = ({ product, org_name }) => {
       `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${org_name}&product=${product.title}&portfolio=${portfolio}&username=${userInfo?.username}`
     );
   };
-
   return (
     <div className={styles.container}>
       <div className={styles.box}>

@@ -9,7 +9,11 @@ export const ContextProvider = ({ children }) => {
   const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
+<<<<<<< HEAD
   const [notifications, setNotifications] = useState();
+=======
+  const [favProducts, setFavProducts] = useState([]);
+>>>>>>> 2899e5980d0ffb3a8fe2acf94cb8ecb5d9ba3441
 
   const handleShow = (show) => {
     setShow(show);
@@ -71,7 +75,20 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <StateContext.Provider
+<<<<<<< HEAD
       value={{ show, notifications, handleShow, sessionId, data, userInfo, setData }}
+=======
+      value={{
+        show,
+        handleShow,
+        sessionId,
+        data,
+        userInfo,
+        setData,
+        setFavProducts,
+        favProducts,
+      }}
+>>>>>>> 2899e5980d0ffb3a8fe2acf94cb8ecb5d9ba3441
     >
       {children}
     </StateContext.Provider>

@@ -1,15 +1,148 @@
 import "./favourites.css";
-import Products from "../products/favproducts";
+// import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Favorites from "./Favorites";
+import axios from "axios";
+import sendFund from "../../API/SendFund";
+import RemoveFavorites from "../../API/RemoveFavorites";
 
 function Favourites() {
-  const [org, setOrg] = useState("skjdh");
-  const [product, setProduct] = useState("skjdh");
-  const [portfolio, setPortfolio] = useState("skjdh");
-  const { data, show, handleShow } = useStateContext();
+  const { data, show, handleShow, userInfo, setFavProducts, favProducts } =
+    useStateContext();
   const [showProducts, setShowProducts] = useState(false);
+  const [showImageUpload, setShowImageUpload] = useState(true);
+  const [inputData, setInputData] = useState({
+    orgName: "",
+    productName: "",
+    portfolio: "",
+    username: "",
+    action: "add",
+    image: "",
+  });
+
+  useEffect(() => {
+    async function getFavorites() {
+      try {
+        const response = await axios.get(
+          "https://100092.pythonanywhere.com/favourite/favourite/"
+        );
+        setFavProducts(
+          response.data.filter(
+            (res) =>
+              (res.username === userInfo.username) & (res.action === true)
+          )
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    userInfo?.username && getFavorites();
+  }, [userInfo?.username, setFavProducts]);
+
+  const ProductOption = () => {
+    const productes = [
+      ...new Map(data?.map((item) => [item["portfolio_name"], item])).values(),
+    ].filter((datum) => datum?.org_name === inputData.orgName);
+    const productTitle = productes.map((o) => o.product);
+    const filteredProduct = productes.filter(
+      ({ product }, index) => !productTitle.includes(product, index + 1)
+    );
+    return (
+      <select
+        onChange={(e) =>
+          setInputData({
+            ...inputData,
+            productName: e.target.value,
+            portfolio: "",
+          })
+        }
+        style={{ width: 270, marginTop: 2 }}
+        name="form_fields[level3name]"
+        id="form-field-level3name"
+        className="elementor-field-textual elementor-size-sm"
+        value={inputData.productName}
+      >
+        <option value="">Select...</option>
+        {filteredProduct.map((pro, index) => (
+          <option key={index} value={pro.product}>
+            {pro.product}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
+  const PortfolioOption = () => {
+    const productes = [
+      ...new Map(data?.map((item) => [item["portfolio_name"], item])).values(),
+    ]?.filter(
+      (datum) =>
+        (datum?.org_name === inputData.orgName) &
+        (datum?.product === inputData.productName)
+    );
+    return (
+      <select
+        onChange={(e) =>
+          setInputData({ ...inputData, portfolio: e.target.value })
+        }
+        style={{ width: 270, marginTop: 2 }}
+        name="form_fields[level3name]"
+        id="form-field-level3name"
+        className="elementor-field-textual elementor-size-sm"
+        value={inputData.portfolio}
+      >
+        <option value="">Select...</option>
+        {productes.map((dat, index) => (
+          <option
+            style={{ height: 40 }}
+            key={index}
+            value={dat?.portfolio_name}
+            id="portfolio"
+          >
+            {dat?.portfolio_name}
+          </option>
+        ))}
+      </select>
+    );
+  };
+
+  const handleImageChange = (e) => {
+    let newData = { ...inputData };
+    newData["image"] = e.target.files[0];
+    setInputData(newData);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (inputData.action === "add") {
+      try {
+        const response = await sendFund(inputData, userInfo?.username);
+        setFavProducts([...favProducts, response.data]);
+      } catch (e) {
+        console.log("e", e.message);
+      }
+    } else {
+      try {
+        const fav = favProducts.filter(
+          (pro) =>
+            pro.username === userInfo.username &&
+            pro.orgName === inputData.orgName &&
+            pro.productName === inputData.productName &&
+            pro.portfolio === inputData.portfolio
+        )[0];
+        const response = await RemoveFavorites(fav);
+        if (response.status === 200)
+          setFavProducts(
+            favProducts.filter((favprod) => !(favprod.id === response.data.id))
+          );
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
 
   return (
     <div>
@@ -24,7 +157,7 @@ function Favourites() {
       </div>
       <div className="columns">
         <span
-          class="elementor-button"
+          className="elementor-button"
           onClick={() => setShowProducts(!showProducts)}
         >
           <i aria-hidden="true" className="fas fa-bars new"></i>
@@ -33,19 +166,29 @@ function Favourites() {
 
       {showProducts && (
         <div className="all">
-          <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
-            <label for="form-field-level3name" class="elementor-field-label">
+          <div className="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+            <label
+              htmlFor="form-field-level3name"
+              className="elementor-field-label"
+            >
               Select Organization
             </label>
-            <div class="elementor-field elementor-select-wrapper ">
+            <div className="elementor-field elementor-select-wrapper ">
               <select
                 name="form_fields[level3name]"
                 id="form-field-level3name"
-                class="elementor-field-textual elementor-size-sm"
+                className="elementor-field-textual elementor-size-sm"
                 style={{ width: 270, marginTop: 2 }}
-                onChange={(e) => setOrg(e.target.value)}
+                onChange={(e) =>
+                  setInputData({
+                    ...inputData,
+                    orgName: e.target.value,
+                    productName: "",
+                    portfolio: "",
+                  })
+                }
               >
-                {/* <option>select organization</option> */}
+                <option>Select...</option>
 
                 {Array.from(
                   new Set(
@@ -62,78 +205,75 @@ function Favourites() {
             </div>
           </div>
 
-          <div class="elementor-form-fields-wrapper elementor-labels-above">
-            <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
-              <label for="form-field-level3name" class="elementor-field-label">
+          <div className="elementor-form-fields-wrapper elementor-labels-above">
+            <div className="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+              <label
+                htmlFor="form-field-level3name"
+                className="elementor-field-label"
+              >
                 Select Product
               </label>
-              <div class="elementor-field elementor-select-wrapper ">
-                <select
-                  onChange={(e) => setProduct(e.target.value)}
-                  style={{ width: 350, marginTop: 2 }}
-                  name="products"
-                  id="products-select"
-                  class="elementor-field-textual elementor-size-sm"
-                >
-                  {/* <option value="Product 01">{products[0].name}</option> */}
-
-                  {Array.from(
-                    new Set(
-                      data
-                        ?.filter((datum) => !datum?.portfolio)
-                        .map((datum) => datum.product)
-                    )
-                  ).map((product, index) => (
-                    <option value={`${product}`} key={index}>
-                      {product}
-                    </option>
-                  ))}
-                </select>
+              <div className="elementor-field elementor-select-wrapper ">
+                <ProductOption />
               </div>
             </div>
-            <div class="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
-              <label for="form-field-level3name" class="elementor-field-label">
+            <div className="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+              <label
+                htmlFor="form-field-level3name"
+                className="elementor-field-label"
+              >
                 Select Portfolio
               </label>
-              <div class="elementor-field elementor-select-wrapper ">
+              <div className="elementor-field elementor-select-wrapper ">
+                <PortfolioOption />
+              </div>
+            </div>
+            <div className="elementor-field-type-select elementor-field-group elementor-column elementor-field-group-level3name elementor-col-100">
+              <label
+                htmlFor="form-field-level3name"
+                className="elementor-field-label"
+              >
+                Choose Action
+              </label>
+              <div className="elementor-field elementor-select-wrapper ">
                 <select
-                  onChange={(e) => setPortfolio(e.target.value)}
+                  onChange={(e) => {
+                    setInputData({ ...inputData, action: e.target.value });
+                    e.target.value === "add"
+                      ? setShowImageUpload(true)
+                      : setShowImageUpload(false);
+                  }}
                   style={{ width: 270, marginTop: 2 }}
                   name="form_fields[level3name]"
                   id="form-field-level3name"
-                  class="elementor-field-textual elementor-size-sm"
+                  className="elementor-field-textual elementor-size-sm"
                 >
-                  {Array.from(
-                    new Set(
-                      data
-                        ?.filter((datum) => (datum?.product === product))
-                        .map((datum) => datum.portfolio_name)
-                    )
-                  ).map((portfolio_name, index) => (
-                    <option value={`${portfolio_name}`} key={index}>
-                      {portfolio_name}
-                    </option>
-                  ))}
+                  <option>Select...</option>
+                  <option value={"add"}>Add</option>
+                  <option value={"remove"}>Remove</option>
                 </select>
               </div>
             </div>
-            <div class="image">
-              <label
-                for="form-field-field_a91fc81"
-                class="elementor-field-label"
-              >
-                Upload Image
-              </label>
-              <input
-                type="file"
-                style={{ marginTop: 7 }}
-                name="form_fields[field_a91fc81]"
-                id="form-field-field_a91fc81"
-                class="elementor-field elementor-size-sm  elementor-upload-field"
-              />
-            </div>
+            {showImageUpload && (
+              <div className="image">
+                <label
+                  htmlFor="form-field-field_a91fc81"
+                  className="elementor-field-label"
+                >
+                  Upload Image
+                </label>
+                <input
+                  type="file"
+                  style={{ marginTop: 7 }}
+                  name="form_fields[field_a91fc81]"
+                  id="form-field-field_a91fc81"
+                  className="elementor-field elementor-size-sm  elementor-upload-field"
+                  onChange={(e) => handleImageChange(e)}
+                />
+              </div>
+            )}
 
-            <div class="button-div">
+            <div className="button-div">
               <button
                 type="submit"
                 style={{
@@ -145,32 +285,36 @@ function Favourites() {
                   marginBottom: 80,
                   color: "#ffffff",
                 }}
-                class="elementor-field-textual bt"
+                className="elementor-field-textual bt"
+                onClick={(e) => handleSubmit(e)}
+                disabled={
+                  inputData.orgName &&
+                  inputData.productName &&
+                  inputData.portfolio &&
+                  inputData.action
+                    ? false
+                    : true
+                }
               >
-                Save / Remove Favourites
+                {inputData.action === "add"
+                  ? "Save Favourites"
+                  : "Remove Favourites"}
               </button>
             </div>
           </div>
         </div>
       )}
-      <div>
-        <Products />
-      </div>
 
-      <div style={{ display: "flex" }}>
+      <Favorites showProducts={showProducts} />
+      <div style={{ width: "100%", marginTop: 180 }}>
         <RxCross2
           size={22}
           color="white"
-          className="close"
           style={{
             backgroundColor: "red",
             borderRadius: 20,
-            marginTop: 30,
-            marginBottom: 10,
             marginLeft: 5,
-            left: 0,
-            top:80,
-            position:'relative'
+            cursor: "pointer",
           }}
           onClick={() => handleShow(!show)}
         />
