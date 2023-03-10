@@ -304,22 +304,17 @@ function Favourites() {
           </div>
         </div>
       )}
-      {<Favorites />}
 
-      <div style={{ display: "flex" }}>
+      <Favorites showProducts={showProducts} />
+      <div style={{ width: "100%", marginTop: 180 }}>
         <RxCross2
           size={22}
           color="white"
-          className="close"
           style={{
             backgroundColor: "red",
             borderRadius: 20,
-            marginTop: 30,
-            marginBottom: 20,
             marginLeft: 5,
-            left: 0,
-            top: 160,
-            position: "relative",
+            cursor: "pointer",
           }}
           onClick={() => handleShow(!show)}
         />
