@@ -49,8 +49,9 @@ export default function Sidebar() {
   return (
     <div id="grid-container">
       {show && (
-        <div>
+        <>
           <div id="second-container">
+            {/* <div> */}
             {hover.logout && <Logout />}
             {hover.login && <Login />}
             {hover.payments && <Payments text="Payments" />}
@@ -58,10 +59,10 @@ export default function Sidebar() {
             {hover.products && <Products text="Products" />}
             {hover.profiles && <Profiles text="Profiles" />}
             {hover.notifications && <Notifications text="Notifications" />}
-
             {hover.favourites && <Favourites text="Favourites" />}
+            {/* </div> */}
           </div>
-        </div>
+        </>
       )}
       <div id="first-container">
         {Object.entries(icons).map(([keys, value]) => (
