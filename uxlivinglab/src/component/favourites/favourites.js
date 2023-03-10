@@ -9,7 +9,7 @@ import sendFund from "../../API/SendFund";
 import RemoveFavorites from "../../API/RemoveFavorites";
 
 function Favourites() {
-  const { data, show, handleShow, userInfo, setFavProducts, favProducts } =
+  const { data, show, handleShow, userInfo, setFavProducts, favProducts, setResStatus } =
     useStateContext();
   const [showProducts, setShowProducts] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(true);
@@ -34,13 +34,15 @@ function Favourites() {
               (res.username === userInfo.username) & (res.action === true)
           )
         );
+        setResStatus(response.status)
+        
       } catch (e) {
         console.log(e);
       }
     }
 
     userInfo?.username && getFavorites();
-  }, [userInfo?.username, setFavProducts]);
+  }, [userInfo?.username, setFavProducts, setResStatus]);
 
   const ProductOption = () => {
     const productes = [

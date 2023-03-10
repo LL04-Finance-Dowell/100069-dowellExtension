@@ -1,11 +1,9 @@
 import { useStateContext } from "../../contexts/ContextProvider";
 import styles from "./styles.module.css";
 import LoadingSpinner from "../spinner/spinner";
-import { useState } from "react";
 
 const Favorites = ({ showProducts }) => {
-  const { favProducts, sessionId, userInfo } = useStateContext();
-  const [showContent, setShowContent] = useState(false);
+  const { favProducts, sessionId, userInfo, resStatus } = useStateContext();
 
   const handleRedirect = (product) => {
     window.open(
@@ -13,18 +11,14 @@ const Favorites = ({ showProducts }) => {
     );
   };
 
-  setTimeout(() => {
-    setShowContent(true);
-  }, 4000);
-
   return (
     <div className={styles.container}>
-      {!showContent && (
+      {favProducts.length === 0 && resStatus !== 200 && (
         <div style={{ marginLeft: 150, marginTop: 100 }}>
           <LoadingSpinner />
         </div>
       )}
-      {showContent && favProducts.length === 0
+      { resStatus === 200 && favProducts.length === 0
         ? !showProducts && (
             <div style={{ width: "100%" }}>
               <img
@@ -35,7 +29,7 @@ const Favorites = ({ showProducts }) => {
               <h2 style={{ marginLeft: 20 }}>ADD YOUR FAVOURITES</h2>
             </div>
           )
-        : showContent &&
+        : 
           favProducts?.map((product, index) => (
             <div
               style={{

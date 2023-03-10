@@ -10,6 +10,7 @@ export const ContextProvider = ({ children }) => {
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
   const [favProducts, setFavProducts] = useState([]);
+  const [resStatus, setResStatus] = useState(false);
 
   const handleShow = (show) => {
     setShow(show);
@@ -72,6 +73,8 @@ export const ContextProvider = ({ children }) => {
         setData,
         setFavProducts,
         favProducts,
+        resStatus,
+        setResStatus
       }}
     >
       {children}
