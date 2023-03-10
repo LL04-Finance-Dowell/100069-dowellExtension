@@ -35,7 +35,8 @@ export const ContextProvider = ({ children }) => {
       .then((response) => response.json())
       .then((data) => setNotifications(data))
   })
-
+ 
+        
 
   useEffect(() => {
     async function getUserInfo() {

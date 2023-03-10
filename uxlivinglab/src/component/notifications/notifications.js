@@ -11,7 +11,8 @@ function Notifications() {
   const [userClicked, setClick] = useState(false);
   const user = userInfo.username;
   const product = "Workflow AI"
-
+  
+  const [duration,setDuration] = useState();
 
   const allNotifications = Array.from(
     new Set(notifications));
@@ -20,6 +21,8 @@ function Notifications() {
     setClick(!userClicked);
     
   }
+  const [isOnMessage,flipIsOnMessage] = useState(false);
+
 
   const markSeenClick = (pk) => {
       fetch(`https://100092.pythonanywhere.com/notification/notification/${pk}`,{
@@ -32,7 +35,7 @@ function Notifications() {
   };
 
   const timeOut = (pk,time) => {
-    setTimeout(()=>markSeenClick(pk),time*(3600))
+    setTimeout(()=>markSeenClick(pk),time*(3600000))
   }
 
 
@@ -223,14 +226,18 @@ function Notifications() {
                         <ChatTitles title={data.title}/>
                       </div>
                       {userClicked &&
-                      <div className={styles.content}>
-                        <h4 className={styles.littleDetails}>{data.portfolio}</h4>
-                        <h4 className={styles.littleDetails}>{data.companyID}</h4>
-                        {/* <h4 className={styles.littleDetails}>{data.productName}</h4> */}
-                        <h3 style={{marginTop:10,marginBottom:20}}>{data.message}</h3>
-
-                        <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
-                        <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
+                      <div onMouseEnter={()=> flipIsOnMessage(true)} onMouseLeave={()=> flipIsOnMessage(false)} className={isOnMessage? styles.content : styles.smaller_content}>
+                        <p className={styles.littleDetails}>{parseInt(data.duration)*60}mins</p>
+                        <h3 style={{marginTop:10,marginBottom:5,paddingLeft:10, textAlign:"left"}}>{data.message}</h3>
+                        
+                        {isOnMessage &&
+                        <div>                        
+                          {/* <hr style={{width:250, marginBottom:0}}></hr> */}
+                          <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
+                          <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
+                        </div>
+                      }
+                      
                       </div>
                       
                       }

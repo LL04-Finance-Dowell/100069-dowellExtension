@@ -10,8 +10,8 @@
   },
   "content_scripts": [
     {
-      "css": ["static/css/main.b7c9bd9b.css"],
-      "js": ["static/js/main.5cea42ec.js"],
+      "css": ["static/css/main.0a8b9484.css"],
+      "js": ["static/js/main.a35153dc.js"],
       "all_frames": true,
       "run_at": "document_end",
       "matches": ["http://127.0.0.1.zxqpopw/*"]
