@@ -36,7 +36,8 @@ export const ContextProvider = ({ children }) => {
     fetch("https://100092.pythonanywhere.com/notification/notification/")
       .then((response) => response.json())
       .then((data) => setNotifications(data))
-  })
+  },[])
+
  
         
 
@@ -84,7 +85,7 @@ export const ContextProvider = ({ children }) => {
         favProducts,
         notifications,
         resStatus,
-        setResStatus
+        setResStatus,
       }}
     >
       {children}
