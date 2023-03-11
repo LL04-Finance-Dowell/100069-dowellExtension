@@ -2,12 +2,8 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-<<<<<<< HEAD
-  const { sessionId,notifications,userInfo } = useStateContext();
+  const { sessionId,notifications,userInfo,handleShow  } = useStateContext();
 
-=======
-  const { sessionId, handleShow } = useStateContext();
->>>>>>> 2899e5980d0ffb3a8fe2acf94cb8ecb5d9ba3441
   const [showText, setShowText] = useState(false);
 
   const allNotifications = Array.from(
