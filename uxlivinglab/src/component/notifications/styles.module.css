@@ -49,14 +49,45 @@
 .spaceHide {
   transition: all 0.7s;
   height: 0px;
+  display: none;
+  display: ease-in-out;
 }
-.spaceShow {
+
+.spaceShow{
   text-align: center;
+  display: ease-in-out;
   height: 35px;
   margin-bottom: 0px;
   border-top: solid 0.4px;
   border-color: #61ce70;
   transition: height 0.7s;
+}
+.spaceShowContent {
+  color: #f5f5f5;
+  display: ease-in-out;
+  text-align: center;
+  height: 150px;
+  margin-bottom: 0px;
+  border-top: solid 0.4px;
+  border-color: #61ce70;
+  transition: height 0.7s;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.spaceShowContent::-webkit-scrollbar {
+  display: none;
+}
+.Title{
+  text-align: left;
+  color: #61ce70;
+}
+
+.Message{
+  padding-top: 10px;
+  font-size:0.9em;
+  text-align: left;
+  color: #f5f5f5;
+  padding-left: 20px;
 }
 
 .texts {
@@ -70,4 +101,77 @@
   font-size: 1.1rem;
   letter-spacing: normal;
   font-weight: bold;
+}
+
+.notif{
+  background-color: #61ce70;
+  color: black
+}
+
+.badges{
+  display:grid;
+}
+
+.badge{
+  background-color: rgb(74, 162, 74);
+  border-radius: 20px;
+  width:250px;
+  color: white;
+  margin-left: 8px;
+  height:20px;
+  padding:5px 8px 11px 8px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.badge:hover{
+  background-color: #090909;
+}
+
+
+.content{
+  background-color: #7a7a7a;
+  margin-left: 17px;
+  margin-right: 5px;
+  margin-top: 3px;
+  padding-top:1px;
+  padding-bottom: 10px;
+  border-radius: 15px 15px 15px 15px;
+  width:250px;
+  height: 75px;
+
+}
+.smaller_content{
+  background-color: #7a7a7a;
+  margin-left: 17px;
+  margin-right: 5px;
+  margin-top: 3px;
+  padding-top:1px;
+  padding-bottom: 10px;
+  border-radius: 15px 15px 15px 15px;
+  width:250px;
+  height: 45px;
+
+}
+
+.button{
+  /* margin-top: 5px; */
+  padding: 5px;
+  background-color: #61ce70;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button:hover{
+  color: white;
+}
+
+.littleDetails{
+  height:0.5px;
+  margin:0px;
+  padding-top:10px;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: lighter;
+  font-size: 10px;
 }

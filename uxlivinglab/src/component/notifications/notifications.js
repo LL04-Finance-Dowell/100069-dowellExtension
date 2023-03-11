@@ -1,10 +1,49 @@
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
+import ChatMessage from "./ChatMessages";
+import ChatTitles from "./ChatTitles"; 
 
 function Notifications() {
-  const { show, handleShow } = useStateContext();
+  const { show, handleShow,notifications, userInfo } = useStateContext();
+
+  const [userClicked, setClick] = useState(false);
+  const user = userInfo.username;
+  const product = "Workflow AI"
+  
+  const [duration,setDuration] = useState();
+
+  const allNotifications = Array.from(
+    new Set(notifications));
+
+  function clicked () {
+    setClick(!userClicked);
+    
+  }
+  const [isOnMessage,flipIsOnMessage] = useState(false);
+
+
+  const markSeenClick = (pk) => {
+      fetch(`https://100092.pythonanywhere.com/notification/notification/${pk}`,{
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({"seen":true})
+      })
+    
+    
+  };
+
+  const timeOut = (pk,time) => {
+    setTimeout(()=>markSeenClick(pk),time*(3600000))
+  }
+
+
+
+  const redirectClick = (data) => {
+    window.open(
+      `https://www.${data}`)
+  };
 
   const [arrows, setaArrows] = useState({
     showArrow1: true,
@@ -175,9 +214,40 @@ function Notifications() {
             </div>
             <div
               className={
-                arrows.showArrow5 ? styles.spaceShow : styles.spaceHide
+                arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
               }
-            ></div>
+            >
+           
+                  {allNotifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data)=>(
+                  // remember to filter based on product name and seen status before pushing (Workflow AI)
+                  
+                  <div className={styles.messages}>
+                      <div className={styles.badges} onClick={clicked}>        
+                        <ChatTitles title={data.title}/>
+                      </div>
+                      {userClicked &&
+                      <div onMouseEnter={()=> flipIsOnMessage(true)} onMouseLeave={()=> flipIsOnMessage(false)} className={isOnMessage? styles.content : styles.smaller_content}>
+                        <p className={styles.littleDetails}>{parseInt(data.duration)*60}mins</p>
+                        <h3 style={{marginTop:10,marginBottom:5,paddingLeft:10, textAlign:"left"}}>{data.message}</h3>
+                        
+                        {isOnMessage &&
+                        <div>                        
+                          {/* <hr style={{width:250, marginBottom:0}}></hr> */}
+                          <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
+                          <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
+                        </div>
+                      }
+                      
+                      </div>
+                      
+                      }
+                      {userClicked?timeOut(data.ID,parseInt(data.duration)):null}
+                  </div>
+                  
+
+                  ))}
+
+            </div>
             <div
               className={styles.elementContainer}
               onClick={() => handleArrows("showArrow6", !arrows.showArrow6)}
