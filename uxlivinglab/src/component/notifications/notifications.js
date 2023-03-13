@@ -3,24 +3,25 @@ import { useState} from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 import ChatTitles from "./ChatTitles"; 
+import UpdateNotifications from "../../API/UpdateNotifications";
 
 function Notifications() {
-  const { show, handleShow,notifications, userInfo } = useStateContext();
-
+  const { show, handleShow, notifications, userInfo } = useStateContext();
   const user = userInfo.username;
   const product = "Workflow AI"
-  
-
+ 
   const allNotifications = Array.from(
     new Set(notifications));
 
 
-  const markSeenClick = (pk) => {
-      fetch(`https://100092.pythonanywhere.com/notification/notification/${pk}`,{
-        method: "PUT",
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({"seen":true})
-      })  };
+  const markSeenClick = async (pk) => {
+    try {
+      await UpdateNotifications(pk);
+    } catch(e) {
+      console.log(e)
+    }
+  }
+      
 
   const timeOut = (pk,time) => {
     setTimeout(()=>markSeenClick(pk),time*(3600000))
@@ -237,9 +238,9 @@ function Notifications() {
               }
             >
            
-                  {allNotifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data)=>(
+                  {allNotifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data, index)=>(
                   // remember to filter based on product name and seen status before pushing (Workflow AI)
-                    <MessageContent data={data} />
+                    <MessageContent data={data} key={index} />
 
                   ))}
 
