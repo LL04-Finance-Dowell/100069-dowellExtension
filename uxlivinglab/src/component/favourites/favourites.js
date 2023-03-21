@@ -4,13 +4,20 @@ import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useEffect, useState } from "react";
 import Favorites from "./Favorites";
-import axios from "axios";
-import sendFund from "../../API/SendFund";
+import SendFavourites from "../../API/SendFavourites";
 import RemoveFavorites from "../../API/RemoveFavorites";
+import FetchFavourites from "../../API/FetchFavourites";
 
 function Favourites() {
-  const { data, show, handleShow, userInfo, setFavProducts, favProducts, setResStatus } =
-    useStateContext();
+  const {
+    data,
+    show,
+    handleShow,
+    userInfo,
+    setFavProducts,
+    favProducts,
+    setResStatus,
+  } = useStateContext();
   const [showProducts, setShowProducts] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(true);
   const [inputData, setInputData] = useState({
@@ -25,17 +32,14 @@ function Favourites() {
   useEffect(() => {
     async function getFavorites() {
       try {
-        const response = await axios.get(
-          "https://100092.pythonanywhere.com/favourite/favourite/"
-        );
+        const response = await FetchFavourites();
         setFavProducts(
           response.data.filter(
             (res) =>
-              (res.username === userInfo.username) & (res.action === true)
+              (res.username === userInfo?.username) & (res.action === true)
           )
         );
-        setResStatus(response.status)
-        
+        setResStatus(response.status);
       } catch (e) {
         console.log(e);
       }
@@ -111,17 +115,11 @@ function Favourites() {
     );
   };
 
-  const handleImageChange = (e) => {
-    let newData = { ...inputData };
-    newData["image"] = e.target.files[0];
-    setInputData(newData);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (inputData.action === "add") {
       try {
-        const response = await sendFund(inputData, userInfo?.username);
+        const response = await SendFavourites(inputData, userInfo?.username);
         setFavProducts([...favProducts, response.data]);
       } catch (e) {
         console.log("e", e.message);
@@ -136,9 +134,9 @@ function Favourites() {
             pro.portfolio === inputData.portfolio
         )[0];
         const response = await RemoveFavorites(fav);
-        if (response.status === 200)
+        if (response.status === 204)
           setFavProducts(
-            favProducts.filter((favprod) => !(favprod.id === response.data.id))
+            favProducts.filter((favprod) => !(favprod.id === fav.id))
           );
       } catch (e) {
         console.log(e);
@@ -270,7 +268,6 @@ function Favourites() {
                   name="form_fields[field_a91fc81]"
                   id="form-field-field_a91fc81"
                   className="elementor-field elementor-size-sm  elementor-upload-field"
-                  onChange={(e) => handleImageChange(e)}
                 />
               </div>
             )}
