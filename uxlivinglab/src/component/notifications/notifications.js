@@ -28,6 +28,17 @@ function Notifications() {
   }
 
 
+function timeOutFunction (ID,duration) {
+  try {
+    if (parseInt(duration)>0) {
+      timeOut(ID,parseInt(duration)*36000)
+    } else {
+      timeOut(ID,parseInt(1)*36000)
+    }
+  } catch (e) {
+    timeOut(ID,parseInt(1)*36000)
+  }
+}
 
   const redirectClick = (data) => {
     window.open(
@@ -54,7 +65,7 @@ function Notifications() {
       </div>
       {userClicked &&
       <div onMouseEnter={()=> flipIsOnMessage(true)} onMouseLeave={()=> flipIsOnMessage(false)} className={isOnMessage? styles.content : styles.smaller_content}>
-        <p className={styles.littleDetails}>{parseInt(data.duration)*60}mins</p>
+      {data.duration? <p className={styles.littleDetails}>{parseInt(data.duration)*60}mins</p>:null}
         <h3 style={{marginTop:10,marginBottom:5,paddingLeft:10, textAlign:"left"}}>{data.message}</h3>
         
         {isOnMessage &&
@@ -68,7 +79,7 @@ function Notifications() {
       </div>
       
       }
-      {userClicked?timeOut(data.ID,parseInt(data.duration)):null}
+      {userClicked?timeOutFunction:null}
   </div>
   
 
