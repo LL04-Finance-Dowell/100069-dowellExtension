@@ -1,12 +1,14 @@
 /*global chrome */
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import FetchNotifications from "../API/FetchNotifications";
+import FetchUserInfo from "../API/FetchUserInfo";
 
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
-  const [sessionId, setSessionId] = useState("");
+  const [sessionId, setSessionId] = useState("sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
   const [notifications, setNotifications] = useState();
@@ -17,41 +19,38 @@ export const ContextProvider = ({ children }) => {
     setShow(show);
   };
 
+  // useEffect(() => {
+  //   function logCookies(cookies) {
+  //     for (const cookie of cookies) {
+  //       if (cookie.domain === "100014.pythonanywhere.com") {
+  //         setSessionId(cookie.value);
+  //       }
+  //     }
+  //   }
+  //   chrome.cookies
+  //     .getAll({
+  //       name: "sessionid",
+  //     })
+  //     .then((cookies) => logCookies(cookies));
+  // }, []);
+
   useEffect(() => {
-    function logCookies(cookies) {
-      for (const cookie of cookies) {
-        if (cookie.domain === "100014.pythonanywhere.com") {
-          setSessionId(cookie.value);
-        }
-      }
+    async function fetchNotifications() {
+     try {
+      const response = await FetchNotifications();
+      setNotifications(response.data)
+     } catch(e) {
+      console.log(e)
+     }
     }
-    chrome.cookies
-      .getAll({
-        name: "sessionid",
-      })
-      .then((cookies) => logCookies(cookies));
-  }, []);
-
-  useEffect(()=>{
-    fetch("https://100092.pythonanywhere.com/notification/notification/")
-      .then((response) => response.json())
-      .then((data) => setNotifications(data))
-  },[])
-
- 
-        
+    fetchNotifications()
+  },[setNotifications])
 
   useEffect(() => {
     async function getUserInfo() {
       try {
-        const response = await axios.post(
-          "https://100014.pythonanywhere.com/api/userinfo/",
-          {
-            session_id: sessionId,
-          }
-        );
+        const response = await FetchUserInfo(sessionId)
         setUserInfo(response.data.userinfo);
-
         setData(
           [].concat(
             response?.data.other_org,
@@ -86,6 +85,7 @@ export const ContextProvider = ({ children }) => {
         notifications,
         resStatus,
         setResStatus,
+        setNotifications,
       }}
     >
       {children}
