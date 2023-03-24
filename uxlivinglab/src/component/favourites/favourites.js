@@ -268,6 +268,9 @@ function Favourites() {
                   name="form_fields[field_a91fc81]"
                   id="form-field-field_a91fc81"
                   className="elementor-field elementor-size-sm  elementor-upload-field"
+                  onChange={(e) =>
+                    setInputData({ ...inputData, image: e.target.files[0] })
+                  }
                 />
               </div>
             )}

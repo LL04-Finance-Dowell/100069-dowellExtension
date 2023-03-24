@@ -1,6 +1,5 @@
 /*global chrome */
 import React, { createContext, useContext, useState, useEffect } from "react";
-import axios from "axios";
 import FetchNotifications from "../API/FetchNotifications";
 import FetchUserInfo from "../API/FetchUserInfo";
 
@@ -36,20 +35,20 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     async function fetchNotifications() {
-     try {
-      const response = await FetchNotifications();
-      setNotifications(response.data)
-     } catch(e) {
-      console.log(e)
-     }
+      try {
+        const response = await FetchNotifications();
+        setNotifications(response.data);
+      } catch (e) {
+        console.log(e);
+      }
     }
-    fetchNotifications()
-  },[setNotifications])
+    fetchNotifications();
+  }, [setNotifications]);
 
   useEffect(() => {
     async function getUserInfo() {
       try {
-        const response = await FetchUserInfo(sessionId)
+        const response = await FetchUserInfo(sessionId);
         setUserInfo(response.data.userinfo);
         setData(
           [].concat(

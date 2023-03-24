@@ -1,15 +1,12 @@
 {
   "files": {
-    "main.css": "/100069-dowellExtension-V2.0/static/css/main.7637f426.css",
-    "main.js": "/100069-dowellExtension-V2.0/static/js/main.ee4c753d.js",
-    "static/js/787.3be110e1.chunk.js": "/100069-dowellExtension-V2.0/static/js/787.3be110e1.chunk.js",
-    "index.html": "/100069-dowellExtension-V2.0/index.html",
-    "main.7637f426.css.map": "/100069-dowellExtension-V2.0/static/css/main.7637f426.css.map",
-    "main.ee4c753d.js.map": "/100069-dowellExtension-V2.0/static/js/main.ee4c753d.js.map",
-    "787.3be110e1.chunk.js.map": "/100069-dowellExtension-V2.0/static/js/787.3be110e1.chunk.js.map"
+    "main.css": "/static/css/main.46bb4ebf.css",
+    "main.js": "/static/js/main.da1ec854.js",
+    "static/js/787.3be110e1.chunk.js": "/static/js/787.3be110e1.chunk.js",
+    "index.html": "index.html",
+    "main.46bb4ebf.css.map": "/static/css/main.46bb4ebf.css.map",
+    "main.da1ec854.js.map": "/static/js/main.da1ec854.js.map",
+    "787.3be110e1.chunk.js.map": "/static/js/787.3be110e1.chunk.js.map"
   },
-  "entrypoints": [
-    "static/css/main.7637f426.css",
-    "static/js/main.ee4c753d.js"
-  ]
+  "entrypoints": ["static/css/main.46bb4ebf.css", "static/js/main.da1ec854.js"]
 }
