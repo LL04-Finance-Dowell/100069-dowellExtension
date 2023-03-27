@@ -7,6 +7,7 @@ import Favorites from "./Favorites";
 import SendFavourites from "../../API/SendFavourites";
 import RemoveFavorites from "../../API/RemoveFavorites";
 import FetchFavourites from "../../API/FetchFavourites";
+import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
 
 function Favourites() {
   const {
@@ -155,13 +156,30 @@ function Favourites() {
           </button>
         </div>
       </div>
-      <div className="columns">
-        <span
-          className="elementor-button"
-          onClick={() => setShowProducts(!showProducts)}
-        >
-          <i aria-hidden="true" className="fas fa-bars new"></i>
-        </span>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          marginLeft: 25,
+          alignItems: "center",
+        }}
+      >
+        {!showProducts ? (
+          <FiPlusSquare
+            size={24}
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowProducts(!showProducts)}
+          />
+        ) : (
+          <FiMinusSquare
+            size={24}
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowProducts(!showProducts)}
+            color={"green"}
+          />
+        )}
+        <h4 style={{ marginLeft: 10 }}>Add Your Favourites</h4>
       </div>
 
       {showProducts && (
@@ -307,8 +325,8 @@ function Favourites() {
         </div>
       )}
 
-      <Favorites showProducts={showProducts} />
-      <div style={{ width: "100%", marginTop: 180 }}>
+      <Favorites />
+      <div style={{ width: "100%", marginTop: 270 }}>
         <RxCross2
           size={22}
           color="white"

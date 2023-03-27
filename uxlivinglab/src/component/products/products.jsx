@@ -34,7 +34,7 @@ const Products = () => {
                 height: 15,
               }}
             >
-              <option>Select Organization</option>
+              <option>Select Workspace</option>
 
               {Array.from(
                 new Set(
