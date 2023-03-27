@@ -1,0 +1,105 @@
+.customersupport {
+  margin-left: 20px;
+}
+hr {
+  width: 290px;
+  margin-left: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 0.5px;
+}
+.elementor-form-fields-wrapper {
+  margin-bottom: -20px;
+  text-align: left;
+}
+.elementor-field-label {
+  font-family: "Roboto", Sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7a7a7a;
+}
+.elementor *,
+.elementor :after,
+.elementor :before {
+  box-sizing: border-box;
+}
+
+.elementor-widget-container .elementor-form {
+  padding: 25px 25px 25px 25px;
+}
+
+.elementor-select-wrapper {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  flex-basis: 100%;
+  padding-right: 20px;
+}
+.elementor-field-textual {
+  line-height: 1.4;
+  font-size: 15px;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 40px;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.bt:hover{
+  background-color: #61ce70;
+}
+label {
+  text-align: left;
+}
+.elementor-field-group .elementor-field-textual {
+  max-width: 100%;
+  border: 1px solid #818a91;
+  background-color: transparent;
+  color: #373a3c;
+  flex-grow: 1;
+  background-color: #f5f5f5;
+  border-color: #7a7a7a;
+}
+.elementor-button {
+  width: 290px;
+  height: 33px;
+  margin-left: 10px;
+  color: #fff;
+}
+
+.elementor-divider .elementor-divider-separator {
+  border-top: 1.5px solid #ff0000;
+}
+
+.elementor-button:hover {
+  color: green;
+}
+
+.elementor-divider-separator {
+  width: 100%;
+  border-top: 1.5px solid #ff0000;
+}
+.connectWebsite {
+  cursor: pointer;
+  width: 230px;
+  font-size: 14;
+  height: 13px;
+  border-width: 1px;
+  background-color: #7a7a7a;
+  color: #ffffff;
+  line-height: 1.4px;
+  min-height: 40px;
+  border: none;
+}
+
+.connectWebsite:hover {
+  background-color: #61ce70;
+}

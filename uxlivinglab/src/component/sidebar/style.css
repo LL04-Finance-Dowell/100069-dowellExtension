@@ -1,29 +1,63 @@
-#grid-container{
+#grid-container {
   height: 538px;
-  display:flex;
+
+  display: flex;
   flex-direction: row;
   overflow: hidden;
   align-items: center;
-  padding: 5px;
-
+  justify-content: center;
 }
 
 #first-container {
   width: 80px;
   height: 524px;
-  background-color: #f5f5f5;
-  /* float: right; */
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
-  padding: 15px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
 }
 #second-container {
-  width: 300px;
-  /* margin-left: 482px; */
+  width: 328px;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 535px;
+  border-radius: 10px;
+  display: block;
+  background-color: #fffcde;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
 }
 
+#second-container::-webkit-scrollbar {
+  display: none;
+}
+
+#auth-container {
+  width: 430px;
+  overflow: hidden;
+  overflow-x: hidden;
+  height: 538px;
+  border-radius: 10px;
+  display: block;
+  background-color: #fffcde;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
+}
+
+#second-container .popup-container {
+  overflow: hidden;
+  width: 430px;
+}
+.close-second {
+  cursor: pointer;
+  background-color: #ff0000a3;
+  position: absolute;
+
+  top: 510px;
+}
 .power {
   display: flex;
   flex-direction: column;
@@ -44,12 +78,8 @@
 .power:hover {
   cursor: pointer;
   background-color: rgb(97, 206, 112);
-  /* animation: linear 5s; */
   width: 55px;
   height: 47px;
-
-  /* transition-duration: 0.3s;
-  transition-property: transform; */
 }
 
 .fas {
@@ -74,20 +104,6 @@
   position: absolute;
   right: 2px;
   top: 510px;
-  /* padding: 0px 5px 0px 0px; */
   border-radius: 15px;
   height: 2.99%;
-  /* width: 1%; */
 }
-
-
-/* .x {
-  color: white;
-  font-family: "Roboto", Sans-serif;
-  font-weight: 700;
-  line-height: 1.3em;
-  font-size: 0.83333rem;
-  letter-spacing: normal;
-
-} */
-

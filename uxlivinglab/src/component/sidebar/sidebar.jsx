@@ -1,50 +1,103 @@
 import "../sidebar/style.css";
+import "../popup/popup.css";
 import { RxCross2 } from "react-icons/rx";
-import MyButton from "../popup/popup";
 import Payments from "../payments";
+import CustomerSupport from "../customer_support/customer_support";
+import Products from "../products/products";
+import Profiles from "../profiles/profiles";
+import Notifications from "../notifications/notifications";
+import { useState, useEffect } from "react";
+import Login from "../Login";
+import Logout from "../Logout";
+import Favourites from "../favourites/favourites";
+import { useStateContext } from "../../contexts/ContextProvider.js";
+import SideButtons from "./SideButtons";
 
 const Check = (event,parameter) => {
   const check_value = 'Login';
 }
 export default function Sidebar() {
+  const { show, sessionId } = useStateContext();
+
+  const initialState = {
+    login: false,
+    logout: false,
+    payments: false,
+    profiles: false,
+    customer: false,
+    notifications: false,
+    products: false,
+    favourites: false,
+  };
+  const [hover, setHover] = useState(initialState);
+  const icons = {
+    login: "fas fa-sign-in-alt",
+    logout: "fas fa-power-off",
+    payments: "fas fa-credit-card",
+    profiles: "fas fa-user",
+    customer: "fas fa-headset",
+    notifications: "fas fa-bell",
+    products: "far fa-gem",
+    favourites: "fas fa-hand-holding-heart",
+  };
+
+  useEffect(() => {
+    if (sessionId) {
+      setHover({ ...initialState, favourites: true });
+    } else {
+      setHover({ ...initialState, favourites: false, login: true });
+    }
+  }, [sessionId]);
+
   return (
     <div id="grid-container">
-      <div id="second-container">
-        <Payments />
-      </div>  
-
+      {show && (
+        <>
+          <div id="second-container">
+            {/* <div> */}
+            {hover.logout && <Logout />}
+            {hover.login && <Login />}
+            {hover.payments && <Payments text="Payments" />}
+            {hover.customer && <CustomerSupport />}
+            {hover.products && <Products text="Products" />}
+            {hover.profiles && <Profiles text="Profiles" />}
+            {hover.notifications && <Notifications text="Notifications" />}
+            {hover.favourites && <Favourites text="Favourites" />}
+            {/* </div> */}
+          </div>
+        </>
+      )}
       <div id="first-container">
-
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-power-off" onClick={event => Check(event,"Login") }></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-sign-in-alt"></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-credit-card"></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-user"></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-headset"></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-bell"></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="far fa-gem"></i>
-        </div>
-        <div className="power">
-          <i aria-hidden="true" className="fas fa-hand-holding-heart"></i>
-        </div>
-        <div>
-          <RxCross2 size={24} color="red" className="close" />
+        {Object.entries(icons).map(([keys, value]) => (
+          <SideButtons
+            setHover={setHover}
+            keys={keys}
+            value={value}
+            initialState={initialState}
+            key={keys}
+            hover={hover}
+          />
+        ))}
+        <div
+          style={{ display: "flex", marginLeft: 5 }}
+          onClick={() => window.close()}
+        >
+          <RxCross2
+            size={22}
+            color="white"
+            className="close"
+            style={{
+              backgroundColor: "red",
+              borderRadius: 20,
+              marginTop: 10,
+              marginRight: 10,
+              left: 0,
+              marginBottom: 10,
+              marginLeft: 5,
+            }}
+          />
         </div>
       </div>
-  </div>
-
-
+    </div>
   );
 }

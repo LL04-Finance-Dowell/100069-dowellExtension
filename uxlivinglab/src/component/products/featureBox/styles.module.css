@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: 0.3s all ease;
+}
+
+.container:hover {
+  opacity: 1;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding-block: 10px;
+  transform: translateY(30%);
+  transition: 0.3s all ease;
+  transition-delay: 0.3s;
+}
+
+.container:hover .box {
+  transform: translateY(0);
+}
+
+.title {
+  font-size: 17px;
+  text-transform: capitalize;
+  color: white;
+  align-self: center;
+}
+
+.button {
+  padding: 10px;
+  color: white;
+  font-weight: 600;
+  background-color: black;
+  margin-bottom: 20px;
+  size: 1rem;
+  width: 60%;
+  cursor: pointer;
+}
+
+select {
+  padding: 0.5rem;
+  width: 75%;
+  font-size: 20px;
+  align-self: center;
+}
+.btn {
+  font-size: larger;
+}
+
+.opt {
+  font-size: 25px;
+  align-self: center;
+}
