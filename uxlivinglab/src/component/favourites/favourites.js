@@ -290,6 +290,9 @@ function Favourites() {
                     setInputData({ ...inputData, image: e.target.files[0] })
                   }
                 />
+                <button style={{ marginTop: 10, width: 130 }}>
+                  Choose Image
+                </button>
               </div>
             )}
 
