@@ -45,7 +45,7 @@ function timeOutFunction (ID,duration) {
 
   const redirectClick = (data) => {
     window.open(
-      `https://www.${data}`)
+      `${data}`)
   };
 
   const redirectnotification = (data) => {
