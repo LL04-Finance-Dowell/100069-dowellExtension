@@ -1,5 +1,4 @@
 import "./favourites.css";
-// import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import SendFavourites from "../../API/SendFavourites";
 import RemoveFavorites from "../../API/RemoveFavorites";
 import FetchFavourites from "../../API/FetchFavourites";
 import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
+import ImageModal from "./ImageModal";
 
 function Favourites() {
   const {
@@ -145,8 +145,20 @@ function Favourites() {
     }
   };
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+
   return (
     <div>
+      {
+        <ImageModal
+          open={open}
+          handleClose={() => setOpen(false)}
+          setInputData={setInputData}
+          inputData={inputData}
+          username={userInfo?.username}
+        />
+      }
       <div className="item">
         <div className="{ props.text }">
           <button className="logout" style={{ width: 270, marginLeft: 14 }}>
@@ -290,9 +302,23 @@ function Favourites() {
                     setInputData({ ...inputData, image: e.target.files[0] })
                   }
                 />
-                <button style={{ marginTop: 10, width: 130 }}>
-                  Choose Image
-                </button>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    marginTop: 10,
+                  }}
+                >
+                  <button
+                    style={{ width: 120, marginRight: 10 }}
+                    onClick={handleOpen}
+                  >
+                    Choose Image
+                  </button>
+                  {typeof inputData.image === String && (
+                    <span>Image Chosen</span>
+                  )}
+                </div>
               </div>
             )}
 
