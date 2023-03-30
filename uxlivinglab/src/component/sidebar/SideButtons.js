@@ -44,7 +44,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             </p>
           )}
           <i aria-hidden="true" className={value}></i>
-          {keys==='notifications' && notificationNumber>0 && <p style={{position:'absolute',border:"3px solid white",padding:"2px 8px 8px 8px",height:15,marginBottom:43,marginLeft:50,borderRadius:100,color:'white',backgroundColor:"#ff0000"}}>
+          {keys==='notifications' && notificationNumber>0 && <p style={{position:'absolute',border:"3px solid white",fontSize:13,padding:"1px 5px 8px 5px",height:10,marginBottom:49,marginLeft:50,borderRadius:100,color:'white',backgroundColor:"#ff0000"}}>
             {notificationNumber}</p>}
             {/* {console.log(notifNumber)} */}
         </div>

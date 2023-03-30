@@ -12,6 +12,8 @@ function Notifications() {
  
   const allNotifications = Array.from(
     new Set(notifications));
+  
+  const notificationNumber =(allNotifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product))).length
 
 
   const markSeenClick = async (pk) => {
@@ -46,6 +48,10 @@ function timeOutFunction (ID,duration) {
       `https://www.${data}`)
   };
 
+  const redirectnotification = (data) => {
+    window.open(`${data}`)
+  }
+
   const [arrows, setaArrows] = useState({
     showArrow1: true,
     showArrow2: false,
@@ -55,6 +61,7 @@ function timeOutFunction (ID,duration) {
     showArrow6: false,
     showArrow7: false,
   });
+
 
   const MessageContent = ({data}) => {
     
@@ -68,6 +75,9 @@ function timeOutFunction (ID,duration) {
   }
   
 
+  // <p style={{position:'absolute',border:"3px solid white",padding:"2px 8px 8px 8px",height:15,marginBottom:43,marginLeft:50,borderRadius:100,color:'white',backgroundColor:"#ff0000"}}>
+  // {}</p>
+
     function changeMarked(){
       setMarked(false);
     }
@@ -78,26 +88,10 @@ function timeOutFunction (ID,duration) {
       <div className={styles.messages}>
       {marked ?
       <div>
-      <div className={styles.badges} onClick={()=>setClick(!userClicked)}>        
+      <div className={styles.badges} onClick={() => redirectnotification(data.link)}>        
         <ChatTitles title={data.title}/>
       </div>
-      {userClicked &&
-      <div onMouseEnter={()=> flipIsOnMessage(true)} onMouseLeave={()=> flipIsOnMessage(false)} className={isOnMessage? styles.content : styles.smaller_content}>
-      {data.duration? <p className={styles.littleDetails}>{parseInt(data.duration)*60}mins</p>:null}
-        <h3 style={{marginTop:10,marginBottom:5,paddingLeft:10, textAlign:"left"}}>{data.message}</h3>
-        
-        {isOnMessage &&
-        <div>                        
-          {/* <hr style={{width:250, marginBottom:0}}></hr> */}
-          <button onClick={()=>markSeenClick(data.id)} className={styles.button}>mark as seen</button>
-          <button onClick={()=>redirectClick(data.link)} className={styles.button} style={{marginLeft:10}}>visit product</button>
-        </div>
-      }
       
-      </div>
-      
-      }
-      {userClicked?timeOutFunction:null}
       </div> : null
     }
   </div>
@@ -261,7 +255,7 @@ function timeOutFunction (ID,duration) {
                   marginLeft: 15,
                 }}
               >
-                Workflow AI (009)
+                Workflow AI ({notificationNumber})
               </p>
             </div>
             <div
@@ -272,8 +266,12 @@ function timeOutFunction (ID,duration) {
            
                   {allNotifications.filter((datum)=>(datum.seen===false && datum.username === user && datum.productName === product)).map((data, index)=>(
                   // remember to filter based on product name and seen status before pushing (Workflow AI)
-                    <MessageContent data={data} key={index} />
+                  <div style={{display:"flex"}}>
+                    <p style={{border:"3px solid white",padding:"1px 5px 5px 5px",fontSize:14,height:15,marginBottom:3,marginTop:23,marginLeft:5,borderRadius:100,color:'white',backgroundColor:"black"}}>
+                    {index+1}</p>
 
+                    <MessageContent data={data} key={index} />
+                  </div>    
                   ))}
 
             </div>
