@@ -13,6 +13,9 @@ import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
 
+const Check = (event,parameter) => {
+  const check_value = 'Login';
+}
 export default function Sidebar() {
   const { show, sessionId } = useStateContext();
 

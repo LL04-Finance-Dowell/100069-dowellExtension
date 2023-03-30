@@ -21,7 +21,8 @@ function Notifications() {
       console.log(e)
     }
   }
-      
+  
+ 
 
   const timeOut = (pk,time) => {
     setTimeout(()=>markSeenClick(pk),time*(3600000))
@@ -56,10 +57,27 @@ function timeOutFunction (ID,duration) {
   });
 
   const MessageContent = ({data}) => {
+    
+  const markSeenClick = async (pk) => {
+    changeMarked();
+    try {
+      await UpdateNotifications(pk);
+    } catch(e) {
+      console.log(e)
+    }
+  }
+  
+
+    function changeMarked(){
+      setMarked(false);
+    }
+    const [marked, setMarked] = useState(true);
     const [isOnMessage,flipIsOnMessage] = useState(false);
     const [userClicked, setClick] = useState(false);
     return (
       <div className={styles.messages}>
+      {marked ?
+      <div>
       <div className={styles.badges} onClick={()=>setClick(!userClicked)}>        
         <ChatTitles title={data.title}/>
       </div>
@@ -80,11 +98,14 @@ function timeOutFunction (ID,duration) {
       
       }
       {userClicked?timeOutFunction:null}
+      </div> : null
+    }
   </div>
   
-
+      
     )
   }
+
 
   const handleArrows = (show, bool) => {
     setaArrows({ [show]: bool });
