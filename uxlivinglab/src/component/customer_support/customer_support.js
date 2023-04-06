@@ -4,10 +4,12 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import { useState } from "react";
 
 function CustomerSupport() {
-  const { show, handleShow, sessionId } = useStateContext();
+  const { show, handleShow, sessionId, data, chosenProduct } =
+    useStateContext();
   const [buttonClicked, clickButton] = useState(false);
+  const [selectedProduct, changeSelectedProduct] = useState("");
 
-  function clicker () {
+  function clicker() {
     clickButton(true);
   }
   return (
@@ -48,32 +50,61 @@ function CustomerSupport() {
         >
           {" "}
         </div>
-        {buttonClicked ?
-          <div style={{ marginRight: 10,marginTop:90, marginBottom:0 }}>
-          <iframe
-          id="frame"
-          title="Customer Support iframe"
-          style={{ alignItems: "center", border: 0 }}
-          src={`https://100096.pythonanywhere.com/chat/Extension/?session_id=${sessionId}`}
-          width="283"
-          height="200"
-          allow="fullscreen"
-        ></iframe>
-        </div>
+        {buttonClicked ? (
+          <div>
+            <select
+              className="elementor-field-textual elementor-size-sm"
+              onChange={(e) => {
+                changeSelectedProduct(e.target.value);
+              }}
+              value={selectedProduct}
+              style={{
+                width: 270,
+                marginTop: 20,
+                marginRight: 20,
+                marginLeft: 40,
+                marginBottom: 20,
+                height: 15,
+              }}
+            >
+              <option>Select Product</option>
 
-          :
-          <div class="button-div" style={{marginTop:25,marginLeft:47}}>
-          <button
-            type="submit"
-            class="connectWebsite"
-            id="chatcustomersupport"
-            onClick={() => clicker()}
-          >
-            Chat with Customer Support
-          </button>
-        </div>
-
-}
+              {Array.from(
+                new Set(
+                  data
+                    ?.filter((datum) => !datum?.portfolio)
+                    .map((datum) => datum.product)
+                )
+              ).map((org_name, index) => (
+                <option value={`${org_name}`} key={index}>
+                  {org_name}
+                </option>
+              ))}
+            </select>
+            <div style={{ marginRight: 10, marginTop: 90, marginBottom: 0 }}>
+              <iframe
+                id="frame"
+                title="Customer Support iframe"
+                style={{ alignItems: "center", border: 0 }}
+                src={`https://100096.pythonanywhere.com/chat/Extension/?session_id=${sessionId}`}
+                width="283"
+                height="200"
+                allow="fullscreen"
+              ></iframe>
+            </div>
+          </div>
+        ) : (
+          <div class="button-div" style={{ marginTop: 25, marginLeft: 47 }}>
+            <button
+              type="submit"
+              class="connectWebsite"
+              id="chatcustomersupport"
+              onClick={() => clicker()}
+            >
+              Chat with Customer Support
+            </button>
+          </div>
+        )}
       </div>
       <div style={{ height: "40px" }}></div>
       <div style={{ display: "flex", marginLeft: 5 }}>
