@@ -52,7 +52,7 @@ function CustomerSupport() {
         </div>
         {buttonClicked ? (
           <div>
-            <select
+            {/* <select
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
                 changeSelectedProduct(e.target.value);
@@ -80,7 +80,7 @@ function CustomerSupport() {
                   {org_name}
                 </option>
               ))}
-            </select>
+            </select> */}
             <div style={{ marginRight: 10, marginTop: 90, marginBottom: 0 }}>
               <iframe
                 id="frame"
@@ -106,7 +106,7 @@ function CustomerSupport() {
           </div>
         )}
       </div>
-      <div style={{ height: "40px" }}></div>
+      <div style={{ height: "10px" }}></div>
       <div style={{ display: "flex", marginLeft: 5 }}>
         <RxCross2
           size={24}
