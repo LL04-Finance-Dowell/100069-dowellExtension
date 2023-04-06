@@ -201,7 +201,7 @@ function Favourites() {
               htmlFor="form-field-level3name"
               className="elementor-field-label"
             >
-              Select Organization
+              Select Workspace
             </label>
             <div className="elementor-field elementor-select-wrapper ">
               <select
@@ -355,7 +355,9 @@ function Favourites() {
       )}
 
       <Favorites />
-      <div style={{ width: "100%", marginTop: 270 }}>
+      <div
+        style={{ width: "100%", marginTop: favProducts.length > 0 ? 320 : 330 }}
+      >
         <RxCross2
           size={22}
           color="white"

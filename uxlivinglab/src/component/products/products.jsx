@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Products = () => {
-  const { handleShow, data } = useStateContext();
-  const [org, setOrg] = useState("skjdh");
+  const { handleShow, data, setChosenProduct, chosenProduct } =
+    useStateContext();
   let productes = [];
   return (
     <div className={styles.cover}>
@@ -25,7 +25,10 @@ const Products = () => {
           <div className="elementor-field elementor-select-wrapper ">
             <select
               className="elementor-field-textual elementor-size-sm"
-              onChange={(e) => setOrg(e.target.value)}
+              onChange={(e) => {
+                setChosenProduct(e.target.value);
+              }}
+              value={chosenProduct}
               style={{
                 width: 270,
                 marginRight: 20,
@@ -53,23 +56,29 @@ const Products = () => {
       </div>
 
       <div className={styles.container}>
-        {products.map((item) => {
-          productes = [
-            ...new Map(
-              data?.map((item) => [item["portfolio_name"], item])
-            ).values(),
-          ].filter(
-            (datum) =>
-              (datum?.org_name === org) & (datum?.product === item.title)
-          );
-          const productTitle = productes.map((o) => o.product);
-          const filteredProduct = productes.filter(
-            ({ product }, index) => !productTitle.includes(product, index + 1)
-          );
-          return filteredProduct.map((index) => (
-            <Box key={`${item.id + index}`} product={item} org_name={org} />
-          ));
-        })}
+        {chosenProduct &&
+          products.map((item) => {
+            productes = [
+              ...new Map(
+                data?.map((item) => [item["portfolio_name"], item])
+              ).values(),
+            ].filter(
+              (datum) =>
+                (datum?.org_name === chosenProduct) &
+                (datum?.product === item.title)
+            );
+            const productTitle = productes.map((o) => o.product);
+            const filteredProduct = productes.filter(
+              ({ product }, index) => !productTitle.includes(product, index + 1)
+            );
+            return filteredProduct.map((index) => (
+              <Box
+                key={`${item.id + index}`}
+                product={item}
+                org_name={chosenProduct}
+              />
+            ));
+          })}
       </div>
 
       <div className={styles.cross}>

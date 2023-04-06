@@ -13,9 +13,9 @@ import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
 
-const Check = (event,parameter) => {
-  const check_value = 'Login';
-}
+const Check = (event, parameter) => {
+  const check_value = "Login";
+};
 export default function Sidebar() {
   const { show, sessionId } = useStateContext();
 
@@ -78,10 +78,17 @@ export default function Sidebar() {
             hover={hover}
           />
         ))}
-        <div
-          style={{ display: "flex", marginLeft: 5 }}
-          onClick={() => window.close()}
-        >
+        <img
+          src={require("./128.png")}
+          alt="dowell-logo"
+          style={{
+            width: 55,
+            // marginTop: 40,
+            // position: "absolute",
+            display: "flex",
+          }}
+        />
+        <div style={{ display: "flex" }} onClick={() => window.close()}>
           <RxCross2
             size={22}
             color="white"
