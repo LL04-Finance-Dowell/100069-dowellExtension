@@ -4,10 +4,13 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import { useState } from "react";
 
 function CustomerSupport() {
-  const { show, handleShow, sessionId, data, chosenProduct } =
-    useStateContext();
+  const { show, handleShow, sessionId, data, products } = useStateContext();
   const [buttonClicked, clickButton] = useState(false);
-  const [selectedProduct, changeSelectedProduct] = useState("");
+  const [selectedProduct, changeSelectedProduct] = useState("Workflow-AI");
+  const allProducts = Array.from(new Set(products));
+  {
+    console.log(allProducts);
+  }
 
   function clicker() {
     clickButton(true);
@@ -26,6 +29,65 @@ function CustomerSupport() {
           </button>
         </div>
       </div>
+      {!buttonClicked && sessionId ? (
+        <div
+          class="button-div"
+          style={{
+            marginTop: 25,
+            marginLeft: 47,
+            marginBottom: 30,
+          }}
+        >
+          <button
+            style={{ borderRadius: 20, boxShadow: "1px 2px 9px #00000080" }}
+            type="submit"
+            class="connectWebsite"
+            id="chatcustomersupport"
+            onClick={() => clicker()}
+          >
+            Chat with Customer Support
+          </button>
+        </div>
+      ) : null}
+
+      {buttonClicked ? (
+        <div>
+          <select
+            className="elementor-field-textual elementor-size-sm"
+            onChange={(e) => {
+              changeSelectedProduct(e.target.value);
+            }}
+            value={selectedProduct}
+            style={{
+              width: 250,
+              marginTop: 20,
+              marginRight: 20,
+              marginLeft: 30,
+              marginBottom: 5,
+              height: 15,
+            }}
+          >
+            <option>Select Product</option>
+            {allProducts.map((name, index) => (
+              <option value={`${name}`} key={index}>
+                {name}
+              </option>
+            ))}
+          </select>
+          <div style={{ marginRight: 10, marginTop: 20, marginBottom: 30 }}>
+            <iframe
+              id="frame"
+              title="Customer Support iframe"
+              style={{ alignItems: "center", border: 0 }}
+              src={`https://100096.pythonanywhere.com/extension-chat/Extension/?session_id=${sessionId}&prdct=${selectedProduct}`}
+              width="283"
+              height="200"
+              allow="fullscreen"
+            ></iframe>
+          </div>
+        </div>
+      ) : null}
+
       <div className="customersupport" style={{ marginLeft: 0 }}>
         <div className="elementor-widget-container" style={{ marginRight: 10 }}>
           <iframe
@@ -50,61 +112,6 @@ function CustomerSupport() {
         >
           {" "}
         </div>
-        {buttonClicked ? (
-          <div>
-            {/* <select
-              className="elementor-field-textual elementor-size-sm"
-              onChange={(e) => {
-                changeSelectedProduct(e.target.value);
-              }}
-              value={selectedProduct}
-              style={{
-                width: 270,
-                marginTop: 20,
-                marginRight: 20,
-                marginLeft: 40,
-                marginBottom: 20,
-                height: 15,
-              }}
-            >
-              <option>Select Product</option>
-
-              {Array.from(
-                new Set(
-                  data
-                    ?.filter((datum) => !datum?.portfolio)
-                    .map((datum) => datum.product)
-                )
-              ).map((org_name, index) => (
-                <option value={`${org_name}`} key={index}>
-                  {org_name}
-                </option>
-              ))}
-            </select> */}
-            <div style={{ marginRight: 10, marginTop: 90, marginBottom: 0 }}>
-              <iframe
-                id="frame"
-                title="Customer Support iframe"
-                style={{ alignItems: "center", border: 0 }}
-                src={`https://100096.pythonanywhere.com/chat/Extension/?session_id=${sessionId}`}
-                width="283"
-                height="200"
-                allow="fullscreen"
-              ></iframe>
-            </div>
-          </div>
-        ) : (
-          <div class="button-div" style={{ marginTop: 25, marginLeft: 47 }}>
-            <button
-              type="submit"
-              class="connectWebsite"
-              id="chatcustomersupport"
-              onClick={() => clicker()}
-            >
-              Chat with Customer Support
-            </button>
-          </div>
-        )}
       </div>
       <div style={{ height: "10px" }}></div>
       <div style={{ display: "flex", marginLeft: 5 }}>
