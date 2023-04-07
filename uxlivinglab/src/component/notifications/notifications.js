@@ -199,7 +199,7 @@ function Notifications() {
                     marginLeft: 15,
                   }}
                 >
-                  Public (00200)
+                  Public (0)
                 </p>
               </div>
 
@@ -229,7 +229,7 @@ function Notifications() {
                     marginLeft: 15,
                   }}
                 >
-                  UX Living Lab
+                  UX Living Lab (0)
                 </p>
               </div>
 
@@ -351,7 +351,7 @@ function Notifications() {
                     marginLeft: 15,
                   }}
                 >
-                  UX Live (00200)
+                  UX Live (0)
                 </p>
               </div>
 
@@ -421,12 +421,12 @@ function Notifications() {
               ></div>
               <div
                 className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow7", !arrows.showArrow7)}
+                onClick={() => handleArrows("showArrow4", !arrows.showArrow4)}
               >
                 <i
                   aria-hidden="true"
                   className={
-                    arrows.showArrow7
+                    arrows.showArrow4
                       ? "fas fa-angles-up"
                       : "fas fa-angles-down"
                   }
@@ -435,18 +435,19 @@ function Notifications() {
 
                 <p
                   style={{
-                    color: arrows.showArrow7 && "#61ce70",
+                    color: arrows.showArrow4 && "#61ce70",
                     marginLeft: 15,
                   }}
                 >
-                  UX Live (00200)
+                  UX Living Lab (0)
                 </p>
               </div>
+
               <div
                 className={
-                  arrows.showArrow7 ? styles.spaceShow : styles.spaceHide
+                  arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
                 }
-              ></div>{" "}
+              ></div>
             </div>
             <div
               style={{
