@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import FetchNotifications from "../API/FetchNotifications";
 import FetchUserInfo from "../API/FetchUserInfo";
+import FetchProducts from "../API/FetchProducts";
 
 const StateContext = createContext();
 
@@ -14,6 +15,7 @@ export const ContextProvider = ({ children }) => {
   const [favProducts, setFavProducts] = useState([]);
   const [resStatus, setResStatus] = useState(false);
   const [chosenProduct, setChosenProduct] = useState("");
+  const [products, setProducts] = useState({});
 
   const handleShow = (show) => {
     setShow(show);
@@ -45,6 +47,18 @@ export const ContextProvider = ({ children }) => {
     }
     fetchNotifications();
   }, [setNotifications]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await FetchProducts();
+        setProducts(response.data.product_list);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchProducts();
+  }, [setProducts]);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -83,6 +97,7 @@ export const ContextProvider = ({ children }) => {
         setFavProducts,
         favProducts,
         notifications,
+        products,
         resStatus,
         setResStatus,
         setNotifications,
