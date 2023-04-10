@@ -52,7 +52,7 @@ function CustomerSupport() {
 
       {buttonClicked ? (
         <div>
-          <select
+          {/* <select
             className="elementor-field-textual elementor-size-sm"
             onChange={(e) => {
               changeSelectedProduct(e.target.value);
@@ -73,13 +73,13 @@ function CustomerSupport() {
                 {name}
               </option>
             ))}
-          </select>
+          </select> */}
           <div style={{ marginRight: 10, marginTop: 20, marginBottom: 30 }}>
             <iframe
               id="frame"
               title="Customer Support iframe"
               style={{ alignItems: "center", border: 0 }}
-              src={`https://100096.pythonanywhere.com/extension-chat/Extension/?session_id=${sessionId}&prdct=${selectedProduct}`}
+              src={`https://100096.pythonanywhere.com/chat/Extension/?session_id=${sessionId}`}
               width="283"
               height="200"
               allow="fullscreen"
