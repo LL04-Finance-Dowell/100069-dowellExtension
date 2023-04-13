@@ -1,5 +1,4 @@
 import "./favourites.css";
-// import Products from "../products/favproducts";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useEffect, useState } from "react";
@@ -7,10 +6,8 @@ import Favorites from "./Favorites";
 import SendFavourites from "../../API/SendFavourites";
 import RemoveFavorites from "../../API/RemoveFavorites";
 import FetchFavourites from "../../API/FetchFavourites";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
+import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
+import ImageModal from "./ImageModal";
 
 function Favourites() {
   const {
@@ -24,6 +21,8 @@ function Favourites() {
   } = useStateContext();
   const [showProducts, setShowProducts] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   const [inputData, setInputData] = useState({
     orgName: "",
     productName: "",
@@ -162,21 +161,15 @@ function Favourites() {
 
   return (
     <div>
-      <Modal
-        open={true}
-        // onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
+      {
+        <ImageModal
+          open={open}
+          handleClose={() => setOpen(false)}
+          setInputData={setInputData}
+          inputData={inputData}
+          username={userInfo?.username}
+        />
+      }
       <div className="item">
         <div className="{ props.text }">
           <button className="logout" style={{ width: 270, marginLeft: 14 }}>
@@ -186,13 +179,30 @@ function Favourites() {
           </button>
         </div>
       </div>
-      <div className="columns">
-        <span
-          className="elementor-button"
-          onClick={() => setShowProducts(!showProducts)}
-        >
-          <i aria-hidden="true" className="fas fa-bars new"></i>
-        </span>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          marginLeft: 25,
+          alignItems: "center",
+        }}
+      >
+        {!showProducts ? (
+          <FiPlusSquare
+            size={24}
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowProducts(!showProducts)}
+          />
+        ) : (
+          <FiMinusSquare
+            size={24}
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowProducts(!showProducts)}
+            color={"green"}
+          />
+        )}
+        <h4 style={{ marginLeft: 10 }}>Add Your Favourites</h4>
       </div>
 
       {showProducts && (
@@ -202,7 +212,7 @@ function Favourites() {
               htmlFor="form-field-level3name"
               className="elementor-field-label"
             >
-              Select Organization
+              Select Workspace
             </label>
             <div className="elementor-field elementor-select-wrapper ">
               <select
@@ -299,7 +309,27 @@ function Favourites() {
                   name="form_fields[field_a91fc81]"
                   id="form-field-field_a91fc81"
                   className="elementor-field elementor-size-sm  elementor-upload-field"
+                  onChange={(e) =>
+                    setInputData({ ...inputData, image: e.target.files[0] })
+                  }
                 />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    marginTop: 10,
+                  }}
+                >
+                  <button
+                    style={{ width: 120, marginRight: 10 }}
+                    onClick={handleOpen}
+                  >
+                    Choose Image
+                  </button>
+                  {typeof inputData.image === String && (
+                    <span>Image Chosen</span>
+                  )}
+                </div>
               </div>
             )}
 
@@ -335,8 +365,10 @@ function Favourites() {
         </div>
       )}
 
-      <Favorites showProducts={showProducts} />
-      <div style={{ width: "100%", marginTop: 180 }}>
+      <Favorites />
+      <div
+        style={{ width: "100%", marginTop: favProducts.length > 0 ? 320 : 330 }}
+      >
         <RxCross2
           size={22}
           color="white"

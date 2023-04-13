@@ -16,6 +16,7 @@
   align-items: center;
   border: 1px solid black;
   padding: 10px 0px 0px 0px;
+  background-color: white;
 }
 #second-container {
   width: 328px;

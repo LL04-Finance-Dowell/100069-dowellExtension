@@ -1,11 +1,14 @@
 .popup-container {
   margin-top: 0;
-  height: 538px;
+  height: 600px;
   width: 380px;
   background-color: #fffcde;
   border-style: none;
   border-radius: 15px 15px 15px 15px;
   justify-content: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
   align-items: center;
   text-align: center;
 }

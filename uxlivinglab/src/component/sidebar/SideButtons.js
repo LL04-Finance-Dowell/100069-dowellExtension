@@ -2,20 +2,18 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId,notifications,userInfo,handleShow  } = useStateContext();
+  const { sessionId, notifications, userInfo, handleShow } = useStateContext();
 
   const [showText, setShowText] = useState(false);
 
-  const allNotifications = Array.from(
-    new Set(notifications));
+  const allNotifications = Array.from(new Set(notifications));
 
-  
   const user = userInfo?.username;
   // const notification = [];
-  const notificationNumber =(allNotifications.filter((datum)=>(datum.seen===false && datum.username === user ))).length
-  
+  const notificationNumber = allNotifications.filter(
+    (datum) => datum.seen === false && datum.username === user
+  ).length;
 
-  
   return (
     <>
       {sessionId && keys !== "login" ? (
@@ -44,9 +42,25 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             </p>
           )}
           <i aria-hidden="true" className={value}></i>
-          {keys==='notifications' && notificationNumber>0 && <p style={{position:'absolute',border:"3px solid white",padding:"2px 8px 8px 8px",height:15,marginBottom:43,marginLeft:50,borderRadius:100,color:'white',backgroundColor:"#ff0000"}}>
-            {notificationNumber}</p>}
-            {/* {console.log(notifNumber)} */}
+          {keys === "notifications" && notificationNumber > 0 && (
+            <p
+              style={{
+                position: "absolute",
+                border: "3px solid white",
+                fontSize: 13,
+                padding: "1px 5px 8px 5px",
+                height: 10,
+                marginBottom: 49,
+                marginLeft: 50,
+                borderRadius: 100,
+                color: "white",
+                backgroundColor: "#ff0000",
+              }}
+            >
+              {notificationNumber}
+            </p>
+          )}
+          {/* {console.log(notifNumber)} */}
         </div>
       ) : (
         !sessionId &&
@@ -55,7 +69,6 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             className="power"
             style={
               (keys === "profiles") |
-              (keys === "notifications") |
               (keys === "products") |
               (keys === "favourites")
                 ? { cursor: "not-allowed" }
@@ -70,7 +83,6 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
                       login: false,
                     })
                   : keys !== "profiles" &&
-                    keys !== "notifications" &&
                     keys !== "products" &&
                     keys !== "favourites"
                   ? setHover({

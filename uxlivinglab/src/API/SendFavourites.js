@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function SendFavourites(data, username) {
   let formData = new FormData();
-  if (data.image) formData.append("image", data.image, data.image.name);
+  if (data.image) formData.append("image", data.image);
   formData.append("username", username);
   formData.append("productName", data.productName);
   formData.append("orgName", data.orgName);
