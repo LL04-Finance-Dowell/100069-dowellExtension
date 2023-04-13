@@ -2,39 +2,39 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import FetchNotifications from "../API/FetchNotifications";
 import FetchUserInfo from "../API/FetchUserInfo";
+import FetchProducts from "../API/FetchProducts";
 
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
-  const [sessionId, setSessionId] = useState(
-    "sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5"
-  );
+  const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
   const [notifications, setNotifications] = useState();
   const [favProducts, setFavProducts] = useState([]);
   const [resStatus, setResStatus] = useState(false);
   const [chosenProduct, setChosenProduct] = useState("");
+  const [products, setProducts] = useState({});
 
   const handleShow = (show) => {
     setShow(show);
   };
 
-  // useEffect(() => {
-  //   function logCookies(cookies) {
-  //     for (const cookie of cookies) {
-  //       if (cookie.domain === "100014.pythonanywhere.com") {
-  //         setSessionId(cookie.value);
-  //       }
-  //     }
-  //   }
-  //   chrome.cookies
-  //     .getAll({
-  //       name: "sessionid",
-  //     })
-  //     .then((cookies) => logCookies(cookies));
-  // }, []);
+  useEffect(() => {
+    function logCookies(cookies) {
+      for (const cookie of cookies) {
+        if (cookie.domain === "100014.pythonanywhere.com") {
+          setSessionId(cookie.value);
+        }
+      }
+    }
+    chrome.cookies
+      .getAll({
+        name: "sessionid",
+      })
+      .then((cookies) => logCookies(cookies));
+  }, []);
 
   useEffect(() => {
     async function fetchNotifications() {
@@ -47,6 +47,18 @@ export const ContextProvider = ({ children }) => {
     }
     fetchNotifications();
   }, [setNotifications]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await FetchProducts();
+        setProducts(response.data.product_list);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchProducts();
+  }, [setProducts]);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -85,6 +97,7 @@ export const ContextProvider = ({ children }) => {
         setFavProducts,
         favProducts,
         notifications,
+        products,
         resStatus,
         setResStatus,
         setNotifications,

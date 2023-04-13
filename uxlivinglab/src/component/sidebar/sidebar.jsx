@@ -75,16 +75,22 @@ export default function Sidebar() {
             hover={hover}
           />
         ))}
+<<<<<<< HEAD
         <img
           src={userInfo?.org_img}
           alt="org-logo"
+=======
+        {/* <img
+          src={require("./128.png")}
+          alt="dowell-logo"
+>>>>>>> b356a147c039cae980d1e5888a9cd4947036fe61
           style={{
             width: 70,
             // marginTop: 40,
             // position: "absolute",
             display: "flex",
           }}
-        />
+        /> */}
         <div style={{ display: "flex" }} onClick={() => window.close()}>
           <RxCross2
             size={22}
@@ -93,7 +99,7 @@ export default function Sidebar() {
             style={{
               backgroundColor: "red",
               borderRadius: 20,
-              marginTop: 10,
+              marginTop: 70,
               marginRight: 10,
               left: 0,
               marginBottom: 10,
