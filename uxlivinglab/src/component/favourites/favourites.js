@@ -21,6 +21,8 @@ function Favourites() {
   } = useStateContext();
   const [showProducts, setShowProducts] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   const [inputData, setInputData] = useState({
     orgName: "",
     productName: "",
@@ -144,9 +146,6 @@ function Favourites() {
       }
     }
   };
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
 
   return (
     <div>
