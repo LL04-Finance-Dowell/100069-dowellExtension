@@ -17,12 +17,15 @@
       "matches": ["http://127.0.0.1.zxqpopw/*"]
     }
   ],
-
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "icons": {
     "16": "16.png",
     "48": "48.png",
     "128": "128.png"
   },
   "host_permissions": ["<all_urls>"],
-  "permissions": ["cookies", "notifications"]
+  "permissions": ["cookies", "notifications", "alarms"]
 }
