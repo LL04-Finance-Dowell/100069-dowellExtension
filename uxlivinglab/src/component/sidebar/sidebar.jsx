@@ -13,11 +13,8 @@ import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
 
-const Check = (event, parameter) => {
-  const check_value = "Login";
-};
 export default function Sidebar() {
-  const { show, sessionId } = useStateContext();
+  const { show, sessionId, userInfo } = useStateContext();
 
   const initialState = {
     login: false,
@@ -82,7 +79,7 @@ export default function Sidebar() {
           src={require("./128.png")}
           alt="dowell-logo"
           style={{
-            width: 55,
+            width: 70,
             // marginTop: 40,
             // position: "absolute",
             display: "flex",
