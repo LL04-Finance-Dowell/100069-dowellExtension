@@ -75,16 +75,16 @@ export default function Sidebar() {
             hover={hover}
           />
         ))}
-        {/* <img
-          src={require("./128.png")}
-          alt="dowell-logo"
+        <img
+          src={userInfo?.org_img}
+          alt="org-logo"
           style={{
             width: 70,
             // marginTop: 40,
             // position: "absolute",
             display: "flex",
           }}
-        /> */}
+        />
         <div style={{ display: "flex" }} onClick={() => window.close()}>
           <RxCross2
             size={22}
