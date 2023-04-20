@@ -79,6 +79,7 @@ export default function Sidebar() {
           src={userInfo?.org_img}
           alt="org-logo"
           style={{
+            marginTop: 10,
             width: 70,
             // marginTop: 40,
             // position: "absolute",
@@ -93,7 +94,7 @@ export default function Sidebar() {
             style={{
               backgroundColor: "red",
               borderRadius: 20,
-              marginTop: 70,
+              marginTop: 10,
               marginRight: 10,
               left: 0,
               marginBottom: 10,
