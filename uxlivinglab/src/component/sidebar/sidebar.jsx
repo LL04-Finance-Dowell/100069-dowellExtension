@@ -12,6 +12,7 @@ import Logout from "../Logout";
 import Favourites from "../favourites/favourites";
 import { useStateContext } from "../../contexts/ContextProvider.js";
 import SideButtons from "./SideButtons";
+import admin from "./admin.png";
 
 export default function Sidebar() {
   const { show, sessionId, userInfo } = useStateContext();
@@ -75,11 +76,22 @@ export default function Sidebar() {
             hover={hover}
           />
         ))}
+
+        <img
+          class="power"
+          onClick={() =>
+            window.open(
+              "https://100014.pythonanywhere.com/en/?redirect_url=https://100093.pythonanywhere.com/home"
+            )
+          }
+          style={{ height: 45 }}
+          src={admin}
+        ></img>
         <img
           src={userInfo?.org_img}
-          alt="org-logo"
+          alt=""
           style={{
-            marginTop: 10,
+            marginTop: 3,
             width: 70,
             // marginTop: 40,
             // position: "absolute",
