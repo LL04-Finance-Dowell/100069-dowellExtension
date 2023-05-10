@@ -148,7 +148,7 @@ function Notifications() {
                     marginLeft: 15,
                   }}
                 >
-                  Team Member (009)
+                  Team Member (0)
                 </p>
               </div>
               <div
@@ -176,7 +176,7 @@ function Notifications() {
                     marginLeft: 15,
                   }}
                 >
-                  User (010)
+                  User (0)
                 </p>
               </div>
 
@@ -365,7 +365,7 @@ function Notifications() {
                     marginLeft: 15,
                   }}
                 >
-                  Digital Queue (010)
+                  Digital Queue (0)
                 </p>
               </div>
 

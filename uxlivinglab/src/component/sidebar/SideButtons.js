@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId, notifications, userInfo, handleShow } = useStateContext();
+  const { sessionId, notifications, announcements, userInfo, handleShow } =
+    useStateContext();
 
   const [showText, setShowText] = useState(false);
-
+  const allAnnouncements = Array.from(new Set(announcements));
   const allNotifications = Array.from(new Set(notifications));
 
   const user = userInfo?.username;
@@ -42,25 +43,26 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             </p>
           )}
           <i aria-hidden="true" className={value}></i>
-          {keys === "notifications" && notificationNumber > 0 && (
-            <p
-              style={{
-                position: "absolute",
-                border: "3px solid white",
-                fontSize: 13,
-                padding: "1px 5px 8px 5px",
-                height: 10,
-                marginBottom: 49,
-                marginLeft: 50,
-                borderRadius: 100,
-                color: "white",
-                backgroundColor: "#ff0000",
-              }}
-            >
-              {notificationNumber}
-            </p>
-          )}
-          {/* {console.log(notifNumber)} */}
+          {keys === "notifications" &&
+            (allAnnouncements.length > 0 || notificationNumber > 0) && (
+              <p
+                style={{
+                  position: "absolute",
+                  border: "3px solid white",
+                  fontSize: 13,
+                  padding: "1px 5px 8px 5px",
+                  height: 10,
+                  marginBottom: 49,
+                  marginLeft: 50,
+                  borderRadius: 100,
+                  color: "white",
+                  backgroundColor: "#ff0000",
+                }}
+              >
+                {allAnnouncements.length + notificationNumber}
+              </p>
+            )}
+          {/* {console.log(announcements.length)} */}
         </div>
       ) : (
         !sessionId &&
@@ -127,6 +129,25 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
               </p>
             )}
             <i aria-hidden="true" className={value}></i>
+            {keys === "notifications" &&
+              (allAnnouncements.length > 0 || notificationNumber > 0) && (
+                <p
+                  style={{
+                    position: "absolute",
+                    border: "3px solid white",
+                    fontSize: 13,
+                    padding: "1px 5px 8px 5px",
+                    height: 10,
+                    marginBottom: 49,
+                    marginLeft: 50,
+                    borderRadius: 100,
+                    color: "white",
+                    backgroundColor: "#ff0000",
+                  }}
+                >
+                  {allAnnouncements.length + notificationNumber}
+                </p>
+              )}
           </div>
         )
       )}
