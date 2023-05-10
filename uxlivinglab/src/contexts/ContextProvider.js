@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import FetchNotifications from "../API/FetchNotifications";
 import FetchUserInfo from "../API/FetchUserInfo";
 import FetchProducts from "../API/FetchProducts";
+import FetchAnnouncements from "../API/FetchAnnouncements";
 
 const StateContext = createContext();
 
@@ -16,6 +17,7 @@ export const ContextProvider = ({ children }) => {
   const [resStatus, setResStatus] = useState(false);
   const [chosenProduct, setChosenProduct] = useState("");
   const [products, setProducts] = useState({});
+  const [announcements, setAnnouncements] = useState();
 
   const handleShow = (show) => {
     setShow(show);
@@ -47,6 +49,18 @@ export const ContextProvider = ({ children }) => {
     }
     fetchNotifications();
   }, [setNotifications]);
+
+  useEffect(() => {
+    async function fetchAnnouncements() {
+      try {
+        const response = await FetchAnnouncements();
+        setAnnouncements(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchAnnouncements();
+  }, [setAnnouncements]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -103,6 +117,7 @@ export const ContextProvider = ({ children }) => {
         setNotifications,
         chosenProduct,
         setChosenProduct,
+        announcements,
       }}
     >
       {children}

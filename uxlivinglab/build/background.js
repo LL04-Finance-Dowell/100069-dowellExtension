@@ -66,7 +66,8 @@ chrome.runtime.onInstalled.addListener(function (details) {
       type: "basic",
       title: "Extension Updated",
       message: "Your extension has been updated to the latest version.",
-      iconUrl: "48.png",
+      iconUrl:
+        "https://images.ctfassets.net/hrltx12pl8hq/7JnR6tVVwDyUM8Cbci3GtJ/bf74366cff2ba271471725d0b0ef418c/shutterstock_376532611-og.jpg",
     };
     chrome.notifications.create(options);
   }
