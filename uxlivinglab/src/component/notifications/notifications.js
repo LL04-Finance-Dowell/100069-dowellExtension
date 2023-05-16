@@ -69,6 +69,52 @@ function Notifications() {
     showArrow7: false,
   });
 
+  function PublicNotifications() {
+    return (
+      <div>
+        {announcements
+          .filter((data) => data.member_type === "Public")
+          .map((data, index) => (
+            // remember to filter based on product name and seen status before pushing (Workflow AI)
+            <div style={{ display: "flex" }}>
+              {/* <p
+                      style={{
+                        border: "3px solid white",
+                        padding: "1px 5px 5px 5px",
+                        fontSize: 14,
+                        height: 15,
+                        marginBottom: 3,
+                        marginTop: 23,
+                        marginLeft: 5,
+                        borderRadius: 100,
+                        color: "white",
+                        backgroundColor: "black",
+                      }}
+                    >
+                      {index + 1}
+                    </p> */}
+
+              <h3
+                style={{
+                  backgroundColor: "rgb(74, 162, 74)",
+                  borderRadius: 20,
+                  width: 200,
+                  color: "white",
+                  marginLeft: 35,
+                  // height: 200,
+                  padding: 8,
+                  marginBottom: 0,
+                  cursor: "pointer",
+                }}
+              >
+                {data.description}
+              </h3>
+            </div>
+          ))}{" "}
+      </div>
+    );
+  }
+
   const MessageContent = ({ data }) => {
     const markSeenClick = async (pk) => {
       changeMarked();
@@ -214,43 +260,7 @@ function Notifications() {
                   arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
                 }
               >
-                {announcements.map((data, index) => (
-                  // remember to filter based on product name and seen status before pushing (Workflow AI)
-                  <div style={{ display: "flex" }}>
-                    {/* <p
-                      style={{
-                        border: "3px solid white",
-                        padding: "1px 5px 5px 5px",
-                        fontSize: 14,
-                        height: 15,
-                        marginBottom: 3,
-                        marginTop: 23,
-                        marginLeft: 5,
-                        borderRadius: 100,
-                        color: "white",
-                        backgroundColor: "black",
-                      }}
-                    >
-                      {index + 1}
-                    </p> */}
-
-                    <h3
-                      style={{
-                        backgroundColor: "rgb(74, 162, 74)",
-                        borderRadius: 20,
-                        width: 200,
-                        color: "white",
-                        marginLeft: 35,
-                        // height: 200,
-                        padding: 8,
-                        marginBottom: 0,
-                        cursor: "pointer",
-                      }}
-                    >
-                      {data.message}
-                    </h3>
-                  </div>
-                ))}
+                <PublicNotifications />
               </div>
 
               <div
@@ -463,43 +473,7 @@ function Notifications() {
                   arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
                 }
               >
-                {announcements.map((data, index) => (
-                  // remember to filter based on product name and seen status before pushing (Workflow AI)
-                  <div style={{ display: "flex" }}>
-                    {/* <p
-                      style={{
-                        border: "3px solid white",
-                        padding: "1px 5px 5px 5px",
-                        fontSize: 14,
-                        height: 15,
-                        marginBottom: 3,
-                        marginTop: 23,
-                        marginLeft: 5,
-                        borderRadius: 100,
-                        color: "white",
-                        backgroundColor: "black",
-                      }}
-                    >
-                      {index + 1}
-                    </p> */}
-
-                    <h3
-                      style={{
-                        backgroundColor: "rgb(74, 162, 74)",
-                        borderRadius: 20,
-                        width: 200,
-                        color: "white",
-                        marginLeft: 35,
-                        // height: 200,
-                        padding: 8,
-                        marginBottom: 0,
-                        cursor: "pointer",
-                      }}
-                    >
-                      {data.message}
-                    </h3>
-                  </div>
-                ))}
+                <PublicNotifications />
               </div>
               <div
                 className={styles.elementContainer}
