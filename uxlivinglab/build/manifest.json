@@ -27,5 +27,5 @@
     "128": "128.png"
   },
   "host_permissions": ["<all_urls>"],
-  "permissions": ["cookies", "notifications", "alarms"]
+  "permissions": ["cookies", "notifications"]
 }
