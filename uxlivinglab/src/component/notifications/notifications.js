@@ -263,7 +263,7 @@ function Notifications() {
         </button>
         {sessionId ? (
           <div className={styles.all}>
-            <p className={styles.texts}>Chat Messages</p>
+            <p className={styles.texts}>Announcements</p>
 
             <div className={styles.allBorder}>
               <div
@@ -553,7 +553,7 @@ function Notifications() {
           </div>
         ) : (
           <div className={styles.all}>
-            <p className={styles.texts}>Chat Messages</p>
+            <p className={styles.texts}>Announcements</p>
 
             <div className={styles.allBorder}>
               <div
