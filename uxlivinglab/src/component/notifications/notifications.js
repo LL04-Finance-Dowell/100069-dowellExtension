@@ -22,9 +22,9 @@ function Notifications() {
 
   const notificationNumber = allNotifications.filter(
     (datum) =>
-      datum.seen === false &&
-      datum.username === user &&
-      datum.productName === product
+      datum['notification'].seen === false &&
+      datum['notification'].username === user &&
+      datum['notification'].productName === product
   ).length;
 
   const markSeenClick = async (pk) => {
@@ -73,7 +73,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          .filter((data) => data.member_type === "User")
+          .filter((data) => data['announcement'].member_type === "User")
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -107,7 +107,7 @@ function Notifications() {
                   cursor: "pointer",
                 }}
               >
-                {data.description}
+                {data['announcement'].description}
               </h3>
             </div>
           ))}{" "}
@@ -119,7 +119,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          .filter((data) => data.member_type === "Member")
+          .filter((data) => data['announcement'].member_type === "Member")
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -153,7 +153,7 @@ function Notifications() {
                   cursor: "pointer",
                 }}
               >
-                {data.description}
+                {data['announcement'].description}
               </h3>
             </div>
           ))}{" "}
@@ -165,7 +165,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          .filter((data) => data.member_type === "Public")
+          .filter((data) => data['announcement'].member_type === "Public")
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -199,7 +199,7 @@ function Notifications() {
                   cursor: "pointer",
                 }}
               >
-                {data.description}
+                {data['announcement'].description}
               </h3>
             </div>
           ))}{" "}
@@ -232,9 +232,9 @@ function Notifications() {
           <div>
             <div
               className={styles.badges}
-              onClick={() => redirectnotification(data.link)}
+              onClick={() => redirectnotification(data['notification'].link)}
             >
-              <ChatTitles title={data.title} />
+              <ChatTitles title={data['notification'].title} />
             </div>
           </div>
         ) : null}
@@ -288,7 +288,7 @@ function Notifications() {
                 >
                   Team Member (
                   {
-                    announcements.filter((data) => data.member_type == "Member")
+                    announcements.filter((data) => data['announcement'].member_type == "Member")
                       .length
                   }
                   )
@@ -323,7 +323,7 @@ function Notifications() {
                 >
                   User (
                   {
-                    announcements.filter((data) => data.member_type == "User")
+                    announcements.filter((data) => data['announcement'].member_type == "User")
                       .length
                   }
                   )
@@ -360,7 +360,7 @@ function Notifications() {
                 >
                   Public (
                   {
-                    announcements.filter((data) => data.member_type == "Public")
+                    announcements.filter((data) => data['announcement'].member_type == "Public")
                       .length
                   }
                   )
@@ -438,9 +438,9 @@ function Notifications() {
                 {allNotifications
                   .filter(
                     (datum) =>
-                      datum.seen === false &&
-                      datum.username === user &&
-                      datum.productName === product
+                      datum['notification'].seen === false &&
+                      datum['notification'].username === user &&
+                      datum['notification'].productName === product
                   )
                   .map((data, index) => (
                     // remember to filter based on product name and seen status before pushing (Workflow AI)
@@ -578,7 +578,7 @@ function Notifications() {
                 >
                   Public (
                   {
-                    announcements.filter((data) => data.member_type == "Public")
+                    announcements.filter((data) => data['announcement'].member_type == "Public")
                       .length
                   }
                   )
