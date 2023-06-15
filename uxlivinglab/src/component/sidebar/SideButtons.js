@@ -12,7 +12,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
   const user = userInfo?.username;
   // const notification = [];
   const notificationNumber = allNotifications.filter(
-    (datum) => datum.seen === false && datum.username === user
+    (datum) => datum['notification'].seen === false && datum['notification'].username === user
   ).length;
 
   return (

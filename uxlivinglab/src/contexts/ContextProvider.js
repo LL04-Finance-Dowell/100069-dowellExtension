@@ -42,7 +42,7 @@ export const ContextProvider = ({ children }) => {
     async function fetchNotifications() {
       try {
         const response = await FetchNotifications();
-        setNotifications(response.data);
+        setNotifications(response.data[0]);
       } catch (e) {
         console.log(e);
       }
@@ -54,7 +54,8 @@ export const ContextProvider = ({ children }) => {
     async function fetchAnnouncements() {
       try {
         const response = await FetchAnnouncements();
-        setAnnouncements(response.data);
+        setAnnouncements(response.data['data']);
+        // console.log(announcements)
       } catch (e) {
         console.log(e);
       }
