@@ -73,7 +73,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          .filter((data) => data['announcement'].member_type === "User")
+          ?.filter((data) => data['announcement'].member_type === "User")
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -119,7 +119,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          .filter((data) => data['announcement'].member_type === "Member")
+          ?.filter((data) => data['announcement'].member_type === "Member")
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -165,7 +165,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          .filter((data) => data['announcement'].member_type === "Public")
+          ?.filter((data) => data['announcement'].member_type === "Public")
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -288,7 +288,7 @@ function Notifications() {
                 >
                   Team Member (
                   {
-                    announcements.filter((data) => data['announcement'].member_type == "Member")
+                    announcements?.filter((data) => data['announcement'].member_type == "Member")
                       .length
                   }
                   )
@@ -323,7 +323,7 @@ function Notifications() {
                 >
                   User (
                   {
-                    announcements.filter((data) => data['announcement'].member_type == "User")
+                    announcements?.filter((data) => data['announcement'].member_type == "User")
                       .length
                   }
                   )
@@ -360,7 +360,7 @@ function Notifications() {
                 >
                   Public (
                   {
-                    announcements.filter((data) => data['announcement'].member_type == "Public")
+                    announcements?.filter((data) => data['announcement'].member_type == "Public")
                       .length
                   }
                   )
@@ -578,7 +578,7 @@ function Notifications() {
                 >
                   Public (
                   {
-                    announcements.filter((data) => data['announcement'].member_type == "Public")
+                    announcements?.filter((data) => data['announcement'].member_type == "Public")
                       .length
                   }
                   )
@@ -591,6 +591,42 @@ function Notifications() {
               >
                 <PublicAnnouncements />
               </div>
+              <div
+                className={styles.elementContainer}
+                onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
+              >
+                <i
+                  aria-hidden="true"
+                  className={
+                    arrows.showArrow2
+                      ? "fas fa-angles-up"
+                      : "fas fa-angles-down"
+                  }
+                  style={{ marginTop: 15, marginLeft: 5 }}
+                ></i>
+
+                <p
+                  style={{
+                    color: arrows.showArrow2 && "#61ce70",
+                    marginLeft: 15,
+                  }}
+                >
+                  User (
+                  {
+                    announcements?.filter((data) => data['announcement'].member_type == "User")
+                      .length
+                  }
+                  )
+                </p>
+              </div>
+              <div
+                className={
+                  arrows.showArrow2 ? styles.spaceShow : styles.spaceHide
+                }
+              >
+                <UserAnnouncements />
+              </div>
+
               <div
                 className={styles.elementContainer}
                 onClick={() => handleArrows("showArrow4", !arrows.showArrow4)}
