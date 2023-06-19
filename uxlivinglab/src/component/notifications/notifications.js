@@ -5,6 +5,8 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import ChatTitles from "./ChatTitles";
 import AnnouncementTitles from "./AnnouncementTitles";
 import UpdateNotifications from "../../API/UpdateNotifications";
+import LoadingSpinner from "../spinner/spinner";
+
 
 function Notifications() {
   const {
@@ -261,7 +263,7 @@ function Notifications() {
             Notifications
           </i>
         </button>
-        {sessionId ? (
+        {sessionId ? ( announcements?
           <div className={styles.all}>
             <p className={styles.texts}>Announcements</p>
 
@@ -551,7 +553,11 @@ function Notifications() {
               />
             </div>
           </div>
-        ) : (
+          :
+          <div style={{marginTop:100}}>
+          <LoadingSpinner/>
+          </div>
+        ) : (announcements?
           <div className={styles.all}>
             <p className={styles.texts}>Announcements</p>
 
@@ -682,6 +688,10 @@ function Notifications() {
               />
             </div>
           </div>
+        :
+        <div style={{marginTop:100}}>
+        <LoadingSpinner/>
+        </div>
         )}
       </div>
     </>
