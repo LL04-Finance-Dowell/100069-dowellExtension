@@ -2,11 +2,14 @@ import "./customer_support.css";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useState } from "react";
+import LoadingSpinner from "../spinner/spinner";
+
 
 function CustomerSupport() {
   const { show, handleShow, sessionId, data, products } = useStateContext();
-  const [buttonClicked, clickButton] = useState(false);
+  const [buttonClicked, clickButton] = useState(true);
   const [selectedProduct, changeSelectedProduct] = useState("Workflow-AI");
+  const [showChatIframe, setChatIframe] = useState(false);
   const allProducts = Array.from(new Set(products));
   {
     console.log(allProducts);
@@ -29,28 +32,10 @@ function CustomerSupport() {
           </button>
         </div>
       </div>
-      {!buttonClicked && sessionId ? (
-        <div
-          class="button-div"
-          style={{
-            marginTop: 25,
-            marginLeft: 47,
-            marginBottom: 30,
-          }}
-        >
-          <button
-            style={{ borderRadius: 20, boxShadow: "1px 2px 9px #00000080" }}
-            type="submit"
-            class="connectWebsite"
-            id="chatcustomersupport"
-            onClick={() => clicker()}
-          >
-            Chat with Customer Support
-          </button>
-        </div>
-      ) : null}
+      {/* {!buttonClicked && sessionId ? (
+      ) : null} */}
 
-      {buttonClicked ? (
+      {showChatIframe ? (
         <div>
           {/* <select
             className="elementor-field-textual elementor-size-sm"
@@ -86,7 +71,26 @@ function CustomerSupport() {
             ></iframe>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div style={{ marginTop: 200, marginLeft: 140 }}>
+        {/* <button
+          style={{ borderRadius: 20, boxShadow: "1px 2px 9px #00000080" }}
+          type="submit"
+          class="connectWebsite"
+          id="chatcustomersupport"
+          onClick={() => clicker()}
+        >
+          Chat with Customer Support
+        </button> */}
+        <LoadingSpinner>
+          {setTimeout(() => {
+           setChatIframe(true);
+          }, 4000)}
+        </LoadingSpinner>
+        {/* {() => showIframe(true)} */}
+      </div>
+
+      )}
 
       <div className="customersupport" style={{ marginLeft: 0 }}>
         <div className="elementor-widget-container" style={{ marginRight: 10 }}>
