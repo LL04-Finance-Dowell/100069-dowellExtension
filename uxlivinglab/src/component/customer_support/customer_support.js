@@ -72,7 +72,7 @@ function CustomerSupport() {
           </div>
         </div>
       ) : (
-        <div style={{ marginTop: 200, marginLeft: 140 }}>
+        <div style={{ marginTop: 100, marginBottom: 50, marginLeft: 140 }}>
         {/* <button
           style={{ borderRadius: 20, boxShadow: "1px 2px 9px #00000080" }}
           type="submit"
