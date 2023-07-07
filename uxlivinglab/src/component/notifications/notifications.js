@@ -674,7 +674,7 @@ function Notifications() {
                 justifyContent: "flex-end",
                 height: "100%",
                 marginLeft: "5px",
-                marginTop: "20px",
+                marginTop: "110px",
               }}
             >
               <RxCross2
