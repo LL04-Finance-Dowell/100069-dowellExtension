@@ -263,7 +263,9 @@ function Notifications() {
             Notifications
           </i>
         </button>
-        {sessionId ? ( announcements?
+        {sessionId ?
+        // When user is logged in
+        ( announcements?
           <div className={styles.all}>
             <p className={styles.texts}>Announcements</p>
 
@@ -557,7 +559,9 @@ function Notifications() {
           <div style={{marginTop:100}}>
           <LoadingSpinner/>
           </div>
-        ) : (announcements?
+        ) :
+        // When user is not logged in 
+        (announcements?
           <div className={styles.all}>
             <p className={styles.texts}>Announcements</p>
 
@@ -597,7 +601,7 @@ function Notifications() {
               >
                 <PublicAnnouncements />
               </div>
-              <div
+              {/* <div
                 className={styles.elementContainer}
                 onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
               >
@@ -661,7 +665,7 @@ function Notifications() {
                 className={
                   arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
                 }
-              ></div>
+              ></div> */}
             </div>
             <div
               style={{
