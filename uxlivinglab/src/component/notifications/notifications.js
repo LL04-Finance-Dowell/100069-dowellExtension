@@ -16,6 +16,7 @@ function Notifications() {
     announcements,
     userInfo,
     sessionId,
+    chosenProduct
   } = useStateContext();
   const user = userInfo.username;
   const product = "Workflow AI";
@@ -121,7 +122,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          ?.filter((data) => data['announcement'].member_type === "Member")
+          ?.filter((data) => data['announcement'].member_type === "Member" && data['announcement'].company_id === chosenProduct)
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -264,344 +265,344 @@ function Notifications() {
           </i>
         </button>
         {sessionId ?
-        // When user is logged in
-        ( announcements?
-          <div className={styles.all}>
-            <p className={styles.texts}>Announcements</p>
+          // When user is logged in
+          (announcements ?
+            <div className={styles.all}>
+              <p className={styles.texts}>Announcements</p>
 
-            <div className={styles.allBorder}>
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow1", !arrows.showArrow1)}
-              >
-                <i
-                  aria-hidden="true"
-                  className={
-                    arrows.showArrow1
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
-                  }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
-
-                <p
-                  style={{
-                    color: arrows.showArrow1 && "#61ce70",
-                    marginLeft: 15,
-                  }}
+              <div className={styles.allBorder}>
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow1", !arrows.showArrow1)}
                 >
-                  Team Member (
-                  {
-                    announcements?.filter((data) => data['announcement'].member_type == "Member")
-                      .length
-                  }
-                  )
-                </p>
-              </div>
-              <div
-                className={
-                  arrows.showArrow1 ? styles.spaceShow : styles.spaceHide
-                }
-              >
-                <MemberAnnouncements />
-              </div>
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
-              >
-                <i
-                  aria-hidden="true"
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow1
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
+
+                  <p
+                    style={{
+                      color: arrows.showArrow1 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    Team Member (
+                    {
+                      announcements?.filter((data) => data['announcement'].member_type == "Member" && data['announcement'].company_id === chosenProduct)
+                        .length
+                    }
+                    )
+                  </p>
+                </div>
+                <div
                   className={
-                    arrows.showArrow2
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
+                    arrows.showArrow1 ? styles.spaceShow : styles.spaceHide
                   }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
-
-                <p
-                  style={{
-                    color: arrows.showArrow2 && "#61ce70",
-                    marginLeft: 15,
-                  }}
                 >
-                  User (
-                  {
-                    announcements?.filter((data) => data['announcement'].member_type == "User")
-                      .length
-                  }
-                  )
-                </p>
-              </div>
+                  <MemberAnnouncements />
+                </div>
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
+                >
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow2
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
 
-              <div
-                className={
-                  arrows.showArrow2 ? styles.spaceShow : styles.spaceHide
-                }
-              >
-                <UserAnnouncements />
-              </div>
+                  <p
+                    style={{
+                      color: arrows.showArrow2 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    User (
+                    {
+                      announcements?.filter((data) => data['announcement'].member_type == "User")
+                        .length
+                    }
+                    )
+                  </p>
+                </div>
 
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
-              >
-                <i
-                  aria-hidden="true"
+                <div
                   className={
-                    arrows.showArrow3
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
+                    arrows.showArrow2 ? styles.spaceShow : styles.spaceHide
                   }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
-
-                <p
-                  style={{
-                    color: arrows.showArrow3 && "#61ce70",
-                    marginLeft: 15,
-                  }}
                 >
-                  Public (
-                  {
-                    announcements?.filter((data) => data['announcement'].member_type == "Public")
-                      .length
-                  }
-                  )
-                </p>
-              </div>
-              <div
-                className={
-                  arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
-                }
-              >
-                <PublicAnnouncements />
-              </div>
+                  <UserAnnouncements />
+                </div>
 
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow4", !arrows.showArrow4)}
-              >
-                <i
-                  aria-hidden="true"
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
+                >
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow3
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
+
+                  <p
+                    style={{
+                      color: arrows.showArrow3 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    Public (
+                    {
+                      announcements?.filter((data) => data['announcement'].member_type == "Public")
+                        .length
+                    }
+                    )
+                  </p>
+                </div>
+                <div
                   className={
-                    arrows.showArrow4
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
+                    arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
                   }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
-
-                <p
-                  style={{
-                    color: arrows.showArrow4 && "#61ce70",
-                    marginLeft: 15,
-                  }}
                 >
-                  UX Living Lab (0)
-                </p>
-              </div>
+                  <PublicAnnouncements />
+                </div>
 
-              <div
-                className={
-                  arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
-                }
-              ></div>
-            </div>
-            <p className={styles.texts}>Tasks</p>
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow4", !arrows.showArrow4)}
+                >
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow4
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
 
-            <div className={styles.allBorder}>
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow5", !arrows.showArrow5)}
-              >
-                <i
-                  aria-hidden="true"
+                  <p
+                    style={{
+                      color: arrows.showArrow4 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    UX Living Lab (0)
+                  </p>
+                </div>
+
+                <div
                   className={
-                    arrows.showArrow5
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
+                    arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
                   }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
+                ></div>
+              </div>
+              <p className={styles.texts}>Tasks</p>
 
-                <p
-                  style={{
-                    color: arrows.showArrow5 && "#61ce70",
-                    marginLeft: 15,
-                  }}
+              <div className={styles.allBorder}>
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow5", !arrows.showArrow5)}
                 >
-                  Workflow AI ({notificationNumber})
-                </p>
-              </div>
-              <div
-                className={
-                  arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
-                }
-              >
-                {allNotifications
-                  .filter(
-                    (datum) =>
-                      datum['notification'].seen === false &&
-                      datum['notification'].username === user &&
-                      datum['notification'].productName === product
-                  )
-                  .map((data, index) => (
-                    // remember to filter based on product name and seen status before pushing (Workflow AI)
-                    <div style={{ display: "flex" }}>
-                      <p
-                        style={{
-                          border: "3px solid white",
-                          padding: "1px 5px 5px 5px",
-                          fontSize: 14,
-                          height: 15,
-                          marginBottom: 3,
-                          marginTop: 23,
-                          marginLeft: 5,
-                          borderRadius: 100,
-                          color: "white",
-                          backgroundColor: "black",
-                        }}
-                      >
-                        {index + 1}
-                      </p>
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow5
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
 
-                      <MessageContent data={data} key={index} />
-                    </div>
-                  ))}
-              </div>
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow6", !arrows.showArrow6)}
-              >
-                <i
-                  aria-hidden="true"
+                  <p
+                    style={{
+                      color: arrows.showArrow5 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    Workflow AI ({notificationNumber})
+                  </p>
+                </div>
+                <div
                   className={
-                    arrows.showArrow6
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
+                    arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
                   }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
-
-                <p
-                  style={{
-                    color: arrows.showArrow6 && "#61ce70",
-                    marginLeft: 15,
-                  }}
                 >
-                  Digital Queue (0)
-                </p>
-              </div>
+                  {allNotifications
+                    .filter(
+                      (datum) =>
+                        datum['notification'].seen === false &&
+                        datum['notification'].username === user &&
+                        datum['notification'].productName === product
+                    )
+                    .map((data, index) => (
+                      // remember to filter based on product name and seen status before pushing (Workflow AI)
+                      <div style={{ display: "flex" }}>
+                        <p
+                          style={{
+                            border: "3px solid white",
+                            padding: "1px 5px 5px 5px",
+                            fontSize: 14,
+                            height: 15,
+                            marginBottom: 3,
+                            marginTop: 23,
+                            marginLeft: 5,
+                            borderRadius: 100,
+                            color: "white",
+                            backgroundColor: "black",
+                          }}
+                        >
+                          {index + 1}
+                        </p>
 
-              <div
-                className={
-                  arrows.showArrow6 ? styles.spaceShow : styles.spaceHide
-                }
-              ></div>
+                        <MessageContent data={data} key={index} />
+                      </div>
+                    ))}
+                </div>
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow6", !arrows.showArrow6)}
+                >
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow6
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
 
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow7", !arrows.showArrow7)}
-              >
-                <i
-                  aria-hidden="true"
+                  <p
+                    style={{
+                      color: arrows.showArrow6 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    Digital Queue (0)
+                  </p>
+                </div>
+
+                <div
                   className={
-                    arrows.showArrow7
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
+                    arrows.showArrow6 ? styles.spaceShow : styles.spaceHide
                   }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
+                ></div>
 
-                <p
-                  style={{
-                    color: arrows.showArrow7 && "#61ce70",
-                    marginLeft: 15,
-                  }}
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow7", !arrows.showArrow7)}
                 >
-                  UX Live (0)
-                </p>
-              </div>
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow7
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
 
+                  <p
+                    style={{
+                      color: arrows.showArrow7 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    UX Live (0)
+                  </p>
+                </div>
+
+                <div
+                  className={
+                    arrows.showArrow7 ? styles.spaceShow : styles.spaceHide
+                  }
+                ></div>
+              </div>
               <div
-                className={
-                  arrows.showArrow7 ? styles.spaceShow : styles.spaceHide
-                }
-              ></div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                height: "100%",
-                marginLeft: "5px",
-                marginTop: "20px",
-              }}
-            >
-              <RxCross2
-                size={24}
-                color="white"
                 style={{
-                  cursor: "pointer",
-                  backgroundColor: "red",
-                  borderRadius: 20,
-                  marginTop: 4,
-                  marginBottom: 8,
-                  fontWeight: 1000,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  height: "100%",
+                  marginLeft: "5px",
+                  marginTop: "20px",
                 }}
-                onClick={() => handleShow(!show)}
-              />
-            </div>
-          </div>
-          :
-          <div style={{marginTop:100}}>
-          <LoadingSpinner/>
-          </div>
-        ) :
-        // When user is not logged in 
-        (announcements?
-          <div className={styles.all}>
-            <p className={styles.texts}>Announcements</p>
-
-            <div className={styles.allBorder}>
-              <div
-                className={styles.elementContainer}
-                onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
               >
-                <i
-                  aria-hidden="true"
-                  className={
-                    arrows.showArrow3
-                      ? "fas fa-angles-up"
-                      : "fas fa-angles-down"
-                  }
-                  style={{ marginTop: 15, marginLeft: 5 }}
-                ></i>
-
-                <p
+                <RxCross2
+                  size={24}
+                  color="white"
                   style={{
-                    color: arrows.showArrow3 && "#61ce70",
-                    marginLeft: 15,
+                    cursor: "pointer",
+                    backgroundColor: "red",
+                    borderRadius: 20,
+                    marginTop: 4,
+                    marginBottom: 8,
+                    fontWeight: 1000,
                   }}
+                  onClick={() => handleShow(!show)}
+                />
+              </div>
+            </div>
+            :
+            <div style={{ marginTop: 100 }}>
+              <LoadingSpinner />
+            </div>
+          ) :
+          // When user is not logged in 
+          (announcements ?
+            <div className={styles.all}>
+              <p className={styles.texts}>Announcements</p>
+
+              <div className={styles.allBorder}>
+                <div
+                  className={styles.elementContainer}
+                  onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
                 >
-                  Public (
-                  {
-                    announcements?.filter((data) => data['announcement'].member_type == "Public")
-                      .length
+                  <i
+                    aria-hidden="true"
+                    className={
+                      arrows.showArrow3
+                        ? "fas fa-angles-up"
+                        : "fas fa-angles-down"
+                    }
+                    style={{ marginTop: 15, marginLeft: 5 }}
+                  ></i>
+
+                  <p
+                    style={{
+                      color: arrows.showArrow3 && "#61ce70",
+                      marginLeft: 15,
+                    }}
+                  >
+                    Public (
+                    {
+                      announcements?.filter((data) => data['announcement'].member_type == "Public")
+                        .length
+                    }
+                    )
+                  </p>
+                </div>
+                <div
+                  className={
+                    arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
                   }
-                  )
-                </p>
-              </div>
-              <div
-                className={
-                  arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
-                }
-              >
-                <PublicAnnouncements />
-              </div>
-              {/* <div
+                >
+                  <PublicAnnouncements />
+                </div>
+                {/* <div
                 className={styles.elementContainer}
                 onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
               >
@@ -666,37 +667,37 @@ function Notifications() {
                   arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
                 }
               ></div> */}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                height: "100%",
-                marginLeft: "5px",
-                marginTop: "110px",
-              }}
-            >
-              <RxCross2
-                size={24}
-                color="white"
+              </div>
+              <div
                 style={{
-                  cursor: "pointer",
-                  backgroundColor: "red",
-                  borderRadius: 20,
-                  marginTop: 200,
-                  marginBottom: 8,
-                  fontWeight: 1000,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                  height: "100%",
+                  marginLeft: "5px",
+                  marginTop: "110px",
                 }}
-                onClick={() => handleShow(!show)}
-              />
+              >
+                <RxCross2
+                  size={24}
+                  color="white"
+                  style={{
+                    cursor: "pointer",
+                    backgroundColor: "red",
+                    borderRadius: 20,
+                    marginTop: 200,
+                    marginBottom: 8,
+                    fontWeight: 1000,
+                  }}
+                  onClick={() => handleShow(!show)}
+                />
+              </div>
             </div>
-          </div>
-        :
-        <div style={{marginTop:100}}>
-        <LoadingSpinner/>
-        </div>
-        )}
+            :
+            <div style={{ marginTop: 100 }}>
+              <LoadingSpinner />
+            </div>
+          )}
       </div>
     </>
   );
