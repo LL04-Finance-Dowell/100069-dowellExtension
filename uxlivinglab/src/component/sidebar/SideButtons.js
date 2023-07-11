@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId, notifications, announcements, userInfo, handleShow } =
+  const { sessionId, notifications, announcements, userInfo, handleShow, setChosenProduct, data } =
     useStateContext();
 
   const [showText, setShowText] = useState(false);
@@ -14,6 +14,9 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
   const notificationNumber = allNotifications.filter(
     (datum) => datum['notification'].seen === false && datum['notification'].username === user
   ).length;
+  setChosenProduct(Array.from(new Set(data
+    ?.filter((datum) => !datum?.portfolio)
+    .map((datum) => datum.org_name)))[0])
 
   return (
     <>
@@ -71,8 +74,8 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
             className="power"
             style={
               (keys === "profiles") |
-              (keys === "products") |
-              (keys === "favourites")
+                (keys === "products") |
+                (keys === "favourites")
                 ? { cursor: "not-allowed" }
                 : {}
             }
@@ -80,27 +83,27 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
               keys !== "login"
                 ? sessionId
                   ? setHover({
-                      ...initialState,
-                      [keys]: true,
-                      login: false,
-                    })
+                    ...initialState,
+                    [keys]: true,
+                    login: false,
+                  })
                   : keys !== "profiles" &&
                     keys !== "products" &&
                     keys !== "favourites"
-                  ? setHover({
+                    ? setHover({
                       ...initialState,
                       [keys]: true,
                       login: false,
                     })
-                  : {}
+                    : {}
                 : sessionId
-                ? setHover({ ...initialState, [keys]: true })
-                : keys !== "profiles" &&
-                  keys !== "notifications" &&
-                  keys !== "products" &&
-                  keys !== "favourites"
-                ? setHover({ ...initialState, [keys]: true })
-                : {}
+                  ? setHover({ ...initialState, [keys]: true })
+                  : keys !== "profiles" &&
+                    keys !== "notifications" &&
+                    keys !== "products" &&
+                    keys !== "favourites"
+                    ? setHover({ ...initialState, [keys]: true })
+                    : {}
             }
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}

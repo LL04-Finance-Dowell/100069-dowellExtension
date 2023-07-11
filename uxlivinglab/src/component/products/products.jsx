@@ -8,6 +8,12 @@ const Products = () => {
   const { handleShow, data, setChosenProduct, chosenProduct } =
     useStateContext();
   let productes = [];
+
+  // Default product selection
+  // setChosenProduct(Array.from(new Set(data
+  //   ?.filter((datum) => !datum?.portfolio)
+  //   .map((datum) => datum.org_name)))[0])
+  
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -37,7 +43,14 @@ const Products = () => {
                 height: 15,
               }}
             >
-              <option>Select Workspace</option>
+              {/* <option>
+              {Array.from(new Set(data
+                    ?.filter((datum) => !datum?.portfolio)
+                    .map((datum) => datum.org_name)
+                )
+              )[0]}
+              </option> */}
+
 
               {Array.from(
                 new Set(
