@@ -15,7 +15,7 @@ export const ContextProvider = ({ children }) => {
   const [notifications, setNotifications] = useState();
   const [favProducts, setFavProducts] = useState([]);
   const [resStatus, setResStatus] = useState(false);
-  const [chosenProduct, setChosenProduct] = useState("");
+  const [chosenProduct, setChosenProduct] = useState();
   const [products, setProducts] = useState({});
   const [announcements, setAnnouncements] = useState();
 
@@ -28,6 +28,7 @@ export const ContextProvider = ({ children }) => {
       for (const cookie of cookies) {
         if (cookie.domain === "100014.pythonanywhere.com") {
           setSessionId(cookie.value);
+          console.log(cookie.value)
         }
       }
     }
@@ -37,6 +38,7 @@ export const ContextProvider = ({ children }) => {
       })
       .then((cookies) => logCookies(cookies));
   }, []);
+
 
   useEffect(() => {
     async function fetchNotifications() {
@@ -62,6 +64,7 @@ export const ContextProvider = ({ children }) => {
     }
     fetchAnnouncements();
   }, [setAnnouncements]);
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -99,6 +102,7 @@ export const ContextProvider = ({ children }) => {
       getUserInfo();
     }
   }, [sessionId]);
+
 
   return (
     <StateContext.Provider
