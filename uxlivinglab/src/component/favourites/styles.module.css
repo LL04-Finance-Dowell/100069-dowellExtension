@@ -8,11 +8,12 @@
   flex-wrap: wrap;
 }
 .item {
-  height: 180px;
+  height: 140px;
+  background-size: 120px;
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 200px 200px;
+  background-size: 140px 140px;
   transition: all 0.3s ease-in-out;
   width: 154px;
   margin-top: 10px;
