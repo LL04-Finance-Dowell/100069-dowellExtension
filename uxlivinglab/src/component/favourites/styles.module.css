@@ -1,5 +1,6 @@
 .container {
-  width: 300px;
+  /* width: 150px;
+  height: 150; */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -13,13 +14,15 @@
   background-repeat: no-repeat;
   background-size: 200px 200px;
   transition: all 0.3s ease-in-out;
-  width: 150px;
+  width: 154px;
   margin-top: 10px;
-  flex: 50%;
+  flex: 33% 2;
+  margin-left: 5px;
+  margin-right: 5px;
   cursor: pointer;
 }
 .item:hover {
-  width: 360px;
+  width: 180px;
   flex: 60%;
   background-color: rgba(0, 0, 0, 0.1);
 }
