@@ -15,8 +15,10 @@ export const ContextProvider = ({ children }) => {
   const [notifications, setNotifications] = useState();
   const [favProducts, setFavProducts] = useState([]);
   const [resStatus, setResStatus] = useState(false);
+  const [portfolioInfo, setPortfolioInfo] = useState();
   const [chosenProduct, setChosenProduct] = useState();
   const [products, setProducts] = useState({});
+  const [selectedOrgId, setOrgId] = useState();
   const [announcements, setAnnouncements] = useState();
 
   const handleShow = (show) => {
@@ -38,6 +40,7 @@ export const ContextProvider = ({ children }) => {
       })
       .then((cookies) => logCookies(cookies));
   }, []);
+
 
 
   useEffect(() => {
@@ -104,6 +107,35 @@ export const ContextProvider = ({ children }) => {
   }, [sessionId]);
 
 
+  //Setting the default workspace
+  useEffect(() => {
+    async function setDefaultWorkSpace() {
+      try {
+        const response = await FetchUserInfo(sessionId);
+        // setPortfolioInfo(response.data.userinfo);
+        const data = (
+          [].concat(
+            response?.data.other_org,
+            response?.data.own_organisations,
+            response?.data.portfolio_info.filter((datum) => datum.org_name)
+          )
+        );
+
+        setChosenProduct(Array.from(new Set(data
+          ?.filter((datum) => !datum?.portfolio_info)
+          .map((datum) => datum.org_name)))[0])
+
+        // console.log(chosenProduct);
+
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    setDefaultWorkSpace();
+    console.log(chosenProduct);
+
+  }, [setChosenProduct]);
+
   return (
     <StateContext.Provider
       value={{
@@ -123,6 +155,10 @@ export const ContextProvider = ({ children }) => {
         chosenProduct,
         setChosenProduct,
         announcements,
+        selectedOrgId,
+        setOrgId,
+        portfolioInfo,
+        setPortfolioInfo
       }}
     >
       {children}
