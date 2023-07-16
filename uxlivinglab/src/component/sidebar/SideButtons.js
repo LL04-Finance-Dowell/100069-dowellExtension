@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId, notifications, announcements, userInfo, handleShow, setChosenProduct, data } =
+  const { sessionId, notifications, announcements, userInfo, handleShow, setChosenProduct, data, chosenProduct, portfolioInfo } =
     useStateContext();
 
   const [showText, setShowText] = useState(false);
@@ -14,9 +14,9 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
   const notificationNumber = allNotifications.filter(
     (datum) => datum['notification'].seen === false && datum['notification'].username === user
   ).length;
-  setChosenProduct(Array.from(new Set(data
-    ?.filter((datum) => !datum?.portfolio)
-    .map((datum) => datum.org_name)))[0])
+
+  // setChosenProduct(Array.from(new Set(portfolioInfo.map((datum) => datum.org_id))))
+  // console.log(chosenProduct);
 
   return (
     <>
