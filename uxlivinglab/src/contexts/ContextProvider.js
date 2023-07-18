@@ -135,10 +135,13 @@ export const ContextProvider = ({ children }) => {
         console.log(e)
       }
     }
-    setDefaultWorkSpace();
-    console.log(chosenProduct);
-
-  }, [setOrgId, setChosenProduct]);
+    if (sessionId.length > 0) {
+      setDefaultWorkSpace();
+      console.log(chosenProduct);
+    } else {
+      console.log("NOpe")
+    }
+  }, [sessionId]);
 
   return (
     <StateContext.Provider
