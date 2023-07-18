@@ -125,6 +125,10 @@ export const ContextProvider = ({ children }) => {
           ?.filter((datum) => !datum?.portfolio_info)
           .map((datum) => datum.org_name)))[0])
 
+        setOrgId(Array.from(new Set(data
+          ?.filter((datum) => !datum?.portfolio_info)
+          .map((datum) => datum.org_id))))
+
         // console.log(chosenProduct);
 
       } catch (e) {
@@ -134,7 +138,7 @@ export const ContextProvider = ({ children }) => {
     setDefaultWorkSpace();
     console.log(chosenProduct);
 
-  }, [setChosenProduct]);
+  }, [setOrgId, setChosenProduct]);
 
   return (
     <StateContext.Provider
