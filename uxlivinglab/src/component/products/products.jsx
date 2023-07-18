@@ -65,7 +65,7 @@ const Products = () => {
               {/* <option>Select Workspace</option> */}
 
               {result.map((org_data, index) => (
-                <option value={[org_data.org_name,org_data.org_id]} key={index}>
+                <option value={[org_data?.org_name,org_data?.org_id]} key={index}>
                   {org_data.org_name}
                 </option>
               ))}
