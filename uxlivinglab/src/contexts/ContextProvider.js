@@ -138,7 +138,7 @@ export const ContextProvider = ({ children }) => {
     setDefaultWorkSpace();
     console.log(chosenProduct);
 
-  }, [setOrgId, setChosenProduct]);
+  }, []);
 
   return (
     <StateContext.Provider
