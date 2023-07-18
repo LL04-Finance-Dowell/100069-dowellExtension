@@ -16,7 +16,8 @@ function Notifications() {
     announcements,
     userInfo,
     sessionId,
-    chosenProduct
+    chosenProduct,
+    selectedOrgId,
   } = useStateContext();
   const user = userInfo.username;
   const product = "Workflow AI";
@@ -122,7 +123,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          ?.filter((data) => data['announcement'].member_type === "Member" && data['announcement'].company_id === chosenProduct)
+          ?.filter((data) => data['announcement'].member_type === "Member" && data._id === selectedOrgId)
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
