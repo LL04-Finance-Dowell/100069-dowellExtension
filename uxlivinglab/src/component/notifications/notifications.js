@@ -123,7 +123,7 @@ function Notifications() {
     return (
       <div>
         {announcements
-          ?.filter((data) => data['announcement']?.member_type === "Member" && data['announcement']?.org_id === selectedOrgId[1])
+          ?.filter((data) => data['announcement']?.member_type === "Member" && data['announcement']?.org_id === selectedOrgId?.[1])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -157,6 +157,7 @@ function Notifications() {
                   cursor: "pointer",
                 }}
               >
+                {console.log(selectedOrgId)}
                 {data['announcement']?.description}
               </h3>
             </div>
