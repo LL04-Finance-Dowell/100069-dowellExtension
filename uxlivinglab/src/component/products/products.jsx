@@ -2,12 +2,32 @@ import React from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
+import _, {lodash} from "lodash"
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Products = () => {
-  const { handleShow, data, setChosenProduct, chosenProduct } =
+  const { handleShow, data, setChosenProduct, chosenProduct, selectedOrgId, setOrgId } =
     useStateContext();
   let productes = [];
+
+  const product_data = Array.from(
+    new Set(
+      data
+        ?.filter((datum) => !datum?.portfolio_info)
+
+        // uncomment after data can be changed successfully
+        .filter((datum) => datum.org_id)
+
+    )
+  )
+
+  //This works, and it filters based on unique orgIds and unique Org Names
+  const result = _.uniqBy(product_data, (e)=>{
+    return [e.org_name, e.org_id].join();
+  })
+  // console.log(result)
+
+
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -26,7 +46,12 @@ const Products = () => {
             <select
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
-                setChosenProduct(e.target.value);
+                const space = e.target.value.split(",")
+                console.log(space)
+                setChosenProduct(space[0]);
+                setOrgId(space[1])
+                console.log(space[0])
+                console.log(space[1])
               }}
               value={chosenProduct}
               style={{
@@ -39,15 +64,9 @@ const Products = () => {
             >
               {/* <option>Select Workspace</option> */}
 
-              {Array.from(
-                new Set(
-                  data
-                    ?.filter((datum) => !datum?.portfolio_info)
-                    .map((datum) => datum.org_name)
-                )
-              ).map((org_name, index) => (
-                <option value={`${org_name}`} key={index}>
-                  {org_name}
+              {result.map((org_data, index) => (
+                <option value={[org_data?.org_name,org_data?.org_id]} key={index}>
+                  {org_data.org_name}
                 </option>
               ))}
             </select>

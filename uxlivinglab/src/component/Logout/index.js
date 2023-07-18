@@ -4,13 +4,14 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import { useState } from "react";
 
 export default function Logout() {
-  const { show, handleShow, userInfo, chosenProduct } = useStateContext();
+  const { show, handleShow, userInfo, chosenProduct, selectedOrgId } = useStateContext();
   const [fields, setFields] = useState([
     "Username",
     "Email",
     "Country",
     "Date & Time",
     "Workspace",
+    // "Org_id"
   ]);
   return (
     <>
@@ -33,14 +34,16 @@ export default function Logout() {
                     {data === "Username"
                       ? userInfo?.username
                       : data === "Email"
-                      ? userInfo?.email
-                      : data === "Country"
-                      ? userInfo?.country
-                      : data === "Date & Time"
-                      ? userInfo?.dowell_time
-                      : data === "Workspace"
-                      ? chosenProduct
-                      : null}
+                        ? userInfo?.email
+                        : data === "Country"
+                          ? userInfo?.country
+                          : data === "Date & Time"
+                            ? userInfo?.dowell_time
+                            : data === "Workspace"
+                              ? chosenProduct
+                              // : data === "Org_id"
+                              //   ? selectedOrgId
+                              : null}
                   </p>
                 </h4>
                 <div
