@@ -127,7 +127,7 @@ export const ContextProvider = ({ children }) => {
 
         setOrgId(Array.from(new Set(data
           ?.filter((datum) => !datum?.portfolio_info)
-          .map((datum) => datum.org_id)))[0])
+          .map((datum) => datum.org_id)))[1])
 
         // console.log(chosenProduct);
 
