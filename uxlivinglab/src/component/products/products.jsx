@@ -25,7 +25,7 @@ const Products = () => {
   const result = _.uniqBy(product_data, (e)=>{
     return [e.org_name, e.org_id].join();
   })
-  // console.log(result)
+  console.log(result)
 
 
   return (
@@ -43,6 +43,7 @@ const Products = () => {
         </div>
         <div className="elementor-form-fields-wrapper elementor-labels-above">
           <div className="elementor-field elementor-select-wrapper ">
+
             <select
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
@@ -62,13 +63,18 @@ const Products = () => {
                 height: 15,
               }}
             >
-              {/* <option>Select Workspace</option> */}
+              <option>{chosenProduct}</option>
 
-              {result.map((org_data, index) => (
+              {result.map((org_data, index) =>  (org_data.org_name !== chosenProduct) ? (
+                
                 <option value={[org_data?.org_name,org_data?.org_id]} key={index}>
                   {org_data.org_name}
                 </option>
-              ))}
+              
+              ): null
+
+              
+              )}
             </select>
           </div>
         </div>
