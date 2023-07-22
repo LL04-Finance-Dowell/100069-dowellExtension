@@ -202,7 +202,8 @@ function Favourites() {
             color={"green"}
           />
         )}
-        <h4 style={{ marginLeft: 10 }}>Add Your Favourites</h4>
+        {/* Add your Favourites goes here */}
+        <h4 style={{ marginLeft: 10 }}></h4>
       </div>
 
       {showProducts && (
@@ -349,9 +350,9 @@ function Favourites() {
                 onClick={(e) => handleSubmit(e)}
                 disabled={
                   inputData.orgName &&
-                  inputData.productName &&
-                  inputData.portfolio &&
-                  inputData.action
+                    inputData.productName &&
+                    inputData.portfolio &&
+                    inputData.action
                     ? false
                     : true
                 }
