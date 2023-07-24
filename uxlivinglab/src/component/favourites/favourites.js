@@ -32,6 +32,7 @@ function Favourites() {
     image: "",
   });
 
+  const [favMouseOver, setFavMouseOver] = useState(false);
   useEffect(() => {
     async function getFavorites() {
       try {
@@ -180,6 +181,7 @@ function Favourites() {
         </div>
       </div>
 
+
       <div
         style={{
           display: "flex",
@@ -189,21 +191,30 @@ function Favourites() {
         }}
       >
         {!showProducts ? (
-          <FiPlusSquare
-            size={24}
-            style={{ cursor: "pointer" }}
-            onClick={() => setShowProducts(!showProducts)}
-          />
+          <span
+            data-text="Add your Favourites"
+            class="tooltip"
+          >
+            <FiPlusSquare
+              size={24}
+              style={{ cursor: "pointer", marginBottom: 25, marginTop: 15 }}
+              onClick={() => setShowProducts(!showProducts)}
+              onMouseEnter={() => setFavMouseOver(true)}
+              onMouseLeave={() => setFavMouseOver(false)}
+            />
+
+          </span>
         ) : (
           <FiMinusSquare
             size={24}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", marginBottom: 25, marginTop: 15 }}
             onClick={() => setShowProducts(!showProducts)}
             color={"green"}
           />
         )}
         {/* Add your Favourites goes here */}
-        <h4 style={{ marginLeft: 10 }}></h4>
+        {/* {favMouseOver ? <h4 className="tooltiptext" style={{ marginLeft: 10 }}>Add your Favourites</h4> : null} */}
+
       </div>
 
       {showProducts && (
