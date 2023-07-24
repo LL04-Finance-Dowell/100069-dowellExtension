@@ -55,3 +55,14 @@
   background: #61ce70;
 
 }
+
+.popup{
+  margin-top: 0px;
+  background-color: rgb(130, 130, 130);
+  height:140px;
+  color:white;
+  font-size: 0.5em;
+  width:50%;
+  padding: 20px;
+  height:50%
+}
