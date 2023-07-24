@@ -52,3 +52,81 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* .tooltiptext{
+  background-color: rgb(105, 105, 105);
+  color:white;
+  padding: 4px;
+  border-radius: 3px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: white transparent transparent transparent;} */
+
+  .tooltiptext{
+    /* border:10px solid #000;
+    border-color: transparent black transparent transparent;
+    margin-left: -5px; */
+    background-color: gainsboro;
+    padding: 4px;
+  }
+  .tooltip {
+    position:relative; /* making the .tooltip span a container for the tooltip text */
+    border-bottom:1px none #000; /* little indicater to indicate it's hoverable */
+  }
+  .tooltip:before {
+    content: attr(data-text); /* here's the magic */
+    position:absolute;
+    
+    /* vertically center */
+    top:50%;
+    transform:translateY(-50%);
+    
+    /* move to right */
+    left:100%;
+    margin-left:15px; /* and add a small left margin */
+    
+    /* basic styles */
+    width:150px;
+    padding:10px;
+    border-radius:10px;
+    background:#888585;
+    color: #fff;
+    text-align:center;
+  
+    display:none; /* hide by default */
+  }
+
+  .tooltip:hover:before {
+    display:block;
+  }
+
+  .tooltip.left:before {
+    /* reset defaults */
+    left:initial;
+    margin:initial;
+  
+    /* set new values */
+    right:100%;
+    margin-right:15px;
+  }
+  .tooltip:after {
+    content: "";
+    position:absolute;
+    
+    /* position tooltip correctly */
+    left:100%;
+    margin-left:-5px;
+   
+    /* vertically center */
+    top:50%;
+    transform:translateY(-50%);
+   
+    /* the arrow */
+    border:10px solid #000;
+    border-color: transparent #888585 transparent transparent;
+    
+    display:none;
+  }
+  .tooltip:hover:before, .tooltip:hover:after {
+    display:block;
+  }

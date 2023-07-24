@@ -32,11 +32,17 @@ const Favorites = () => {
 
 
   const Images = ({data}) => {
-    
+    const [isOnImage, setIsOnImage] = useState(false);
     const [contextMenu, setContextMenu]  = useState(false);
+
+    const setToFalse = () => {
+      setContextMenu(false);
+      setIsOnImage(false);
+    }
     const handleContextMenu =(event)=>{
       event.preventDefault();
       console.log("Right clicked");
+      setIsOnImage(false);
       setContextMenu(!contextMenu);
   
     }
@@ -50,20 +56,37 @@ const Favorites = () => {
       }}
       className={styles.item}
       data-order="1"
+
       //Context menu handles the right clicks
       onContextMenu={handleContextMenu}
       onClick={(e) => handleRedirect(data)}
-      onMouseLeave={() => setContextMenu(false)}
+      onMouseLeave={() => setToFalse()}
+      onMouseOver={() => setIsOnImage(true)}
     >
 
     {contextMenu?
         <div>
         
-          <div onClick={() => handleRemove(data)} className={styles.subText}>
+          <div onClick={() => handleRemove(data)} className={styles.subText} onMouseOver={() => setIsOnImage(false)}>
+
             <h2 style={{fontWeight:23}}>REMOVE</h2>
           </div>
         </div>
       :null}
+
+    {isOnImage?
+      <div>
+        <div className={styles.popup}>
+          <p>USERNAME: {data.username}</p>
+          <p>WORKSPACE: {data.orgName}</p>
+          <p>PRODUCT: {data.productName}</p>
+          <p>PORTFOLIO: {data.portfolio}</p>
+        </div>
+      </div>
+    
+    :null}
+
+    
 
     </div>
     );
