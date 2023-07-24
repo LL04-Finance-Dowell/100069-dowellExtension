@@ -8,8 +8,8 @@ import { useEventCallback } from "@mui/material";
 const Favorites = () => {
   const { favProducts, sessionId, userInfo, resStatus, setFavProducts, inputData } = useStateContext();
 
-  const handleRemove = async (data) => {
-    // e.stopPropagation; 
+  const handleRemove = async (data,event) => {
+    event.stopPropagation(); 
     try {
         const fav = favProducts.filter(
           (pro) =>
@@ -32,6 +32,16 @@ const Favorites = () => {
 
 
   const Images = ({data}) => {
+
+    const handleRedirect = (product) => {
+      const orgName = product.orgName;
+      const productName = product.productName;
+      const portfolio = product.portfolio;
+      window.open(
+        `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${orgName}&product=${productName}&portfolio=${portfolio}&username=${userInfo?.username}`
+      );
+    };
+  
     const [isOnImage, setIsOnImage] = useState(false);
     const [contextMenu, setContextMenu]  = useState(false);
 
@@ -40,6 +50,8 @@ const Favorites = () => {
       setIsOnImage(false);
     }
     const handleContextMenu =(event)=>{
+      // event.stopPropagation();
+
       event.preventDefault();
       console.log("Right clicked");
       setIsOnImage(false);
@@ -59,7 +71,7 @@ const Favorites = () => {
 
       //Context menu handles the right clicks
       onContextMenu={handleContextMenu}
-      onClick={(e) => handleRedirect(data)}
+      onClick={() => handleRedirect(data)}
       onMouseLeave={() => setToFalse()}
       onMouseOver={() => setIsOnImage(true)}
     >
@@ -67,9 +79,9 @@ const Favorites = () => {
     {contextMenu?
         <div>
         
-          <div onClick={() => handleRemove(data)} className={styles.subText} onMouseOver={() => setIsOnImage(false)}>
+          <div onClick={(event) => handleRemove(data,event)}  className={styles.subText} onMouseOver={() => setIsOnImage(false)}>
 
-            <h2 style={{fontWeight:23}}>REMOVE</h2>
+            <h2  style={{fontWeight:23}}>REMOVE</h2>
           </div>
         </div>
       :null}
@@ -93,12 +105,6 @@ const Favorites = () => {
 
   }
 
-  const handleRedirect = (product,e) => {
-    e.stopPropagation();
-    window.open(
-      `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${product.orgName}&product=${product.productName}&portfolio=${product.portfolio}&username=${userInfo?.username}`
-    );
-  };
 
   return (
     <div className={styles.container}>
