@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId, notifications, announcements, userInfo, handleShow, setChosenProduct, data, chosenProduct, portfolioInfo } =
+  const { sessionId, notifications, announcements, userInfo, handleShow, selectedOrgId, setChosenProduct, data, chosenProduct, portfolioInfo } =
     useStateContext();
 
   const [showText, setShowText] = useState(false);
@@ -11,6 +11,18 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
 
   const user = userInfo?.username;
   // const notification = [];
+  const TeamMemberNotifications = announcements?.filter((data) => (data['announcement'].member_type == "Member" && data['announcement'].org_id === selectedOrgId)).length
+  const UserNotifications = announcements?.filter((data) => data['announcement'].member_type == "User").length
+  const PublicNotifcations = announcements?.filter((data) => data['announcement'].member_type == "Public").length
+  const workflowAiNotifications = allNotifications.filter(
+    (datum) =>
+      datum['notification'].seen === false &&
+      datum['notification'].username === user &&
+      datum['notification'].productName === "Workflow AI"
+  ).length;
+
+  const totalNotifications = TeamMemberNotifications + UserNotifications + PublicNotifcations + workflowAiNotifications;
+
   const notificationNumber = allNotifications.filter(
     (datum) => datum['notification'].seen === false && datum['notification'].username === user
   ).length;
@@ -47,7 +59,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
           )}
           <i aria-hidden="true" className={value}></i>
           {keys === "notifications" &&
-            (allAnnouncements.length > 0 || notificationNumber > 0) && (
+            (totalNotifications > 0) && (
               <p
                 style={{
                   position: "absolute",
@@ -62,7 +74,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
                   backgroundColor: "#ff0000",
                 }}
               >
-                {allAnnouncements.length + notificationNumber}
+                {totalNotifications}
               </p>
             )}
           {/* {console.log(announcements.length)} */}
