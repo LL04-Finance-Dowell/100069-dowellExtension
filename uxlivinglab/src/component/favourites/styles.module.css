@@ -59,10 +59,9 @@
 .popup{
   margin-top: 0px;
   background-color: rgb(130, 130, 130);
-  height:140px;
   color:white;
-  font-size: 0.5em;
-  width:50%;
-  padding: 20px;
-  height:50%
+  font-size: 0.9em;
+  width:100%;
+  padding:20px;
+  height:100%
 }
