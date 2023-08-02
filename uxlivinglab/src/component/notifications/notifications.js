@@ -52,7 +52,7 @@ function Notifications() {
       }
     }
     fetchMemberAnnouncements();
-  }, []);
+  }, [selectedOrgId]);
 
   const [userAnnouncementsData, setUserAnnouncements] = useState();
   useEffect(() => {
@@ -66,7 +66,7 @@ function Notifications() {
       }
     }
     fetchUserAnnouncements();
-  }, []);
+  }, [selectedOrgId]);
 
 
 

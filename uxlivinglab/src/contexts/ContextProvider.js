@@ -128,7 +128,7 @@ export const ContextProvider = ({ children }) => {
     }
     fetchPublicAnnouncements(userInfo);
     console.log(publicAnnouncementsData)
-  }, [selectedOrgId]);
+  }, []);
 
   useEffect(() => {
     async function fetchMemberAnnouncements(userinfo, orgid) {
@@ -141,7 +141,7 @@ export const ContextProvider = ({ children }) => {
       }
     }
     fetchMemberAnnouncements(userInfo, selectedOrgId);
-  }, [selectedOrgId]);
+  }, [selectedOrgId, userInfo]);
 
   useEffect(() => {
     async function fetchUserAnnouncements(userinfo, orgid) {
@@ -154,7 +154,7 @@ export const ContextProvider = ({ children }) => {
       }
     }
     fetchUserAnnouncements(userInfo, selectedOrgId);
-  }, [selectedOrgId]);
+  }, [selectedOrgId, userInfo]);
 
 
 
