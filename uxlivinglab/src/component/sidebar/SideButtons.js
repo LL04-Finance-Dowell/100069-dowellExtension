@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 
+
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId, notifications, announcements, userInfo, handleShow, selectedOrgId, setChosenProduct, data, chosenProduct, portfolioInfo } =
+  const { sessionId, notifications, announcements, userInfo, handleShow, selectedOrgId, setChosenProduct, data, chosenProduct, portfolioInfo, userAnnouncementsData, memberAnnouncementsData, publicAnnouncementsData } =
     useStateContext();
 
   const [showText, setShowText] = useState(false);
@@ -11,9 +12,15 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
 
   const user = userInfo?.username;
   // const notification = [];
-  const TeamMemberNotifications = announcements?.filter((data) => (data['announcement'].member_type == "Member" && data['announcement'].org_id === selectedOrgId)).length
-  const UserNotifications = announcements?.filter((data) => data['announcement'].member_type == "User").length
-  const PublicNotifcations = announcements?.filter((data) => data['announcement'].member_type == "Public").length
+
+
+
+  const MemberNotifications = memberAnnouncementsData?.filter((data) => data['announcement']).length;
+  const UserNotifications = userAnnouncementsData?.filter((data) => data['announcement']).length;
+  const PublicNotifications = publicAnnouncementsData?.filter((data) => data['announcement']).length;
+  // console.log("public anns")
+  // console.log(memberAnnouncementsData)
+
   const workflowAiNotifications = allNotifications.filter(
     (datum) =>
       datum['notification'].seen === false &&
@@ -21,7 +28,7 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
       datum['notification'].productName === "Workflow AI"
   ).length;
 
-  const totalNotifications = TeamMemberNotifications + UserNotifications + PublicNotifcations + workflowAiNotifications;
+  const totalNotifications = MemberNotifications + UserNotifications + PublicNotifications + workflowAiNotifications;
 
   const notificationNumber = allNotifications.filter(
     (datum) => datum['notification'].seen === false && datum['notification'].username === user

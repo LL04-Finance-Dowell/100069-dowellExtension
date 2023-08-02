@@ -1,11 +1,15 @@
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useStateContext } from "../../contexts/ContextProvider";
 import ChatTitles from "./ChatTitles";
 import AnnouncementTitles from "./AnnouncementTitles";
 import UpdateNotifications from "../../API/UpdateNotifications";
 import LoadingSpinner from "../spinner/spinner";
+import FetchPublicAnnouncements from "../../API/FetchPublicAnnouncements";
+import FetchMemberAnnouncements from "../../API/FetchMemberAnnouncements";
+import FetchUserAnnouncements from "../../API/FetchUserAnnouncements";
+
 
 
 function Notifications() {
@@ -21,6 +25,52 @@ function Notifications() {
   } = useStateContext();
   const user = userInfo.username;
   const product = "Workflow AI";
+
+  const [publicAnnouncementsData, setPublicAnnouncements] = useState();
+  useEffect(() => {
+    async function fetchPublicAnnouncements() {
+      try {
+        const response = await FetchPublicAnnouncements(userInfo.userID);
+        setPublicAnnouncements(await response.data['data']);
+        // console.log(announcements)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchPublicAnnouncements();
+  }, []);
+
+  const [memberAnnouncementsData, setMemberAnnouncements] = useState();
+  useEffect(() => {
+    async function fetchMemberAnnouncements() {
+      try {
+        const response = await FetchMemberAnnouncements(userInfo.userID, selectedOrgId);
+        setMemberAnnouncements(await response.data['data']);
+        // console.log(announcements)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchMemberAnnouncements();
+  }, []);
+
+  const [userAnnouncementsData, setUserAnnouncements] = useState();
+  useEffect(() => {
+    async function fetchUserAnnouncements() {
+      try {
+        const response = await FetchUserAnnouncements(userInfo.userID, selectedOrgId);
+        setUserAnnouncements(await response.data['data']);
+        // console.log(announcements)
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchUserAnnouncements();
+  }, []);
+
+
+
+
 
   const allNotifications = Array.from(new Set(notifications));
 
@@ -76,8 +126,8 @@ function Notifications() {
   function UserAnnouncements() {
     return (
       <div>
-        {announcements
-          ?.filter((data) => data['announcement'].member_type === "User")
+        {userAnnouncementsData
+          ?.filter((data) => data['announcement'])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -122,8 +172,8 @@ function Notifications() {
   function MemberAnnouncements() {
     return (
       <div>
-        {announcements
-          ?.filter((data) => data['announcement'].member_type === "Member" && data['announcement'].org_id === selectedOrgId)
+        {memberAnnouncementsData
+          ?.filter((data) => data['announcement'])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -157,7 +207,6 @@ function Notifications() {
                   cursor: "pointer",
                 }}
               >
-                {console.log(selectedOrgId)}
                 {data['announcement']?.description}
               </h3>
             </div>
@@ -268,7 +317,7 @@ function Notifications() {
         </button>
         {sessionId ?
           // When user is logged in
-          (announcements ?
+          (publicAnnouncementsData && memberAnnouncementsData && userAnnouncementsData ?
             <div className={styles.all}>
               <p className={styles.texts}>Announcements</p>
 
@@ -295,11 +344,10 @@ function Notifications() {
                   >
                     Team Member (
                     {
-                      announcements?.filter((data) => data['announcement'].member_type == "Member" && data['announcement'].org_id === selectedOrgId)
+                      memberAnnouncementsData?.filter((data) => data['announcement'])
                         .length
 
                     }
-                    {console.log(selectedOrgId)}
                     )
                   </p>
                 </div>
@@ -332,7 +380,7 @@ function Notifications() {
                   >
                     User (
                     {
-                      announcements?.filter((data) => data['announcement'].member_type == "User")
+                      userAnnouncementsData?.filter((data) => data['announcement'])
                         .length
                     }
                     )
@@ -369,7 +417,7 @@ function Notifications() {
                   >
                     Public (
                     {
-                      announcements?.filter((data) => data['announcement'].member_type == "Public")
+                      publicAnnouncementsData?.filter((data) => data['announcement'])
                         .length
                     }
                     )
@@ -566,7 +614,7 @@ function Notifications() {
             </div>
           ) :
           // When user is not logged in 
-          (announcements ?
+          (publicAnnouncementsData && memberAnnouncementsData && userAnnouncementsData ?
             <div className={styles.all}>
               <p className={styles.texts}>Announcements</p>
 
@@ -593,7 +641,7 @@ function Notifications() {
                   >
                     Public (
                     {
-                      announcements?.filter((data) => data['announcement'].member_type == "Public")
+                      publicAnnouncementsData?.filter((data) => data['announcement'])
                         .length
                     }
                     )
