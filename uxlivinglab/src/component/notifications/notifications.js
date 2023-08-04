@@ -218,8 +218,8 @@ function Notifications() {
   function PublicAnnouncements() {
     return (
       <div>
-        {announcements
-          ?.filter((data) => data['announcement'].member_type === "Public")
+        {publicAnnouncementsData
+          ?.filter((data) => data['announcement'])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
             <div style={{ display: "flex" }}>
@@ -253,7 +253,7 @@ function Notifications() {
                   cursor: "pointer",
                 }}
               >
-                {data['announcement'].description}
+                {data['announcement']?.description}
               </h3>
             </div>
           ))}{" "}
