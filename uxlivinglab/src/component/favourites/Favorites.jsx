@@ -89,10 +89,10 @@ const Favorites = () => {
     {isOnImage?
       <div>
         <div className={styles.popup}>
-          <p>USERNAME: {data.username}</p>
-          <p>WORKSPACE: {data.orgName}</p>
-          <p>PRODUCT: {data.productName}</p>
-          <p>PORTFOLIO: {data.portfolio}</p>
+          <span className={styles.details}>USERNAME: <span className={styles.detail}>{data.username}</span></span>
+          <span className={styles.details}>WORKSPACE: <span className={styles.detail}>{data.orgName}</span></span>
+          <span className={styles.details}>PRODUCT: <span className={styles.detail} style={{marginBottom:0}}>{data.productName}</span></span>
+          <span className={styles.details}>PORTFOLIO: <span className={styles.detail} style={{marginTop:0}} >{data.portfolio}</span></span>
         </div>
       </div>
     
