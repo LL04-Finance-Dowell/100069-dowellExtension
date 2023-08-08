@@ -12,7 +12,9 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
-  const [sessionId, setSessionId] = useState("");
+  const [sessionId, setSessionId] = useState(
+    "sdbg5xf5v5qcxrwuyo0xihl2vno3p8i5"
+  );
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
   const [notifications, setNotifications] = useState();
@@ -27,30 +29,25 @@ export const ContextProvider = ({ children }) => {
   const [memberAnnouncementsData, setMemberAnnouncements] = useState();
   const [publicAnnouncementsData, setPublicAnnouncements] = useState();
 
-
-
-
   const handleShow = (show) => {
     setShow(show);
   };
 
-  useEffect(() => {
-    function logCookies(cookies) {
-      for (const cookie of cookies) {
-        if (cookie.domain === "100014.pythonanywhere.com") {
-          setSessionId(cookie.value);
-          console.log(cookie.value)
-        }
-      }
-    }
-    chrome.cookies
-      .getAll({
-        name: "sessionid",
-      })
-      .then((cookies) => logCookies(cookies));
-  }, []);
-
-
+  // useEffect(() => {
+  //   function logCookies(cookies) {
+  //     for (const cookie of cookies) {
+  //       if (cookie.domain === "100014.pythonanywhere.com") {
+  //         setSessionId(cookie.value);
+  //         console.log(cookie.value)
+  //       }
+  //     }
+  //   }
+  //   chrome.cookies
+  //     .getAll({
+  //       name: "sessionid",
+  //     })
+  //     .then((cookies) => logCookies(cookies));
+  // }, []);
 
   useEffect(() => {
     async function fetchNotifications() {
@@ -76,7 +73,6 @@ export const ContextProvider = ({ children }) => {
   //   }
   //   fetchAnnouncements();
   // }, [setAnnouncements]);
-
 
   useEffect(() => {
     async function fetchProducts() {
@@ -119,22 +115,22 @@ export const ContextProvider = ({ children }) => {
     async function fetchPublicAnnouncements(userinfo) {
       try {
         const response = await FetchPublicAnnouncements(userinfo.userID);
-        setPublicAnnouncements(await response.data['data']);
+        setPublicAnnouncements(await response.data["data"]);
 
-        console.log(publicAnnouncementsData)
+        console.log(publicAnnouncementsData);
       } catch (e) {
         console.log(e);
       }
     }
     fetchPublicAnnouncements(userInfo);
-    console.log(publicAnnouncementsData)
+    console.log(publicAnnouncementsData);
   }, []);
 
   useEffect(() => {
     async function fetchMemberAnnouncements(userinfo, orgid) {
       try {
         const response = await FetchMemberAnnouncements(userinfo.userID, orgid);
-        setMemberAnnouncements(await response.data['data']);
+        setMemberAnnouncements(await response.data["data"]);
         // console.log(announcements)
       } catch (e) {
         console.log(e);
@@ -147,7 +143,7 @@ export const ContextProvider = ({ children }) => {
     async function fetchUserAnnouncements(userinfo, orgid) {
       try {
         const response = await FetchUserAnnouncements(userinfo.userID, orgid);
-        setUserAnnouncements(await response.data['data']);
+        setUserAnnouncements(await response.data["data"]);
         // console.log(announcements)
       } catch (e) {
         console.log(e);
@@ -156,42 +152,48 @@ export const ContextProvider = ({ children }) => {
     fetchUserAnnouncements(userInfo, selectedOrgId);
   }, [selectedOrgId, userInfo]);
 
-
-
-
   //Setting the default workspace
   useEffect(() => {
     async function setDefaultWorkSpace() {
       try {
         const response = await FetchUserInfo(sessionId);
         // setPortfolioInfo(response.data.userinfo);
-        const data = (
-          [].concat(
-            response?.data.other_org,
-            response?.data.own_organisations,
-            response?.data.portfolio_info.filter((datum) => datum.org_name)
-          )
+        const data = [].concat(
+          response?.data.other_org,
+          response?.data.own_organisations,
+          response?.data.portfolio_info.filter((datum) => datum.org_name)
         );
 
-        setChosenProduct(Array.from(new Set(data
-          ?.filter((datum) => !datum?.portfolio_info)
-          .map((datum) => datum.org_name)))[0])
+        setChosenProduct(
+          Array.from(
+            new Set(
+              data
+                ?.filter((datum) => !datum?.portfolio_info)
+                .map((datum) => datum.org_name)
+            )
+          )[0]
+        );
 
-        setOrgId(Array.from(new Set(data
-          ?.filter((datum) => !datum?.portfolio_info)
-          .map((datum) => datum.org_id)))[1])
+        setOrgId(
+          Array.from(
+            new Set(
+              data
+                ?.filter((datum) => !datum?.portfolio_info)
+                .map((datum) => datum.org_id)
+            )
+          )[1]
+        );
 
         // console.log(chosenProduct);
-
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     }
     if (sessionId.length > 0) {
       setDefaultWorkSpace();
       console.log(chosenProduct);
     } else {
-      console.log("NOpe")
+      console.log("NOpe");
     }
   }, [sessionId]);
 
@@ -220,7 +222,7 @@ export const ContextProvider = ({ children }) => {
         setPortfolioInfo,
         publicAnnouncementsData,
         userAnnouncementsData,
-        memberAnnouncementsData
+        memberAnnouncementsData,
       }}
     >
       {children}

@@ -1,0 +1,40 @@
+.items {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.logout {
+  margin-top: 20px;
+  cursor: pointer;
+  padding: 22px;
+  width: 270px;
+  background-color: #61ce70;
+  border-style: none;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 50%);
+}
+
+.EditProfileBtn {
+  cursor: pointer;
+  font-size: 15px;
+  margin: 10px;
+  margin-top: 20px;
+  min-height: 40px;
+  padding: 5px 10px;
+  background-color: #7a7a7a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.EditProfileBtn:hover {
+  background-color: #61ce70;
+}
+
+.EditProfileBtn:focus {
+  border: none;
+  outline: none;
+}
