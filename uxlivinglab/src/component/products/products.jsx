@@ -2,11 +2,11 @@ import React from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
-import _, {lodash} from "lodash"
+import _ from "lodash";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const Products = () => {
-  const { handleShow, data, setChosenProduct, chosenProduct, selectedOrgId, setOrgId } =
+  const { handleShow, data, setChosenProduct, chosenProduct, setOrgId } =
     useStateContext();
   let productes = [];
 
@@ -17,16 +17,13 @@ const Products = () => {
 
         // uncomment after data can be changed successfully
         .filter((datum) => datum.org_id)
-
     )
-  )
+  );
 
   //This works, and it filters based on unique orgIds and unique Org Names
-  const result = _.uniqBy(product_data, (e)=>{
-    return [e.org_name, e.org_id].join();
-  })
-  console.log(result)
-
+  const result = _.uniqBy(product_data, (e) => {
+    return [e.org_name].join();
+  });
 
   return (
     <div className={styles.cover}>
@@ -43,16 +40,15 @@ const Products = () => {
         </div>
         <div className="elementor-form-fields-wrapper elementor-labels-above">
           <div className="elementor-field elementor-select-wrapper ">
-
             <select
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
-                const space = e.target.value.split(",")
-                console.log(space)
+                const space = e.target.value.split(",");
+                // console.log(space);
                 setChosenProduct(space[0]);
-                setOrgId(space[1])
-                console.log(space[0])
-                console.log(space[1])
+                setOrgId(space[1]);
+                // console.log(space[0]);
+                // console.log(space[1]);
               }}
               value={chosenProduct}
               style={{
@@ -65,15 +61,15 @@ const Products = () => {
             >
               <option>{chosenProduct}</option>
 
-              {result.map((org_data, index) =>  (org_data.org_name !== chosenProduct) ? (
-                
-                <option value={[org_data?.org_name,org_data?.org_id]} key={index}>
-                  {org_data.org_name}
-                </option>
-              
-              ): null
-
-              
+              {result.map((org_data, index) =>
+                org_data.org_name !== chosenProduct ? (
+                  <option
+                    value={[org_data?.org_name, org_data?.org_id]}
+                    key={index}
+                  >
+                    {org_data.org_name}
+                  </option>
+                ) : null
               )}
             </select>
           </div>
@@ -586,7 +582,6 @@ export const products = [
 
     image:
       "https://uxlivinglab.com/wp-content/uploads/2023/01/Permutation-calculator.png",
-    id: crypto.randomUUID(),
     title: "Permutation Calculator",
   },
   {
@@ -618,7 +613,7 @@ export const products = [
     image:
       "https://uxlivinglab.com/wp-content/uploads/2022/12/Social-media-automation-1.png",
     id: crypto.randomUUID(),
-    title: "Socialmedia Automation",
+    title: "Social Media Automation" || "Socialmedia Automation",
   },
 
   {

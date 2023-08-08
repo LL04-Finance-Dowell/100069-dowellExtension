@@ -1,7 +1,7 @@
 import "../sidebar/style.css";
 import "../popup/popup.css";
 import { RxCross2 } from "react-icons/rx";
-import Payments from "../payments";
+import Payments from "../payments/payments";
 import CustomerSupport from "../customer_support/customer_support";
 import Products from "../products/products";
 import Profiles from "../profiles/profiles";
