@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
 import _ from "lodash";
 import { useStateContext } from "../../contexts/ContextProvider";
+import calculateSimilarity from "./calculateSimilarity";
 
 const Products = () => {
   const { handleShow, data, setChosenProduct, chosenProduct, setOrgId } =
@@ -44,11 +45,8 @@ const Products = () => {
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
                 const space = e.target.value.split(",");
-                // console.log(space);
                 setChosenProduct(space[0]);
                 setOrgId(space[1]);
-                // console.log(space[0]);
-                // console.log(space[1]);
               }}
               value={chosenProduct}
               style={{
@@ -78,16 +76,19 @@ const Products = () => {
 
       <div className={styles.container}>
         {chosenProduct &&
+          data.length > 0 &&
           products.map((item) => {
             productes = [
               ...new Map(
                 data?.map((item) => [item["portfolio_name"], item])
               ).values(),
-            ].filter(
-              (datum) =>
-                (datum?.org_name === chosenProduct) &
-                (datum?.product === item.title)
-            );
+            ]
+              .filter((datum) => datum?.org_name === chosenProduct)
+              .filter((dat) =>
+                dat?.product
+                  ? calculateSimilarity(dat?.product, item.title)
+                  : false
+              );
             const productTitle = productes.map((o) => o.product);
             const filteredProduct = productes.filter(
               ({ product }, index) => !productTitle.includes(product, index + 1)
@@ -95,7 +96,7 @@ const Products = () => {
             return filteredProduct.map((index) => (
               <Box
                 key={`${item.id + index}`}
-                product={item}
+                product={{ ...item, title: index.product }}
                 org_name={chosenProduct}
               />
             ));
@@ -613,7 +614,7 @@ export const products = [
     image:
       "https://uxlivinglab.com/wp-content/uploads/2022/12/Social-media-automation-1.png",
     id: crypto.randomUUID(),
-    title: "Social Media Automation" || "Socialmedia Automation",
+    title: "Socialmedia Automation",
   },
 
   {

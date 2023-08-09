@@ -1,6 +1,6 @@
-export default function calculateSimilarity(datum, str2) {
-  const len1 = datum?.product?.length;
-  const len2 = str2.length;
+export default function calculateSimilarity(str1, str2) {
+  const len1 = str1?.length;
+  const len2 = str2?.length;
   const dp = Array.from(Array(len1 + 1), () => Array(len2 + 1).fill(0));
 
   for (let i = 0; i <= len1; i++) {
@@ -10,7 +10,7 @@ export default function calculateSimilarity(datum, str2) {
       } else if (j === 0) {
         dp[i][j] = i;
       } else {
-        const cost = datum?.product[i - 1] === str2[j - 1] ? 0 : 1;
+        const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
         dp[i][j] = Math.min(
           dp[i - 1][j - 1] + cost,
           dp[i][j - 1] + 1,
@@ -23,9 +23,9 @@ export default function calculateSimilarity(datum, str2) {
   const maxLen = Math.max(len1, len2);
   const similarity = 1 - dp[len1][len2] / maxLen;
   if (similarity < 0.5) {
-    return null;
+    return false;
   } else {
-    return datum;
+    return true;
   }
   //   return similarity;
 }
