@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
@@ -26,6 +26,7 @@ const Products = () => {
     return [e.org_name].join();
   });
 
+  result.sort((a, b) => a.org_name.localeCompare(b.org_name));
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -45,6 +46,7 @@ const Products = () => {
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
                 const space = e.target.value.split(",");
+                console.log(space);
                 setChosenProduct(space[0]);
                 setOrgId(space[1]);
               }}

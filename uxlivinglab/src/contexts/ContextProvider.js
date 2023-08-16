@@ -12,7 +12,9 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
-  const [sessionId, setSessionId] = useState("");
+  const [sessionId, setSessionId] = useState(
+    "w48q98rawyrj63ax2pahjut8efjrodwc"
+  );
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
   const [notifications, setNotifications] = useState();
@@ -31,21 +33,21 @@ export const ContextProvider = ({ children }) => {
     setShow(show);
   };
 
-  useEffect(() => {
-    function logCookies(cookies) {
-      for (const cookie of cookies) {
-        if (cookie.domain === "100014.pythonanywhere.com") {
-          setSessionId(cookie.value);
-          // console.log(cookie.value);
-        }
-      }
-    }
-    chrome.cookies
-      .getAll({
-        name: "sessionid",
-      })
-      .then((cookies) => logCookies(cookies));
-  }, []);
+  // useEffect(() => {
+  //   function logCookies(cookies) {
+  //     for (const cookie of cookies) {
+  //       if (cookie.domain === "100014.pythonanywhere.com") {
+  //         setSessionId(cookie.value);
+  //         // console.log(cookie.value);
+  //       }
+  //     }
+  //   }
+  //   chrome.cookies
+  //     .getAll({
+  //       name: "sessionid",
+  //     })
+  //     .then((cookies) => logCookies(cookies));
+  // }, []);
 
   useEffect(() => {
     async function fetchNotifications() {
@@ -162,16 +164,16 @@ export const ContextProvider = ({ children }) => {
           response?.data.portfolio_info.filter((datum) => datum.org_name)
         );
 
-        setChosenProduct(
-          Array.from(
-            new Set(
-              data
-                ?.filter((datum) => !datum?.portfolio_info)
-                .map((datum) => datum.org_name)
-            )
-          )[0]
+        // setChosenProduct(
+        const filteredProduct = Array.from(
+          new Set(
+            data
+              ?.filter((datum) => !datum?.portfolio_info)
+              .map((datum) => datum.org_name)
+              .sort()
+          )
         );
-
+        setChosenProduct(filteredProduct[0]);
         setOrgId(
           Array.from(
             new Set(
@@ -189,7 +191,7 @@ export const ContextProvider = ({ children }) => {
     }
     if (sessionId.length > 0) {
       setDefaultWorkSpace();
-      console.log(chosenProduct);
+      // console.log(chosenProduct);
     } else {
       console.log("NOpe");
     }
