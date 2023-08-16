@@ -36,7 +36,7 @@ export const ContextProvider = ({ children }) => {
       for (const cookie of cookies) {
         if (cookie.domain === "100014.pythonanywhere.com") {
           setSessionId(cookie.value);
-          console.log(cookie.value);
+          // console.log(cookie.value);
         }
       }
     }

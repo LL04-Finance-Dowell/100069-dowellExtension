@@ -14,10 +14,13 @@ function Payments() {
   useEffect(() => {
     const fetchService = async () => {
       const res = await FetchService(userInfo?.client_admin_id);
+      // const res = await FetchService("63e0a92c64b8aaece8496a9c");
       setData(res.data);
     };
     fetchService();
   }, [userInfo?.client_admin_id]);
+
+  // console.log("data", data?.data);
 
   if (data == null)
     return (
@@ -61,11 +64,15 @@ function Payments() {
       >
         {data?.success === true ? (
           <>
-            <CreditListItem name={"Service Key"} value={data?.data?.api_key} />
+            <CreditListItem
+              name={"Service Key"}
+              value={"********-****-****-****-*****"}
+              // value={data?.data?.api_key}
+            />
             <CreditListItem name={"Credit"} value={data?.data?.total_credits} />
             <CreditListItem
               name={"Status"}
-              value={data?.is_active ? "Active" : "Inactive"}
+              value={data?.data?.is_active ? "Active" : "Inactive"}
             />
           </>
         ) : (
