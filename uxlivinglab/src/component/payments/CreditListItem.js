@@ -20,6 +20,7 @@ export default function CreditListItem({ name, value }) {
       >
         {name}:
       </span>
+      {/* <span style={{marginLeft: 10}}></span> */}
       <span style={{ marginLeft: 10 }}>{value}</span>
     </div>
   );
