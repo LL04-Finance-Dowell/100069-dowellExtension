@@ -3,7 +3,6 @@
   flex-direction: column;
   height: 100%;
   margin: 0px 10px;
-  /* background-color: red; */
 }
 
 .headerContainer {
@@ -36,4 +35,20 @@
   border: 1px solid #61ce70;
   border-radius: 10px;
   padding: 2px;
+}
+
+.announcementDetail {
+  background-color: #f5f5f5;
+  border: 1px solid #61ce70;
+  border-radius: 5px;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.detail {
+  /* text-justify: inter-word; */
+  text-align: justify;
+  margin-right: 10px;
+  line-height: 25px;
+  /* overflow: hidden; */
 }

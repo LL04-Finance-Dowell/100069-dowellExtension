@@ -12,9 +12,7 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [show, setShow] = useState(true);
-  const [sessionId, setSessionId] = useState(
-    "w48q98rawyrj63ax2pahjut8efjrodwc"
-  );
+  const [sessionId, setSessionId] = useState("");
   const [data, setData] = useState();
   const [userInfo, setUserInfo] = useState({});
   const [notifications, setNotifications] = useState();
