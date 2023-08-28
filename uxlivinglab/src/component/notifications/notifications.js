@@ -10,8 +10,6 @@ import FetchPublicAnnouncements from "../../API/FetchPublicAnnouncements";
 import FetchMemberAnnouncements from "../../API/FetchMemberAnnouncements";
 import FetchUserAnnouncements from "../../API/FetchUserAnnouncements";
 
-
-
 function Notifications() {
   const {
     show,
@@ -31,7 +29,7 @@ function Notifications() {
     async function fetchPublicAnnouncements() {
       try {
         const response = await FetchPublicAnnouncements(userInfo.userID);
-        setPublicAnnouncements(await response.data['data']);
+        setPublicAnnouncements(await response.data["data"]);
         // console.log(announcements)
       } catch (e) {
         console.log(e);
@@ -44,8 +42,11 @@ function Notifications() {
   useEffect(() => {
     async function fetchMemberAnnouncements() {
       try {
-        const response = await FetchMemberAnnouncements(userInfo.userID, selectedOrgId);
-        setMemberAnnouncements(await response.data['data']);
+        const response = await FetchMemberAnnouncements(
+          userInfo.userID,
+          selectedOrgId
+        );
+        setMemberAnnouncements(await response.data["data"]);
         // console.log(announcements)
       } catch (e) {
         console.log(e);
@@ -58,8 +59,11 @@ function Notifications() {
   useEffect(() => {
     async function fetchUserAnnouncements() {
       try {
-        const response = await FetchUserAnnouncements(userInfo.userID, selectedOrgId);
-        setUserAnnouncements(await response.data['data']);
+        const response = await FetchUserAnnouncements(
+          userInfo.userID,
+          selectedOrgId
+        );
+        setUserAnnouncements(await response.data["data"]);
         // console.log(announcements)
       } catch (e) {
         console.log(e);
@@ -68,17 +72,13 @@ function Notifications() {
     fetchUserAnnouncements();
   }, [selectedOrgId]);
 
-
-
-
-
   const allNotifications = Array.from(new Set(notifications));
 
   const notificationNumber = allNotifications.filter(
     (datum) =>
-      datum['notification'].seen === false &&
-      datum['notification'].username === user &&
-      datum['notification'].productName === product
+      datum["notification"].seen === false &&
+      datum["notification"].username === user &&
+      datum["notification"].productName === product
   ).length;
 
   const markSeenClick = async (pk) => {
@@ -127,44 +127,44 @@ function Notifications() {
     return (
       <div>
         {userAnnouncementsData
-          ?.filter((data) => data['announcement'])
+          ?.filter((data) => data["announcement"])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
-            <div style={{ display: "flex" }}>
-              {/* <p
-                      style={{
-                        border: "3px solid white",
-                        padding: "1px 5px 5px 5px",
-                        fontSize: 14,
-                        height: 15,
-                        marginBottom: 3,
-                        marginTop: 23,
-                        marginLeft: 5,
-                        borderRadius: 100,
-                        color: "white",
-                        backgroundColor: "black",
-                      }}
-                    >
-                      {index + 1}
-                    </p> */}
-
-              <h3
+            <div style={{ display: "flex" }} key={index}>
+              <a
+                href={
+                  data["announcement"].link
+                    ? data["announcement"].link
+                    : undefined
+                }
+                target={data["announcement"].link ? "_blank" : undefined}
+                rel={
+                  data["announcement"].link ? "noopener noreferrer" : undefined
+                }
                 style={{
-                  backgroundColor: "rgb(74, 162, 74)",
-                  borderRadius: 20,
-                  width: 200,
-                  color: "white",
-                  marginLeft: 35,
-                  // height: 200,
-                  padding: 8,
-                  marginBottom: 0,
-                  cursor: "pointer",
+                  textDecoration: "none",
+                  display: "inline-block",
+                  cursor: data["announcement"].link ? "pointer" : "default",
                 }}
               >
-                {data['announcement'].description}
-              </h3>
+                <h3
+                  style={{
+                    backgroundColor: "rgb(74, 162, 74)",
+                    borderRadius: 20,
+                    width: 200,
+                    color: "white",
+                    marginLeft: 35,
+                    // height: 200,
+                    padding: 8,
+                    marginBottom: 0,
+                    cursor: "pointer",
+                  }}
+                >
+                  {data["announcement"].description}
+                </h3>
+              </a>
             </div>
-          ))}{" "}
+          ))}
       </div>
     );
   }
@@ -173,44 +173,44 @@ function Notifications() {
     return (
       <div>
         {memberAnnouncementsData
-          ?.filter((data) => data['announcement'])
+          ?.filter((data) => data["announcement"])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
-            <div style={{ display: "flex" }}>
-              {/* <p
-                      style={{
-                        border: "3px solid white",
-                        padding: "1px 5px 5px 5px",
-                        fontSize: 14,
-                        height: 15,
-                        marginBottom: 3,
-                        marginTop: 23,
-                        marginLeft: 5,
-                        borderRadius: 100,
-                        color: "white",
-                        backgroundColor: "black",
-                      }}
-                    >
-                      {index + 1}
-                    </p> */}
-
-              <h3
+            <div style={{ display: "flex" }} key={index}>
+              <a
+                href={
+                  data["announcement"].link
+                    ? data["announcement"].link
+                    : undefined
+                }
+                target={data["announcement"].link ? "_blank" : undefined}
+                rel={
+                  data["announcement"].link ? "noopener noreferrer" : undefined
+                }
                 style={{
-                  backgroundColor: "rgb(74, 162, 74)",
-                  borderRadius: 20,
-                  width: 200,
-                  color: "white",
-                  marginLeft: 35,
-                  // height: 200,
-                  padding: 8,
-                  marginBottom: 0,
-                  cursor: "pointer",
+                  textDecoration: "none",
+                  display: "inline-block",
+                  cursor: data["announcement"].link ? "pointer" : "default",
                 }}
               >
-                {data['announcement']?.description}
-              </h3>
+                <h3
+                  style={{
+                    backgroundColor: "rgb(74, 162, 74)",
+                    borderRadius: 20,
+                    width: 200,
+                    color: "white",
+                    marginLeft: 35,
+                    // height: 200,
+                    padding: 8,
+                    marginBottom: 0,
+                    cursor: "pointer",
+                  }}
+                >
+                  {data["announcement"].description}
+                </h3>
+              </a>
             </div>
-          ))}{" "}
+          ))}
       </div>
     );
   }
@@ -219,44 +219,44 @@ function Notifications() {
     return (
       <div>
         {publicAnnouncementsData
-          ?.filter((data) => data['announcement'])
+          ?.filter((data) => data["announcement"])
           .map((data, index) => (
             // remember to filter based on product name and seen status before pushing (Workflow AI)
-            <div style={{ display: "flex" }}>
-              {/* <p
-                      style={{
-                        border: "3px solid white",
-                        padding: "1px 5px 5px 5px",
-                        fontSize: 14,
-                        height: 15,
-                        marginBottom: 3,
-                        marginTop: 23,
-                        marginLeft: 5,
-                        borderRadius: 100,
-                        color: "white",
-                        backgroundColor: "black",
-                      }}
-                    >
-                      {index + 1}
-                    </p> */}
-
-              <h3
+            <div style={{ display: "flex" }} key={index}>
+              <a
+                href={
+                  data["announcement"].link
+                    ? data["announcement"].link
+                    : undefined
+                }
+                target={data["announcement"].link ? "_blank" : undefined}
+                rel={
+                  data["announcement"].link ? "noopener noreferrer" : undefined
+                }
                 style={{
-                  backgroundColor: "rgb(74, 162, 74)",
-                  borderRadius: 20,
-                  width: 200,
-                  color: "white",
-                  marginLeft: 35,
-                  // height: 200,
-                  padding: 8,
-                  marginBottom: 0,
-                  cursor: "pointer",
+                  textDecoration: "none",
+                  display: "inline-block",
+                  cursor: data["announcement"].link ? "pointer" : "default",
                 }}
               >
-                {data['announcement']?.description}
-              </h3>
+                <h3
+                  style={{
+                    backgroundColor: "rgb(74, 162, 74)",
+                    borderRadius: 20,
+                    width: 200,
+                    color: "white",
+                    marginLeft: 35,
+                    // height: 200,
+                    padding: 8,
+                    marginBottom: 0,
+                    cursor: "pointer",
+                  }}
+                >
+                  {data["announcement"].description}
+                </h3>
+              </a>
             </div>
-          ))}{" "}
+          ))}
       </div>
     );
   }
@@ -286,9 +286,9 @@ function Notifications() {
           <div>
             <div
               className={styles.badges}
-              onClick={() => redirectnotification(data['notification'].link)}
+              onClick={() => redirectnotification(data["notification"].link)}
             >
-              <ChatTitles title={data['notification'].title} />
+              <ChatTitles title={data["notification"].title} />
             </div>
           </div>
         ) : null}
@@ -315,9 +315,11 @@ function Notifications() {
             Notifications
           </i>
         </button>
-        {sessionId ?
+        {sessionId ? (
           // When user is logged in
-          (publicAnnouncementsData && memberAnnouncementsData && userAnnouncementsData ?
+          publicAnnouncementsData &&
+          memberAnnouncementsData &&
+          userAnnouncementsData ? (
             <div className={styles.all}>
               <p className={styles.texts}>Announcements</p>
 
@@ -344,9 +346,9 @@ function Notifications() {
                   >
                     Team Member (
                     {
-                      memberAnnouncementsData?.filter((data) => data['announcement'])
-                        .length
-
+                      memberAnnouncementsData?.filter(
+                        (data) => data["announcement"]
+                      ).length
                     }
                     )
                   </p>
@@ -380,8 +382,9 @@ function Notifications() {
                   >
                     User (
                     {
-                      userAnnouncementsData?.filter((data) => data['announcement'])
-                        .length
+                      userAnnouncementsData?.filter(
+                        (data) => data["announcement"]
+                      ).length
                     }
                     )
                   </p>
@@ -417,15 +420,18 @@ function Notifications() {
                   >
                     Public (
                     {
-                      publicAnnouncementsData?.filter((data) => data['announcement'])
-                        .length
+                      publicAnnouncementsData?.filter(
+                        (data) => data["announcement"]
+                      ).length
                     }
                     )
                   </p>
                 </div>
                 <div
                   className={
-                    arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
+                    arrows.showArrow3
+                      ? styles.spaceShowContent
+                      : styles.spaceHide
                   }
                 >
                   <PublicAnnouncements />
@@ -489,15 +495,17 @@ function Notifications() {
                 </div>
                 <div
                   className={
-                    arrows.showArrow5 ? styles.spaceShowContent : styles.spaceHide
+                    arrows.showArrow5
+                      ? styles.spaceShowContent
+                      : styles.spaceHide
                   }
                 >
                   {allNotifications
                     .filter(
                       (datum) =>
-                        datum['notification'].seen === false &&
-                        datum['notification'].username === user &&
-                        datum['notification'].productName === product
+                        datum["notification"].seen === false &&
+                        datum["notification"].username === user &&
+                        datum["notification"].productName === product
                     )
                     .map((data, index) => (
                       // remember to filter based on product name and seen status before pushing (Workflow AI)
@@ -608,53 +616,56 @@ function Notifications() {
                 />
               </div>
             </div>
-            :
+          ) : (
             <div style={{ marginTop: 100 }}>
               <LoadingSpinner />
             </div>
-          ) :
-          // When user is not logged in 
-          (publicAnnouncementsData && memberAnnouncementsData && userAnnouncementsData ?
-            <div className={styles.all}>
-              <p className={styles.texts}>Announcements</p>
+          )
+        ) : // When user is not logged in
+        publicAnnouncementsData &&
+          memberAnnouncementsData &&
+          userAnnouncementsData ? (
+          <div className={styles.all}>
+            <p className={styles.texts}>Announcements</p>
 
-              <div className={styles.allBorder}>
-                <div
-                  className={styles.elementContainer}
-                  onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
-                >
-                  <i
-                    aria-hidden="true"
-                    className={
-                      arrows.showArrow3
-                        ? "fas fa-angles-up"
-                        : "fas fa-angles-down"
-                    }
-                    style={{ marginTop: 15, marginLeft: 5 }}
-                  ></i>
-
-                  <p
-                    style={{
-                      color: arrows.showArrow3 && "#61ce70",
-                      marginLeft: 15,
-                    }}
-                  >
-                    Public (
-                    {
-                      publicAnnouncementsData?.filter((data) => data['announcement'])
-                        .length
-                    }
-                    )
-                  </p>
-                </div>
-                <div
+            <div className={styles.allBorder}>
+              <div
+                className={styles.elementContainer}
+                onClick={() => handleArrows("showArrow3", !arrows.showArrow3)}
+              >
+                <i
+                  aria-hidden="true"
                   className={
-                    arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
+                    arrows.showArrow3
+                      ? "fas fa-angles-up"
+                      : "fas fa-angles-down"
                   }
+                  style={{ marginTop: 15, marginLeft: 5 }}
+                ></i>
+
+                <p
+                  style={{
+                    color: arrows.showArrow3 && "#61ce70",
+                    marginLeft: 15,
+                  }}
                 >
-                  <PublicAnnouncements />
-                </div>
-                {/* <div
+                  Public (
+                  {
+                    publicAnnouncementsData?.filter(
+                      (data) => data["announcement"]
+                    ).length
+                  }
+                  )
+                </p>
+              </div>
+              <div
+                className={
+                  arrows.showArrow3 ? styles.spaceShowContent : styles.spaceHide
+                }
+              >
+                <PublicAnnouncements />
+              </div>
+              {/* <div
                 className={styles.elementContainer}
                 onClick={() => handleArrows("showArrow2", !arrows.showArrow2)}
               >
@@ -719,37 +730,37 @@ function Notifications() {
                   arrows.showArrow4 ? styles.spaceShow : styles.spaceHide
                 }
               ></div> */}
-              </div>
-              <div
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                height: "100%",
+                marginLeft: "5px",
+                marginTop: "110px",
+              }}
+            >
+              <RxCross2
+                size={24}
+                color="white"
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  height: "100%",
-                  marginLeft: "5px",
-                  marginTop: "110px",
+                  cursor: "pointer",
+                  backgroundColor: "red",
+                  borderRadius: 20,
+                  marginTop: 200,
+                  marginBottom: 8,
+                  fontWeight: 1000,
                 }}
-              >
-                <RxCross2
-                  size={24}
-                  color="white"
-                  style={{
-                    cursor: "pointer",
-                    backgroundColor: "red",
-                    borderRadius: 20,
-                    marginTop: 200,
-                    marginBottom: 8,
-                    fontWeight: 1000,
-                  }}
-                  onClick={() => handleShow(!show)}
-                />
-              </div>
+                onClick={() => handleShow(!show)}
+              />
             </div>
-            :
-            <div style={{ marginTop: 100 }}>
-              <LoadingSpinner />
-            </div>
-          )}
+          </div>
+        ) : (
+          <div style={{ marginTop: 100 }}>
+            <LoadingSpinner />
+          </div>
+        )}
       </div>
     </>
   );

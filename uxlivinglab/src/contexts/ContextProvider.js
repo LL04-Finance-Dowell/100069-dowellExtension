@@ -139,6 +139,8 @@ export const ContextProvider = ({ children }) => {
     fetchMemberAnnouncements(userInfo, selectedOrgId);
   }, [selectedOrgId, userInfo]);
 
+  console.log("selected orgId", selectedOrgId);
+
   useEffect(() => {
     async function fetchUserAnnouncements(userinfo, orgid) {
       try {
