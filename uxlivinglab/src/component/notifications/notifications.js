@@ -1,12 +1,66 @@
-import React from "react";
 import styles from "./styles.module.css";
 import { useStateContext } from "../../contexts/ContextProvider";
 import AnnouncementList from "./AnnouncementList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import FetchPublicAnnouncements from "../../API/FetchPublicAnnouncements";
+import FetchMemberAnnouncements from "../../API/FetchMemberAnnouncements";
+import FetchUserAnnouncements from "../../API/FetchUserAnnouncements";
+import LoadingSpinner from "../spinner/spinner";
 
 export default function Notifications() {
-  const { sessionId } = useStateContext();
-  const [showAnnouncementList, setShowAnnouncementList] = useState(true);
+  const { sessionId, userInfo, selectedOrgId } = useStateContext();
+  const [showAnnouncementList, setShowAnnouncementList] = useState(false);
+  const [publicAnnouncementsData, setPublicAnnouncements] = useState();
+  const [memberAnnouncementsData, setMemberAnnouncements] = useState();
+  const [userAnnouncementsData, setUserAnnouncements] = useState();
+  const [showProducts, setShowProducts] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const memberData = await FetchMemberAnnouncements(
+          userInfo.userID,
+          selectedOrgId
+        );
+        const publicData = await FetchPublicAnnouncements(userInfo.userID);
+        const userData = await FetchUserAnnouncements(
+          userInfo.userID,
+          selectedOrgId
+        );
+        setPublicAnnouncements(publicData.data["data"]);
+        setMemberAnnouncements(memberData.data["data"]);
+        setUserAnnouncements(userData.data["data"]);
+        setLoading(false);
+      } catch (error) {
+        console.log("fetching announcement error", error);
+      }
+    };
+    fetchAnnouncements();
+  }, [userInfo.userID, selectedOrgId]);
+
+  if (loading)
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "80vh",
+        }}
+      >
+        <LoadingSpinner />
+      </div>
+    );
+
+  const handleClick = ({ data, title }) => {
+    if (data?.length === 0) return;
+    setShowProducts({
+      title,
+      data,
+    });
+    setShowAnnouncementList(true);
+  };
 
   return (
     <div className={styles.container}>
@@ -15,34 +69,61 @@ export default function Notifications() {
       </div>
       <div className={styles.announcementContainer}>
         {showAnnouncementList ? (
-          <AnnouncementList />
+          <AnnouncementList
+            onClick={() => setShowAnnouncementList(false)}
+            showProducts={showProducts}
+          />
         ) : (
           <>
             <h3>Announcements</h3>
             <div className={styles.announcement}>
               {sessionId && (
                 <>
-                  <div className={styles.announcementContent}>
-                    <p>Team Member (10)</p>
+                  <div
+                    className={styles.announcementContent}
+                    onClick={() =>
+                      handleClick({
+                        data: memberAnnouncementsData,
+                        title: "Team Member",
+                      })
+                    }
+                  >
+                    <p>Team Member ({memberAnnouncementsData?.length})</p>
                   </div>
 
-                  <div className={styles.announcementContent}>
-                    <p>User (10)</p>
+                  <div
+                    className={styles.announcementContent}
+                    onClick={() =>
+                      handleClick({
+                        data: userAnnouncementsData,
+                        title: "User",
+                      })
+                    }
+                  >
+                    <p>User ({userAnnouncementsData?.length})</p>
                   </div>
                   <div className={styles.announcementContent}>
-                    <p>UX Living Lab (10)</p>
+                    <p>UX Living Lab (0)</p>
                   </div>
                 </>
               )}
-              <div className={styles.announcementContent}>
-                <p>Public (10)</p>
+              <div
+                className={styles.announcementContent}
+                onClick={() =>
+                  handleClick({
+                    data: publicAnnouncementsData,
+                    title: "Public",
+                  })
+                }
+              >
+                <p>Public ({publicAnnouncementsData?.length})</p>
               </div>
             </div>
           </>
         )}
       </div>
       {/* tasks */}
-      {sessionId && (
+      {sessionId && !showAnnouncementList && (
         <div className={styles.announcementContainer}>
           <h3>Tasks</h3>
           <div className={styles.announcement}>

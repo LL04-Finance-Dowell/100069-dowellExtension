@@ -1,39 +1,83 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { BiArrowBack } from "react-icons/bi";
 
-function AnnouncementDetail() {
+function AnnouncementDetail({ selectedProduct }) {
   return (
-    <div className={styles.announcementDetail}>
-      <p className={styles.detail}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
-      </p>
+    <div
+      style={{
+        backgroundColor: " #f5f5f5",
+        border: "1px solid #61ce70",
+        borderRadius: "5px",
+        paddingLeft: "20px",
+        marginBottom: "15ox",
+        cursor: selectedProduct["announcement"].link ? "pointer" : "default",
+      }}
+    >
+      <a
+        href={
+          selectedProduct["announcement"].link
+            ? selectedProduct["announcement"].link
+            : undefined
+        }
+        target={selectedProduct["announcement"].link ? "_blank" : undefined}
+        rel={
+          selectedProduct["announcement"].link
+            ? "noopener noreferrer"
+            : undefined
+        }
+        style={{
+          textDecoration: "none",
+          display: "inline-block",
+          cursor: selectedProduct["announcement"].link ? "pointer" : "default",
+        }}
+      >
+        <p className={styles.detail}>
+          {selectedProduct?.announcement?.description}
+        </p>
+      </a>
     </div>
   );
 }
 
-function AnnouncementList() {
-  return (
-    <>
-      <div className={styles.announcementDetail}>
-        <p className={styles.title}>Announcement 1</p>
-      </div>
-      <div className={styles.announcementDetail}>
-        <p className={styles.title}>Announcement 1</p>
-      </div>
-    </>
-  );
+function AnnouncementList({ onClick, data, setSelectedProduct }) {
+  return data?.map((item) => (
+    <div
+      className={styles.announcementDetail}
+      onClick={() => {
+        setSelectedProduct(item);
+        onClick();
+      }}
+      key={item._id}
+    >
+      <p className={styles.title}>{item?.announcement?.title}</p>
+    </div>
+  ));
 }
 
-export default function Announcement() {
-  const [detail, setDetail] = React.useState(true);
+export default function Announcement({ onClick, showProducts }) {
+  const [detail, setDetail] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState(null);
 
   return (
     <div>
-      <h3>Public</h3>
-      {detail ? <AnnouncementDetail /> : <AnnouncementList />}
+      <BiArrowBack
+        size={30}
+        onClick={() => (detail ? setDetail(false) : onClick())}
+        style={{ cursor: "pointer" }}
+      />
+      <div className={styles.announcement} />
+      <h3>{showProducts.title}</h3>
+      {detail ? (
+        <AnnouncementDetail selectedProduct={selectedProduct} />
+      ) : (
+        <AnnouncementList
+          onClick={() => setDetail(true)}
+          setSelectedProduct={setSelectedProduct}
+          onBackPress={onClick}
+          data={showProducts.data}
+        />
+      )}
     </div>
   );
 }
