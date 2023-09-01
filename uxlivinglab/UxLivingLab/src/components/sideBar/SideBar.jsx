@@ -1,6 +1,7 @@
 // import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
+import { useState } from "react";
 
 export default function SideBar() {
   const icons = {
@@ -13,6 +14,8 @@ export default function SideBar() {
     products: "far fa-gem",
     favourites: "fas fa-hand-holding-heart",
   };
+
+  const [activeTab, setActiveTab] = useState(icons.login);
 
   return (
     <div
@@ -34,7 +37,9 @@ export default function SideBar() {
               placeItems: "center",
               borderRadius: 10,
             }}
+            className={activeTab === value ? styles.rectangle1 : null}
             key={key}
+            onClick={() => setActiveTab(value)}
           >
             <i
               className={value}
