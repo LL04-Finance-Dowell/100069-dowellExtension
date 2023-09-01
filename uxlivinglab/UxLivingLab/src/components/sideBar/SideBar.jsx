@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import { useState } from "react";
@@ -37,7 +36,7 @@ export default function SideBar() {
               placeItems: "center",
               borderRadius: 10,
             }}
-            className={activeTab === value ? styles.rectangle1 : null}
+            className={activeTab === value ? styles.rectangle : null}
             key={key}
             onClick={() => setActiveTab(value)}
           >
