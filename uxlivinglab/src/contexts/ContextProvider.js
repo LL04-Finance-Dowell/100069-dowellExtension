@@ -137,6 +137,8 @@ export const ContextProvider = ({ children }) => {
     fetchMemberAnnouncements(userInfo, selectedOrgId);
   }, [selectedOrgId, userInfo]);
 
+  console.log("selected orgId", selectedOrgId);
+
   useEffect(() => {
     async function fetchUserAnnouncements(userinfo, orgid) {
       try {
@@ -162,16 +164,16 @@ export const ContextProvider = ({ children }) => {
           response?.data.portfolio_info.filter((datum) => datum.org_name)
         );
 
-        setChosenProduct(
-          Array.from(
-            new Set(
-              data
-                ?.filter((datum) => !datum?.portfolio_info)
-                .map((datum) => datum.org_name)
-            )
-          )[0]
+        // setChosenProduct(
+        const filteredProduct = Array.from(
+          new Set(
+            data
+              ?.filter((datum) => !datum?.portfolio_info)
+              .map((datum) => datum.org_name)
+              .sort()
+          )
         );
-
+        setChosenProduct(filteredProduct[0]);
         setOrgId(
           Array.from(
             new Set(
@@ -189,7 +191,7 @@ export const ContextProvider = ({ children }) => {
     }
     if (sessionId.length > 0) {
       setDefaultWorkSpace();
-      console.log(chosenProduct);
+      // console.log(chosenProduct);
     } else {
       console.log("NOpe");
     }

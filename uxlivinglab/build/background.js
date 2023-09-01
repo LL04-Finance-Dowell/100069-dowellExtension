@@ -61,7 +61,7 @@
 //   const data = await fetchRepositories();
 //}
 chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason == "update") {
+  if (details.reason === "update") {
     var options = {
       type: "basic",
       title: "Extension Updated",
