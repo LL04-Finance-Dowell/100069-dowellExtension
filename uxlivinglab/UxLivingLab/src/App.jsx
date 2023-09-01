@@ -19,7 +19,6 @@ function App() {
           style={{
             marginRight: "auto",
             width: "100%",
-            // backgroundColor: "red",
           }}
         >
           <Routes>
