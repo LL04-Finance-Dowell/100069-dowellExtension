@@ -1,6 +1,9 @@
 import "./App.css";
 import SideBar from "./components/sideBar/SideBar";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./page/Login";
+import Logout from "./page/Logout";
+import Product from "./page/Product";
 
 function App() {
   return (
@@ -18,7 +21,11 @@ function App() {
             width: "100%",
           }}
         >
-          Hello WOrld
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/products" element={<Product />} />
+          </Routes>
         </div>
         <SideBar />
       </div>

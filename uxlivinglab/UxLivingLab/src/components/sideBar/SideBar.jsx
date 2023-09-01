@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function SideBar() {
   const icons = {
     login: "fas fa-sign-in-alt",
@@ -23,21 +25,27 @@ export default function SideBar() {
       }}
     >
       {Object.entries(icons).map(([key, value]) => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 5,
-            borderRadius: 10,
-            width: "100%",
-          }}
-          key={key}
-        >
-          <i className={value} style={{ fontSize: 30 }} />
-          <span style={{ lineHeight: "1.5em", fontSize: 16 }}>{key}</span>
-        </div>
+        <Link to={`/${key}`} key={key} style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 5,
+              borderRadius: 10,
+              width: "100%",
+            }}
+            key={key}
+          >
+            <i className={value} style={{ fontSize: 30, color: "#287254" }} />
+            <span
+              style={{ lineHeight: "1.5em", fontSize: 16, color: "#287254" }}
+            >
+              {key}
+            </span>
+          </div>
+        </Link>
       ))}
     </div>
   );
