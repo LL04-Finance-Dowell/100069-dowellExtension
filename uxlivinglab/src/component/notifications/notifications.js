@@ -128,13 +128,13 @@ export default function Notifications() {
           <h3>Tasks</h3>
           <div className={styles.announcement}>
             <div className={styles.announcementContent}>
-              <p>Workflow AI (10)</p>
+              <p>Workflow AI (0)</p>
             </div>
             <div className={styles.announcementContent}>
-              <p>Digital Queue (10)</p>
+              <p>Digital Queue (0)</p>
             </div>
             <div className={styles.announcementContent}>
-              <p>UX Live (10)</p>
+              <p>UX Live (0)</p>
             </div>
           </div>
         </div>
