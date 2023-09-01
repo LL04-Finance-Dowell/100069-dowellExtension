@@ -12,12 +12,12 @@ function App() {
         style={{
           display: "flex",
           flexDirection: "row",
+          borderRadius: 20,
         }}
       >
         <div
           style={{
             marginRight: "auto",
-            backgroundColor: "yellow",
             width: "100%",
           }}
         >
