@@ -1,6 +1,55 @@
 import { BsArrowLeft } from "react-icons/bs";
+import { useQueries, useQuery } from "react-query";
+import FetchPublicAnnouncements from "../lib/api/fetchPublicAnnouncement";
+import FetchMemberAnnouncements from "../lib/api/fetchMemberAnnouncement";
+import FetchUserAnnouncements from "../lib/api/fetchUserAnnouncement";
 
 export default function Notification() {
+  const { data } = useQuery("userInfo");
+  const queries = [
+    {
+      queryKey: ["publicAnnouncement"],
+      queryFn: async () =>
+        await FetchPublicAnnouncements(data?.data.userinfo.userID),
+    },
+    {
+      queryKey: ["memberAnnouncement"],
+      queryFn: async () =>
+        await FetchMemberAnnouncements(data?.data.userinfo.userID),
+    },
+    {
+      queryKey: ["userAnnouncement"],
+      queryFn: async () =>
+        await FetchUserAnnouncements(data?.data.userinfo.userID),
+    },
+  ];
+  const [
+    publicAnnouncementQuery,
+    memberAnnouncementQuery,
+    userAnnouncementQuery,
+  ] = useQueries(queries);
+
+  if (
+    publicAnnouncementQuery.isLoading ||
+    memberAnnouncementQuery.isLoading ||
+    userAnnouncementQuery.isLoading
+  ) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
+          fontSize: 20,
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div style={{ marginLeft: 15 }}>
       <div
@@ -42,12 +91,16 @@ export default function Notification() {
       >
         <div style={{ height: 50, width: 150 }}>
           <div style={containerStyle}>
-            <div style={textWrapperStyle}>Team Member (0)</div>
+            <div style={textWrapperStyle}>
+              Team Member ({memberAnnouncementQuery.data.data.data.length})
+            </div>
           </div>
         </div>
         <div style={{ height: 50, width: 150 }}>
           <div style={containerStyle}>
-            <div style={textWrapperStyle}>User (0)</div>
+            <div style={textWrapperStyle}>
+              User ({userAnnouncementQuery.data.data.data.length})
+            </div>
           </div>
         </div>
         <div style={{ height: 50, width: 150 }}>
@@ -57,7 +110,9 @@ export default function Notification() {
         </div>
         <div style={{ height: 50, width: 150 }}>
           <div style={containerStyle}>
-            <div style={textWrapperStyle}>Public (0)</div>
+            <div style={textWrapperStyle}>
+              Public ({publicAnnouncementQuery.data.data.data.length})
+            </div>
           </div>
         </div>
       </div>

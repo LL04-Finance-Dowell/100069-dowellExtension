@@ -5,11 +5,8 @@ import Login from "./page/Login";
 import Logout from "./page/Logout";
 import Product from "./page/Product";
 import Notification from "./page/Notification";
-import { useStateContext } from "./Contexts/Context";
 
 function App() {
-  const { sessionId } = useStateContext();
-  console.log(sessionId);
   return (
     <BrowserRouter>
       <div
