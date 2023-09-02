@@ -20,6 +20,7 @@ function App() {
           style={{
             marginRight: "auto",
             width: "100%",
+            borderRadius: 20,
           }}
         >
           <Routes>

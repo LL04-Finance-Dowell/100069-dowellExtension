@@ -2,12 +2,13 @@ import { BsArrowLeft } from "react-icons/bs";
 
 export default function Notification() {
   return (
-    <div style={{ padding: 10 }}>
+    <div style={{ marginLeft: 15 }}>
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
+          marginTop: 25,
         }}
       >
         <BsArrowLeft size={30} color="#005734" />
