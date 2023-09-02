@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./page/Login";
 import Logout from "./page/Logout";
 import Product from "./page/Product";
+import Notification from "./page/Notification";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/products" element={<Product />} />
+            <Route path="/notifications" element={<Notification />} />
           </Routes>
         </div>
         <SideBar />
