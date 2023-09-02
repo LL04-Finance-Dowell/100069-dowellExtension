@@ -5,6 +5,7 @@ import Login from "./page/Login";
 import Logout from "./page/Logout";
 import Product from "./page/Product";
 import Notification from "./page/Notification";
+import Favourites from "./page/Favourites";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/products" element={<Product />} />
             <Route path="/notifications" element={<Notification />} />
+            <Route path="/favourites" element={<Favourites />} />
           </Routes>
         </div>
         <SideBar />

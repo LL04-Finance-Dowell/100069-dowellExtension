@@ -1,8 +1,8 @@
-import { BsArrowLeft } from "react-icons/bs";
 import { useQueries, useQuery } from "react-query";
 import FetchPublicAnnouncements from "../lib/api/fetchPublicAnnouncement";
 import FetchMemberAnnouncements from "../lib/api/fetchMemberAnnouncement";
 import FetchUserAnnouncements from "../lib/api/fetchUserAnnouncement";
+import HeaderComponent from "../components/HeaderComponent";
 
 export default function Notification() {
   const { data } = useQuery("userInfo");
@@ -52,32 +52,7 @@ export default function Notification() {
 
   return (
     <div style={{ marginLeft: 15 }}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          marginTop: 25,
-        }}
-      >
-        <BsArrowLeft size={30} color="#005734" />
-        <div
-          style={{
-            color: "#005734",
-            fontSize: 20,
-            fontWeight: 600,
-            height: 27,
-            letterSpacing: 0,
-            lineHeight: "normal",
-            alignItems: "center",
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-          }}
-        >
-          Notification
-        </div>
-      </div>
+      <HeaderComponent title="Notification" />
       <div style={headerLabelStyle}>
         <div style={headerTextWrapperStyle}>Announcement</div>
       </div>
