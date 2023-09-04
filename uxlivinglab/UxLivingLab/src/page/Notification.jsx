@@ -3,6 +3,7 @@ import FetchPublicAnnouncements from "../lib/api/fetchPublicAnnouncement";
 import FetchMemberAnnouncements from "../lib/api/fetchMemberAnnouncement";
 import FetchUserAnnouncements from "../lib/api/fetchUserAnnouncement";
 import HeaderComponent from "../components/HeaderComponent";
+import NotificationSkeleton from "../components/NotificationSkeleton";
 
 export default function Notification() {
   const { data } = useQuery("userInfo");
@@ -34,20 +35,7 @@ export default function Notification() {
     memberAnnouncementQuery.isLoading ||
     userAnnouncementQuery.isLoading
   ) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          width: "100vw",
-          fontSize: 20,
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <NotificationSkeleton />;
   }
 
   return (
