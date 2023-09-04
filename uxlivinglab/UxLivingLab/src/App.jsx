@@ -6,7 +6,6 @@ import Logout from "./page/Logout";
 import Product from "./page/Products/Product";
 import Notification from "./page/Notification";
 import Favourites from "./page/Favourites";
-import CustomArrowExample from "./page/Dropdown";
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
           }}
         >
           <Routes>
-            <Route path="/" element={<CustomArrowExample />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/products" element={<Product />} />
