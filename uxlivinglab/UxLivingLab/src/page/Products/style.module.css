@@ -1,10 +1,6 @@
 .dropdownRoot {
   margin-top: 40px;
   width: 290px;
-  /* height: 37px;
-  box-shadow: 0px 0px 0px #0000001a, 0px 1px 3px #0000001a,
-    2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003,
-    12px 29px 9px transparent; */
 }
 
 .controlClassName {
@@ -21,8 +17,45 @@
 .menuClassName {
   box-shadow: 0px 0px 0px #fff, 0px 0px 0px #fff, 2px 5px 5px #00000017,
     4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent;
-  padding: 0 0 20px 10px;
+  padding: 0 0 3px 10px;
   border-radius: 0 0 10px 10px;
   margin-top: -10px;
   padding-top: 20px;
+  position: absolute;
+  width: 280px;
+  background-color: white;
+  row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.placeholderClassName {
+  margin-right: auto;
+  color: #005734;
+  font-size: 10px;
+  font-weight: 500;
+  height: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.arrowClassName {
+  margin-right: 10px;
+  margin-top: 5px;
+  background-color: red;
+}
+
+.products {
+  height: 99px;
+  width: 94px;
+  box-shadow: 0px 0px 0px #0000001a, 0px 1px 3px #0000001a,
+    2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003,
+    12px 29px 9px transparent;
+  border-radius: 10px;
+  margin-top: 30px;
+  /* position: absolute;
+  bottom: 300px; */
+}
+
+.product_image {
+  height: 99px;
+  width: 94px;
 }
