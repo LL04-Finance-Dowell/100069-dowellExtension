@@ -6,6 +6,8 @@ import Logout from "./page/Logout";
 import Product from "./page/Product";
 import Notification from "./page/Notification";
 import Favourites from "./page/Favourites";
+import CreditSystem from "./page/CreditsSystem";
+import Profile from "./page/Profile";
 
 function App() {
   return (
@@ -30,6 +32,9 @@ function App() {
             <Route path="/products" element={<Product />} />
             <Route path="/notifications" element={<Notification />} />
             <Route path="/favourites" element={<Favourites />} />
+            <Route path="/payments" element={<CreditSystem />} />
+            <Route path="/profiles" element={<Profile />} />
+
           </Routes>
         </div>
         <SideBar />
