@@ -1,7 +1,7 @@
 import Dropdown from "react-dropdown";
+import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import HeaderComponent from "../../components/HeaderComponent";
 import styles from "./style.module.css";
-import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getOrganisation } from "../../utils/getOrgs";

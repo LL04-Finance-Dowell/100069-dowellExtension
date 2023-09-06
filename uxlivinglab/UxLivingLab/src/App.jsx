@@ -6,7 +6,7 @@ import Logout from "./page/Logout";
 import Product from "./page/Products/Product";
 import Notification from "./page/Notification";
 import Favourites from "./page/Favourites";
-import ProductDetail from "./page/ProductDetail";
+import ProductDetail from "./page/ProductDetail/ProductDetail";
 import CreditSystem from "./page/CreditsSystem";
 import Profile from "./page/Profile";
 
