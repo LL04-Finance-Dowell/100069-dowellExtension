@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Dropdown from "react-dropdown";
 import HeaderComponent from "../../components/HeaderComponent";
 import styles from "./style.module.css";
@@ -7,20 +6,23 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getOrganisation } from "../../utils/getOrgs";
 import { getProducts } from "../../utils/getProducts";
+import { useStateContext } from "../../contexts/Context";
+import FetchUserInfo from "../../lib/api/fetchUserInfo";
 
 export default function Product() {
-  const { data } = useQuery("userInfo");
-  const other_org = data?.data?.other_org;
-  const own_org = data?.data?.own_organisations;
+  const { products, setProducts, sessionId } = useStateContext();
+  const data = useQuery({
+    queryKey: "userInfo",
+    queryFn: async () => await FetchUserInfo(sessionId),
+  });
+
+  const other_org = data?.data?.data?.other_org || [];
+  const own_org = data?.data?.own_organisations || [];
   const updatedData = [...other_org, ...own_org];
   const orgs = getOrganisation(updatedData);
-  const [products, setProducts] = useState(null);
 
   const handleChange = (data) => {
     const products = getProducts(data.value, updatedData);
-    // console.log(updatedData);
-    // console.log("break");
-    // console.log(products);
     setProducts(products);
   };
 
@@ -58,9 +60,9 @@ export default function Product() {
           flexWrap: "wrap",
         }}
       >
-        {products?.map((item, key) => (
-          <div className={styles.products} key={key}>
-            <Link to={`/productDetail/${123}`}>
+        {products?.map((item) => (
+          <div className={styles.products} key={item.id}>
+            <Link to={`/productDetail/${item.id}`}>
               <img
                 className={styles.product_image}
                 alt="product"

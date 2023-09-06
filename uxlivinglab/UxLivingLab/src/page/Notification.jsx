@@ -4,24 +4,31 @@ import FetchMemberAnnouncements from "../lib/api/fetchMemberAnnouncement";
 import FetchUserAnnouncements from "../lib/api/fetchUserAnnouncement";
 import HeaderComponent from "../components/HeaderComponent";
 import NotificationSkeleton from "../components/NotificationSkeleton";
+import { useStateContext } from "../contexts/Context";
+import FetchUserInfo from "../lib/api/fetchUserInfo";
 
 export default function Notification() {
-  const { data } = useQuery("userInfo");
+  const { sessionId } = useStateContext();
+  const data = useQuery({
+    queryKey: "userInfo",
+    queryFn: async () => await FetchUserInfo(sessionId),
+  });
+
   const queries = [
     {
       queryKey: ["publicAnnouncement"],
       queryFn: async () =>
-        await FetchPublicAnnouncements(data?.data.userinfo.userID),
+        await FetchPublicAnnouncements(data?.data?.data.userinfo.userID),
     },
     {
       queryKey: ["memberAnnouncement"],
       queryFn: async () =>
-        await FetchMemberAnnouncements(data?.data.userinfo.userID),
+        await FetchMemberAnnouncements(data?.data?.data.userinfo.userID),
     },
     {
       queryKey: ["userAnnouncement"],
       queryFn: async () =>
-        await FetchUserAnnouncements(data?.data.userinfo.userID),
+        await FetchUserAnnouncements(data?.data?.data.userinfo.userID),
     },
   ];
   const [
