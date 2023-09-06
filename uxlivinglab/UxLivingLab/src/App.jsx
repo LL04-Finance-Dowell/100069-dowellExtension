@@ -6,6 +6,7 @@ import Logout from "./page/Logout";
 import Product from "./page/Products/Product";
 import Notification from "./page/Notification";
 import Favourites from "./page/Favourites";
+import ProductDetail from "./page/ProductDetail";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/products" element={<Product />} />
             <Route path="/notifications" element={<Notification />} />
             <Route path="/favourites" element={<Favourites />} />
+            <Route path="/productDetail/:id" element={<ProductDetail />} />
           </Routes>
         </div>
         <SideBar />
