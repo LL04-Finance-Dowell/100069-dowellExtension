@@ -7,6 +7,8 @@ import Product from "./page/Products/Product";
 import Notification from "./page/Notification";
 import Favourites from "./page/Favourites";
 import ProductDetail from "./page/ProductDetail";
+import CreditSystem from "./page/CreditsSystem";
+import Profile from "./page/Profile";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             <Route path="/notifications" element={<Notification />} />
             <Route path="/favourites" element={<Favourites />} />
             <Route path="/productDetail/:id" element={<ProductDetail />} />
+            <Route path="/payments" element={<CreditSystem />} />
+            <Route path="/profiles" element={<Profile />} />
           </Routes>
         </div>
         <SideBar />

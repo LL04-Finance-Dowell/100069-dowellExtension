@@ -14,13 +14,14 @@ export default function Product() {
   const own_org = data?.data?.own_organisations;
   const updatedData = [...other_org, ...own_org];
   const orgs = getOrganisation(updatedData);
-  const [selectedOrg, setSelectedOrg] = useState();
+  const [products, setProducts] = useState(null);
 
   const handleChange = (data) => {
     const products = getProducts(data.value, updatedData);
-    console.log(products);
-    // setSelectedOrg(value);
-    // console.log(value);
+    // console.log(updatedData);
+    // console.log("break");
+    // console.log(products);
+    setProducts(products);
   };
 
   return (
@@ -57,29 +58,17 @@ export default function Product() {
           flexWrap: "wrap",
         }}
       >
-        <Link to={`/productDetail/${123}`}>
-          <div className={styles.products}>
-            <img
-              className={styles.product_image}
-              alt="product"
-              src="https://uxlivinglab.com/wp-content/uploads/2022/12/Digital-Q-1.png"
-            />
+        {products?.map((item, key) => (
+          <div className={styles.products} key={key}>
+            <Link to={`/productDetail/${123}`}>
+              <img
+                className={styles.product_image}
+                alt="product"
+                src={item.image}
+              />
+            </Link>
           </div>
-        </Link>
-        <div className={styles.products}>
-          <img
-            className={styles.product_image}
-            alt="product"
-            src="https://uxlivinglab.com/wp-content/uploads/2022/12/Digital-Q-1.png"
-          />
-        </div>
-        <div className={styles.products}>
-          <img
-            className={styles.product_image}
-            alt="product"
-            src="https://uxlivinglab.com/wp-content/uploads/2022/12/Digital-Q-1.png"
-          />
-        </div>
+        ))}
       </div>
     </div>
   );

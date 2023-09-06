@@ -1,13 +1,51 @@
+// export function getProducts(orgName, data) {
+//   console.log(orgName);
+
+//   const orgProducts = data
+//     ?.filter((item) => item.org_name === orgName && item.product)
+//     .map((it) => ({ product: it.product }));
+//   const newProduct = orgProducts.map((item) => {
+//     products.filter((prd) => {
+//       if (prd.title === item.product) {
+//         return { image: prd.image, id: prd.id, title: prd.title };
+//       }
+//     });
+//   });
+//   console.log(newProduct);
+//   return orgProducts;
+// }
+
 export function getProducts(orgName, data) {
-  console.log(orgName);
-  const orgProducts = data
-    ?.filter((item) => item.org_name === orgName && item.product)
-    .map((it) => ({ product: it.product }));
-  const newProduct = orgProducts.map((item) => {
-    products.filter((prd) => prd.title === item.product);
+  const filteredOrgData = data.filter(
+    (item) => item.org_name === orgName && item.product
+  );
+
+  const uniqueProducts = {};
+  const productsForOrg = [];
+
+  filteredOrgData.forEach((item) => {
+    const product = item.product;
+
+    // Check if the product is not already in the uniqueProducts object
+    if (!uniqueProducts[product]) {
+      uniqueProducts[product] = true;
+
+      const productInfo = products.find(
+        (product) => product.title === item.product
+      );
+
+      if (productInfo) {
+        productsForOrg.push({
+          product,
+          image: productInfo.image,
+          id: productInfo.id,
+          portfolio: item.portfolio_name,
+        });
+      }
+    }
   });
-  console.log(newProduct);
-  return orgProducts;
+
+  return productsForOrg;
 }
 
 export const products = [

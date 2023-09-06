@@ -1,0 +1,24 @@
+/* ScrollbarStyles.css */
+
+/* Webkit (Safari and Chrome) */
+::-webkit-scrollbar {
+    width: 3px;
+    margin: 20px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #005734;
+    width:3px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 70px;
+    width:20px
+  }
+  
+  
+  /* Firefox
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+   */

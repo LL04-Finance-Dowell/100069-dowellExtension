@@ -1,5 +1,5 @@
 import HeaderComponent from "../components/HeaderComponent";
-import { AiOutlineEye, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineEye, AiOutlinePlus} from "react-icons/ai";
 
 export default function Favourites() {
   return (
