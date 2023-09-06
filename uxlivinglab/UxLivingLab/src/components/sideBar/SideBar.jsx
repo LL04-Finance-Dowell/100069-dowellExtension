@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import { useState } from "react";
+import { useStateContext } from "../../contexts/Context";
 
 export default function SideBar() {
+  const { sessionId } = useStateContext();
+
   const icons = {
     login: "fas fa-sign-in-alt",
     logout: "fas fa-power-off",
@@ -14,7 +17,9 @@ export default function SideBar() {
     favourites: "fas fa-hand-holding-heart",
   };
 
-  const [activeTab, setActiveTab] = useState(icons.login);
+  const [activeTab, setActiveTab] = useState(
+    sessionId ? icons.favourites : icons.login
+  );
 
   return (
     <div
@@ -26,7 +31,21 @@ export default function SideBar() {
       className={styles.rectangle1}
     >
       {Object.entries(icons).map(([key, value]) => (
-        <Link to={`/${key}`} key={key} style={{ textDecoration: "none" }}>
+        <Link
+          to={`/${key}`}
+          key={key}
+          style={{
+            textDecoration: "none",
+            pointerEvents:
+              !sessionId &&
+              (key === "favourites" ||
+                key === "products" ||
+                key === "logout" ||
+                key === "profiles")
+                ? "none"
+                : "auto",
+          }}
+        >
           <div
             style={{
               padding: 10,
@@ -38,7 +57,15 @@ export default function SideBar() {
             }}
             className={activeTab === value ? styles.rectangle : null}
             key={key}
-            onClick={() => setActiveTab(value)}
+            onClick={() =>
+              !sessionId &&
+              (key === "favourites" ||
+                key === "products" ||
+                key === "logout" ||
+                key === "profiles")
+                ? ""
+                : setActiveTab(value)
+            }
           >
             <i
               className={value}

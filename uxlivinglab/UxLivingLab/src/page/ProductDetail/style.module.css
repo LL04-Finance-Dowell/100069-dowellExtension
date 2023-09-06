@@ -2,24 +2,21 @@
   background-color: #fff;
   height: 31px;
   width: 240px;
-  /* align-content: center; */
+  box-shadow: 0px 0px 0px #0000001a, 0px 1px 3px #0000001a,
+    2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003;
 }
 
 .controlClassName {
-  box-shadow: 0px 0px 0px #0000001a, 0px 1px 3px #0000001a,
-    2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003;
   height: 37px;
   display: flex;
   align-items: center;
   padding-left: 10px;
-  border-radius: 10px;
 }
 
 .menuClassName {
   box-shadow: 0px 0px 0px #fff, 0px 0px 0px #fff, 2px 5px 5px #00000017,
     4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent;
   padding: 0 0 3px 10px;
-  border-radius: 0 0 10px 10px;
   margin-top: -10px;
   padding-top: 20px;
   position: absolute;
@@ -28,6 +25,12 @@
   row-gap: 10px;
   display: flex;
   flex-direction: column;
+  color: #005734;
+  font-size: 10px;
+  font-weight: 500;
+  height: 15px;
+  letter-spacing: 0;
+  line-height: normal;
 }
 .placeholderClassName {
   margin-right: auto;
@@ -66,9 +69,6 @@
     2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003,
     12px 29px 9px transparent;
   height: 31px;
-  /* left: 0;
-  position: fixed;
-  top: 0; */
   width: 240px;
   display: flex;
   justify-content: center;

@@ -40,6 +40,7 @@ export function getProducts(orgName, data) {
           image: productInfo.image,
           id: productInfo.id,
           portfolio: item.portfolio_name,
+          orgName,
         });
       }
     }

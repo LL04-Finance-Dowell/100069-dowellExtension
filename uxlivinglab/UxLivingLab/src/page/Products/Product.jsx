@@ -8,9 +8,12 @@ import { getOrganisation } from "../../utils/getOrgs";
 import { getProducts } from "../../utils/getProducts";
 import { useStateContext } from "../../contexts/Context";
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
+import { useState } from "react";
 
 export default function Product() {
   const { products, setProducts, sessionId } = useStateContext();
+  const [org, setOrg] = useState();
+
   const data = useQuery({
     queryKey: "userInfo",
     queryFn: async () => await FetchUserInfo(sessionId),
@@ -24,6 +27,7 @@ export default function Product() {
   const handleChange = (data) => {
     const products = getProducts(data.value, updatedData);
     setProducts(products);
+    setOrg(data.value);
   };
 
   return (
@@ -33,6 +37,7 @@ export default function Product() {
       <Dropdown
         className={styles.dropdownRoot}
         options={orgs.map((item) => item.org_name)}
+        value={org}
         onChange={handleChange}
         controlClassName={styles.controlClassName}
         menuClassName={styles.menuClassName}

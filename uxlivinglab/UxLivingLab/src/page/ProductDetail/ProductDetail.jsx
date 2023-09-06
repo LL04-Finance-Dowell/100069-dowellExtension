@@ -1,17 +1,38 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import HeaderComponent from "../../components/HeaderComponent";
 import { useStateContext } from "../../contexts/Context";
 import Dropdown from "react-dropdown";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import styles from "./style.module.css";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import DropdownComponent from "../../components/Dropdowns/Dropdown";
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const { products } = useStateContext();
+  const { data } = useQuery("userInfo");
+  const { products, sessionId } = useStateContext();
+  const [product, setProduct] = useState(null);
+  const [portfolio, setPortfolio] = useState(null);
 
-  const product = products?.find((item) => item.id === id);
+  const options = products?.map((item) => item.portfolio);
 
-  console.log(product);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setProduct(products?.find((item) => item.id === id));
+  }, []);
+
+  const handleClick = () => {
+    if (!data?.data?.userinfo?.username || !product || !portfolio) {
+      return null;
+    } else {
+      console.log("hello");
+      window.open(
+        `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${product.orgName}&product=${product.product}&portfolio=${portfolio}&username=${data?.data?.userinfo?.username}`
+      );
+    }
+  };
 
   return (
     <div
@@ -21,23 +42,31 @@ export default function ProductDetail() {
         flexDirection: "column",
       }}
     >
-      <HeaderComponent title="Product Detail" />
-      <div>dropDown</div>
+      <HeaderComponent title="Product Detail" navigation={() => navigate(-1)} />
+      <div style={{ alignSelf: "center", backgroundColor: "white" }}>
+        <DropdownComponent
+          products={products}
+          setProduct={setProduct}
+          product={product?.product}
+        />
+      </div>
+
       <img
         src={product?.image}
         alt=""
-        style={{ width: "100%", opacity: 0.4 }}
+        style={{ width: "100%", opacity: 0.4, marginTop: 20 }}
       />
       <div
         style={{
           ...rectangleStyle,
-          position: "absolute",
-          top: 140,
+          position: "fixed",
+          top: 210,
         }}
       >
-        <div style={headerStyle}>{product.product}</div>
+        <div style={headerStyle}>{product?.product}</div>
         <Dropdown
-          options={["1", "2"]}
+          options={options}
+          onChange={(e) => setPortfolio(e.value)}
           className={styles.dropdownRoot}
           controlClassName={styles.controlClassName}
           placeholderClassName={styles.placeholderClassName}
@@ -56,7 +85,7 @@ export default function ProductDetail() {
             />
           }
         />
-        <div style={buttonStyle}>
+        <div style={buttonStyle} onClick={handleClick}>
           <span style={{ color: "#ffffff", fontSize: 16, fontWeight: 500 }}>
             Connect
           </span>
