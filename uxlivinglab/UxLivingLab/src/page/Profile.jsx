@@ -1,7 +1,7 @@
 import HeaderComponent from "../components/HeaderComponent";
 import { IoIosArrowForward } from "react-icons/io";
 import "../components/ScrollbarStyles.css"
-import TabButton from "../components/tabButton/tabButton";
+import TabButton from "../components/TabButton";
   
 export default function Profile () {
     const fields = ["01. My Profile","02. Set Password","03. Device IDs","04. Personal IDs","05. References","06. ID Verification","07. My Organisation","08. Geographic Profile","09. Demographic Profile","10. Psychographic Profile","11. Behavioural Profile","12. Usage Profile","13. Section Permissions"]
@@ -19,7 +19,7 @@ export default function Profile () {
 
                 ))}
             </div>
-            <TabButton description={"Edit my profile"}/>
+            <TabButton  description={"Edit my profile"}/>
         </div>
     );
 }

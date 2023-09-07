@@ -17,6 +17,24 @@
     width:20px
   }
   
+  .frame{
+    /* width: 3px; */
+    margin: 20px;
+    height:40vh;
+    scrollbar-track-color: #005734;
+    scrollbar-width: 12px;
+    scrollbar-shadow-color: #005734;
+  }
+  iframe body::-webkit-scrollbar-track {
+    background: #005734;
+    width:3px;
+  }
+  iframe body::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 70px;
+    width:20px
+  }
+  
   
   /* Firefox
   scrollbar-width: thin;
