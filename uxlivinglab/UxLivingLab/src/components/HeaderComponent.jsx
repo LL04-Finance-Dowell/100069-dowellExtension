@@ -11,7 +11,7 @@ export default function HeaderComponent({ title }) {
         marginTop: 25,
       }}
     >
-      <BsArrowLeft size={30} color="#005734" />
+      <BsArrowLeft size={30} color="#000000" />
       <div
         style={{
           color: "#005734",
