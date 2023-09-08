@@ -11,8 +11,8 @@ export default function SideBar() {
     logout: "fas fa-power-off fa-rotate-270",
     payments: "fas fa-credit-card",
     profiles: "fas fa-user",
-    customer: "fas fa-headset",
-    notifications: "fas fa-bell",
+    customer: "fas fa-light fa-headphones",
+    notifications: "fas fa-regular fa-bell",
     products: "far fa-gem",
     favourites: "fas fa-hand-holding-heart",
   };
