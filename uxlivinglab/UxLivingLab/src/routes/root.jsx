@@ -8,6 +8,7 @@ import Logout from "../page/Logout";
 import CreditSystem from "../page/CreditsSystem";
 import Notification from "../page/Notification";
 import { useStateContext } from "../contexts/Context";
+import CustomerSupport from "../page/CustomerSupport";
 
 export const AppRouter = () => {
   const { sessionId } = useStateContext();
@@ -22,7 +23,7 @@ export const AppRouter = () => {
       <Route path="/logout" element={<Logout />} />
       <Route path="/payments" element={<CreditSystem />} />
       <Route path="/notifications" element={<Notification />} />
-      {/* <Route path="/customer" element={<Customer />} /> */}
+      <Route path="/customer" element={<CustomerSupport />} />
       <Route
         path="/"
         element={<Navigate to={sessionId ? "/favourites" : "/login"} replace />}
