@@ -1,23 +1,16 @@
+/* eslint-disable react/prop-types */
 import Dropdown from "react-dropdown";
 import styles from "./style.module.css";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
-import { useQuery } from "react-query";
-import { getProducts } from "../../utils/getProducts";
-import useStore from "../../hooks/use-hook";
 
-// eslint-disable-next-line react/prop-types
-export default function DropdownComponent({ options, setOrg }) {
-  const { data } = useQuery("addFavourites");
-  const setProducts = useStore((state) => state.setProducts);
-
+export default function ProductDropdown({ options, setProduct }) {
   const handleChange = (item) => {
-    setOrg(item.value);
-    setProducts(getProducts(item.value, data));
+    setProduct(item.value);
   };
 
   return (
     <Dropdown
-      options={options}
+      options={options || []}
       onChange={handleChange}
       className={styles.controlStyle}
       menuClassName={styles.menuClassName}
