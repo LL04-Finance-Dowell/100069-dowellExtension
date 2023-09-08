@@ -1,0 +1,90 @@
+import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import Dropdown from "react-dropdown";
+import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
+import HeaderComponent from "../../components/HeaderComponent";
+import styles from "./style.module.css";
+import { getOrganisation } from "../../utils/getOrgs";
+import { getProducts } from "../../utils/getProducts";
+import { useStateContext } from "../../contexts/Context";
+import FetchUserInfo from "../../lib/api/fetchUserInfo";
+import useStore from "../../hooks/use-hook";
+
+export default function Product() {
+  const { sessionId } = useStateContext();
+  const setOrg = useStore((state) => state.setOrg);
+  const setProducts = useStore((state) => state.setProducts);
+  const org = useStore((state) => state.org);
+  const products = useStore((state) => state.products);
+  const orgs = useStore((state) => state.orgs);
+  const setOrgs = useStore((state) => state.setOrgs);
+
+  useQuery("userInfo", async () => {
+    const userInfo = await FetchUserInfo(sessionId);
+    const other_org = userInfo.data.other_org || [];
+    const own_org = userInfo.data.own_organisations || [];
+    const updatedData = [...other_org, ...own_org];
+    const orgs = getOrganisation(updatedData);
+    setOrgs(orgs);
+    if (!org) {
+      setOrg(orgs[0]?.org_name);
+      setProducts(getProducts(orgs[0]?.org_name, updatedData));
+    }
+    return orgs;
+  });
+
+  const handleChange = (selectedOrg) => {
+    setOrg(selectedOrg.value);
+    setProducts(getProducts(selectedOrg.value, orgs));
+  };
+
+  return (
+    <div style={{ marginLeft: 15 }}>
+      <HeaderComponent title="Product" />
+
+      <Dropdown
+        className={styles.dropdownRoot}
+        options={orgs?.map((item) => item.org_name)}
+        value={org}
+        onChange={handleChange}
+        controlClassName={styles.controlClassName}
+        menuClassName={styles.menuClassName}
+        arrowClassName={styles.arrowClassName}
+        placeholderClassName={styles.placeholderClassName}
+        arrowOpen={
+          <LiaAngleDownSolid
+            size={12}
+            style={{ marginRight: 10, marginTop: 5 }}
+          />
+        }
+        arrowClosed={
+          <LiaAngleRightSolid
+            size={12}
+            style={{ marginRight: 10, marginTop: 5 }}
+          />
+        }
+      />
+      <div
+        style={{
+          display: "flex",
+          columnGap: 50,
+          rowGap: 10,
+          marginLeft: 20,
+          flexWrap: "wrap",
+        }}
+      >
+        {products?.map((item) => (
+          <div className={styles.products} key={item.id}>
+            <Link to={`/productDetail/${item.id}`}>
+              <img
+                className={styles.product_image}
+                alt="product"
+                src={item.image}
+              />
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

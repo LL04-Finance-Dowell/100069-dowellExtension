@@ -1,7 +1,7 @@
 import { BsArrowLeft } from "react-icons/bs";
 
 // eslint-disable-next-line react/prop-types
-export default function HeaderComponent({ title }) {
+export default function HeaderComponent({ title, navigation = () => {} }) {
   return (
     <div
       style={{
@@ -11,7 +11,7 @@ export default function HeaderComponent({ title }) {
         marginTop: 25,
       }}
     >
-      <BsArrowLeft size={30} color="#000000" />
+      <BsArrowLeft size={30} color="#005734" onClick={navigation} />
       <div
         style={{
           color: "#005734",
