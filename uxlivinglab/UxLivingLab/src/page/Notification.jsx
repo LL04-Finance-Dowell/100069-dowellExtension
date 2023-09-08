@@ -9,7 +9,7 @@ import FetchUserInfo from "../lib/api/fetchUserInfo";
 
 export default function Notification() {
   const { sessionId } = useStateContext();
-  const data = useQuery({
+  const { data } = useQuery({
     queryKey: "userInfo",
     queryFn: async () => await FetchUserInfo(sessionId),
   });
@@ -18,17 +18,17 @@ export default function Notification() {
     {
       queryKey: ["publicAnnouncement"],
       queryFn: async () =>
-        await FetchPublicAnnouncements(data?.data?.data.userinfo.userID),
+        await FetchPublicAnnouncements(data?.data?.userinfo.userID),
     },
     {
       queryKey: ["memberAnnouncement"],
       queryFn: async () =>
-        await FetchMemberAnnouncements(data?.data?.data.userinfo.userID),
+        await FetchMemberAnnouncements(data?.data?.userinfo.userID),
     },
     {
       queryKey: ["userAnnouncement"],
       queryFn: async () =>
-        await FetchUserAnnouncements(data?.data?.data.userinfo.userID),
+        await FetchUserAnnouncements(data?.data?.userinfo.userID),
     },
   ];
   const [
@@ -36,7 +36,6 @@ export default function Notification() {
     memberAnnouncementQuery,
     userAnnouncementQuery,
   ] = useQueries(queries);
-
   if (
     publicAnnouncementQuery.isLoading ||
     memberAnnouncementQuery.isLoading ||

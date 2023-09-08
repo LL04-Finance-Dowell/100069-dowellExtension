@@ -7,11 +7,14 @@ import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import DropdownComponent from "../../components/Dropdowns/Dropdown";
+import useStore from "../../hooks/use-hook";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const { data } = useQuery("userInfo");
-  const { products, sessionId } = useStateContext();
+  const { sessionId } = useStateContext();
+  const products = useStore((state) => state.products);
+
   const [product, setProduct] = useState(null);
   const [portfolio, setPortfolio] = useState(null);
 

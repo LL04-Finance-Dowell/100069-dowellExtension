@@ -1,33 +1,41 @@
+import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import Dropdown from "react-dropdown";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import HeaderComponent from "../../components/HeaderComponent";
 import styles from "./style.module.css";
-import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
 import { getOrganisation } from "../../utils/getOrgs";
 import { getProducts } from "../../utils/getProducts";
 import { useStateContext } from "../../contexts/Context";
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
-import { useState } from "react";
+import useStore from "../../hooks/use-hook";
 
 export default function Product() {
-  const { products, setProducts, sessionId } = useStateContext();
-  const [org, setOrg] = useState();
+  const { sessionId } = useStateContext();
+  const setOrg = useStore((state) => state.setOrg);
+  const setProducts = useStore((state) => state.setProducts);
+  const org = useStore((state) => state.org);
+  const products = useStore((state) => state.products);
+  const orgs = useStore((state) => state.orgs);
+  const setOrgs = useStore((state) => state.setOrgs);
 
-  const data = useQuery({
-    queryKey: "userInfo",
-    queryFn: async () => await FetchUserInfo(sessionId),
+  useQuery("userInfo", async () => {
+    const userInfo = await FetchUserInfo(sessionId);
+    const other_org = userInfo.data.other_org || [];
+    const own_org = userInfo.data.own_organisations || [];
+    const updatedData = [...other_org, ...own_org];
+    const orgs = getOrganisation(updatedData);
+    setOrgs(orgs);
+    if (!org) {
+      setOrg(orgs[0]?.org_name);
+      setProducts(getProducts(orgs[0]?.org_name, updatedData));
+    }
+    return orgs;
   });
 
-  const other_org = data?.data?.data?.other_org || [];
-  const own_org = data?.data?.own_organisations || [];
-  const updatedData = [...other_org, ...own_org];
-  const orgs = getOrganisation(updatedData);
-
-  const handleChange = (data) => {
-    const products = getProducts(data.value, updatedData);
-    setProducts(products);
-    setOrg(data.value);
+  const handleChange = (selectedOrg) => {
+    setOrg(selectedOrg.value);
+    setProducts(getProducts(selectedOrg.value, orgs));
   };
 
   return (
@@ -36,7 +44,7 @@ export default function Product() {
 
       <Dropdown
         className={styles.dropdownRoot}
-        options={orgs.map((item) => item.org_name)}
+        options={orgs?.map((item) => item.org_name)}
         value={org}
         onChange={handleChange}
         controlClassName={styles.controlClassName}
