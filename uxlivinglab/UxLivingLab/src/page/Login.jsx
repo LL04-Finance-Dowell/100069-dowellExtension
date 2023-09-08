@@ -1,5 +1,5 @@
 import HeaderComponent from "../components/HeaderComponent";
-import TabButton from "../components/tabButton/tabButton";
+import TabButton from "../components/TabButton";
 
 export default function Login() {
   return (
@@ -17,7 +17,9 @@ export default function Login() {
                 />
 
       </div>
-      <TabButton description={"Buy Credits"}/>
+      <div>
+        <TabButton  description={"Buy Credits"}/>
+      </div>
     </div>
   );
 }

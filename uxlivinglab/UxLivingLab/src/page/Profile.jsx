@@ -1,7 +1,7 @@
 import HeaderComponent from "../components/HeaderComponent";
 import { IoIosArrowForward } from "react-icons/io";
 import "../components/ScrollbarStyles.css";
-import TabButton from "../components/tabButton/tabButton";
+import TabButton from "../components/TabButton";
 
 export default function Profile() {
   const fields = [
