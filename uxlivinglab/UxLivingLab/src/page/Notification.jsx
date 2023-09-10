@@ -50,41 +50,43 @@ export default function Notification() {
       <div style={headerLabelStyle}>
         <div style={headerTextWrapperStyle}>Announcement</div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          gap: 15,
-        }}
-      >
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle}>
-            <div style={textWrapperStyle}>
-              Team Member ({memberAnnouncementQuery.data.data.data.length})
+      {sessionId && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: 15,
+          }}
+        >
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle}>
+              <div style={textWrapperStyle}>
+                Team Member ({memberAnnouncementQuery.data.data.data.length})
+              </div>
+            </div>
+          </div>
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle}>
+              <div style={textWrapperStyle}>
+                User ({userAnnouncementQuery.data.data.data.length})
+              </div>
+            </div>
+          </div>
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle}>
+              <div style={textWrapperStyle}>UX Living Lab (0)</div>
+            </div>
+          </div>
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle}>
+              <div style={textWrapperStyle}>
+                Public ({publicAnnouncementQuery.data.data.data.length})
+              </div>
             </div>
           </div>
         </div>
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle}>
-            <div style={textWrapperStyle}>
-              User ({userAnnouncementQuery.data.data.data.length})
-            </div>
-          </div>
-        </div>
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle}>
-            <div style={textWrapperStyle}>UX Living Lab (0)</div>
-          </div>
-        </div>
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle}>
-            <div style={textWrapperStyle}>
-              Public ({publicAnnouncementQuery.data.data.data.length})
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

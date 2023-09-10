@@ -8,10 +8,14 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import DropdownComponent from "../../components/Dropdowns/Dropdown";
 import useStore from "../../hooks/use-hook";
+import FetchUserInfo from "../../lib/api/fetchUserInfo";
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const { data } = useQuery("userInfo");
+  const { data } = useQuery({
+    queryKey: "productDetail",
+    queryFn: async () => await FetchUserInfo(sessionId),
+  });
   const { sessionId } = useStateContext();
   const products = useStore((state) => state.products);
 
@@ -30,7 +34,6 @@ export default function ProductDetail() {
     if (!data?.data?.userinfo?.username || !product || !portfolio) {
       return null;
     } else {
-      console.log("hello");
       window.open(
         `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${product.orgName}&product=${product.product}&portfolio=${portfolio}&username=${data?.data?.userinfo?.username}`
       );

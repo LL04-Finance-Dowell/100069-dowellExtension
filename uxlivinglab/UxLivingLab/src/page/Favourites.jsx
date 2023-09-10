@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
 import HeaderComponent from "../components/HeaderComponent";
 import { AiOutlineEye, AiOutlinePlus } from "react-icons/ai";
 
 export default function Favourites() {
+  const navigate = useNavigate();
+
   return (
     <div
       style={{
@@ -21,6 +24,7 @@ export default function Favourites() {
             size={15}
             color="#005734"
             style={{ marginLeft: "10px", marginRight: "20px" }}
+            onClick={() => navigate("/addFavourite")}
           />
         </div>
       </div>

@@ -44,7 +44,7 @@ export default function Product() {
 
       <Dropdown
         className={styles.dropdownRoot}
-        options={orgs?.map((item) => item.org_name)}
+        options={orgs?.map((item) => item.org_name) || []}
         value={org}
         onChange={handleChange}
         controlClassName={styles.controlClassName}
