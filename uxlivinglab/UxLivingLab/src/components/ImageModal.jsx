@@ -8,11 +8,10 @@ import { Typography } from "@mui/material";
 import FetchFavouriteImage from "../lib/api/fetchFavouriteImage";
 import { useQuery } from "react-query";
 
-const ImageModal = ({ open, handleClose, setImage }) => {
+const ImageModal = ({ open, handleClose, setImage, data }) => {
   const [images, setImages] = React.useState([]);
   const [enabled, setEnabled] = React.useState(false);
 
-  const { data } = useQuery("addFavourites");
   const username = data?.filter((item) => item.username)[0].username || "";
 
   useQuery(

@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStateContext } from "../../contexts/Context";
 
 export default function SideBar() {
   const { sessionId } = useStateContext();
+
+  const url = window.location.pathname;
+  useEffect(() => {
+    setActiveTab(url.split("/")[1]);
+  }, []);
 
   const icons = {
     login: "fas fa-power-off fa-rotate-270",
@@ -57,7 +62,7 @@ export default function SideBar() {
                 placeItems: "center",
                 borderRadius: 10,
               }}
-              className={activeTab === value ? styles.rectangle : null}
+              className={activeTab === key ? styles.rectangle : null}
               key={key}
               onClick={() =>
                 !sessionId &&
@@ -66,7 +71,7 @@ export default function SideBar() {
                   key === "logout" ||
                   key === "profiles")
                   ? ""
-                  : setActiveTab(value)
+                  : setActiveTab(key)
               }
             >
               <i
