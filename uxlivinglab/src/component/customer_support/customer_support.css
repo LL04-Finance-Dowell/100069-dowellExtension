@@ -1,5 +1,18 @@
 .customersupport {
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  /* background-color: red; */
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; */
+}
+.customer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 hr {
   width: 290px;
@@ -53,7 +66,7 @@ hr {
   padding: 5px 10px;
   border-radius: 3px;
 }
-.bt:hover{
+.bt:hover {
   background-color: #61ce70;
 }
 label {

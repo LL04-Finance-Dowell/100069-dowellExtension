@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "./box/Box";
 import styles from "./styles.module.css";
 import { RxCross2 } from "react-icons/rx";
-import _, {lodash} from "lodash"
+import _ from "lodash";
 import { useStateContext } from "../../contexts/ContextProvider";
+import calculateSimilarity from "./calculateSimilarity";
 
 const Products = () => {
-  const { handleShow, data, setChosenProduct, chosenProduct, selectedOrgId, setOrgId } =
+  const { handleShow, data, setChosenProduct, chosenProduct, setOrgId } =
     useStateContext();
   let productes = [];
 
@@ -17,17 +18,15 @@ const Products = () => {
 
         // uncomment after data can be changed successfully
         .filter((datum) => datum.org_id)
-
     )
-  )
+  );
 
   //This works, and it filters based on unique orgIds and unique Org Names
-  const result = _.uniqBy(product_data, (e)=>{
-    return [e.org_name, e.org_id].join();
-  })
-  console.log(result)
+  const result = _.uniqBy(product_data, (e) => {
+    return [e.org_name].join();
+  });
 
-
+  result.sort((a, b) => a.org_name.localeCompare(b.org_name));
   return (
     <div className={styles.cover}>
       <div className="item">
@@ -43,16 +42,13 @@ const Products = () => {
         </div>
         <div className="elementor-form-fields-wrapper elementor-labels-above">
           <div className="elementor-field elementor-select-wrapper ">
-
             <select
               className="elementor-field-textual elementor-size-sm"
               onChange={(e) => {
-                const space = e.target.value.split(",")
-                console.log(space)
+                const space = e.target.value.split(",");
+                console.log(space);
                 setChosenProduct(space[0]);
-                setOrgId(space[1])
-                console.log(space[0])
-                console.log(space[1])
+                setOrgId(space[1]);
               }}
               value={chosenProduct}
               style={{
@@ -65,15 +61,15 @@ const Products = () => {
             >
               <option>{chosenProduct}</option>
 
-              {result.map((org_data, index) =>  (org_data.org_name !== chosenProduct) ? (
-                
-                <option value={[org_data?.org_name,org_data?.org_id]} key={index}>
-                  {org_data.org_name}
-                </option>
-              
-              ): null
-
-              
+              {result.map((org_data, index) =>
+                org_data.org_name !== chosenProduct ? (
+                  <option
+                    value={[org_data?.org_name, org_data?.org_id]}
+                    key={index}
+                  >
+                    {org_data.org_name}
+                  </option>
+                ) : null
               )}
             </select>
           </div>
@@ -82,16 +78,19 @@ const Products = () => {
 
       <div className={styles.container}>
         {chosenProduct &&
+          data.length > 0 &&
           products.map((item) => {
             productes = [
               ...new Map(
                 data?.map((item) => [item["portfolio_name"], item])
               ).values(),
-            ].filter(
-              (datum) =>
-                (datum?.org_name === chosenProduct) &
-                (datum?.product === item.title)
-            );
+            ]
+              .filter((datum) => datum?.org_name === chosenProduct)
+              .filter((dat) =>
+                dat?.product
+                  ? calculateSimilarity(dat?.product, item.title)
+                  : false
+              );
             const productTitle = productes.map((o) => o.product);
             const filteredProduct = productes.filter(
               ({ product }, index) => !productTitle.includes(product, index + 1)
@@ -99,7 +98,7 @@ const Products = () => {
             return filteredProduct.map((index) => (
               <Box
                 key={`${item.id + index}`}
-                product={item}
+                product={{ ...item, title: index.product }}
                 org_name={chosenProduct}
               />
             ));
@@ -586,7 +585,6 @@ export const products = [
 
     image:
       "https://uxlivinglab.com/wp-content/uploads/2023/01/Permutation-calculator.png",
-    id: crypto.randomUUID(),
     title: "Permutation Calculator",
   },
   {

@@ -61,13 +61,12 @@
 //   const data = await fetchRepositories();
 //}
 chrome.runtime.onInstalled.addListener(function (details) {
-  if (details.reason == "update") {
+  if (details.reason === "update") {
     var options = {
       type: "basic",
       title: "Extension Updated",
       message: "Your extension has been updated to the latest version.",
-      iconUrl:
-        "48.png",
+      iconUrl: "48.png",
     };
     chrome.notifications.create(options);
   }
