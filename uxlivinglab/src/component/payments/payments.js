@@ -8,8 +8,8 @@ import FetchService from "../../API/FetchService";
 
 function Payments() {
   const { show, handleShow, userInfo } = useStateContext();
-
   const [data, setData] = useState(null);
+  const [lowCredits, setLowCredits] = useState(false);
 
   useEffect(() => {
     const fetchService = async () => {
@@ -19,6 +19,25 @@ function Payments() {
     };
     fetchService();
   }, [userInfo?.client_admin_id]);
+
+  useEffect(() => {
+    async function checkLowCredits(data) {
+      console.log(data)
+      if (data?.success === true) {
+        const credits = data["data"]["total_credits"];
+        if (credits < 200) {
+          setLowCredits(true)
+        } else {
+          setLowCredits(false)
+        }
+      } else {
+        console.log("no data")
+      }
+
+    }
+    checkLowCredits(data);
+  }, [userInfo?.client_admin_id])
+
 
   // console.log("data", data?.data);
 
@@ -64,10 +83,21 @@ function Payments() {
       >
         {data?.success === true ? (
           <>
+            {lowCredits ? <p
+              style={{ fontSize: 10 }}>80% of your credits have been exhausted,
+              <a
+                style={{ color: "blue", cursor: "pointer" }}
+                onClick={() =>
+                  window.open(
+                    "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
+                    "_blank"
+                  )
+                }
+              > Please buy </a></p> : null}
             <CreditListItem
               name={"Service Key"}
               value={"********-****-****-****-*****"}
-              // value={data?.data?.api_key}
+            // value={data?.data?.api_key}
             />
             <CreditListItem name={"Credit"} value={data?.data?.total_credits} />
             <CreditListItem

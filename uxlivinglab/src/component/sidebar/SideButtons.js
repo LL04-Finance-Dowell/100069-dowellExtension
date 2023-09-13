@@ -1,15 +1,46 @@
 import { useState, useEffect } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
+import FetchService from "../../API/FetchService";
+
 
 
 const SideButtons = ({ setHover, initialState, keys, value }) => {
-  const { sessionId, notifications, announcements, userInfo, handleShow, selectedOrgId, setChosenProduct, data, chosenProduct, portfolioInfo, userAnnouncementsData, memberAnnouncementsData, publicAnnouncementsData } =
+  const { sessionId, notifications, announcements, userInfo, handleShow, selectedOrgId, setChosenProduct, chosenProduct, portfolioInfo, userAnnouncementsData, memberAnnouncementsData, publicAnnouncementsData } =
     useStateContext();
 
   const [showText, setShowText] = useState(false);
   const allAnnouncements = Array.from(new Set(announcements));
   const allNotifications = Array.from(new Set(notifications));
+  const [lowCredits, setLowCredits] = useState(false);
+  const [data, setData] = useState(null);
 
+
+  useEffect(() => {
+    const fetchService = async () => {
+      const res = await FetchService(userInfo?.client_admin_id);
+      setData(res.data);
+      console.log(res.data)
+    };
+    fetchService();
+  }, [userInfo?.client_admin_id]);
+
+  useEffect(() => {
+    async function checkLowCredits(data) {
+      console.log(data)
+      if (data?.success === true) {
+        const credits = data["data"]["total_credits"];
+        if (credits < 200) {
+          setLowCredits(true)
+        } else {
+          setLowCredits(false)
+        }
+      } else {
+        console.log("no data")
+      }
+
+    }
+    checkLowCredits(data);
+  }, [userInfo?.client_admin_id])
   const user = userInfo?.username;
   // const notification = [];
 
@@ -84,6 +115,28 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
                 {totalNotifications}
               </p>
             )}
+          {
+            keys === "payments" &&
+            (lowCredits) && (
+              <p
+                style={{
+                  position: "absolute",
+                  border: "3px solid white",
+                  fontSize: 13,
+                  padding: "1px 5px 8px 5px",
+                  height: 10,
+                  marginBottom: 49,
+                  marginLeft: 50,
+                  borderRadius: 100,
+                  color: "white",
+                  backgroundColor: "#ff0000",
+                }}
+              >
+                1
+              </p>
+
+            )
+          }
           {/* {console.log(announcements.length)} */}
         </div>
       ) : (
