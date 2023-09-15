@@ -4,7 +4,7 @@ import FetchMemberAnnouncements from "../lib/api/fetchMemberAnnouncement";
 import FetchUserAnnouncements from "../lib/api/fetchUserAnnouncement";
 import HeaderComponent from "../components/HeaderComponent";
 import NotificationSkeleton from "../components/NotificationSkeleton";
-import { useStateContext } from "../contexts/Context";
+import { useStateContext } from "../Contexts/Context";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 
 export default function Notification() {

@@ -3,23 +3,35 @@ import HeaderComponent from "../components/HeaderComponent";
 import Logo from "../assets/mdi_null-off.png";
 import FetchService from "../lib/api/fetchService";
 import TabButton from "../components/TabButton";
-import { AiOutlineEye, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineEye, AiOutlinePlus, AiOutlineEyeInvisible,AiOutlineCopy } from "react-icons/ai";
+import FetchUserInfo from "../lib/api/fetchUserInfo";
+import { useStateContext } from "../Contexts/Context";
+import { useState } from "react";
+
+
 
 export default function CreditSystem() {
   const fields = ["Service Key", "Credit", "Status"];
-  const { data } = useQuery("userInfo");
+  const [creditsVisible,setCreditsVisible] = useState(false);
+  const {sessionId} = useStateContext();
+  const [copied, setCopied] = useState(false);
 
-  const ServiceKeyField = ({ servicekey }) => {
-    return (
-      <div style={boxStyle}>
-        <div className="rectangle" style={rectangleStyle}>
-          <div style={apiKeyTextWrapperStyle}>
-            {servicekey} <AiOutlineEye size={15} color="lightgrey" />
-          </div>
-        </div>
-      </div>
-    );
-  };
+  function copyItem() {
+    navigator.clipboard.writeText(creditDataQuery?.data?.data?.data?.api_key)
+    console.log("copied")
+    setCopied(true);
+  }
+
+  function makeVisible () {
+    setCreditsVisible(!creditsVisible);
+  }
+  const { data } = useQuery({
+    queryKey: "userInfo",
+    queryFn: async () => await FetchUserInfo(sessionId),
+  });
+
+  {console.log(data?.data.userinfo.client_admin_id)}
+
   const query = [
     {
       queryKey: ["creditData"],
@@ -47,6 +59,20 @@ export default function CreditSystem() {
     );
   }
 
+  const ServiceKeyField =()=> {
+    return (
+      <div style={boxStyle}>
+        <div className="rectangle" style={rectangleStyle}>
+          <div style={apiKeyTextWrapperStyle}>
+            {creditsVisible?<span style={{fontSize:12}}>{creditDataQuery?.data?.data?.data?.api_key}</span> :"**************************" }
+            <span style={{ marginLeft:creditsVisible?"7px":"79px", cursor: "pointer" }} onClick={() => copyItem()}><AiOutlineCopy size={16} color={copied ? "green" : "black"} /></span>
+            <span onClick={() => makeVisible()} style={{marginLeft:0, cursor:"pointer"}}>{creditsVisible ? <AiOutlineEyeInvisible size={15} />:<span style={{marginLeft:0}}><AiOutlineEye size={15}  /></span>}</span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div style={{ marginLeft: 15 }}>
@@ -71,14 +97,13 @@ export default function CreditSystem() {
                 </h3>
                 {value === "Service Key" ? (
                   <ServiceKeyField
-                    servicekey={creditDataQuery?.data?.data?.data?.api_key}
                   />
                 ) : (
                   <div style={boxStyle}>
                     <div className="rectangle" style={rectangleStyle}>
                       <div style={textWrapperStyle}>
                         {value === "Credit"
-                          ? creditDataQuery?.data?.data?.data?.total_credits
+                          ? (creditDataQuery?.data?.data?.data?.total_credits)
                           : value === "Status"
                           ? creditDataQuery?.data?.data?.data?.is_active
                             ? "Active"
