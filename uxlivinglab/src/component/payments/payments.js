@@ -96,8 +96,9 @@ function Payments() {
               > Please buy </a></p> : null}
             <CreditListItem
               name={"Service Key"}
-              value={"********-****-****-****-*****"}
-            // value={data?.data?.api_key}
+              value={data?.data?.api_key}
+
+            // value={"********-****-****-****-*****"}
             />
             <CreditListItem name={"Credit"} value={data?.data?.total_credits} />
             <CreditListItem
