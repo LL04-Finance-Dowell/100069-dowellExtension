@@ -19,14 +19,14 @@ const SideButtons = ({ setHover, initialState, keys, value }) => {
     const fetchService = async () => {
       const res = await FetchService(userInfo?.client_admin_id);
       setData(res.data);
-      console.log(res.data)
+      // console.log(res.data)
     };
     fetchService();
   }, [userInfo?.client_admin_id]);
 
   useEffect(() => {
     async function checkLowCredits(data) {
-      console.log(data)
+      // console.log(data)
       if (data?.success === true) {
         const credits = data["data"]["total_credits"];
         if (credits < 200) {
