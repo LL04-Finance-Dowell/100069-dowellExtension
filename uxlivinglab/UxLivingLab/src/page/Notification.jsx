@@ -6,13 +6,18 @@ import HeaderComponent from "../components/HeaderComponent";
 import NotificationSkeleton from "../components/NotificationSkeleton";
 import { useStateContext } from "../Contexts/Context";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
+import { useState } from "react";
 
 export default function Notification() {
+  const [title,setTitle] = useState("Announcement");
   const { sessionId } = useStateContext();
   const { data } = useQuery({
     queryKey: "userInfo",
     queryFn: async () => await FetchUserInfo(sessionId),
   });
+  const handleClick = (title) =>{
+    setTitle(title)
+  }
 
   const queries = [
     {
@@ -48,15 +53,17 @@ export default function Notification() {
     <div style={{ marginLeft: 15 }}>
       <HeaderComponent title="Notification" />
       <div style={headerLabelStyle}>
-        <div style={headerTextWrapperStyle}>Announcement</div>
+        <div style={headerTextWrapperStyle}>{title}</div>
       </div>
       {sessionId && (
+        title=="Announcement"?
         <div
           style={{
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
             gap: 15,
+            cursor:"pointer"
           }}
         >
           <div style={{ height: 50, width: 150 }}>
@@ -80,12 +87,20 @@ export default function Notification() {
           </div>
           <div style={{ height: 50, width: 150 }}>
             <div style={containerStyle}>
-              <div style={textWrapperStyle}>
+              <div style={textWrapperStyle} onClick={()=>handleClick("Public")}>
                 Public ({publicAnnouncementQuery.data.data.data.length})
               </div>
             </div>
           </div>
-        </div>
+        </div>:<div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flexWrap: "wrap",
+                    gap: 15,
+                    cursor:"pointer"
+                  }}
+        >{console.log(publicAnnouncementQuery.data.data.data[1].announcement.title)}</div>
       )}
     </div>
   );
