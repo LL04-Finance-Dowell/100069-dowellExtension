@@ -7,7 +7,6 @@ import NotificationSkeleton from "../components/NotificationSkeleton";
 import { useStateContext } from "../Contexts/Context";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 import { useState } from "react";
-import AnnouncementDetail from "./Notification/AnnouncementDetail";
 
 export default function Notification() {
   const [title,setTitle] = useState("Announcement");
