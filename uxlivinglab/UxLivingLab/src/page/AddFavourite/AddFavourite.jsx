@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HeaderComponent from "../../components/HeaderComponent";
 import DropdownComponent from "./Dropdown";
 import styles from "./style.module.css";
@@ -14,6 +14,7 @@ import PortfolioDropdown from "./PortfolioDropdown";
 import { useNavigate } from "react-router";
 import ImageModal from "../../components/ImageModal";
 import SendFavourites from "../../lib/api/sendFavourite";
+import UploadImages from "../../lib/api/uploadImages";
 
 export default function AddFavourite() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function AddFavourite() {
   const [product, setProduct] = useState(null);
   const [portfolio, setPortfolio] = useState(null);
   const [open, setOpen] = useState(false);
+  const [Uploading, setUploading] = useState();
 
   const products = useStore((state) => state.products);
   const setOrgs = useStore((state) => state.setOrgs);
@@ -60,6 +62,19 @@ export default function AddFavourite() {
     mutate(formData);
   };
 
+  const handleImageUpload = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      const upload = await UploadImages(formData);
+      if (upload.data.file_url) {
+        setUploading(upload.data.file_url);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       style={{
@@ -90,31 +105,34 @@ export default function AddFavourite() {
           <span className={styles.spanStyle}>Select Portfolio:</span>
           <PortfolioDropdown product={product} setPortfolio={setPortfolio} />
         </div>
-        {/* <div
+        <div
           style={{ marginTop: 20, display: "flex", flexDirection: "column" }}
-        > */}
-        {/* <span className={styles.spanStyle}>
+        >
+          <span className={styles.spanStyle}>
             Upload Image:
-            {image && (
-              <span className={styles.placeholderClassName}>{image.name}</span>
+            {Uploading && (
+              <span className={styles.placeholderClassName}>
+                Uploaded successfully
+              </span>
             )}
           </span>
           <input
             type="file"
-            id="file"
+            id="image"
             className={styles.inputStyle}
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => handleImageUpload(e.target.files[0])}
           />
           <div className={styles.labelStyle}>
-            <label htmlFor="file" className={styles.label}>
+            <label htmlFor="image" className={styles.label}>
               Choose
             </label>
             <FiLink2 size={12} className={styles.icon} />
-          </div> */}
+          </div>
+        </div>
         <div style={{ marginTop: 20 }} onClick={() => setOpen(true)}>
           <span className={styles.spanStyle}>
-            Select Images:{image && "1 file chosen"}
+            Choose Images:{image && "1 file chosen"}
           </span>
           <div className={styles.select}>
             <label className={styles.label}>Choose</label>
