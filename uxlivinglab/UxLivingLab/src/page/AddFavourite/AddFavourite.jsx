@@ -26,6 +26,7 @@ export default function AddFavourite() {
   const [portfolio, setPortfolio] = useState(null);
   const [open, setOpen] = useState(false);
   const [Uploading, setUploading] = useState();
+  const [userInfo, setUserInfo] = useState();
 
   const products = useStore((state) => state.products);
   const setOrgs = useStore((state) => state.setOrgs);
@@ -37,11 +38,12 @@ export default function AddFavourite() {
     const own_org = userInfo.data.own_organisations || [];
     const updatedData = [...other_org, ...own_org];
     const orges = getOrganisation(updatedData);
+    setUserInfo(userInfo.data.userinfo);
     setOrgs(orges);
     return updatedData;
   });
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (data) => SendFavourites(data),
     onSuccess: () => navigate(-1),
     onError: (err) => console.log("err", err),
@@ -145,6 +147,7 @@ export default function AddFavourite() {
             handleClose={() => setOpen(false)}
             setImage={setImage}
             data={res.data}
+            userInfo={userInfo}
           />
         }
       </div>
