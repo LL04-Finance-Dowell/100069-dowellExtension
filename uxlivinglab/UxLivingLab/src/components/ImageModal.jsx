@@ -12,7 +12,7 @@ const ImageModal = ({ open, handleClose, setImage, userInfo }) => {
   const [images, setImages] = React.useState([]);
   const [enabled, setEnabled] = React.useState(false);
 
-  useQuery(
+  const { isLoading } = useQuery(
     "fetchImage",
     async () => {
       const fetchImages = await FetchFavouriteImage(userInfo?.userID);
@@ -55,7 +55,10 @@ const ImageModal = ({ open, handleClose, setImage, userInfo }) => {
         }}
       >
         <Typography style={{ marginTop: 20 }}>Choose Images</Typography>
-        {images?.length > 0 ? (
+
+        {isLoading ? (
+          <Typography>Loading...</Typography>
+        ) : images?.length > 0 ? (
           <ImageList
             className="images"
             sx={{ width: 300, height: 400 }}
@@ -70,7 +73,7 @@ const ImageModal = ({ open, handleClose, setImage, userInfo }) => {
                   alt={"crop"}
                   loading="lazy"
                   onClick={() => {
-                    setImage({ image: item.favorite.image_url });
+                    setImage(item.favorite.image_url);
                     handleClose();
                   }}
                 />

@@ -6,11 +6,6 @@ import { useStateContext } from "../../contexts/Context";
 export default function SideBar() {
   const { sessionId } = useStateContext();
 
-  const url = window.location.pathname;
-  useEffect(() => {
-    setActiveTab(url.split("/")[1]);
-  }, []);
-
   const icons = {
     login: "fas fa-power-off fa-rotate-270",
     logout: "fas fa-power-off fa-rotate-270",
@@ -22,16 +17,26 @@ export default function SideBar() {
     favourites: "fas fa-hand-holding-heart",
   };
 
-  const [activeTab, setActiveTab] = useState(
-    sessionId ? icons.favourites : icons.login
-  );
+  const [activeTab, setActiveTab] = useState();
+
+  useEffect(() => {
+    if (sessionId) {
+      setActiveTab("favourites");
+    } else {
+      setActiveTab("login");
+    }
+  }, []);
 
   return (
     <div
       style={{
         height: "100vh",
-        width: 100,
+        // width: 100,
+        // flex: "0 0 100px",
         borderRadius: 20,
+        // position: "fixed",
+        // top: 0,
+        // right: 0,
       }}
       className={styles.rectangle1}
     >
@@ -85,7 +90,16 @@ export default function SideBar() {
           </Link>
         )
       )}
-      <span>Image</span>
+      <img
+        src="/src/assets/admin.png"
+        alt="admin"
+        style={{ width: 80, alignItems: "center", margin: 10 }}
+        onClick={() =>
+          window.open(
+            "https://100014.pythonanywhere.com/en/?redirect_url=https://100093.pythonanywhere.com/home"
+          )
+        }
+      />
     </div>
   );
 }

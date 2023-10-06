@@ -4,7 +4,11 @@ import styles from "./style.module.css";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import useStore from "../../hooks/use-hook";
 
-export default function PortfolioDropdown({ product, setPortfolio }) {
+export default function PortfolioDropdown({
+  product,
+  setPortfolio,
+  isLoading,
+}) {
   const products = useStore((state) => state.products);
   const options = products?.filter((item) => item?.product === product) || [];
 
@@ -16,6 +20,7 @@ export default function PortfolioDropdown({ product, setPortfolio }) {
     <Dropdown
       options={options?.map((item) => item.portfolio) || []}
       onChange={handleChange}
+      disabled={isLoading}
       className={styles.controlStyle}
       menuClassName={styles.menuClassName}
       placeholderClassName={styles.placeholderClassName}

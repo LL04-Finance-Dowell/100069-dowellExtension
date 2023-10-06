@@ -1,9 +1,66 @@
+/* eslint-disable no-extra-boolean-cast */
 import { useNavigate } from "react-router";
 import HeaderComponent from "../components/HeaderComponent";
 import { AiOutlineEye, AiOutlinePlus } from "react-icons/ai";
+import { useQuery } from "react-query";
+import FetchFavourites from "../lib/api/fetchFavourites";
+import { useStateContext } from "../contexts/Context";
+import FetchUserInfo from "../lib/api/fetchUserInfo";
+import Logo from "../assets/mdi_null-off.png";
 
 export default function Favourites() {
   const navigate = useNavigate();
+  const { sessionId } = useStateContext();
+
+  const {
+    data: firstApiData,
+    isLoading: isFirstApiLoading,
+    isError: isFirstApiError,
+  } = useQuery("favouriteUserInfo", () => FetchUserInfo(sessionId));
+
+  const {
+    data: secondApiData,
+    isLoading: isSecondApiLoading,
+    isError: isSecondApiError,
+  } = useQuery(
+    "favourites",
+    () => FetchFavourites(firstApiData?.data?.userinfo?.userID),
+    {
+      enabled: !!firstApiData, // Enable the query only when firstApiData is available
+    }
+  );
+
+  if (isFirstApiLoading || isSecondApiLoading) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
+
+  if (isFirstApiError || isSecondApiError) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Error fetching data.
+      </div>
+    );
+  }
 
   return (
     <div
@@ -11,6 +68,7 @@ export default function Favourites() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <div style={{ width: "100%", paddingLeft: 30 }}>
@@ -28,38 +86,49 @@ export default function Favourites() {
           />
         </div>
       </div>
-      <div style={rectangle}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginRight: "auto",
-            marginLeft: 15,
-            marginTop: 30,
-          }}
-        >
-          <div
-            style={{
-              fontSize: 15,
-              fontWeight: 500,
-              color: "#005734",
-              letterSpacing: 0,
-              lineHeight: "normal",
-            }}
-          >
-            Details
+      {!!secondApiData?.data?.data?.length ? (
+        secondApiData?.data?.data?.map((item) => (
+          <div style={rectangle} key={item._id}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginRight: "auto",
+                marginLeft: 15,
+                marginTop: 30,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 15,
+                  fontWeight: 500,
+                  color: "#005734",
+                  letterSpacing: 0,
+                  lineHeight: "normal",
+                }}
+              >
+                Details
+              </div>
+              <span style={label}>Username: {item?.favorite?.username}</span>
+              <span style={label}>Workspace: {item?.favorite?.org_name}</span>
+              <span style={label}>Product: {item?.favorite?.product_name}</span>
+              <span style={label}>Portfolio: {item?.favorite?.portfolio}</span>
+            </div>
+            <img
+              src={item?.favorite?.image_url}
+              style={imageStyle}
+              sizes="contain"
+            />
           </div>
-          <span style={label}>Name: Username</span>
-          <span style={label}>Workspace: HR_Dowellllllllllllllllllllllll</span>
-          <span style={label}>Product: Digital Queue</span>
-          <span style={label}>Portfolio: HR_Dowell-portfolio</span>
+        ))
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <img src={Logo} style={{ width: 100, marginLeft: 140 }} />
+          <p style={{ marginLeft: 57, color: "#D5D4D4" }}>
+            You have not created favourite!
+          </p>
         </div>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
-          style={imageStyle}
-          sizes="contain"
-        />
-      </div>
+      )}
     </div>
   );
 }
@@ -70,6 +139,7 @@ const boxStyle = {
   marginTop: "40px",
   marginRight: "10px",
   marginLeft: "10px",
+  marginBottom: "40px",
 };
 
 const rectangleStyle = {
@@ -98,10 +168,11 @@ const textWrapperStyle = {
 const rectangle = {
   width: "290px",
   height: "184px",
-  marginTop: "40px",
+  marginBottom: "30px",
   borderRadius: "20px",
   display: "flex",
   flexDirection: "row",
+  overflow: "hidden",
   boxShadow:
     "0px 0px 0px #0000001a, 0px 1px 3px #0000001a, 2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent",
 };

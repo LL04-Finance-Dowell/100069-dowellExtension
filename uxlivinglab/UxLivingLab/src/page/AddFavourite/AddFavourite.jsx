@@ -32,6 +32,8 @@ export default function AddFavourite() {
   const setOrgs = useStore((state) => state.setOrgs);
   const orgs = useStore((state) => state.orgs);
 
+  // console.log("orgs", orgs);
+
   const res = useQuery("fetchFav", async () => {
     const userInfo = await FetchUserInfo(sessionId);
     const other_org = userInfo.data.other_org || [];
@@ -43,25 +45,34 @@ export default function AddFavourite() {
     return updatedData;
   });
 
-  const { mutate } = useMutation({
+  const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: (data) => SendFavourites(data),
     onSuccess: () => navigate(-1),
-    onError: (err) => console.log("err", err),
+    // onError: (err) => console.log("err", err),
   });
 
+  if (isError) {
+    console.log("s", error);
+  }
+
   const handleSubmit = () => {
-    if (!org || !product || !portfolio || !image) {
-      alert("Please select all the fields");
+    if (!org || !product || !portfolio) {
+      alert("Please select workspace, product, portfolio");
       return;
     }
-    const formData = new FormData();
-    formData.append("image_url", image);
-    formData.append("action", true);
-    formData.append("username", image.username);
-    formData.append("productName", product);
-    formData.append("portfolio", portfolio);
-    formData.append("orgName", org);
-    mutate(formData);
+
+    const data = {
+      image_url: image ?? Uploading,
+      action: true,
+      username: userInfo?.username,
+      productName: product,
+      portfolio,
+      orgName: org.org_name,
+      org_id: org.org_id,
+      user_id: userInfo?.userID,
+    };
+    // console.log(data);
+    mutate(data);
   };
 
   const handleImageUpload = async (file) => {
@@ -91,21 +102,42 @@ export default function AddFavourite() {
         <div>
           <span className={styles.spanStyle}>Select WorkSpace:</span>
           <DropdownComponent
-            options={orgs?.map((item) => item.org_name) || []}
+            options={orgs || []}
             setOrg={setOrg}
             data={res.data}
+            isLoading={isLoading}
           />
+          {isError && (
+            <span style={{ color: "red", marginTop: 3 }}>
+              {error?.response?.data?.org_name}
+            </span>
+          )}
         </div>
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Product:</span>
           <ProductDropdown
             options={products?.map((item) => item.product)}
             setProduct={setProduct}
+            isLoading={isLoading}
           />
+          {isError && (
+            <span style={{ color: "red", marginTop: 3 }}>
+              {error?.response?.data?.product_name}
+            </span>
+          )}
         </div>
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Portfolio:</span>
-          <PortfolioDropdown product={product} setPortfolio={setPortfolio} />
+          <PortfolioDropdown
+            product={product}
+            setPortfolio={setPortfolio}
+            isLoading={isLoading}
+          />
+          {isError && (
+            <span style={{ color: "red", marginTop: 3 }}>
+              {error?.response?.data?.portfolio}
+            </span>
+          )}
         </div>
         <div
           style={{ marginTop: 20, display: "flex", flexDirection: "column" }}
@@ -124,6 +156,7 @@ export default function AddFavourite() {
             className={styles.inputStyle}
             accept="image/*"
             onChange={(e) => handleImageUpload(e.target.files[0])}
+            disabled={isLoading}
           />
           <div className={styles.labelStyle}>
             <label htmlFor="image" className={styles.label}>
@@ -151,9 +184,17 @@ export default function AddFavourite() {
           />
         }
       </div>
-      <div style={{ marginTop: 15 }} onClick={handleSubmit}>
-        <TabButton description={"Submit"} />
-      </div>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div
+          style={{ marginTop: 15 }}
+          onClick={handleSubmit}
+          aria-disabled={isLoading}
+        >
+          <TabButton description={"Submit"} />
+        </div>
+      )}
     </div>
   );
 }

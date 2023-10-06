@@ -1,22 +1,28 @@
+/* eslint-disable react/prop-types */
 import Dropdown from "react-dropdown";
 import styles from "./style.module.css";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import { getProducts } from "../../utils/getProducts";
 import useStore from "../../hooks/use-hook";
 
-// eslint-disable-next-line react/prop-types
-export default function DropdownComponent({ options, setOrg, data }) {
+export default function DropdownComponent({
+  options,
+  setOrg,
+  data,
+  isLoading,
+}) {
   const setProducts = useStore((state) => state.setProducts);
 
   const handleChange = (item) => {
-    setOrg(item.value);
+    setOrg(options.find((opt) => opt.org_name === item.value));
     setProducts(getProducts(item.value, data));
   };
 
   return (
     <Dropdown
-      options={options}
+      options={options.map((item) => item.org_name)}
       onChange={handleChange}
+      disabled={isLoading}
       className={styles.controlStyle}
       menuClassName={styles.menuClassName}
       placeholderClassName={styles.placeholderClassName}
