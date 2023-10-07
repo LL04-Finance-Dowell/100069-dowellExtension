@@ -19,8 +19,8 @@ export default function CreditSystem() {
   const { sessionId } = useStateContext();
   const [copied, setCopied] = useState(false);
 
-  function copyItem() {
-    navigator.clipboard.writeText(creditDataQuery?.data?.data?.data?.api_key);
+  function copyItem(api_key) {
+    navigator.clipboard.writeText(api_key);
     setCopied(true);
   }
 
@@ -79,7 +79,7 @@ export default function CreditSystem() {
                 marginLeft: creditsVisible ? "7px" : "79px",
                 cursor: "pointer",
               }}
-              onClick={() => copyItem()}
+              onClick={() => copyItem(creditDataQuery?.data?.data?.api_key)}
             >
               <AiOutlineCopy size={16} color={copied ? "green" : "black"} />
             </span>
