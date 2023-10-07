@@ -12,17 +12,20 @@ import FetchUserInfo from "../../lib/api/fetchUserInfo";
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { sessionId } = useStateContext();
+
   const { data } = useQuery({
     queryKey: "productDetail",
     queryFn: async () => await FetchUserInfo(sessionId),
   });
-  const { sessionId } = useStateContext();
   const products = useStore((state) => state.products);
 
   const [product, setProduct] = useState(null);
   const [portfolio, setPortfolio] = useState(null);
 
-  const options = products?.map((item) => item.portfolio);
+  const options = products
+    ?.filter((item) => item.id === id)
+    .map((pro) => pro.portfolio);
 
   const navigate = useNavigate();
 
@@ -48,10 +51,14 @@ export default function ProductDetail() {
         flexDirection: "column",
       }}
     >
-      <HeaderComponent title="Product Detail" navigation={() => navigate(-1)} />
+      <HeaderComponent
+        title="Product Detail"
+        navigation={() => navigate(-1)}
+        type="detail"
+      />
       <div style={{ alignSelf: "center", backgroundColor: "white" }}>
         <DropdownComponent
-          products={products}
+          products={products ?? []}
           setProduct={setProduct}
           product={product?.product}
         />
@@ -71,7 +78,7 @@ export default function ProductDetail() {
       >
         <div style={headerStyle}>{product?.product}</div>
         <Dropdown
-          options={options}
+          options={options ?? []}
           onChange={(e) => setPortfolio(e.value)}
           className={styles.dropdownRoot}
           controlClassName={styles.controlClassName}

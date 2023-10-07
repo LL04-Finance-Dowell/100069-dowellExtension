@@ -8,18 +8,17 @@ import { Typography } from "@mui/material";
 import FetchFavouriteImage from "../lib/api/fetchFavouriteImage";
 import { useQuery } from "react-query";
 
-const ImageModal = ({ open, handleClose, setImage, data }) => {
+const ImageModal = ({ open, handleClose, setImage, userInfo }) => {
   const [images, setImages] = React.useState([]);
   const [enabled, setEnabled] = React.useState(false);
 
-  const username = data?.filter((item) => item.username)[0].username || "";
-
-  useQuery(
+  const { isLoading } = useQuery(
     "fetchImage",
     async () => {
-      const fetchImages = await FetchFavouriteImage(username);
+      const fetchImages = await FetchFavouriteImage(userInfo?.userID);
       if (fetchImages.data) {
-        const imgs = fetchImages.data.filter((item) => item.image) || [];
+        const imgs =
+          fetchImages.data.data.filter((item) => item.favorite.image_url) || [];
         setImages(imgs);
       }
       return fetchImages;
@@ -30,10 +29,10 @@ const ImageModal = ({ open, handleClose, setImage, data }) => {
   );
 
   useEffect(() => {
-    if (username) {
+    if (userInfo?.userID) {
       setEnabled(true);
     }
-  }, [username]);
+  }, [userInfo?.userID]);
 
   return (
     <Modal
@@ -56,21 +55,25 @@ const ImageModal = ({ open, handleClose, setImage, data }) => {
         }}
       >
         <Typography style={{ marginTop: 20 }}>Choose Images</Typography>
-        {images?.length > 0 ? (
+
+        {isLoading ? (
+          <Typography>Loading...</Typography>
+        ) : images?.length > 0 ? (
           <ImageList
             className="images"
-            sx={{ width: 300, height: 400, marginRight: 100 }}
+            sx={{ width: 300, height: 400 }}
+            rowHeight={164}
             cols={2}
           >
             {images?.map((item, index) => (
               <ImageListItem key={index} style={{ cursor: "pointer" }}>
                 <img
-                  src={`${item.image}t`}
-                  srcSet={`${item.image}`}
+                  src={`${item.favorite.image_url}?w=164&h=164&fit=crop&auto=format`}
+                  srcSet={`${item.favorite.image_url}??w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                   alt={"crop"}
                   loading="lazy"
                   onClick={() => {
-                    setImage({ image: item.image, username });
+                    setImage(item.favorite.image_url);
                     handleClose();
                   }}
                 />

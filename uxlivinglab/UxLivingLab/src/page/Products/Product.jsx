@@ -19,7 +19,7 @@ export default function Product() {
   const orgs = useStore((state) => state.orgs);
   const setOrgs = useStore((state) => state.setOrgs);
 
-  useQuery("userInfo", async () => {
+  const { data } = useQuery("userInfo", async () => {
     const userInfo = await FetchUserInfo(sessionId);
     const other_org = userInfo.data.other_org || [];
     const own_org = userInfo.data.own_organisations || [];
@@ -30,12 +30,12 @@ export default function Product() {
       setOrg(orgs[0]?.org_name);
       setProducts(getProducts(orgs[0]?.org_name, updatedData));
     }
-    return orgs;
+    return updatedData;
   });
 
   const handleChange = (selectedOrg) => {
     setOrg(selectedOrg.value);
-    setProducts(getProducts(selectedOrg.value, orgs));
+    setProducts(getProducts(selectedOrg.value, data));
   };
 
   return (

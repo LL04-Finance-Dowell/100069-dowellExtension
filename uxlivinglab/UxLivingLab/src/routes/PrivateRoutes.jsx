@@ -3,10 +3,9 @@ import Product from "../page/Products/Product";
 import ProductDetail from "../page/ProductDetail/ProductDetail";
 import Profile from "../page/Profile";
 import Favourites from "../page/Favourites";
-import Login from "../page/Login";
 import Logout from "../page/Logout";
-import CreditSystem from "../page/CreditsSystem";
-import Notification from "../page/Notification";
+import CustomerSupport from "../page/CustomerSupport";
+import AddFavourite from "../page/AddFavourite/AddFavourite";
 
 export const PrivateRoutes = () => {
   return (
@@ -15,10 +14,9 @@ export const PrivateRoutes = () => {
       <Route path="/productDetail/:id" element={<ProductDetail />} />
       <Route path="/profiles" element={<Profile />} />
       <Route path="/favourites" element={<Favourites />} />
-      <Route path="/login" element={<Login />} />
       <Route path="/logout" element={<Logout />} />
-      <Route path="/payments" element={<CreditSystem />} />
-      <Route path="/notifications" element={<Notification />} />
+      <Route path="/customer" element={<CustomerSupport />} />
+      <Route path="/addFavourite" element={<AddFavourite />} />
     </Routes>
   );
 };

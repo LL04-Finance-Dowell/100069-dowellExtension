@@ -3,7 +3,7 @@ import Dropdown from "react-dropdown";
 import styles from "./style.module.css";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 
-export default function ProductDropdown({ options, setProduct }) {
+export default function ProductDropdown({ options, setProduct, isLoading }) {
   const handleChange = (item) => {
     setProduct(item.value);
   };
@@ -12,6 +12,7 @@ export default function ProductDropdown({ options, setProduct }) {
     <Dropdown
       options={options || []}
       onChange={handleChange}
+      disabled={isLoading}
       className={styles.controlStyle}
       menuClassName={styles.menuClassName}
       placeholderClassName={styles.placeholderClassName}
