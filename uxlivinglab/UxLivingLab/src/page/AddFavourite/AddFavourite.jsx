@@ -65,9 +65,9 @@ export default function AddFavourite() {
       image_url: image ?? Uploading,
       action: true,
       username: userInfo?.username,
-      productName: product,
+      product_name: product,
       portfolio,
-      orgName: org.org_name,
+      org_name: org.org_name,
       org_id: org.org_id,
       user_id: userInfo?.userID,
     };
@@ -97,6 +97,7 @@ export default function AddFavourite() {
       <HeaderComponent
         title={"Add Favourite"}
         navigation={() => navigate(-1)}
+        type="add"
       />
       <div style={{ marginTop: 30, marginBottom: "auto" }}>
         <div>

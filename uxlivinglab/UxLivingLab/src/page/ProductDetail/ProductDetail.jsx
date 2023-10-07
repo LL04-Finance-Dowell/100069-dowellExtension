@@ -51,7 +51,11 @@ export default function ProductDetail() {
         flexDirection: "column",
       }}
     >
-      <HeaderComponent title="Product Detail" navigation={() => navigate(-1)} />
+      <HeaderComponent
+        title="Product Detail"
+        navigation={() => navigate(-1)}
+        type="detail"
+      />
       <div style={{ alignSelf: "center", backgroundColor: "white" }}>
         <DropdownComponent
           products={products ?? []}

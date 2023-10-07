@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useStateContext } from "../../contexts/Context";
+import ClientAdmin from "../../assets/admin.png";
 
 export default function SideBar() {
   const { sessionId } = useStateContext();
@@ -25,7 +26,7 @@ export default function SideBar() {
     } else {
       setActiveTab("login");
     }
-  }, []);
+  }, [sessionId]);
 
   return (
     <div
@@ -91,7 +92,7 @@ export default function SideBar() {
         )
       )}
       <img
-        src="/src/assets/admin.png"
+        src={ClientAdmin}
         alt="admin"
         style={{ width: 80, alignItems: "center", margin: 10 }}
         onClick={() =>

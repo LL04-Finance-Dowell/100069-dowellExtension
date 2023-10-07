@@ -68,7 +68,8 @@ export default function Favourites() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        height: "100%",
+        // justifyContent: "center",
       }}
     >
       <div style={{ width: "100%", paddingLeft: 30 }}>
@@ -122,11 +123,17 @@ export default function Favourites() {
           </div>
         ))
       ) : (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <img src={Logo} style={{ width: 100, marginLeft: 140 }} />
-          <p style={{ marginLeft: 57, color: "#D5D4D4" }}>
-            You have not created favourite!
-          </p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "50%",
+          }}
+        >
+          <img src={Logo} style={{ width: 100 }} />
+          <p style={{ color: "#D5D4D4" }}>You have not created favourite!</p>
         </div>
       )}
     </div>
@@ -156,7 +163,7 @@ const rectangleStyle = {
 
 const textWrapperStyle = {
   color: "#005734",
-  fontSize: "10px",
+  fontSize: "12px",
   fontWeight: 500,
   height: "15px",
   letterSpacing: "0",

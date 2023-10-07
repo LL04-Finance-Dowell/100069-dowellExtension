@@ -1,7 +1,6 @@
-import { useQueries, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import HeaderComponent from "../components/HeaderComponent";
 import TabButton from "../components/TabButton";
-import { AiOutlineEye, AiOutlinePlus } from "react-icons/ai";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 import { useStateContext } from "../contexts/Context";
 import useStore from "../hooks/use-hook";

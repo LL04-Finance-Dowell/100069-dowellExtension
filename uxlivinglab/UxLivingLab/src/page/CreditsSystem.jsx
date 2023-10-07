@@ -1,4 +1,4 @@
-import { useQueries, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import HeaderComponent from "../components/HeaderComponent";
 import Logo from "../assets/mdi_null-off.png";
 import FetchService from "../lib/api/fetchService";
@@ -21,32 +21,30 @@ export default function CreditSystem() {
 
   function copyItem() {
     navigator.clipboard.writeText(creditDataQuery?.data?.data?.data?.api_key);
-    console.log("copied");
     setCopied(true);
   }
 
   function makeVisible() {
     setCreditsVisible(!creditsVisible);
   }
-  const { data } = useQuery({
+  const { data: userInfoData, isLoading: userInfoLoading } = useQuery({
     queryKey: "userInfo",
-    queryFn: async () => await FetchUserInfo(sessionId),
+    queryFn: () => FetchUserInfo(sessionId),
   });
 
-  {
-    console.log(data?.data?.userinfo?.client_admin_id);
-  }
+  const adminId = userInfoData?.data?.userinfo?.client_admin_id;
 
-  const query = [
+  const { data: creditDataQuery, isLoading: creditLoading } = useQuery(
     {
-      queryKey: ["creditData"],
-      queryFn: async () =>
-        await FetchService(data?.data?.userinfo?.client_admin_id),
+      queryKey: ["creditData", adminId],
+      queryFn: () => FetchService(adminId),
     },
-  ];
-  const [creditDataQuery] = useQueries(query);
+    {
+      enabled: !!adminId,
+    }
+  );
 
-  if (creditDataQuery.isLoading) {
+  if (creditLoading || userInfoLoading) {
     return (
       <div
         style={{
@@ -71,7 +69,7 @@ export default function CreditSystem() {
           <div style={apiKeyTextWrapperStyle}>
             {creditsVisible ? (
               <span style={{ fontSize: 12 }}>
-                {creditDataQuery?.data?.data?.data?.api_key}
+                {creditDataQuery?.data?.data?.api_key}
               </span>
             ) : (
               "**************************"
@@ -110,7 +108,7 @@ export default function CreditSystem() {
       </div>
       <TabButton description={"Buy Credits"} />
 
-      {creditDataQuery?.data?.data?.success === true ? (
+      {creditDataQuery?.data?.success ? (
         <div>
           <div style={{ height: "90vh", marginTop: 100, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
@@ -132,9 +130,9 @@ export default function CreditSystem() {
                     <div className="rectangle" style={rectangleStyle}>
                       <div style={textWrapperStyle}>
                         {value === "Credit"
-                          ? creditDataQuery?.data?.data?.data?.total_credits
+                          ? creditDataQuery?.data?.data?.total_credits
                           : value === "Status"
-                          ? creditDataQuery?.data?.data?.data?.is_active
+                          ? creditDataQuery?.data?.data?.is_active
                             ? "Active"
                             : "Inactive"
                           : null}
