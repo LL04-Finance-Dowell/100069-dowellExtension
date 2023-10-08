@@ -1,47 +1,50 @@
-import { useQueries, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import HeaderComponent from "../components/HeaderComponent";
 import Logo from "../assets/mdi_null-off.png";
 import FetchService from "../lib/api/fetchService";
 import TabButton from "../components/TabButton";
-import { AiOutlineEye, AiOutlinePlus, AiOutlineEyeInvisible,AiOutlineCopy } from "react-icons/ai";
+import {
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlineCopy,
+} from "react-icons/ai";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
-import { useStateContext } from "../Contexts/Context";
+
 import { useState } from "react";
-
-
+import { useStateContext } from "../contexts/Context";
 
 export default function CreditSystem() {
   const fields = ["Service Key", "Credit", "Status"];
-  const [creditsVisible,setCreditsVisible] = useState(false);
-  const {sessionId} = useStateContext();
+  const [creditsVisible, setCreditsVisible] = useState(false);
+  const { sessionId } = useStateContext();
   const [copied, setCopied] = useState(false);
 
-  function copyItem() {
-    navigator.clipboard.writeText(creditDataQuery?.data?.data?.data?.api_key)
-    console.log("copied")
+  function copyItem(api_key) {
+    navigator.clipboard.writeText(api_key);
     setCopied(true);
   }
 
-  function makeVisible () {
+  function makeVisible() {
     setCreditsVisible(!creditsVisible);
   }
-  const { data } = useQuery({
+  const { data: userInfoData, isLoading: userInfoLoading } = useQuery({
     queryKey: "userInfo",
-    queryFn: async () => await FetchUserInfo(sessionId),
+    queryFn: () => FetchUserInfo(sessionId),
   });
 
-  {console.log(data?.data.userinfo.client_admin_id)}
+  const adminId = userInfoData?.data?.userinfo?.client_admin_id;
 
-  const query = [
+  const { data: creditDataQuery, isLoading: creditLoading } = useQuery(
     {
-      queryKey: ["creditData"],
-      queryFn: async () =>
-        await FetchService(data?.data.userinfo.client_admin_id),
+      queryKey: ["creditData", adminId],
+      queryFn: () => FetchService(adminId),
     },
-  ];
-  const [creditDataQuery] = useQueries(query);
+    {
+      enabled: !!adminId,
+    }
+  );
 
-  if (creditDataQuery.isLoading) {
+  if (creditLoading || userInfoLoading) {
     return (
       <div
         style={{
@@ -59,14 +62,39 @@ export default function CreditSystem() {
     );
   }
 
-  const ServiceKeyField =()=> {
+  const ServiceKeyField = () => {
     return (
       <div style={boxStyle}>
         <div className="rectangle" style={rectangleStyle}>
           <div style={apiKeyTextWrapperStyle}>
-            {creditsVisible?<span style={{fontSize:12}}>{creditDataQuery?.data?.data?.data?.api_key}</span> :"**************************" }
-            <span style={{ marginLeft:creditsVisible?"7px":"79px", cursor: "pointer" }} onClick={() => copyItem()}><AiOutlineCopy size={16} color={copied ? "green" : "black"} /></span>
-            <span onClick={() => makeVisible()} style={{marginLeft:0, cursor:"pointer"}}>{creditsVisible ? <AiOutlineEyeInvisible size={15} />:<span style={{marginLeft:0}}><AiOutlineEye size={15}  /></span>}</span>
+            {creditsVisible ? (
+              <span style={{ fontSize: 12 }}>
+                {creditDataQuery?.data?.data?.api_key}
+              </span>
+            ) : (
+              "**************************"
+            )}
+            <span
+              style={{
+                marginLeft: creditsVisible ? "7px" : "79px",
+                cursor: "pointer",
+              }}
+              onClick={() => copyItem(creditDataQuery?.data?.data?.api_key)}
+            >
+              <AiOutlineCopy size={16} color={copied ? "green" : "black"} />
+            </span>
+            <span
+              onClick={() => makeVisible()}
+              style={{ marginLeft: 0, cursor: "pointer" }}
+            >
+              {creditsVisible ? (
+                <AiOutlineEyeInvisible size={15} />
+              ) : (
+                <span style={{ marginLeft: 0 }}>
+                  <AiOutlineEye size={15} />
+                </span>
+              )}
+            </span>
           </div>
         </div>
       </div>
@@ -80,11 +108,11 @@ export default function CreditSystem() {
       </div>
       <TabButton description={"Buy Credits"} />
 
-      {creditDataQuery?.data.data.success === true ? (
+      {creditDataQuery?.data?.success ? (
         <div>
           <div style={{ height: "90vh", marginTop: 100, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
-              <div style={{ height: 70 }}>
+              <div style={{ height: 70 }} key={key}>
                 <h3
                   style={{
                     marginBottom: 5,
@@ -96,16 +124,15 @@ export default function CreditSystem() {
                   {value}:
                 </h3>
                 {value === "Service Key" ? (
-                  <ServiceKeyField
-                  />
+                  <ServiceKeyField />
                 ) : (
                   <div style={boxStyle}>
                     <div className="rectangle" style={rectangleStyle}>
                       <div style={textWrapperStyle}>
                         {value === "Credit"
-                          ? (creditDataQuery?.data?.data?.data?.total_credits)
+                          ? creditDataQuery?.data?.data?.total_credits
                           : value === "Status"
-                          ? creditDataQuery?.data?.data?.data?.is_active
+                          ? creditDataQuery?.data?.data?.is_active
                             ? "Active"
                             : "Inactive"
                           : null}
@@ -130,19 +157,6 @@ export default function CreditSystem() {
     </div>
   );
 }
-
-const dataFieldStyle = {
-  width: "260px",
-  height: "35px",
-  fontSize: "13px",
-  marginBottom: "70px",
-  marginTop: "5px",
-  backgroundColor: "#ffffff",
-  padding: "8px 0px 0px 15px",
-  borderRadius: "100px",
-  boxShadow: "3px 3px 7px 0px #9C9C9C7A inset",
-  fontWeight: "normal",
-};
 
 const boxStyle = {
   height: "37px",

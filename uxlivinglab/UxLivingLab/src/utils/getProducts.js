@@ -1,18 +1,37 @@
-// export function getProducts(orgName, data) {
-//   console.log(orgName);
+import Fuse from "fuse.js";
 
-//   const orgProducts = data
-//     ?.filter((item) => item.org_name === orgName && item.product)
-//     .map((it) => ({ product: it.product }));
-//   const newProduct = orgProducts.map((item) => {
-//     products.filter((prd) => {
-//       if (prd.title === item.product) {
-//         return { image: prd.image, id: prd.id, title: prd.title };
+// export function getProducts(orgName, data) {
+//   const filteredOrgData = data.filter(
+//     (item) => item.org_name === orgName && item.product
+//   );
+
+//   const uniqueProducts = {};
+//   const productsForOrg = [];
+
+//   filteredOrgData.forEach((item) => {
+//     const product = item.product;
+
+//     // Check if the product is not already in the uniqueProducts object
+//     if (!uniqueProducts[product]) {
+//       uniqueProducts[product] = true;
+
+//       const productInfo = products.find(
+//         (product) => product.title === item.product
+//       );
+
+//       if (productInfo) {
+//         productsForOrg.push({
+//           product,
+//           image: productInfo.image,
+//           id: productInfo.id,
+//           portfolio: item.portfolio_name,
+//           orgName,
+//         });
 //       }
-//     });
+//     }
 //   });
-//   console.log(newProduct);
-//   return orgProducts;
+
+//   return productsForOrg;
 // }
 
 export function getProducts(orgName, data) {
@@ -23,22 +42,30 @@ export function getProducts(orgName, data) {
   const uniqueProducts = {};
   const productsForOrg = [];
 
+  // Create a Fuse instance with your product data and options
+  const fuse = new Fuse(products, {
+    keys: ["title"], // Specify the property to match against (in this case, 'title')
+    threshold: 0.3, // Adjust this threshold to control the matching sensitivity
+  });
+
   filteredOrgData.forEach((item) => {
     const product = item.product;
 
-    // Check if the product is not already in the uniqueProducts object
-    if (!uniqueProducts[product]) {
-      uniqueProducts[product] = true;
+    // Use the fuzzy search to find matching products
+    const searchResults = fuse.search(product);
 
-      const productInfo = products.find(
-        (product) => product.title === item.product
-      );
+    if (searchResults.length > 0) {
+      // Use the first result from the search as the matched product
+      const matchedProduct = searchResults[0].item;
 
-      if (productInfo) {
+      // Check if the product is not already in the uniqueProducts object
+      if (!uniqueProducts[matchedProduct.title]) {
+        uniqueProducts[matchedProduct.title] = true;
+
         productsForOrg.push({
-          product,
-          image: productInfo.image,
-          id: productInfo.id,
+          product: matchedProduct.title,
+          image: matchedProduct.image,
+          id: matchedProduct.id,
           portfolio: item.portfolio_name,
           orgName,
         });

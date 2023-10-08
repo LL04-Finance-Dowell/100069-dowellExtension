@@ -140,7 +140,7 @@ const rectangleStyle = {
 
 const textWrapperStyle = {
   color: "#005734",
-  fontSize: "10px",
+  fontSize: "12px",
   fontWeight: 500,
   height: "15px",
   letterSpacing: "0",

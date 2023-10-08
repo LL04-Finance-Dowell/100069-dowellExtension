@@ -27,8 +27,13 @@ export const AppRouter = () => {
       <Route path="/customer" element={<CustomerSupport />} />
       <Route path="/addFavourite" element={<AddFavourite />} />
       <Route
-        path="/"
-        element={<Navigate to={sessionId ? "/favourites" : "/login"} replace />}
+        path=""
+        element={<Navigate to={sessionId ? "/favourites" : "/login"} />}
+      />
+      <Route
+        path="*"
+        element={sessionId ? <Favourites /> : <Login />}
+        // element={<Navigate to={sessionId ? "/favourites" : "/login"} />}
       />
     </Routes>
   );

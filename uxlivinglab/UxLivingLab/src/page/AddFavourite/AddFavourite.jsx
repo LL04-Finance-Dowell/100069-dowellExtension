@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HeaderComponent from "../../components/HeaderComponent";
 import DropdownComponent from "./Dropdown";
 import styles from "./style.module.css";
@@ -14,6 +14,7 @@ import PortfolioDropdown from "./PortfolioDropdown";
 import { useNavigate } from "react-router";
 import ImageModal from "../../components/ImageModal";
 import SendFavourites from "../../lib/api/sendFavourite";
+import UploadImages from "../../lib/api/uploadImages";
 
 export default function AddFavourite() {
   const navigate = useNavigate();
@@ -24,10 +25,14 @@ export default function AddFavourite() {
   const [product, setProduct] = useState(null);
   const [portfolio, setPortfolio] = useState(null);
   const [open, setOpen] = useState(false);
+  const [Uploading, setUploading] = useState();
+  const [userInfo, setUserInfo] = useState();
 
   const products = useStore((state) => state.products);
   const setOrgs = useStore((state) => state.setOrgs);
   const orgs = useStore((state) => state.orgs);
+
+  // console.log("orgs", orgs);
 
   const res = useQuery("fetchFav", async () => {
     const userInfo = await FetchUserInfo(sessionId);
@@ -35,29 +40,52 @@ export default function AddFavourite() {
     const own_org = userInfo.data.own_organisations || [];
     const updatedData = [...other_org, ...own_org];
     const orges = getOrganisation(updatedData);
+    setUserInfo(userInfo.data.userinfo);
     setOrgs(orges);
     return updatedData;
   });
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: (data) => SendFavourites(data),
     onSuccess: () => navigate(-1),
-    onError: (err) => console.log("err", err),
+    // onError: (err) => console.log("err", err),
   });
 
+  if (isError) {
+    console.log("s", error);
+  }
+
   const handleSubmit = () => {
-    if (!org || !product || !portfolio || !image) {
-      alert("Please select all the fields");
+    if (!org || !product || !portfolio) {
+      alert("Please select workspace, product, portfolio");
       return;
     }
-    const formData = new FormData();
-    formData.append("image_url", image);
-    formData.append("action", true);
-    formData.append("username", image.username);
-    formData.append("productName", product);
-    formData.append("portfolio", portfolio);
-    formData.append("orgName", org);
-    mutate(formData);
+
+    const data = {
+      image_url: image ?? Uploading,
+      action: true,
+      username: userInfo?.username,
+      product_name: product,
+      portfolio,
+      org_name: org.org_name,
+      org_id: org.org_id,
+      user_id: userInfo?.userID,
+    };
+    // console.log(data);
+    mutate(data);
+  };
+
+  const handleImageUpload = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      const upload = await UploadImages(formData);
+      if (upload.data.file_url) {
+        setUploading(upload.data.file_url);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -69,52 +97,78 @@ export default function AddFavourite() {
       <HeaderComponent
         title={"Add Favourite"}
         navigation={() => navigate(-1)}
+        type="add"
       />
       <div style={{ marginTop: 30, marginBottom: "auto" }}>
         <div>
           <span className={styles.spanStyle}>Select WorkSpace:</span>
           <DropdownComponent
-            options={orgs?.map((item) => item.org_name) || []}
+            options={orgs || []}
             setOrg={setOrg}
             data={res.data}
+            isLoading={isLoading}
           />
+          {isError && (
+            <span style={{ color: "red", marginTop: 3 }}>
+              {error?.response?.data?.org_name}
+            </span>
+          )}
         </div>
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Product:</span>
           <ProductDropdown
             options={products?.map((item) => item.product)}
             setProduct={setProduct}
+            isLoading={isLoading}
           />
+          {isError && (
+            <span style={{ color: "red", marginTop: 3 }}>
+              {error?.response?.data?.product_name}
+            </span>
+          )}
         </div>
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Portfolio:</span>
-          <PortfolioDropdown product={product} setPortfolio={setPortfolio} />
+          <PortfolioDropdown
+            product={product}
+            setPortfolio={setPortfolio}
+            isLoading={isLoading}
+          />
+          {isError && (
+            <span style={{ color: "red", marginTop: 3 }}>
+              {error?.response?.data?.portfolio}
+            </span>
+          )}
         </div>
-        {/* <div
+        <div
           style={{ marginTop: 20, display: "flex", flexDirection: "column" }}
-        > */}
-        {/* <span className={styles.spanStyle}>
+        >
+          <span className={styles.spanStyle}>
             Upload Image:
-            {image && (
-              <span className={styles.placeholderClassName}>{image.name}</span>
+            {Uploading && (
+              <span className={styles.placeholderClassName}>
+                Uploaded successfully
+              </span>
             )}
           </span>
           <input
             type="file"
-            id="file"
+            id="image"
             className={styles.inputStyle}
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => handleImageUpload(e.target.files[0])}
+            disabled={isLoading}
           />
           <div className={styles.labelStyle}>
-            <label htmlFor="file" className={styles.label}>
+            <label htmlFor="image" className={styles.label}>
               Choose
             </label>
             <FiLink2 size={12} className={styles.icon} />
-          </div> */}
+          </div>
+        </div>
         <div style={{ marginTop: 20 }} onClick={() => setOpen(true)}>
           <span className={styles.spanStyle}>
-            Select Images:{image && "1 file chosen"}
+            Choose Images:{image && "1 file chosen"}
           </span>
           <div className={styles.select}>
             <label className={styles.label}>Choose</label>
@@ -127,12 +181,21 @@ export default function AddFavourite() {
             handleClose={() => setOpen(false)}
             setImage={setImage}
             data={res.data}
+            userInfo={userInfo}
           />
         }
       </div>
-      <div style={{ marginTop: 15 }} onClick={handleSubmit}>
-        <TabButton description={"Submit"} />
-      </div>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div
+          style={{ marginTop: 15 }}
+          onClick={handleSubmit}
+          aria-disabled={isLoading}
+        >
+          <TabButton description={"Submit"} />
+        </div>
+      )}
     </div>
   );
 }

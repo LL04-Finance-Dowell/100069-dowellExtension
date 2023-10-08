@@ -1,11 +1,11 @@
-.componentWrapper {
+/* .componentWrapper {
   padding: 10px;
   margin: 10px;
   display: flex;
   flex-direction: column;
   place-items: center;
   border-radius: 10px;
-}
+} */
 
 .text_wrapper {
   color: #005734;
