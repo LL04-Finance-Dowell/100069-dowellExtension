@@ -2,6 +2,7 @@ import HeaderComponent from "../components/HeaderComponent";
 // import TabButton from "../components/TabButton";
 import "../components/ScrollbarStyles.css";
 import { useStateContext } from "../contexts/Context";
+import ChatUI from "./ChatUI";
 
 export default function CustomerSupport() {
   const { sessionId } = useStateContext();
@@ -9,19 +10,11 @@ export default function CustomerSupport() {
     <div style={mainDiv}>
       <div>
         <HeaderComponent title="Customer Support" />
-        <div style={topIframe}>
-          <div style={{ marginRight: 10, marginTop: 20, marginBottom: 10 }}>
-            <iframe
-              id="frame"
-              title="Customer Support iframe"
-              style={{ alignItems: "center", border: 0 }}
-              src={`https://100096.pythonanywhere.com/chat/Extension/?session_id=${sessionId}`}
-              width="283"
-              height="300px"
-              allow="fullscreen"
-            ></iframe>
+        
+          <div style={{ marginRight: 10, marginTop: 20, marginLeft:19, marginBottom: 10 }}>
+            <ChatUI/>
           </div>
-        </div>
+        
         {/* <TabButton description={"Edit my profile"}/> */}
       </div>
       <div className="container" style={bottomIframe}>
