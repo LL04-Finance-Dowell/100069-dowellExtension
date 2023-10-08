@@ -20,7 +20,7 @@ export default function Logout() {
     <div style={{ marginLeft: 15 }}>
       <HeaderComponent title="Profile" />
       {userInfo ? (
-        <div style={{ height: "88vh", marginTop: 48, marginLeft: 10 }}>
+        <div style={{  marginTop: 48, marginLeft: 10 }}>
           {Object.entries(fields).map(([key, value]) => (
             <div style={{ height: 60 }} key={key}>
               <h3
@@ -69,7 +69,7 @@ export default function Logout() {
 }
 
 const boxStyle = {
-  height: "37px",
+  height: "35px",
   width: "310px",
   marginTop: "0px",
   marginRight: "10px",
