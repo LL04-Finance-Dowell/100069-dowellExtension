@@ -21,13 +21,14 @@ export default function HeaderComponent({
           color: "#005734",
           fontSize: 20,
           fontWeight: 600,
-          height: 27,
+          height: 23,
           letterSpacing: 0,
           lineHeight: "normal",
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
           width: "100%",
+          marginRight: type?45:null
         }}
       >
         {title}
