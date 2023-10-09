@@ -10,6 +10,9 @@ import Notification from "../page/Notification";
 import { useStateContext } from "../contexts/Context";
 import CustomerSupport from "../page/CustomerSupport";
 import AddFavourite from "../page/AddFavourite/AddFavourite";
+import AnnouncementList from "../page/Announcements/AnnouncementList";
+import AnnouncementDetail from "../page/Announcements/AnnouncementDetail";
+
 
 export const AppRouter = () => {
   const { sessionId } = useStateContext();
@@ -26,6 +29,10 @@ export const AppRouter = () => {
       <Route path="/notifications" element={<Notification />} />
       <Route path="/customer" element={<CustomerSupport />} />
       <Route path="/addFavourite" element={<AddFavourite />} />
+      <Route path="/announcements/:title" element={<AnnouncementList />} />
+      <Route path="/announcements/:title/:id" element={<AnnouncementDetail />} />
+
+
       <Route
         path=""
         element={<Navigate to={sessionId ? "/favourites" : "/login"} />}
