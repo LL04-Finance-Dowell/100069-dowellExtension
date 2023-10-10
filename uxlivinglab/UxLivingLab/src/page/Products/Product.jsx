@@ -21,8 +21,12 @@ export default function Product() {
 
   const { data } = useQuery("userInfo", async () => {
     const userInfo = await FetchUserInfo(sessionId);
+
+    //own_org gets the org/product details belonging in the user's workspace from the "portfolio_info" key in the user_info API response object
+    //other_org gets the org/product details of the other workspaces from the "other_org" key in the user_info API response object
+
     const other_org = userInfo.data.other_org || [];
-    const own_org = userInfo.data.own_organisations || [];
+    const own_org = userInfo.data.portfolio_info || [];
     const updatedData = [...other_org, ...own_org];
     const orgs = getOrganisation(updatedData);
     setOrgs(orgs);
