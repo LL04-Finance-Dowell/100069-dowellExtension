@@ -116,7 +116,7 @@ export default function Profile() {
            {arrows[key]?
             <div style={contentStyle}>
               {/* <p>{value}</p> */}
-              {
+              {profile_data?(
                 key==="showArrow1"?renderProfileData(profile_data?.user_profile):
                 key==="showarrow2"?renderProfileData(profile_data?.password):
                 key==="showarrow3"?renderProfileData(profile_data?.device):
@@ -127,7 +127,7 @@ export default function Profile() {
                 key==="showArrow9"?renderProfileData(profile_data?.demographic):
                 key==="showArrow10"?renderProfileData(profile_data?.psychographic):
                 key==="showarrow11"?renderProfileData(profile_data?.behavior):
-                key==="showArrow12"?renderProfileData(profile_data?.usage):
+                key==="showArrow12"?renderProfileData(profile_data?.usage):null):
 
                 null
               }
@@ -195,10 +195,11 @@ const contentStyle = {
   marginTop: 10,
   marginLeft:5,
   paddingLeft:10,
-  // paddingTop:,
+  // paddingTop:55,
   flexDirection: "row",
-  alignItems: "center",
-  overflowY:"scroll"
+  // alignItems: "center",
+  overflowY:"scroll",
+  overflowX:"hidden"
 }
 
 const profileDataStyles = {
