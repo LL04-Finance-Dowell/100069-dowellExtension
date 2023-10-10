@@ -118,7 +118,7 @@ export default function CreditSystem() {
 
       {creditDataQuery?.data?.success ? (
         <div>
-          <div style={{ height: "90vh", marginTop: 100, marginLeft: 30 }}>
+          <div style={{  marginTop: 100, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
               <div style={{ height: 70 }} key={key}>
                 <h3
