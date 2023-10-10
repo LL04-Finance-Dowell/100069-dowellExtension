@@ -17,8 +17,8 @@ export default function AnnouncementDetail () {
     const location  = useLocation();
 
     const data = location.state?.data;
-    console.log()
-    console.log(location,"use location hook")
+    // console.log()
+    // console.log(location,"use location hook")
     // const { data } = useQuery({
     //     queryKey: "userInfo",
     //     queryFn: async () => await FetchUserInfo(sessionId),
