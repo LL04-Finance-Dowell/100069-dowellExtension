@@ -23,7 +23,7 @@ export default function ChatUI () {
           
             }}
             >
-            <BsArrowLeft style={{cursor:"pointer"}} size={22} color="#005734" onClick={()=>navigation} />
+            <BsArrowLeft style={{cursor:"pointer"}} size={22} color="#005734" onClick={()=> navigation} />
             <div
                 style={{
                 color: "#005734",
