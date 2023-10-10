@@ -23,7 +23,7 @@ export default function ChatUI () {
           
             }}
             >
-            <BsArrowLeft style={{cursor:"pointer"}} size={22} color="#005734" onClick={navigation} />
+            <BsArrowLeft style={{cursor:"pointer"}} size={22} color="#005734" onClick={()=>navigation} />
             <div
                 style={{
                 color: "#005734",
@@ -73,7 +73,7 @@ const avatarStyle = {
 
 }
 const chatSectionStyle = {
-    height:"190px"
+    height:"290px"
 }
 
 const contentStyle = {
@@ -125,7 +125,7 @@ const mainContainerStyle = {
     marginLeft: "50px",
     marginTop: "40px",  
     width:300,
-    height:283,
+    height:383,
     marginLeft:10,
     borderRadius: "8px",
     width: 283,
