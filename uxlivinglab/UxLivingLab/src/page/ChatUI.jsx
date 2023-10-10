@@ -122,9 +122,9 @@ const innerfieldStyle = {
 }
 
 const mainContainerStyle = {
-    marginLeft: "50px",
+    // marginLeft: "50px",
     marginTop: "40px",  
-    width:300,
+    // width:300,
     height:383,
     marginLeft:10,
     borderRadius: "8px",
