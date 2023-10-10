@@ -94,10 +94,10 @@ export default function SideBar() {
       <img
         src={ClientAdmin}
         alt="admin"
-        style={{ width: 80, alignItems: "center", margin: 10 }}
+        style={{ width: 80, alignItems: "center", margin: 10, cursor:"pointer" }}
         onClick={() =>
           window.open(
-            "https://100014.pythonanywhere.com/en/?redirect_url=https://100093.pythonanywhere.com/home"
+            "https://100014.pythonanywhere.com/"
           )
         }
       />
