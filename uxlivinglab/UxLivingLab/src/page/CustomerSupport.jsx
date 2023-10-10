@@ -11,13 +11,13 @@ export default function CustomerSupport() {
       <div>
         <HeaderComponent title="Customer Support" />
         
-          <div style={{ marginRight: 10, marginTop: 20, marginLeft:19, marginBottom: 10 }}>
+          <div style={{ marginRight: 10, marginTop: 75, marginLeft:19, marginBottom: 10 }}>
             <ChatUI/>
           </div>
         
         {/* <TabButton description={"Edit my profile"}/> */}
       </div>
-      <div className="container" style={bottomIframe}>
+      {/* <div className="container" style={bottomIframe}>
         <iframe
           className="frame"
           id="frame"
@@ -28,15 +28,15 @@ export default function CustomerSupport() {
           height="2500px"
           allow="fullscreen"
         ></iframe>{" "}
-      </div>
+      </div> */}
     </div>
   );
 }
 
 const mainDiv = {
   marginLeft: 15,
-  height: "100vh",
-  overflowY: "scroll",
+  height: "90vh",
+  // overflowY: "scroll",
 };
 const topIframe = {
   marginLeft: "29px",
