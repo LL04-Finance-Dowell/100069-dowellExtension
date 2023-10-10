@@ -12,7 +12,8 @@ const buttonStyle = {
     fontSize:"15px",
     border: "solid #005734",
     borderRadius: "12px",
-    width:"200px"
+    width:"200px",
+    cursor:"pointer"
 }
 
 // const buttonContainerStyle=(left) = {

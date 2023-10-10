@@ -61,7 +61,14 @@ export default function Logout() {
       )}
 
       <div>
+      <a
+              href="https://100014.pythonanywhere.com/en/sign-out"
+              target="_blank"
+              rel="noreferrer"
+              
+            >
         <TabButton description={"Logout"} />
+        </a>
       </div>
     </div>
   );
@@ -89,7 +96,8 @@ const rectangleStyle = {
 const textWrapperStyle = {
   color: "#000000",
   fontSize: "13px",
-  fontWeight: 300,
+
+  fontWeight: 500,
   height: "15px",
   letterSpacing: "0",
   lineHeight: "normal",
