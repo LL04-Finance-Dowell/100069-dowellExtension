@@ -53,20 +53,40 @@ export default function Profile() {
     setaArrows({ [show]: bool });
   };
 
-  const { data } = useQuery({
+  const { data:userinfo } = useQuery({
     queryKey: "userInfo",
     queryFn: async () => await FetchUserInfo(sessionId),
   });
 
  
 
-  const { profile } = useQuery({
+  const { data:profile } = useQuery({
     queryKey: "userProfile",
-    queryFn: async () => await FetchProfile(data?.data?.userinfo?.username),
+    queryFn: async () => await FetchProfile(userinfo?.data?.userinfo?.username),
   });
   
-
+  {console.log(userinfo?.data?.userinfo?.username)}
   {console.log(profile)}
+  const profile_data = profile?.data
+
+  function renderProfileData (data) {
+    return (
+      <div style={{paddingTop:9}}>
+
+      {Object.entries(data).map(([key,value]) => (
+        <div style={profileDataStyles}>
+          <div style={{color:"black"}}>
+            {key}:
+          </div>
+          <div style={{paddingLeft:5}}>
+            {value}
+          </div>
+        </div>
+      ))}
+      </div>
+
+    );
+  }
 
   return (
     <div style={{ marginLeft: 15 }}>
@@ -96,7 +116,22 @@ export default function Profile() {
            {arrows[key]?
             <div style={contentStyle}>
               {/* <p>{value}</p> */}
-              {console.log(profile)}
+              {
+                key==="showArrow1"?renderProfileData(profile_data?.user_profile):
+                key==="showarrow2"?renderProfileData(profile_data?.password):
+                key==="showarrow3"?renderProfileData(profile_data?.device):
+                key==="showArrow5"?renderProfileData(profile_data?.references):
+                key==="showArrow6"?renderProfileData(profile_data?.verification):
+                key==="showarrow7"?renderProfileData(profile_data?.organization):
+                key==="showarrow8"?renderProfileData(profile_data?.geographical):
+                key==="showArrow9"?renderProfileData(profile_data?.demographic):
+                key==="showArrow10"?renderProfileData(profile_data?.psychographic):
+                key==="showarrow11"?renderProfileData(profile_data?.behavior):
+                key==="showArrow12"?renderProfileData(profile_data?.usage):
+
+                null
+              }
+
             </div>
             :null}
 
@@ -151,15 +186,25 @@ const textWrapperStyle = {
 
 const contentStyle = {
   backgroundColor: "#ffffff",
-  borderRadius: "100px",
+  borderRadius: "10px",
   boxShadow: "3px 3px 7px 0px #9C9C9C7A inset",
-  height: "37px",
+  height: "150px",
   width: "290px",
   fontSize: 10,
   display: "flex",
   marginTop: 10,
   marginLeft:5,
   paddingLeft:10,
+  // paddingTop:,
   flexDirection: "row",
   alignItems: "center",
+  overflowY:"scroll"
+}
+
+const profileDataStyles = {
+  display:"flex",
+  flexDirection:"row",
+  fontSize:11,
+  color: "#005734",
+  // height:"149px",
 }
