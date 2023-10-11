@@ -140,4 +140,5 @@ const buttonStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  cursor:"pointer"
 };

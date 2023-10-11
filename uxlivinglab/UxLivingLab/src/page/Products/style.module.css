@@ -1,6 +1,7 @@
 .dropdownRoot {
   margin-top: 40px;
   width: 290px;
+
 }
 
 .controlClassName {
@@ -12,6 +13,9 @@
   align-items: center;
   padding-left: 10px;
   border-radius: 10px;
+  cursor: pointer;
+
+  
 }
 
 .menuClassName {
@@ -41,7 +45,9 @@
   margin-right: 10px;
   margin-top: 5px;
   background-color: red;
+
 }
+
 
 .products {
   height: 99px;
