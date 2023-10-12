@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router";
 import HeaderComponent from "../../components/HeaderComponent";
-import { useStateContext } from "../../contexts/Context";
 import Dropdown from "react-dropdown";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import styles from "./style.module.css";
@@ -9,6 +8,7 @@ import { useQuery } from "react-query";
 import useStore from "../../hooks/use-hook";
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
 import ProductDropdownComponent from "../../components/Dropdowns/ProductDropdown";
+import { useStateContext } from "../../Contexts/Context";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -153,4 +153,5 @@ const buttonStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  cursor: "pointer",
 };

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
-import { useStateContext } from "../../contexts/Context";
 import ClientAdmin from "../../assets/admin.png";
+import { useStateContext } from "../../Contexts/Context";
 
 export default function SideBar() {
   const { sessionId } = useStateContext();
@@ -32,12 +32,7 @@ export default function SideBar() {
     <div
       style={{
         height: "100vh",
-        // width: 100,
-        // flex: "0 0 100px",
         borderRadius: 20,
-        // position: "fixed",
-        // top: 0,
-        // right: 0,
       }}
       className={styles.rectangle1}
     >
@@ -45,7 +40,7 @@ export default function SideBar() {
         (sessionId && key === "login") ||
         (!sessionId && key === "logout") ? null : (
           <Link
-            to={`/${key}`}
+            to={key !== "customer" ? `/${key}` : null} // remove condition rendering after chat
             key={key}
             style={{
               textDecoration: "none",
@@ -57,6 +52,7 @@ export default function SideBar() {
                   key === "profiles")
                   ? "none"
                   : "auto",
+              cursor: key === "customer" ? "not-allowed" : "pointer", //remove after chat
             }}
           >
             <div
@@ -68,17 +64,25 @@ export default function SideBar() {
                 placeItems: "center",
                 borderRadius: 10,
               }}
-              className={activeTab === key ? styles.rectangle : null}
-              key={key}
-              onClick={() =>
-                !sessionId &&
-                (key === "favourites" ||
-                  key === "products" ||
-                  key === "logout" ||
-                  key === "profiles")
-                  ? ""
-                  : setActiveTab(key)
+              className={
+                activeTab === key && activeTab !== "customer" //remove the & after chat functionality
+                  ? styles.rectangle
+                  : null
               }
+              key={key}
+              onClick={() => {
+                if (key === "customer") {
+                  return;
+                } else {
+                  !sessionId &&
+                  (key === "favourites" ||
+                    key === "products" ||
+                    key === "logout" ||
+                    key === "profiles")
+                    ? ""
+                    : setActiveTab(key);
+                }
+              }}
             >
               <i
                 className={value}
@@ -94,12 +98,13 @@ export default function SideBar() {
       <img
         src={ClientAdmin}
         alt="admin"
-        style={{ width: 80, alignItems: "center", margin: 10 }}
-        onClick={() =>
-          window.open(
-            "https://100014.pythonanywhere.com/en/?redirect_url=https://100093.pythonanywhere.com/home"
-          )
-        }
+        style={{
+          width: 80,
+          alignItems: "center",
+          margin: 10,
+          cursor: "pointer",
+        }}
+        onClick={() => window.open("https://100014.pythonanywhere.com/")}
       />
     </div>
   );

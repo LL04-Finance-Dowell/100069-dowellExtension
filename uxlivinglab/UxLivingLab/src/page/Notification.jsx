@@ -7,6 +7,7 @@ import NotificationSkeleton from "../components/NotificationSkeleton";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 import { useState } from "react";
 import { useStateContext } from "../contexts/Context";
+import { Link } from "react-router-dom";
 
 export default function Notification() {
   const [title, setTitle] = useState("Announcement");
@@ -103,28 +104,32 @@ export default function Notification() {
             }}
           >
             <div style={{ height: 50, width: 150 }}>
+              <Link
+                to={`/announcements/${"Member"}`}
+                style={{textDecoration:"none"}}
+              >
               <div
                 style={containerStyle}
-                onClick={() => {
-                  handleClick("Team Member");
-                }}
               >
+
                 <div style={textWrapperStyle}>
                   Team Member ({memberAnnouncementQuery.data.data.data.length})
                 </div>
               </div>
+            </Link>
             </div>
             <div style={{ height: 50, width: 150 }}>
-              <div
-                style={containerStyle}
-                onClick={() => {
-                  handleClick("User");
-                }}
+                <Link 
+                  to={`/announcements/${"User"}`}
+                  style={{textDecoration:"none"}}>
+                <div
+                style={containerStyle} 
               >
                 <div style={textWrapperStyle}>
                   User ({userAnnouncementQuery.data.data.data.length})
                 </div>
-              </div>
+                </div>
+                </Link>
             </div>
             <div style={{ height: 50, width: 150 }}>
               <div style={containerStyle}>
@@ -132,16 +137,17 @@ export default function Notification() {
               </div>
             </div>
             <div style={{ height: 50, width: 150 }}>
+              <Link 
+                to={`/announcements/${"Public"}`}
+                style={{textDecoration:"none"}}>
               <div
-                style={containerStyle}
-                onClick={() => {
-                  handleClick("Public");
-                }}
+                style={containerStyle} 
               >
                 <div style={textWrapperStyle}>
                   Public ({publicAnnouncementQuery.data.data.data.length})
                 </div>
               </div>
+              </Link>
             </div>
           </div>
         ) : title == "Public" || title === "Team Member" || title === "User" ? (

@@ -19,7 +19,7 @@ export default function Logout() {
     <div style={{ marginLeft: 15 }}>
       <HeaderComponent title="Profile" />
       {userInfo ? (
-        <div style={{ height: "88vh", marginTop: 48, marginLeft: 10 }}>
+        <div style={{  marginTop: 48, marginLeft: 10 }}>
           {Object.entries(fields).map(([key, value]) => (
             <div style={{ height: 60 }} key={key}>
               <h3
@@ -61,14 +61,21 @@ export default function Logout() {
       )}
 
       <div>
+      <a
+              href="https://100014.pythonanywhere.com/en/sign-out"
+              target="_blank"
+              rel="noreferrer"
+              
+            >
         <TabButton description={"Logout"} />
+        </a>
       </div>
     </div>
   );
 }
 
 const boxStyle = {
-  height: "37px",
+  height: "35px",
   width: "310px",
   marginTop: "0px",
   marginRight: "10px",
@@ -89,7 +96,8 @@ const rectangleStyle = {
 const textWrapperStyle = {
   color: "#000000",
   fontSize: "13px",
-  fontWeight: 300,
+
+  fontWeight: 500,
   height: "15px",
   letterSpacing: "0",
   lineHeight: "normal",

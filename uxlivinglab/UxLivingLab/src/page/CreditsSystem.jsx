@@ -106,11 +106,19 @@ export default function CreditSystem() {
       <div style={{ marginLeft: 15 }}>
         <HeaderComponent title="CREDITS SYSTEM" />
       </div>
-      <TabButton description={"Buy Credits"} />
+      <div           onClick={() =>
+            window.open(
+              "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
+              "_blank"
+            )
+          }
+      >
+      <TabButton description={"Buy Credits"}  />
+      </div>
 
       {creditDataQuery?.data?.success ? (
         <div>
-          <div style={{ height: "90vh", marginTop: 100, marginLeft: 30 }}>
+          <div style={{  marginTop: 100, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
               <div style={{ height: 70 }} key={key}>
                 <h3
@@ -180,7 +188,7 @@ const rectangleStyle = {
 const textWrapperStyle = {
   color: "#000000",
   fontSize: "13px",
-  fontWeight: 300,
+  fontWeight: 500,
   height: "15px",
   letterSpacing: "0",
   lineHeight: "normal",
