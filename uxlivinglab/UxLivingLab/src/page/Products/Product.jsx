@@ -6,9 +6,9 @@ import HeaderComponent from "../../components/HeaderComponent";
 import styles from "./style.module.css";
 import { getOrganisation } from "../../utils/getOrgs";
 import { getProducts } from "../../utils/getProducts";
-import { useStateContext } from "../../contexts/Context";
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
 import useStore from "../../hooks/use-hook";
+import { useStateContext } from "../../Contexts/Context";
 
 export default function Product() {
   const { sessionId } = useStateContext();
@@ -26,8 +26,9 @@ export default function Product() {
     //other_org gets the org/product details of the other workspaces from the "other_org" key in the user_info API response object
 
     const other_org = userInfo.data.other_org || [];
-    const own_org = userInfo.data.portfolio_info || [];
-    const updatedData = [...other_org, ...own_org];
+    const own_org = userInfo.data.own_organisations || [];
+    const portfolioInfo = userInfo.data.portfolio_info || [];
+    const updatedData = [...other_org, ...own_org, portfolioInfo].flat();
     const orgs = getOrganisation(updatedData);
     setOrgs(orgs);
     if (!org) {
@@ -77,17 +78,19 @@ export default function Product() {
           flexWrap: "wrap",
         }}
       >
-        {products?.map((item) => (
-          <div className={styles.products} key={item.id}>
-            <Link to={`/productDetail/${item.id}`}>
-              <img
-                className={styles.product_image}
-                alt="product"
-                src={item.image}
-              />
-            </Link>
-          </div>
-        ))}
+        {products
+          ?.filter((pro) => pro.org_name === org)[0]
+          .products?.map((item) => (
+            <div className={styles.products} key={item.id}>
+              <Link to={`/productDetail/${item.id}`}>
+                <img
+                  className={styles.product_image}
+                  alt="product"
+                  src={item.image}
+                />
+              </Link>
+            </div>
+          ))}
       </div>
     </div>
   );
