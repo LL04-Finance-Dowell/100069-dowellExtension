@@ -15,7 +15,14 @@ export default function HeaderComponent({
         marginTop: 25,
       }}
     >
-      {type && <BsArrowLeft size={30} color="#005734" onClick={navigation} />}
+      {type && (
+        <BsArrowLeft
+          size={30}
+          color="#005734"
+          onClick={navigation}
+          style={{ cursor: "pointer" }}
+        />
+      )}
       <div
         style={{
           color: "#005734",
@@ -28,7 +35,7 @@ export default function HeaderComponent({
           display: "flex",
           justifyContent: "center",
           width: "100%",
-          marginRight: type?45:null
+          marginRight: type ? 45 : null,
         }}
       >
         {title}

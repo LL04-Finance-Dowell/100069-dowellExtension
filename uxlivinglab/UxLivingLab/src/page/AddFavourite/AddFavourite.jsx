@@ -5,7 +5,7 @@ import styles from "./style.module.css";
 import { FiLink2 } from "react-icons/fi";
 import TabButton from "../../components/TabButton";
 import { useMutation, useQuery } from "react-query";
-import { useStateContext } from "../../contexts/Context";
+
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
 import { getOrganisation } from "../../utils/getOrgs";
 import ProductDropdown from "./ProductDropdown";
@@ -15,6 +15,7 @@ import { useNavigate } from "react-router";
 import ImageModal from "../../components/ImageModal";
 import SendFavourites from "../../lib/api/sendFavourite";
 import UploadImages from "../../lib/api/uploadImages";
+import { useStateContext } from "../../Contexts/Context";
 
 export default function AddFavourite() {
   const navigate = useNavigate();

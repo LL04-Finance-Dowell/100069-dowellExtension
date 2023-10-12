@@ -28,9 +28,10 @@
   color: #005734;
   font-size: 12px;
   font-weight: 500;
-  height: 15px;
+  /* height: 15px; */
   letter-spacing: 0;
   line-height: normal;
+  cursor: pointer;
 }
 .placeholderClassName {
   margin-right: auto;

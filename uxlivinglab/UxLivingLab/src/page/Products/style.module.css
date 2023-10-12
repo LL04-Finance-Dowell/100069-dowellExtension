@@ -12,6 +12,7 @@
   align-items: center;
   padding-left: 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .menuClassName {
@@ -27,6 +28,7 @@
   row-gap: 10px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 .placeholderClassName {
   margin-right: auto;

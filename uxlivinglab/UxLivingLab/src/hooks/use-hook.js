@@ -7,6 +7,8 @@ const useStore = create((set) => ({
   setProducts: (products) => set({ products }),
   orgs: null,
   setOrgs: (orgs) => set({ orgs }),
+  portfolio: [],
+  handlePortfolio: (portfolio) => set({ portfolio }),
 }));
 
 export default useStore;

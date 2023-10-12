@@ -12,6 +12,7 @@
   align-items: center;
   padding-left: 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .menuClassName {
@@ -21,7 +22,6 @@
   border-radius: 0 0 10px 10px;
   margin-top: -10px;
   padding-top: 20px;
-  position: fixed;
   width: 280px;
   background-color: white;
   row-gap: 10px;
@@ -30,9 +30,9 @@
   color: #005734;
   font-size: 12px;
   font-weight: 500;
-  height: 15px;
   letter-spacing: 0;
   line-height: normal;
+  cursor: pointer;
 }
 .placeholderClassName {
   margin-right: auto;
