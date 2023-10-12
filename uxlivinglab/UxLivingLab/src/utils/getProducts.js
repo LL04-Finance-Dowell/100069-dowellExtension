@@ -1,81 +1,75 @@
 import Fuse from "fuse.js";
 
-// export function getProducts(orgName, data) {
-//   const filteredOrgData = data.filter(
-//     (item) => item.org_name === orgName && item.product
-//   );
-
-//   const uniqueProducts = {};
-//   const productsForOrg = [];
-
-//   filteredOrgData.forEach((item) => {
-//     const product = item.product;
-
-//     // Check if the product is not already in the uniqueProducts object
-//     if (!uniqueProducts[product]) {
-//       uniqueProducts[product] = true;
-
-//       const productInfo = products.find(
-//         (product) => product.title === item.product
-//       );
-
-//       if (productInfo) {
-//         productsForOrg.push({
-//           product,
-//           image: productInfo.image,
-//           id: productInfo.id,
-//           portfolio: item.portfolio_name,
-//           orgName,
-//         });
-//       }
-//     }
-//   });
-
-//   return productsForOrg;
-// }
-
 export function getProducts(orgName, data) {
-  const filteredOrgData = data.filter(
-    (item) => item.org_name === orgName && item.product
-  );
+  const orgData = {};
 
-  const uniqueProducts = {};
-  const productsForOrg = [];
-
-  // Create a Fuse instance with your product data and options
   const fuse = new Fuse(products, {
-    keys: ["title"], // Specify the property to match against (in this case, 'title')
-    threshold: 0.3, // Adjust this threshold to control the matching sensitivity
+    keys: ["title"],
+    threshold: 0.3,
   });
-
-  filteredOrgData.forEach((item) => {
-    const product = item.product;
-
-    // Use the fuzzy search to find matching products
-    const searchResults = fuse.search(product);
-
-    if (searchResults.length > 0) {
-      // Use the first result from the search as the matched product
-      const matchedProduct = searchResults[0].item;
-
-      // Check if the product is not already in the uniqueProducts object
-      if (!uniqueProducts[matchedProduct.title]) {
-        uniqueProducts[matchedProduct.title] = true;
-
-        productsForOrg.push({
-          product: matchedProduct.title,
-          image: matchedProduct.image,
-          id: matchedProduct.id,
-          portfolio: item.portfolio_name,
-          orgName,
-        });
-      }
+  data?.forEach((item) => {
+    const orgId = item.org_name;
+    if (!orgData[orgId]) {
+      orgData[orgId] = [];
     }
+    orgData[orgId].push(item);
   });
 
-  return productsForOrg;
-}
+  const result = [];
 
+  for (const orgId in orgData) {
+    const items = orgData[orgId];
+    const uniqueProducts = new Set();
+    const productPortfolios = {};
+
+    items.forEach((item) => {
+      const product = item.product;
+      const portfolioName = item.portfolio_name;
+
+      if (!uniqueProducts.has(product)) {
+        uniqueProducts.add(product);
+        productPortfolios[product] = new Set();
+      }
+
+      if (portfolioName) {
+        productPortfolios[product].add(portfolioName);
+      }
+    });
+
+    // Convert portfolio sets back to arrays
+    for (const product in productPortfolios) {
+      productPortfolios[product] = [...productPortfolios[product]];
+    }
+
+    // Create a new object for each org_id with unique products and portfolios
+    const orgInfo = {
+      org_name: orgId,
+      products: Object.keys(productPortfolios)
+        .map((product) => {
+          const productResult = fuse.search(product);
+          if (productResult.length > 0) {
+            const productObject = productResult[0].item;
+
+            // Use filter to remove undefined values from the array
+            const portfolios = productPortfolios[product].filter(
+              (portfolio) => portfolio !== undefined
+            );
+
+            return {
+              id: productObject.id,
+              product: productObject.title,
+              image: productObject.image,
+              portfolios: portfolios,
+            };
+          }
+        })
+        .filter((product) => product !== undefined),
+    };
+
+    result.push(orgInfo);
+  }
+  return result;
+}
 export const products = [
   {
     id: crypto.randomUUID(),

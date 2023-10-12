@@ -23,7 +23,8 @@ export default function Product() {
     const userInfo = await FetchUserInfo(sessionId);
     const other_org = userInfo.data.other_org || [];
     const own_org = userInfo.data.own_organisations || [];
-    const updatedData = [...other_org, ...own_org];
+    const portfolioInfo = userInfo.data.portfolio_info || [];
+    const updatedData = [...other_org, ...own_org, portfolioInfo].flat();
     const orgs = getOrganisation(updatedData);
     setOrgs(orgs);
     if (!org) {
@@ -73,17 +74,19 @@ export default function Product() {
           flexWrap: "wrap",
         }}
       >
-        {products?.map((item) => (
-          <div className={styles.products} key={item.id}>
-            <Link to={`/productDetail/${item.id}`}>
-              <img
-                className={styles.product_image}
-                alt="product"
-                src={item.image}
-              />
-            </Link>
-          </div>
-        ))}
+        {products
+          ?.filter((pro) => pro.org_name === org)[0]
+          .products?.map((item) => (
+            <div className={styles.products} key={item.id}>
+              <Link to={`/productDetail/${item.id}`}>
+                <img
+                  className={styles.product_image}
+                  alt="product"
+                  src={item.image}
+                />
+              </Link>
+            </div>
+          ))}
       </div>
     </div>
   );

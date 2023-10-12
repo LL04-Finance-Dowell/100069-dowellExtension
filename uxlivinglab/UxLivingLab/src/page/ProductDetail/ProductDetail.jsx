@@ -6,9 +6,9 @@ import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import DropdownComponent from "../../components/Dropdowns/Dropdown";
 import useStore from "../../hooks/use-hook";
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
+import ProductDropdownComponent from "../../components/Dropdowns/ProductDropdown";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -19,18 +19,23 @@ export default function ProductDetail() {
     queryFn: async () => await FetchUserInfo(sessionId),
   });
   const products = useStore((state) => state.products);
+  const org = useStore((state) => state.org);
 
   const [product, setProduct] = useState(null);
   const [portfolio, setPortfolio] = useState(null);
 
-  const options = products
-    ?.filter((item) => item.id === id)
-    .map((pro) => pro.portfolio);
+  const listProducts = products
+    ?.filter((item) => item.org_name === org)[0]
+    .products.map((pro) => pro.product);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setProduct(products?.find((item) => item.id === id));
+    setProduct(
+      products
+        ?.filter((item) => item.org_name === org)[0]
+        .products.find((pro) => pro.id === id)
+    );
   }, []);
 
   const handleClick = () => {
@@ -38,7 +43,7 @@ export default function ProductDetail() {
       return null;
     } else {
       window.open(
-        `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${product.orgName}&product=${product.product}&portfolio=${portfolio}&username=${data?.data?.userinfo?.username}`
+        `https://100093.pythonanywhere.com/exportfolio?session_id=${sessionId}&org=${org}&product=${product.product}&portfolio=${portfolio}&username=${data?.data?.userinfo?.username}`
       );
     }
   };
@@ -57,17 +62,25 @@ export default function ProductDetail() {
         type="detail"
       />
       <div style={{ alignSelf: "center", backgroundColor: "white" }}>
-        <DropdownComponent
-          products={products ?? []}
+        <ProductDropdownComponent
+          listProducts={listProducts ?? []}
           setProduct={setProduct}
           product={product?.product}
+          products={products?.filter((item) => item.org_name === org)[0]}
         />
       </div>
 
       <img
         src={product?.image}
         alt=""
-        style={{ width: "100%", opacity: 0.4, marginTop: 20 }}
+        style={{
+          // width: "100%",
+          opacity: 0.4,
+          marginTop: 20,
+          position: "fixed",
+          top: 180,
+          left: 50,
+        }}
       />
       <div
         style={{
@@ -78,7 +91,7 @@ export default function ProductDetail() {
       >
         <div style={headerStyle}>{product?.product}</div>
         <Dropdown
-          options={options ?? []}
+          options={product?.portfolios ?? []}
           onChange={(e) => setPortfolio(e.value)}
           className={styles.dropdownRoot}
           controlClassName={styles.controlClassName}
