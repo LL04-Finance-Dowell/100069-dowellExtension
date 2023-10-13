@@ -7,6 +7,18 @@ import { AiOutlineSend } from "react-icons/ai"
 import {PiSmileyLight} from "react-icons/pi"
 
 export default function ChatUI () {
+    function ChatMessage (image_url,message) {
+        return (
+            <div>
+                <Avatar src={image_url?image_url:null} sx={{width:35,height:35}}/>
+                <div style={textStyle}>
+                    {message}
+                
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div style={mainContainerStyle}>
             {/* Header component */}
@@ -50,6 +62,7 @@ export default function ChatUI () {
                             Hey, How can I help you?
                            
                         </div>
+                        
                     </div>
                 </div>
 
