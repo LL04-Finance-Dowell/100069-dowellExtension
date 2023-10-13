@@ -5,12 +5,12 @@ import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
 
 export default function ProductDropdown({ options, setProduct, isLoading }) {
   const handleChange = (item) => {
-    setProduct(item.value);
+    setProduct(options.find((option) => option.product === item.value));
   };
 
   return (
     <Dropdown
-      options={options || []}
+      options={options.map((item) => item.product)}
       onChange={handleChange}
       disabled={isLoading}
       className={styles.controlStyle}

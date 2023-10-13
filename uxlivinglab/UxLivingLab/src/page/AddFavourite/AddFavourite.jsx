@@ -39,7 +39,8 @@ export default function AddFavourite() {
     const userInfo = await FetchUserInfo(sessionId);
     const other_org = userInfo.data.other_org || [];
     const own_org = userInfo.data.own_organisations || [];
-    const updatedData = [...other_org, ...own_org];
+    const portfolioInfo = userInfo.data.portfolio_info || [];
+    const updatedData = [...other_org, ...own_org, portfolioInfo].flat();
     const orges = getOrganisation(updatedData);
     setUserInfo(userInfo.data.userinfo);
     setOrgs(orges);
@@ -66,13 +67,12 @@ export default function AddFavourite() {
       image_url: image ?? Uploading,
       action: true,
       username: userInfo?.username,
-      product_name: product,
+      product_name: product.product,
       portfolio,
       org_name: org.org_name,
       org_id: org.org_id,
       user_id: userInfo?.userID,
     };
-    // console.log(data);
     mutate(data);
   };
 
@@ -118,7 +118,10 @@ export default function AddFavourite() {
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Product:</span>
           <ProductDropdown
-            options={products?.map((item) => item.product)}
+            options={
+              products?.filter((pro) => pro.org_name === org?.org_name)[0]
+                .products ?? []
+            }
             setProduct={setProduct}
             isLoading={isLoading}
           />
@@ -131,9 +134,10 @@ export default function AddFavourite() {
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Portfolio:</span>
           <PortfolioDropdown
-            product={product}
+            portfolios={product?.portfolios ?? []}
             setPortfolio={setPortfolio}
             isLoading={isLoading}
+            // org={org}
           />
           {isError && (
             <span style={{ color: "red", marginTop: 3 }}>

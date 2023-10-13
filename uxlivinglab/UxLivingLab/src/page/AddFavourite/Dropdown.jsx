@@ -12,7 +12,6 @@ export default function DropdownComponent({
   isLoading,
 }) {
   const setProducts = useStore((state) => state.setProducts);
-
   const handleChange = (item) => {
     setOrg(options.find((opt) => opt.org_name === item.value));
     setProducts(getProducts(item.value, data));
