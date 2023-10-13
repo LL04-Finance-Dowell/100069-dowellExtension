@@ -43,6 +43,7 @@
   letter-spacing: 0;
   line-height: normal;
   padding-left: 10px;
+
 }
 
 .controlClassName {
@@ -56,6 +57,7 @@
 
 .inputStyle {
   display: none;
+  cursor: pointer;
 }
 
 .labelStyle {

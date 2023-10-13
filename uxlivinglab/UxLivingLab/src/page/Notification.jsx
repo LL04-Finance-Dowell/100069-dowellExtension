@@ -92,7 +92,7 @@ export default function Notification() {
       <div style={headerLabelStyle}>
         <div style={headerTextWrapperStyle}>{title}</div>
       </div>
-      {sessionId &&
+      {title &&
         (title == "Announcement" ? (
           <div
             style={{

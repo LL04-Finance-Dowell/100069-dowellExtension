@@ -17,18 +17,7 @@ export default function CustomerSupport() {
         
         {/* <TabButton description={"Edit my profile"}/> */}
       </div>
-      {/* <div className="container" style={bottomIframe}>
-        <iframe
-          className="frame"
-          id="frame"
-          title="Customer Support iframe"
-          style={{ alignItems: "center", border: 0, scrollbarWidth: 2 }}
-          src="https://uxlivinglab.com/en/faq/"
-          width="300"
-          height="2500px"
-          allow="fullscreen"
-        ></iframe>{" "}
-      </div> */}
+      {/* removed second iframe */}
     </div>
   );
 }

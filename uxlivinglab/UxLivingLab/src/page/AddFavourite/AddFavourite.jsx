@@ -146,9 +146,10 @@ export default function AddFavourite() {
           )}
         </div>
         <div
-          style={{ marginTop: 20, display: "flex", flexDirection: "column" }}
+          style={{ marginTop: 20, display: "flex", flexDirection: "column"}}
         >
           <span className={styles.spanStyle}>
+
             Upload Image:
             {Uploading && (
               <span className={styles.placeholderClassName}>
@@ -156,6 +157,7 @@ export default function AddFavourite() {
               </span>
             )}
           </span>
+          <div style={{cursor:"pointer"}}>
           <input
             type="file"
             id="image"
@@ -164,8 +166,10 @@ export default function AddFavourite() {
             onChange={(e) => handleImageUpload(e.target.files[0])}
             disabled={isLoading}
           />
-          <div className={styles.labelStyle}>
-            <label htmlFor="image" className={styles.label}>
+          </div>
+          <div className={styles.labelStyle} style={{cursor:"pointer"}}>
+            <label htmlFor="image" className={styles.label}
+            style={{cursor:"pointer"}}>
               Choose
             </label>
             <FiLink2 size={12} className={styles.icon} />
@@ -175,8 +179,11 @@ export default function AddFavourite() {
           <span className={styles.spanStyle}>
             Choose Images:{image && "1 file chosen"}
           </span>
-          <div className={styles.select}>
-            <label className={styles.label}>Choose</label>
+          <div className={styles.select} style={{cursor:"pointer"}} >
+            <label className={styles.label}
+              style={{cursor:"pointer"}}
+              >
+                Choose</label>
             <FiLink2 size={12} className={styles.icon} />
           </div>
         </div>
