@@ -9,12 +9,9 @@ import {
   AiOutlineCopy,
 } from "react-icons/ai";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
-
 import { useState } from "react";
-import { useStateContext } from "../contexts/Context";
 import { useEffect } from "react";
-
-
+import { useStateContext } from "../Contexts/Context";
 
 export default function CreditSystem() {
   const fields = ["Service Key", "Credit", "Status"];
@@ -22,8 +19,6 @@ export default function CreditSystem() {
   const { sessionId } = useStateContext();
   const [copied, setCopied] = useState(false);
   const [lowCredits, setLowCredits] = useState(false);
-
-
 
   function copyItem(api_key) {
     navigator.clipboard.writeText(api_key);
@@ -45,19 +40,17 @@ export default function CreditSystem() {
         const credits = data?.data?.data?.total_credits;
         if (credits < 200) {
           // console.log(credits)
-          setLowCredits(true)
+          setLowCredits(true);
         } else {
           // console.log(credits)
-          setLowCredits(false)
+          setLowCredits(false);
         }
       } else {
-        console.log("no data")
+        console.log("no data");
       }
-
     }
     checkLowCredits(creditDataQuery);
-  }, [userInfoData?.client_admin_id])
-
+  }, [userInfoData?.client_admin_id]);
 
   const adminId = userInfoData?.data?.userinfo?.client_admin_id;
 
@@ -95,7 +88,7 @@ export default function CreditSystem() {
         <div className="rectangle" style={rectangleStyle}>
           <div style={apiKeyTextWrapperStyle}>
             {creditsVisible ? (
-              <span style={{ fontSize: 11, width:50, fontWeight:"bold" }}>
+              <span style={{ fontSize: 11, width: 50, fontWeight: "bold" }}>
                 {creditDataQuery?.data?.data?.api_key}
               </span>
             ) : (
@@ -134,32 +127,36 @@ export default function CreditSystem() {
         <HeaderComponent title="CREDITS SYSTEM" />
       </div>
 
-        <div          
-          onClick={() =>
-            window.open(
-              "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
-              "_blank"
-            )
-          }
-        >
-          <TabButton description={"Buy Credits"}  />
-        </div>
-        {lowCredits ? <p
-              style={{ fontSize: 10, marginTop:40, marginLeft:60 }}>You have exhausted 80% of your Credits.
-              <a
-                style={{ color: "blue", cursor: "pointer" }}
-                onClick={() =>
-                  window.open(
-                    "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
-                    "_blank"
-                  )
-                }
-              > Buy Here </a></p> : null}
-
+      <div
+        onClick={() =>
+          window.open(
+            "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
+            "_blank"
+          )
+        }
+      >
+        <TabButton description={"Buy Credits"} />
+      </div>
+      {lowCredits ? (
+        <p style={{ fontSize: 10, marginTop: 40, marginLeft: 60 }}>
+          You have exhausted 80% of your Credits.
+          <a
+            style={{ color: "blue", cursor: "pointer" }}
+            onClick={() =>
+              window.open(
+                "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
+                "_blank"
+              )
+            }
+          >
+            Buy Here
+          </a>
+        </p>
+      ) : null}
 
       {creditDataQuery?.data?.success ? (
         <div>
-          <div style={{ marginTop: lowCredits?50:100, marginLeft: 30 }}>
+          <div style={{ marginTop: lowCredits ? 50 : 100, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
               <div style={{ height: 70 }} key={key}>
                 <h3
