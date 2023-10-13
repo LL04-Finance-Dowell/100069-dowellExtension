@@ -11,7 +11,7 @@ import {
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 
 import { useState } from "react";
-import { useStateContext } from "../contexts/Context";
+import { useStateContext } from "../Contexts/Context";
 
 export default function CreditSystem() {
   const fields = ["Service Key", "Credit", "Status"];
@@ -68,7 +68,7 @@ export default function CreditSystem() {
         <div className="rectangle" style={rectangleStyle}>
           <div style={apiKeyTextWrapperStyle}>
             {creditsVisible ? (
-              <span style={{ fontSize: 12 }}>
+              <span style={{ fontSize: 12, fontWeight: "bold" }}>
                 {creditDataQuery?.data?.data?.api_key}
               </span>
             ) : (
@@ -106,19 +106,20 @@ export default function CreditSystem() {
       <div style={{ marginLeft: 15 }}>
         <HeaderComponent title="CREDITS SYSTEM" />
       </div>
-      <div           onClick={() =>
-            window.open(
-              "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
-              "_blank"
-            )
-          }
+      <div
+        onClick={() =>
+          window.open(
+            "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
+            "_blank"
+          )
+        }
       >
-      <TabButton description={"Buy Credits"}  />
+        <TabButton description={"Buy Credits"} />
       </div>
 
       {creditDataQuery?.data?.success ? (
         <div>
-          <div style={{  marginTop: 100, marginLeft: 30 }}>
+          <div style={{ marginTop: 100, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
               <div style={{ height: 70 }} key={key}>
                 <h3
