@@ -31,7 +31,8 @@ export default function SideBar() {
   return (
     <div
       style={{
-        height: "100vh",
+        // height: "100vh",
+        height: 500,
         borderRadius: 20,
       }}
       className={styles.rectangle1}
@@ -57,7 +58,7 @@ export default function SideBar() {
           >
             <div
               style={{
-                padding: 10,
+                padding: 5,
                 margin: 10,
                 display: "flex",
                 flexDirection: "column",

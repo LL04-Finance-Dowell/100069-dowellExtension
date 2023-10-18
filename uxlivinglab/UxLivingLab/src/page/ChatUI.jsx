@@ -6,80 +6,109 @@ import { AiOutlineSend } from "react-icons/ai";
 import { PiSmileyLight } from "react-icons/pi";
 
 export default function ChatUI() {
+  // function ChatMessage(image_url, message) {
+  //   return (
+  //     <div>
+  //       <Avatar
+  //         src={image_url ? image_url : null}
+  //         sx={{ width: 35, height: 35 }}
+  //       />
+  //       <div style={textStyle}>{message}</div>
+  //     </div>
+  //   );
+  // }
+
   return (
-    <div style={mainContainerStyle}>
-      {/* Header component */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          marginTop: 10,
-          height: 35,
-          boxShadow:
-            "0px 0px 0px #0000001a, 0px 1px 3px #0000001a, 2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent",
-        }}
-      >
-        <BsArrowLeft
-          style={{ cursor: "pointer" }}
-          size={22}
-          color="#005734"
-          //   onClick={() => navigation}
-        />
+    <>
+      <div style={mainContainerStyle}>
+        {/* Header component */}
         <div
           style={{
-            color: "#005734",
-            fontSize: 20,
-            fontWeight: 600,
-            height: 20,
-            letterSpacing: 0,
-            lineHeight: "normal",
-            alignItems: "center",
+            paddingTop: 20,
+            paddingLeft: 8,
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "row",
           }}
-        ></div>
-      </div>
-
-      <div>
-        <div style={avatarStyle}></div>
-        <div style={chatSectionStyle}>
+        >
+          <BsArrowLeft
+            style={{ cursor: "pointer" }}
+            size={22}
+            color="#005734"
+            // onClick={() => navigation}
+          />
           <div
             style={{
-              paddingTop: 20,
-              paddingLeft: 8,
+              color: "#005734",
+              fontSize: 20,
+              fontWeight: 600,
+              height: 20,
+              letterSpacing: 0,
+              lineHeight: "normal",
+              alignItems: "center",
               display: "flex",
-              flexDirection: "row",
+              justifyContent: "center",
             }}
-          >
-            <Avatar sx={{ width: 35, height: 35 }} />
-            <div style={textStyle}>Hey, How can I help you?</div>
-          </div>
+          ></div>
         </div>
 
-        <div style={contentStyle}>
-          <div>
-            <Avatar sx={{ width: 25, height: 25 }} />
+        <div>
+          <div style={avatarStyle}></div>
+          <div style={chatSectionStyle}>
+            <div
+              style={{
+                paddingTop: 20,
+                paddingLeft: 8,
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Avatar sx={{ width: 35, height: 35 }} />
+              <div style={textStyle}>Hey, How can I help you?</div>
+            </div>
           </div>
-          <form action="#">
-            <input
-              style={innerfieldStyle}
-              placeholder="Typing..."
-              type="text"
-            />
-            <PiSmileyLight
-              color="#005734"
-              style={{ margin: "13px 5px 5px 5px" }}
-            />
-            <AiOutlineSend
-              color="#005734"
-              style={{ margin: "13px 5px 5px 5px" }}
-            />
-          </form>
-          {/* <p>{value}</p> */}
+
+          <div style={contentStyle}>
+            <div>
+              <Avatar sx={{ width: 25, height: 25 }} />
+            </div>
+            <form action="#">
+              <input
+                style={innerfieldStyle}
+                placeholder="Typing..."
+                type="text"
+              />
+              <PiSmileyLight
+                color="#005734"
+                style={{ margin: "13px 5px 5px 5px" }}
+              />
+              <AiOutlineSend
+                color="#005734"
+                style={{ margin: "13px 5px 5px 5px" }}
+              />
+            </form>
+            {/* <p>{value}</p> */}
+          </div>
         </div>
       </div>
-    </div>
+
+      <div style={contentStyle}>
+        <div>
+          <Avatar sx={{ width: 25, height: 25 }} />
+        </div>
+        <form action="#">
+          <input style={innerfieldStyle} placeholder="Typing..." type="text" />
+          <PiSmileyLight
+            color="#005734"
+            style={{ margin: "13px 5px 5px 5px" }}
+          />
+          <AiOutlineSend
+            color="#005734"
+            style={{ margin: "13px 5px 5px 5px" }}
+          />
+        </form>
+        {/* <p>{value}</p> */}
+      </div>
+    </>
   );
 }
 
