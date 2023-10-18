@@ -9,6 +9,7 @@ export default function AnnouncementDetail() {
   const location = useLocation();
 
   const data = location.state?.data;
+  console.log("announcement detail", data);
   // console.log()
   // console.log(location,"use location hook")
   // const { data } = useQuery({
