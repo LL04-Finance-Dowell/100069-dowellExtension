@@ -17,9 +17,9 @@ export default function AnnouncementList() {
   const { title } = useParams();
   const navigate = useNavigate();
   const [detail, setDetail] = useState("");
+
   const handleClick = (text) => {
     setDetail(text);
-    // console.log(text)
   };
   const { data } = useQuery({
     queryKey: "userInfo",
@@ -58,13 +58,13 @@ export default function AnnouncementList() {
         : title === "Member"
         ? memberAnnouncementQuery
         : publicAnnouncementQuery
-      ).data.data.data?.map((value) => (
+      ).data?.data?.data?.map((value) => (
         <div
           onClick={() => handleClick(value.announcement.description)}
           key={value._id}
         >
           <Link
-            state={{ data: value.announcement.description }}
+            state={{ data: value.announcement }}
             to={`/announcements/${title}/${value._id}`}
             style={{ textDecoration: "none" }}
           >

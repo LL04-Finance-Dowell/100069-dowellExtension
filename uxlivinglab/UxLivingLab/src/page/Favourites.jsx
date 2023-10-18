@@ -35,7 +35,8 @@ export default function Favourites() {
       <div
         style={{
           width: "100%",
-          height: "100%",
+          height: 500,
+          // height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -51,7 +52,7 @@ export default function Favourites() {
       <div
         style={{
           width: "100%",
-          height: "100%",
+          height: 500,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -68,8 +69,9 @@ export default function Favourites() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100%",
-        // justifyContent: "center",
+        overflowY: "scroll",
+        overflowX: "hidden",
+        height: 500,
       }}
     >
       <div style={{ width: "100%", paddingLeft: 30 }}>
@@ -97,6 +99,7 @@ export default function Favourites() {
                 marginRight: "auto",
                 marginLeft: 15,
                 marginTop: 30,
+                // overflow: "scroll",
               }}
             >
               <div
@@ -179,7 +182,7 @@ const rectangle = {
   borderRadius: "20px",
   display: "flex",
   flexDirection: "row",
-  overflow: "hidden",
+  // overflow: "hidden",
   boxShadow:
     "0px 0px 0px #0000001a, 0px 1px 3px #0000001a, 2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent",
 };

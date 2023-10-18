@@ -9,22 +9,6 @@ export default function AnnouncementDetail() {
   const location = useLocation();
 
   const data = location.state?.data;
-  // console.log()
-  // console.log(location,"use location hook")
-  // const { data } = useQuery({
-  //     queryKey: "userInfo",
-  //     queryFn: async () => await FetchUserInfo(sessionId),
-  //   });
-
-  // const { data:description } = useQuery({
-  //     queryKey: "announcementDetail",
-  //     queryFn: async () => await FetchAnnouncementDetail(id),
-  //   });
-
-  //   console.log(description)
-
-  //   var text = (description?.data.data[0]?.announcement.description);
-
   return (
     <div style={{ marginLeft: 15 }}>
       <div>
@@ -48,7 +32,20 @@ export default function AnnouncementDetail() {
           marginTop: "10px",
         }}
       >
-        <div style={descriptionTextWrapperStyle}>{data}</div>
+        <div style={descriptionTextWrapperStyle}>{data.description}</div>
+        {data.link && (
+          <div style={descriptionTextWrapperStyle}>
+            For more information:
+            <a
+              href={data.link}
+              style={{ marginLeft: 10 }}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {data.link}
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
