@@ -8,13 +8,13 @@ export default function CustomerSupport() {
   // const { sessionId } = useStateContext();
   return (
     <div style={mainDiv}>
-      <div>
         <HeaderComponent title="Customer Support" />
+        <div style={{marginLeft: 15}}>
 
         <div
           style={{
             marginRight: 10,
-            marginTop: 75,
+            marginTop: 10,
             marginLeft: 19,
             marginBottom: 10,
           }}
@@ -30,8 +30,8 @@ export default function CustomerSupport() {
 }
 
 const mainDiv = {
-  marginLeft: 15,
-  height: "90vh",
+  
+  height: "50vh",
   // overflowY: "scroll",
 };
 // const topIframe = {

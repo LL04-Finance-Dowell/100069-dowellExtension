@@ -74,7 +74,7 @@ export default function Favourites() {
         height: 500,
       }}
     >
-      <div style={{ width: "100%", paddingLeft: 30 }}>
+      <div style={{ width: "100%", paddingLeft: 3 }}>
         <HeaderComponent title="Favourites" />
       </div>
       <div style={boxStyle}>
