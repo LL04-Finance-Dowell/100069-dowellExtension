@@ -91,30 +91,13 @@ export default function ChatUI() {
         </div>
       </div>
 
-      <div style={contentStyle}>
-        <div>
-          <Avatar sx={{ width: 25, height: 25 }} />
-        </div>
-        <form action="#">
-          <input style={innerfieldStyle} placeholder="Typing..." type="text" />
-          <PiSmileyLight
-            color="#005734"
-            style={{ margin: "13px 5px 5px 5px" }}
-          />
-          <AiOutlineSend
-            color="#005734"
-            style={{ margin: "13px 5px 5px 5px" }}
-          />
-        </form>
-        {/* <p>{value}</p> */}
-      </div>
     </>
   );
 }
 
 const avatarStyle = {};
 const chatSectionStyle = {
-  height: "290px",
+  height: "200px",
 };
 
 const contentStyle = {
@@ -161,7 +144,7 @@ const mainContainerStyle = {
   // marginLeft: "50px",
   marginTop: "40px",
   // width:300,
-  height: 383,
+  height: 293,
   marginLeft: 10,
   borderRadius: "8px",
   width: 283,
