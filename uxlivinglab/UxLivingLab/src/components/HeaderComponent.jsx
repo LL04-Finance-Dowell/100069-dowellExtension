@@ -12,14 +12,12 @@ export default function HeaderComponent({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        marginTop:5,
         paddingTop: 15,
-        paddingBottom:20,
-        // marginLeft:0,
-        backgroundColor:"rgba(0, 87, 52, 0.3)",
-        borderRadius:"10px 0px 0px 0px",
-        marginLeft:5
-        
+        paddingBottom: 20,
+        backgroundColor: "rgb(240, 245, 243)",
+        borderRadius: "10px 0px 0px 0px",
+        width: "100%",
+        borderBottom: "1px solid #0057344D",
       }}
     >
       {type && (
@@ -27,7 +25,7 @@ export default function HeaderComponent({
           size={30}
           color="black"
           onClick={navigation}
-          style={{ cursor: "pointer", paddingLeft:15 }}
+          style={{ cursor: "pointer", paddingLeft: 15 }}
         />
       )}
       <div
@@ -41,7 +39,7 @@ export default function HeaderComponent({
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
-          width: "100%",
+          width: "90%",
           marginRight: type ? 45 : null,
         }}
       >

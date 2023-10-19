@@ -44,54 +44,56 @@ export default function Product() {
   };
 
   return (
-    <div >
+    <div>
       <HeaderComponent title="Product" />
       <div style={{ marginLeft: 20 }}>
-      <Dropdown
-        className={styles.dropdownRoot}
-        options={orgs?.map((item) => item.org_name) || []}
-        value={org}
-        onChange={handleChange}
-        controlClassName={styles.controlClassName}
-        menuClassName={styles.menuClassName}
-        arrowClassName={styles.arrowClassName}
-        placeholderClassName={styles.placeholderClassName}
-        arrowOpen={
-          <LiaAngleDownSolid
-            size={12}
-            style={{ marginRight: 10, marginTop: 5 }}
-          />
-        }
-        arrowClosed={
-          <LiaAngleRightSolid
-            size={12}
-            style={{ marginRight: 10, marginTop: 5 }}
-          />
-        }
-      />
-      <div
-        style={{
-          display: "flex",
-          columnGap: 50,
-          rowGap: 10,
-          marginLeft: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        {products
-          ?.filter((pro) => pro.org_name === org)[0]
-          .products?.map((item) => (
-            <div className={styles.products} key={item.id}>
-              <Link to={`/productDetail/${item.id}`}>
-                <img
-                  className={styles.product_image}
-                  alt="product"
-                  src={item.image}
-                />
-              </Link>
-            </div>
-          ))}
-      </div>
+        <Dropdown
+          className={styles.dropdownRoot}
+          options={orgs?.map((item) => item.org_name) || []}
+          value={org}
+          onChange={handleChange}
+          controlClassName={styles.controlClassName}
+          menuClassName={styles.menuClassName}
+          arrowClassName={styles.arrowClassName}
+          placeholderClassName={styles.placeholderClassName}
+          arrowOpen={
+            <LiaAngleDownSolid
+              size={12}
+              style={{ marginRight: 10, marginTop: 5 }}
+            />
+          }
+          arrowClosed={
+            <LiaAngleRightSolid
+              size={12}
+              style={{ marginRight: 10, marginTop: 5 }}
+            />
+          }
+        />
+        <div
+          style={{
+            display: "flex",
+            columnGap: 50,
+            rowGap: 10,
+            marginLeft: 20,
+            flexWrap: "wrap",
+            width: 300,
+            // flexDirection: "column",
+          }}
+        >
+          {products
+            ?.filter((pro) => pro.org_name === org)[0]
+            .products?.map((item) => (
+              <div className={styles.products} key={item.id}>
+                <Link to={`/productDetail/${item.id}`}>
+                  <img
+                    className={styles.product_image}
+                    alt="product"
+                    src={item.image}
+                  />
+                </Link>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

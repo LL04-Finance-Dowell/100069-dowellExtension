@@ -3,25 +3,20 @@ import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import "../components/ScrollbarStyles.css";
 import TabButton from "../components/TabButton";
 import { useState } from "react";
-import { useQueries, useQuery } from "react-query";
-import shadows from "@mui/material/styles/shadows";
+import { useQuery } from "react-query";
 import FetchProfile from "../lib/api/fetchProfile";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
-import { useStateContext } from "../contexts/Context";
-
-
-
+import { useStateContext } from "../Contexts/Context";
 
 export default function Profile() {
   const { sessionId } = useStateContext();
 
-  const fields = 
-  {
+  const fields = {
     showArrow1: "01. My Profile",
     showArrow2: "02. Set Password",
     showArrow3: "03. Device IDs",
     showArrow4: "04. Personal IDs",
-    showArrow5:  "05. References",
+    showArrow5: "05. References",
     showArrow6: "06. ID Verification",
     showArrow7: "07. My Organisation",
     showArrow8: "08. Geographic Profile",
@@ -30,7 +25,7 @@ export default function Profile() {
     showArrow11: "11. Behavioural Profile",
     showArrow12: "12. Usage Profile",
     showArrow13: "13. Section Permissions",
-  }
+  };
 
   const [arrows, setaArrows] = useState({
     showArrow1: true,
@@ -53,120 +48,124 @@ export default function Profile() {
     setaArrows({ [show]: bool });
   };
 
-  const { data:userinfo } = useQuery({
+  const { data: userinfo } = useQuery({
     queryKey: "userInfo",
     queryFn: async () => await FetchUserInfo(sessionId),
   });
 
- 
-
-  const { data:profile } = useQuery({
+  const { data: profile } = useQuery({
     queryKey: "userProfile",
     queryFn: async () => await FetchProfile(userinfo?.data?.userinfo?.username),
   });
-  
-  {console.log(userinfo?.data?.userinfo?.username)}
-  {console.log(profile)}
-  const profile_data = profile?.data
 
-  function renderProfileData (data) {
+  {
+    console.log(userinfo?.data?.userinfo?.username);
+  }
+  {
+    console.log(profile);
+  }
+  const profile_data = profile?.data;
+
+  function renderProfileData(data) {
     return (
-      <div style={{paddingTop:9}}>
-
-      {Object.entries(data).map(([key,value]) => (
-        <div style={profileDataStyles}>
-          <div style={{color:"black"}}>
-            {key}:
+      <div style={{ paddingTop: 9 }}>
+        {Object.entries(data).map(([key, value]) => (
+          <div style={profileDataStyles} key={key}>
+            <div style={{ color: "black" }}>{key}:</div>
+            <div style={{ paddingLeft: 5 }}>{value}</div>
           </div>
-          <div style={{paddingLeft:5}}>
-            {value}
-          </div>
-        </div>
-      ))}
+        ))}
       </div>
-
     );
   }
 
   return (
-    <div >
+    <div style={{ overflowY: "scroll", height: 500 }}>
       <HeaderComponent title="Profile" />
       <div style={{ marginLeft: 15 }}>
-      <div style={containerStyles}>
-        <div>
-        {Object.entries(fields).map(([key, value]) => (
-          <div style={{"width": "310px",
-          marginTop: "10px",
-          marginRight:"10px",
-          marginLeft: "10px",
-          marginBottom: "26px",
-          }} key={key}>
-            <div className="rectangle" style={rectangleStyle} onClick={()=>handleArrows(key,!arrows[key])}>
-              <div style={textWrapperStyle}>{value}</div>
-              {arrows[key]?<IoIosArrowDown 
-                size={15}
-                color="#005734"
-                style={{ marginLeft: "10px", marginRight: "20px" }}/>:
-              <IoIosArrowForward
-                size={15}
-                color="#005734"
-                style={{ marginLeft: "10px", marginRight: "20px" }}
-              />}
-            </div>
+        <div style={containerStyles}>
+          <div>
+            {Object.entries(fields).map(([key, value]) => (
+              <div
+                style={{
+                  width: "310px",
+                  marginTop: "10px",
+                  marginRight: "10px",
+                  marginLeft: "10px",
+                  marginBottom: "26px",
+                }}
+                key={key}
+              >
+                <div
+                  className="rectangle"
+                  style={rectangleStyle}
+                  onClick={() => handleArrows(key, !arrows[key])}
+                >
+                  <div style={textWrapperStyle}>{value}</div>
+                  {arrows[key] ? (
+                    <IoIosArrowDown
+                      size={15}
+                      color="#005734"
+                      style={{ marginLeft: "10px", marginRight: "20px" }}
+                    />
+                  ) : (
+                    <IoIosArrowForward
+                      size={15}
+                      color="#005734"
+                      style={{ marginLeft: "10px", marginRight: "20px" }}
+                    />
+                  )}
+                </div>
 
-           {arrows[key]?
-            <div style={contentStyle}>
-              {/* <p>{value}</p> */}
-              {profile_data?(
-                key==="showArrow1"?renderProfileData(profile_data?.user_profile):
-                key==="showarrow2"?renderProfileData(profile_data?.password):
-                key==="showarrow3"?renderProfileData(profile_data?.device):
-                key==="showArrow5"?renderProfileData(profile_data?.references):
-                key==="showArrow6"?renderProfileData(profile_data?.verification):
-                key==="showarrow7"?renderProfileData(profile_data?.organization):
-                key==="showarrow8"?renderProfileData(profile_data?.geographical):
-                key==="showArrow9"?renderProfileData(profile_data?.demographic):
-                key==="showArrow10"?renderProfileData(profile_data?.psychographic):
-                key==="showarrow11"?renderProfileData(profile_data?.behavior):
-                key==="showArrow12"?renderProfileData(profile_data?.usage):null):
-
-                null
-              }
-
-            </div>
-            :null}
-
-            
-            
+                {arrows[key] ? (
+                  <div style={contentStyle}>
+                    {/* <p>{value}</p> */}
+                    {profile_data
+                      ? key === "showArrow1"
+                        ? renderProfileData(profile_data?.user_profile)
+                        : key === "showarrow2"
+                        ? renderProfileData(profile_data?.password)
+                        : key === "showarrow3"
+                        ? renderProfileData(profile_data?.device)
+                        : key === "showArrow5"
+                        ? renderProfileData(profile_data?.references)
+                        : key === "showArrow6"
+                        ? renderProfileData(profile_data?.verification)
+                        : key === "showarrow7"
+                        ? renderProfileData(profile_data?.organization)
+                        : key === "showarrow8"
+                        ? renderProfileData(profile_data?.geographical)
+                        : key === "showArrow9"
+                        ? renderProfileData(profile_data?.demographic)
+                        : key === "showArrow10"
+                        ? renderProfileData(profile_data?.psychographic)
+                        : key === "showarrow11"
+                        ? renderProfileData(profile_data?.behavior)
+                        : key === "showArrow12"
+                        ? renderProfileData(profile_data?.usage)
+                        : null
+                      : null}
+                  </div>
+                ) : null}
+              </div>
+            ))}
           </div>
-          
-        ))}
-        
-            </div>
-      </div>
-      <a
-              href="https://100014.pythonanywhere.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-
-      <TabButton description={"Edit my profile"} />
-      </a>
+        </div>
+        <a
+          href="https://100014.pythonanywhere.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div style={{ marginLeft: 50, marginBottom: 10 }}>
+            <TabButton description={"Edit my profile"} />
+          </div>
+        </a>
       </div>
     </div>
   );
 }
 const containerStyles = {
   marginTop: "24px",
-  height: "57vh",
-  overflowY: "scroll",
-};
-const boxStyle = {
-  width: "310px",
-  marginTop: "20px",
-  marginRight: "10px",
-  marginLeft: "10px",
-  marginBottom: "26px",
 };
 
 const rectangleStyle = {
@@ -178,7 +177,7 @@ const rectangleStyle = {
   width: "310px",
   display: "flex",
   flexDirection: "row",
-  cursor:"pointer",
+  cursor: "pointer",
   alignItems: "center",
 };
 
@@ -202,19 +201,16 @@ const contentStyle = {
   fontSize: 10,
   display: "flex",
   marginTop: 10,
-  marginLeft:5,
-  paddingLeft:10,
-  // paddingTop:55,
+  marginLeft: 5,
+  paddingLeft: 10,
   flexDirection: "row",
-  // alignItems: "center",
-  overflowY:"scroll",
-  overflowX:"hidden"
-}
+  overflowY: "scroll",
+  overflowX: "hidden",
+};
 
 const profileDataStyles = {
-  display:"flex",
-  flexDirection:"row",
-  fontSize:11,
+  display: "flex",
+  flexDirection: "row",
+  fontSize: 11,
   color: "#005734",
-  // height:"149px",
-}
+};

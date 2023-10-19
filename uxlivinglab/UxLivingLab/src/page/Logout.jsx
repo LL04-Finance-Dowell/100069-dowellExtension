@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 import HeaderComponent from "../components/HeaderComponent";
 import TabButton from "../components/TabButton";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
-import { useStateContext } from "../contexts/Context";
 import useStore from "../hooks/use-hook";
+import { useStateContext } from "../Contexts/Context";
 
 export default function Logout() {
   const fields = ["Username", "Email", "Country", "Date & Time", "Workspace"];
@@ -16,61 +16,68 @@ export default function Logout() {
   const org = useStore((state) => state.org);
   const userInfo = data?.data.userinfo;
   return (
-    <div >
+    <div
+      style={{
+        overflowY: "scroll",
+      }}
+    >
       <HeaderComponent title="Profile" />
-      <div style={{ marginLeft: 15 }}>
-      {userInfo ? (
-        <div style={{  marginTop: 8, marginLeft: 10 }}>
-          {Object.entries(fields).map(([key, value]) => (
-            <div style={{ height: 55 }} key={key}>
-              <h3
-                style={{
-                  marginBottom: 5,
-                  fontSize: 17,
-                  fontWeight: "normal",
-                  height: 20,
-                }}
-              >
-                {value}:
-              </h3>
-              <div style={boxStyle}>
-                <div className="rectangle" style={rectangleStyle}>
-                  <div style={textWrapperStyle}>
-                    {value === "Username"
-                      ? userInfo?.username
-                      : value === "Email"
-                      ? userInfo?.email
-                      : value === "Country"
-                      ? userInfo?.country
-                      : value === "Date & Time"
-                      ? userInfo?.dowell_time
-                      : value === "Workspace"
-                      ? org
-                      : // : value === "Org_id"
-                        //   ? selectedOrgId
-                        null}
+      <div
+        style={{
+          marginLeft: 15,
+          marginBottom: "auto",
+        }}
+      >
+        {userInfo ? (
+          <div style={{ marginTop: 8, marginLeft: 10 }}>
+            {Object.entries(fields).map(([key, value]) => (
+              <div style={{ height: 55 }} key={key}>
+                <h3
+                  style={{
+                    marginBottom: 5,
+                    fontSize: 17,
+                    fontWeight: "normal",
+                    height: 20,
+                  }}
+                >
+                  {value}:
+                </h3>
+                <div style={boxStyle}>
+                  <div className="rectangle" style={rectangleStyle}>
+                    <div style={textWrapperStyle}>
+                      {value === "Username"
+                        ? userInfo?.username
+                        : value === "Email"
+                        ? userInfo?.email
+                        : value === "Country"
+                        ? userInfo?.country
+                        : value === "Date & Time"
+                        ? userInfo?.dowell_time
+                        : value === "Workspace"
+                        ? org
+                        : // : value === "Org_id"
+                          //   ? selectedOrgId
+                          null}
+                    </div>
                   </div>
                 </div>
               </div>
+            ))}
+            <div style={{ marginTop: 20, marginLeft: 50 }}>
+              <a
+                href="https://100014.pythonanywhere.com/en/sign-out"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <TabButton description={"Logout"} />
+              </a>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div style={{ height: "80vh", marginTop: 30, marginLeft: 30 }}>
-          <p>Loading...</p>
-        </div>
-      )}
-
-      <div>
-      <a
-              href="https://100014.pythonanywhere.com/en/sign-out"
-              target="_blank"
-              rel="noreferrer"
-              
-            >
-        <TabButton description={"Logout"} />
-        </a>
-      </div>
+          </div>
+        ) : (
+          <div style={{}}>
+            <p>Loading...</p>
+          </div>
+        )}
       </div>
     </div>
   );
