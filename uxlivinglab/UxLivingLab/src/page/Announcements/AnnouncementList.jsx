@@ -80,7 +80,7 @@ export default function AnnouncementList() {
   }
 
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div >
       <div>
         <HeaderComponent
           title="Notification"
@@ -88,6 +88,7 @@ export default function AnnouncementList() {
           navigation={() => navigate(-1)}
         />
       </div>
+      <div style={{ marginLeft: 15 }}>
       <div style={headerLabelStyle}>
         <div style={headerTextWrapperStyle}>{title}</div>
       </div>
@@ -106,6 +107,7 @@ export default function AnnouncementList() {
           <AnnouncementLister title={title} />
         </div>
       ) : null}
+      </div>
     </div>
   );
 }

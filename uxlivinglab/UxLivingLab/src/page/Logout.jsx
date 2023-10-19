@@ -16,18 +16,19 @@ export default function Logout() {
   const org = useStore((state) => state.org);
   const userInfo = data?.data.userinfo;
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div >
       <HeaderComponent title="Profile" />
+      <div style={{ marginLeft: 15 }}>
       {userInfo ? (
-        <div style={{  marginTop: 48, marginLeft: 10 }}>
+        <div style={{  marginTop: 8, marginLeft: 10 }}>
           {Object.entries(fields).map(([key, value]) => (
-            <div style={{ height: 60 }} key={key}>
+            <div style={{ height: 55 }} key={key}>
               <h3
                 style={{
                   marginBottom: 5,
                   fontSize: 17,
                   fontWeight: "normal",
-                  height: 25,
+                  height: 20,
                 }}
               >
                 {value}:
@@ -55,7 +56,7 @@ export default function Logout() {
           ))}
         </div>
       ) : (
-        <div style={{ height: "90vh", marginTop: 34, marginLeft: 30 }}>
+        <div style={{ height: "80vh", marginTop: 30, marginLeft: 30 }}>
           <p>Loading...</p>
         </div>
       )}
@@ -69,6 +70,7 @@ export default function Logout() {
             >
         <TabButton description={"Logout"} />
         </a>
+      </div>
       </div>
     </div>
   );
@@ -86,7 +88,7 @@ const rectangleStyle = {
   backgroundColor: "#ffffff",
   borderRadius: "100px",
   boxShadow: "3px 3px 7px 0px #9C9C9C7A inset",
-  height: "37px",
+  height: "30px",
   width: "310px",
   display: "flex",
   flexDirection: "row",

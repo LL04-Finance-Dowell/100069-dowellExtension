@@ -89,13 +89,14 @@ export default function Profile() {
   }
 
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div >
       <HeaderComponent title="Profile" />
+      <div style={{ marginLeft: 15 }}>
       <div style={containerStyles}>
         <div>
         {Object.entries(fields).map(([key, value]) => (
           <div style={{"width": "310px",
-          marginTop: "20px",
+          marginTop: "10px",
           marginRight:"10px",
           marginLeft: "10px",
           marginBottom: "26px",
@@ -151,12 +152,13 @@ export default function Profile() {
 
       <TabButton description={"Edit my profile"} />
       </a>
+      </div>
     </div>
   );
 }
 const containerStyles = {
-  marginTop: "44px",
-  height: "70vh",
+  marginTop: "24px",
+  height: "57vh",
   overflowY: "scroll",
 };
 const boxStyle = {

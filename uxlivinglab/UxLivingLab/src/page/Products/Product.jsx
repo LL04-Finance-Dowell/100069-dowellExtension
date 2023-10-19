@@ -44,9 +44,9 @@ export default function Product() {
   };
 
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div >
       <HeaderComponent title="Product" />
-
+      <div style={{ marginLeft: 20 }}>
       <Dropdown
         className={styles.dropdownRoot}
         options={orgs?.map((item) => item.org_name) || []}
@@ -91,6 +91,7 @@ export default function Product() {
               </Link>
             </div>
           ))}
+      </div>
       </div>
     </div>
   );

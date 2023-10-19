@@ -10,7 +10,7 @@ export default function AnnouncementDetail() {
 
   const data = location.state?.data;
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div >
       <div>
         <HeaderComponent
           title="Notification"
@@ -18,6 +18,7 @@ export default function AnnouncementDetail() {
           navigation={() => navigate(-1)}
         />
       </div>
+      <div style={{ marginLeft: 15 }}>
       <div style={headerLabelStyle}>
         <div style={headerTextWrapperStyle}>{title}</div>
       </div>
@@ -46,6 +47,7 @@ export default function AnnouncementDetail() {
             </a>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

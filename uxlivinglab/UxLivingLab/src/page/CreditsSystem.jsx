@@ -123,9 +123,7 @@ export default function CreditSystem() {
 
   return (
     <div>
-      <div style={{ marginLeft: 15 }}>
         <HeaderComponent title="CREDITS SYSTEM" />
-      </div>
 
       <div
         onClick={() =>
@@ -156,7 +154,7 @@ export default function CreditSystem() {
 
       {creditDataQuery?.data?.success ? (
         <div>
-          <div style={{ marginTop: lowCredits ? 50 : 100, marginLeft: 30 }}>
+          <div style={{ marginTop: lowCredits ? 20 : 60, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
               <div style={{ height: 70 }} key={key}>
                 <h3

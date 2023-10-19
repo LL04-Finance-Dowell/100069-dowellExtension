@@ -85,10 +85,11 @@ export default function Notification() {
   }
 
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div>
       <div onClick={() => revertTitle()}>
         <HeaderComponent title="Notification" />
       </div>
+      <div  style={{ marginLeft: 15 }}>
       <div style={headerLabelStyle}>
         <div style={headerTextWrapperStyle}>{title}</div>
       </div>
@@ -168,6 +169,7 @@ export default function Notification() {
             <AnnouncementList title={title} />
           </div>
         ) : null)}
+        </div>
     </div>
   );
 }

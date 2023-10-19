@@ -3,8 +3,9 @@ import TabButton from "../components/TabButton";
 
 export default function Login() {
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div >
       <HeaderComponent title="Login" />
+      <div style={{ marginLeft: 15 }}>
       <div style={iframeContainerStyles}>
         <iframe
           width="320"
@@ -25,6 +26,7 @@ export default function Login() {
 
         <TabButton description={"Login"} />
         </a>
+      </div>
       </div>
     </div>
   );
