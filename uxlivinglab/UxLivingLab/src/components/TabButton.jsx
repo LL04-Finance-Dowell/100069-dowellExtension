@@ -1,6 +1,6 @@
 export default function TabButton ({ description }) {
     return (
-        <div style={{left:81,top:"89vh",position:"absolute"}}>
+        <div style={{left:81,top:"74vh",position:"absolute"}}>
             <button style={buttonStyle}>{description}</button>
         </div>
     );
