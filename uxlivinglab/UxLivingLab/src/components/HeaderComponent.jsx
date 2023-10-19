@@ -12,15 +12,22 @@ export default function HeaderComponent({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        marginTop: 25,
+        marginTop:5,
+        paddingTop: 15,
+        paddingBottom:20,
+        // marginLeft:0,
+        backgroundColor:"rgba(0, 87, 52, 0.3)",
+        borderRadius:"10px 0px 0px 0px",
+        marginLeft:5
+        
       }}
     >
       {type && (
         <BsArrowLeft
           size={30}
-          color="#005734"
+          color="black"
           onClick={navigation}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", paddingLeft:15 }}
         />
       )}
       <div
