@@ -3,7 +3,6 @@ import HeaderComponent from "../../components/HeaderComponent";
 import DropdownComponent from "./Dropdown";
 import styles from "./style.module.css";
 import { FiLink2 } from "react-icons/fi";
-import TabButton from "../../components/TabButton";
 import { useMutation, useQuery } from "react-query";
 
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
@@ -33,8 +32,6 @@ export default function AddFavourite() {
   const setOrgs = useStore((state) => state.setOrgs);
   const orgs = useStore((state) => state.orgs);
 
-  // console.log("orgs", orgs);
-
   const res = useQuery("fetchFav", async () => {
     const userInfo = await FetchUserInfo(sessionId);
     const other_org = userInfo.data.other_org || [];
@@ -50,7 +47,6 @@ export default function AddFavourite() {
   const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: (data) => SendFavourites(data),
     onSuccess: () => navigate(-1),
-    // onError: (err) => console.log("err", err),
   });
 
   if (isError) {
@@ -92,15 +88,17 @@ export default function AddFavourite() {
   return (
     <div
       style={{
-        marginLeft: 15,
+        overflowY: "scroll",
+        overflowX: "hidden",
+        height: 500,
       }}
     >
       <HeaderComponent
-        title={"Add Favourite"}
+        title={"Favourite"}
         navigation={() => navigate(-1)}
         type="add"
       />
-      <div style={{ marginTop: 30, marginBottom: "auto" }}>
+      <div style={{ marginTop: 30, marginBottom: "auto", marginLeft: 15 }}>
         <div>
           <span className={styles.spanStyle}>Select WorkSpace:</span>
           <DropdownComponent
@@ -119,8 +117,10 @@ export default function AddFavourite() {
           <span className={styles.spanStyle}>Select Product:</span>
           <ProductDropdown
             options={
-              products?.filter((pro) => pro.org_name === org?.org_name)[0]
-                .products ?? []
+              products.length > 0
+                ? products?.filter((pro) => pro.org_name === org?.org_name)[0]
+                    .products
+                : []
             }
             setProduct={setProduct}
             isLoading={isLoading}
@@ -137,7 +137,6 @@ export default function AddFavourite() {
             portfolios={product?.portfolios ?? []}
             setPortfolio={setPortfolio}
             isLoading={isLoading}
-            // org={org}
           />
           {isError && (
             <span style={{ color: "red", marginTop: 3 }}>
@@ -146,10 +145,9 @@ export default function AddFavourite() {
           )}
         </div>
         <div
-          style={{ marginTop: 20, display: "flex", flexDirection: "column"}}
+          style={{ marginTop: 20, display: "flex", flexDirection: "column" }}
         >
           <span className={styles.spanStyle}>
-
             Upload Image:
             {Uploading && (
               <span className={styles.placeholderClassName}>
@@ -157,19 +155,22 @@ export default function AddFavourite() {
               </span>
             )}
           </span>
-          <div style={{cursor:"pointer"}}>
-          <input
-            type="file"
-            id="image"
-            className={styles.inputStyle}
-            accept="image/*"
-            onChange={(e) => handleImageUpload(e.target.files[0])}
-            disabled={isLoading}
-          />
+          <div style={{ cursor: "pointer" }}>
+            <input
+              type="file"
+              id="image"
+              className={styles.inputStyle}
+              accept="image/*"
+              onChange={(e) => handleImageUpload(e.target.files[0])}
+              disabled={isLoading}
+            />
           </div>
-          <div className={styles.labelStyle} style={{cursor:"pointer"}}>
-            <label htmlFor="image" className={styles.label}
-            style={{cursor:"pointer"}}>
+          <div className={styles.labelStyle} style={{ cursor: "pointer" }}>
+            <label
+              htmlFor="image"
+              className={styles.label}
+              style={{ cursor: "pointer" }}
+            >
               Choose
             </label>
             <FiLink2 size={12} className={styles.icon} />
@@ -179,14 +180,14 @@ export default function AddFavourite() {
           <span className={styles.spanStyle}>
             Choose Images:{image && "1 file chosen"}
           </span>
-          <div className={styles.select} style={{cursor:"pointer"}} >
-            <label className={styles.label}
-              style={{cursor:"pointer"}}
-              >
-                Choose</label>
+          <div className={styles.select} style={{ cursor: "pointer" }}>
+            <label className={styles.label} style={{ cursor: "pointer" }}>
+              Choose
+            </label>
             <FiLink2 size={12} className={styles.icon} />
           </div>
         </div>
+
         {
           <ImageModal
             open={open}
@@ -196,18 +197,32 @@ export default function AddFavourite() {
             userInfo={userInfo}
           />
         }
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+            }}
+            onClick={handleSubmit}
+            aria-disabled={isLoading}
+          >
+            <button style={buttonStyle}>Submit</button>
+          </div>
+        )}
       </div>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div
-          style={{ marginTop: 15 }}
-          onClick={handleSubmit}
-          aria-disabled={isLoading}
-        >
-          <TabButton description={"Submit"} />
-        </div>
-      )}
     </div>
   );
 }
+
+const buttonStyle = {
+  padding: "10px 50px 10px 50px",
+  backgroundColor: "#005734",
+  color: "#ffffff",
+  fontSize: "15px",
+  border: "solid #005734",
+  borderRadius: "12px",
+  width: "60%",
+  cursor: "pointer",
+};

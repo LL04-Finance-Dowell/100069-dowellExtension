@@ -4,9 +4,9 @@ import HeaderComponent from "../components/HeaderComponent";
 import { AiOutlineEye, AiOutlinePlus } from "react-icons/ai";
 import { useQuery } from "react-query";
 import FetchFavourites from "../lib/api/fetchFavourites";
-import { useStateContext } from "../contexts/Context";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 import Logo from "../assets/mdi_null-off.png";
+import { useStateContext } from "../Contexts/Context";
 
 export default function Favourites() {
   const navigate = useNavigate();
@@ -36,7 +36,6 @@ export default function Favourites() {
         style={{
           width: "100%",
           height: 500,
-          // height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -68,13 +67,12 @@ export default function Favourites() {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         overflowY: "scroll",
         overflowX: "hidden",
         height: 500,
       }}
     >
-      <div style={{ width: "100%", paddingLeft: 3 }}>
+      <div style={{ width: "100%" }}>
         <HeaderComponent title="Favourites" />
       </div>
       <div style={boxStyle}>
@@ -99,7 +97,6 @@ export default function Favourites() {
                 marginRight: "auto",
                 marginLeft: 15,
                 marginTop: 30,
-                // overflow: "scroll",
               }}
             >
               <div
@@ -148,7 +145,7 @@ const boxStyle = {
   width: "310px",
   marginTop: "40px",
   marginRight: "10px",
-  marginLeft: "10px",
+  marginLeft: "40px",
   marginBottom: "40px",
 };
 
@@ -182,7 +179,7 @@ const rectangle = {
   borderRadius: "20px",
   display: "flex",
   flexDirection: "row",
-  // overflow: "hidden",
+  marginLeft: 40,
   boxShadow:
     "0px 0px 0px #0000001a, 0px 1px 3px #0000001a, 2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent",
 };

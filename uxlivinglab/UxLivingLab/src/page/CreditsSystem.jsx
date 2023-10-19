@@ -123,20 +123,10 @@ export default function CreditSystem() {
 
   return (
     <div>
-        <HeaderComponent title="CREDITS SYSTEM" />
+      <HeaderComponent title="CREDITS SYSTEM" />
 
-      <div
-        onClick={() =>
-          window.open(
-            "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
-            "_blank"
-          )
-        }
-      >
-        <TabButton description={"Buy Credits"} />
-      </div>
       {lowCredits ? (
-        <p style={{ fontSize: 10, marginTop: 40, marginLeft: 60 }}>
+        <p style={{ fontSize: 10, marginTop: 30, marginLeft: 60 }}>
           You have exhausted 80% of your Credits.
           <a
             style={{ color: "blue", cursor: "pointer" }}
@@ -154,7 +144,7 @@ export default function CreditSystem() {
 
       {creditDataQuery?.data?.success ? (
         <div>
-          <div style={{ marginTop: lowCredits ? 20 : 60, marginLeft: 30 }}>
+          <div style={{ marginTop: lowCredits ? 10 : 60, marginLeft: 30 }}>
             {Object.entries(fields).map(([key, value]) => (
               <div style={{ height: 70 }} key={key}>
                 <h3
@@ -198,6 +188,20 @@ export default function CreditSystem() {
           </p>
         </div>
       )}
+      <div
+        onClick={() =>
+          window.open(
+            "https://ll05-ai-dowell.github.io/100105-DowellApiKeySystem/#",
+            "_blank"
+          )
+        }
+        style={{
+          marginLeft: 100,
+          marginTop: 40,
+        }}
+      >
+        <TabButton description={"Buy Credits"} />
+      </div>
     </div>
   );
 }

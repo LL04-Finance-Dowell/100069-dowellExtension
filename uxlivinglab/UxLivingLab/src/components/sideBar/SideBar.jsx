@@ -34,6 +34,10 @@ export default function SideBar() {
         // height: "100vh",
         height: 500,
         borderRadius: 20,
+        width: 86,
+        position: "absolute",
+        right: 2,
+        backgroundColor: "white",
       }}
       className={styles.rectangle1}
     >
@@ -87,7 +91,7 @@ export default function SideBar() {
             >
               <i
                 className={value}
-                style={{ fontSize: 20, color: "#005734", marginBottom: 5 }}
+                style={{ fontSize: 17, color: "#005734", marginBottom: 5 }}
               />
               <div className={styles.text_wrapper}>
                 {key.charAt(0).toUpperCase() + key.slice(1)}
@@ -100,7 +104,7 @@ export default function SideBar() {
         src={ClientAdmin}
         alt="admin"
         style={{
-          width: 80,
+          width: 60,
           alignItems: "center",
           margin: 10,
           cursor: "pointer",
