@@ -6,19 +6,36 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
+import CreateRoom from "../lib/api/createRoom";
+import { useUserInfo } from "../lib/fetchUserInfo";
+import { useStateContext } from "../Contexts/Context";
 
 export default function ChatUI() {
+  const { sessionId } = useStateContext();
   const [showEmoji, setShowEmoji] = useState(false);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { data } = useUserInfo(sessionId);
 
   useEffect(() => {
-    Cookies.set("name", "value");
-  }, []);
+    setLoading(true);
+    const room_id = Cookies.get("roomId");
+    if (!room_id) {
+      console.log("no room id");
+      const createRoom = async () => {
+        try {
+          console.log(data.data.userinfo.userID);
+          console.log(data);
+          // const response = await CreateRoom(data);
+        } catch (error) {
+          console.log("error in creating Cookies", error);
+        }
+      };
+      createRoom();
+    }
 
-  setTimeout(() => {
-    const n = Cookies.get("name");
-    console.log("cookue", n);
-  }, 4000);
+    // Cookies.set("name", "value");
+  }, [data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,9 +50,49 @@ export default function ChatUI() {
     setShowEmoji(false);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div style={mainContainerStyle}>
       <div style={{ overflow: "scroll", overflowX: "hidden", maxHeight: 300 }}>
+        <div
+          style={{
+            paddingLeft: 8,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: 10,
+            marginRight: 10,
+          }}
+        >
+          <Avatar sx={{ width: 35, height: 35 }} />
+          <div style={textStyle}>
+            Hey, How can I help you?Hey, How can I help you? Hey, How can I help
+            you?Hey, How can I help you?Hey, How can I help you?Hey, How can I
+            help you?Hey, How can I help you?Hey, How can I help you?Hey, How
+            can I help you?
+          </div>
+        </div>
+        <div
+          style={{
+            paddingLeft: 8,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: 10,
+            marginRight: 10,
+          }}
+        >
+          <Avatar sx={{ width: 35, height: 35 }} />
+          <div style={textStyle}>
+            Hey, How can I help you?Hey, How can I help you? Hey, How can I help
+            you?Hey, How can I help you?Hey, How can I help you?Hey, How can I
+            help you?Hey, How can I help you?Hey, How can I help you?Hey, How
+            can I help you?
+          </div>
+        </div>
         <div
           style={{
             paddingLeft: 8,
