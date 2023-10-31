@@ -2,11 +2,35 @@ import Avatar from "@mui/material/Avatar";
 import "./chatuiform.css";
 import { AiOutlineSend } from "react-icons/ai";
 import { PiSmileyLight } from "react-icons/pi";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 
 export default function ChatUI() {
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    Cookies.set("name", "value");
+  }, []);
+
+  setTimeout(() => {
+    const n = Cookies.get("name");
+    console.log("cookue", n);
+  }, 4000);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (input.length <= 0) {
+      return;
+    }
     console.log("first");
+  };
+
+  const handleEmoji = (emoji) => {
+    setInput(input + emoji);
+    setShowEmoji(false);
   };
 
   return (
@@ -19,12 +43,14 @@ export default function ChatUI() {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: 10,
+            marginRight: 10,
           }}
         >
           <Avatar sx={{ width: 35, height: 35 }} />
           <div style={textStyle}>
-            Hey, How can I help you? Hey, How can I help you? Hey, How can I
-            help you? Hey, How can I help you? Hey, How can I help you? Hey, How
+            Hey, How can I help you?Hey, How can I help you? Hey, How can I help
+            you?Hey, How can I help you?Hey, How can I help you?Hey, How can I
+            help you?Hey, How can I help you?Hey, How can I help you?Hey, How
             can I help you?
           </div>
         </div>
@@ -38,9 +64,27 @@ export default function ChatUI() {
             type="text"
             placeholder="Typing..."
             style={{ border: "none", paddingLeft: 10, marginRight: "auto" }}
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
           />
-          <PiSmileyLight color="#005734" style={{ marginRight: 10 }} />
-          <AiOutlineSend color="#005734" style={{ marginRight: 10 }} />
+          <PiSmileyLight
+            color="#005734"
+            style={{ marginRight: 10 }}
+            onClick={() => setShowEmoji(!showEmoji)}
+          />
+          {showEmoji && (
+            <div style={{ position: "absolute", top: 7, right: 10 }}>
+              <Picker
+                data={data}
+                onEmojiSelect={(emoji) => handleEmoji(emoji.native)}
+              />
+            </div>
+          )}
+          <AiOutlineSend
+            color="#005734"
+            style={{ marginRight: 10 }}
+            onClick={(e) => handleSubmit(e)}
+          />
         </form>
       </div>
     </div>
