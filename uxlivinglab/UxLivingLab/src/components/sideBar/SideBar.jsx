@@ -35,8 +35,8 @@ export default function SideBar() {
         height: 500,
         borderRadius: 20,
         width: 86,
-        position: "absolute",
-        right: 2,
+        // position: "absolute",
+        // right: 2,
         backgroundColor: "white",
       }}
       className={styles.rectangle1}
@@ -45,7 +45,7 @@ export default function SideBar() {
         (sessionId && key === "login") ||
         (!sessionId && key === "logout") ? null : (
           <Link
-            to={key !== "customer" ? `/${key}` : null} // remove condition rendering after chat
+            to={`/${key}`}
             key={key}
             style={{
               textDecoration: "none",
@@ -57,7 +57,7 @@ export default function SideBar() {
                   key === "profiles")
                   ? "none"
                   : "auto",
-              cursor: key === "customer" ? "not-allowed" : "pointer", //remove after chat
+              cursor: "pointer",
             }}
           >
             <div
@@ -69,24 +69,16 @@ export default function SideBar() {
                 placeItems: "center",
                 borderRadius: 10,
               }}
-              className={
-                activeTab === key && activeTab !== "customer" //remove the & after chat functionality
-                  ? styles.rectangle
-                  : null
-              }
+              className={activeTab === key ? styles.rectangle : null}
               key={key}
               onClick={() => {
-                if (key === "customer") {
-                  return;
-                } else {
-                  !sessionId &&
-                  (key === "favourites" ||
-                    key === "products" ||
-                    key === "logout" ||
-                    key === "profiles")
-                    ? ""
-                    : setActiveTab(key);
-                }
+                !sessionId &&
+                (key === "favourites" ||
+                  key === "products" ||
+                  key === "logout" ||
+                  key === "profiles")
+                  ? ""
+                  : setActiveTab(key);
               }}
             >
               <i

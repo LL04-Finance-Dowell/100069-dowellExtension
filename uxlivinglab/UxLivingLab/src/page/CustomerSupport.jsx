@@ -8,29 +8,13 @@ export default function CustomerSupport() {
   // const { sessionId } = useStateContext();
   return (
     <div style={mainDiv}>
-        <HeaderComponent title="Customer Support" />
-        <div style={{marginLeft: 15}}>
-
-        <div
-          style={{
-            marginRight: 10,
-            marginTop: 10,
-            marginLeft: 19,
-            marginBottom: 10,
-          }}
-        >
-          <ChatUI />
-        </div>
-
-        {/* <TabButton description={"Edit my profile"}/> */}
-      </div>
-      {/* removed second iframe */}
+      <HeaderComponent title="Customer Support" />
+      <ChatUI />
     </div>
   );
 }
 
 const mainDiv = {
-  
   height: "50vh",
   // overflowY: "scroll",
 };
