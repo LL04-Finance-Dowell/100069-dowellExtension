@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import HeaderComponent from "../components/HeaderComponent";
 // import TabButton from "../components/TabButton";
 import "../components/ScrollbarStyles.css";
@@ -5,12 +6,32 @@ import "../components/ScrollbarStyles.css";
 import ChatUI from "./ChatUI";
 
 export default function CustomerSupport() {
-  // const { sessionId } = useStateContext();
+  const handleDeleteRoom = (e) => {
+    e.preventDefault();
+    Cookies.remove("roomId");
+    // console.log("rr", Cookies.get("roomId"));
+    // window.location.reload();
+  };
+
   return (
     <div style={mainDiv}>
       <HeaderComponent title="Customer Support" />
       <ChatUI />
-      <div>delete room</div>
+      <div
+        style={{
+          marginTop: 20,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <span
+          onClick={(e) => handleDeleteRoom(e)}
+          style={{ color: "red", cursor: "pointer" }}
+        >
+          delete room
+        </span>
+      </div>
     </div>
   );
 }

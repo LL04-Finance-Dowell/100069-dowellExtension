@@ -20,15 +20,10 @@ export default function ChatUI() {
   const [roomId, setroomId] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const { userInfo, portfolio_info } = data?.data || {};
-  const user_id = userInfo?.userID;
-  const org_id = portfolio_info?.[0]?.org_id;
-
   useEffect(() => {
     if (data) {
       const room_id = Cookies.get("roomId");
       setroomId(room_id);
-      Cookies.remove("roomId");
       if (!room_id) {
         const handleCreateRoom = async () => {
           try {
@@ -39,8 +34,8 @@ export default function ChatUI() {
               org_id: data?.data?.portfolio_info[0]?.org_id,
             };
             const response = await CreateRoom(roomData);
-            setroomId(response.data.response._id);
-            Cookies.set("roomId", response.data.response._id);
+            setroomId(response.data.response.room_id);
+            Cookies.set("roomId", response.data.response.room_id);
           } catch (error) {
             console.error("Error creating room:", error);
           }
@@ -50,7 +45,6 @@ export default function ChatUI() {
       const fetchMessages = async () => {
         const response = await FetchMessage(roomId);
         setMessages(response.data.response.data);
-        // console.log(response.data.response.data);
         setLoading(false);
       };
       fetchMessages();
