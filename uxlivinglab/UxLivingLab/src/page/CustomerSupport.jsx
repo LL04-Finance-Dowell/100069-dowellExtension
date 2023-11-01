@@ -10,6 +10,7 @@ export default function CustomerSupport() {
     <div style={mainDiv}>
       <HeaderComponent title="Customer Support" />
       <ChatUI />
+      <div>delete room</div>
     </div>
   );
 }

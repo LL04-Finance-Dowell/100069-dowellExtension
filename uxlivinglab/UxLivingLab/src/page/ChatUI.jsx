@@ -5,37 +5,57 @@ import { PiSmileyLight } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
 import CreateRoom from "../lib/api/createRoom";
 import { useUserInfo } from "../lib/fetchUserInfo";
 import { useStateContext } from "../Contexts/Context";
+import FetchMessage from "../lib/api/fetchMessages";
+import { Fragment } from "react";
 
 export default function ChatUI() {
   const { sessionId } = useStateContext();
   const [showEmoji, setShowEmoji] = useState(false);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { data } = useUserInfo(sessionId);
+  const [roomId, setroomId] = useState("");
+  const [messages, setMessages] = useState([]);
+
+  const { userInfo, portfolio_info } = data?.data || {};
+  const user_id = userInfo?.userID;
+  const org_id = portfolio_info?.[0]?.org_id;
 
   useEffect(() => {
-    setLoading(true);
-    const room_id = Cookies.get("roomId");
-    if (!room_id) {
-      console.log("no room id");
-      const createRoom = async () => {
-        try {
-          console.log(data.data.userinfo.userID);
-          console.log(data);
-          // const response = await CreateRoom(data);
-        } catch (error) {
-          console.log("error in creating Cookies", error);
-        }
+    if (data) {
+      const room_id = Cookies.get("roomId");
+      setroomId(room_id);
+      Cookies.remove("roomId");
+      if (!room_id) {
+        const handleCreateRoom = async () => {
+          try {
+            const roomData = {
+              user_id: data?.data?.userinfo?.userID,
+              product_name: "EXTENSION",
+              portfolio_name: "extension",
+              org_id: data?.data?.portfolio_info[0]?.org_id,
+            };
+            const response = await CreateRoom(roomData);
+            setroomId(response.data.response._id);
+            Cookies.set("roomId", response.data.response._id);
+          } catch (error) {
+            console.error("Error creating room:", error);
+          }
+        };
+        handleCreateRoom();
+      }
+      const fetchMessages = async () => {
+        const response = await FetchMessage(roomId);
+        setMessages(response.data.response.data);
+        // console.log(response.data.response.data);
+        setLoading(false);
       };
-      createRoom();
+      fetchMessages();
     }
-
-    // Cookies.set("name", "value");
-  }, [data]);
+  }, [data, roomId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,60 +77,23 @@ export default function ChatUI() {
   return (
     <div style={mainContainerStyle}>
       <div style={{ overflow: "scroll", overflowX: "hidden", maxHeight: 300 }}>
-        <div
-          style={{
-            paddingLeft: 8,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginBottom: 10,
-            marginRight: 10,
-          }}
-        >
-          <Avatar sx={{ width: 35, height: 35 }} />
-          <div style={textStyle}>
-            Hey, How can I help you?Hey, How can I help you? Hey, How can I help
-            you?Hey, How can I help you?Hey, How can I help you?Hey, How can I
-            help you?Hey, How can I help you?Hey, How can I help you?Hey, How
-            can I help you?
-          </div>
-        </div>
-        <div
-          style={{
-            paddingLeft: 8,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginBottom: 10,
-            marginRight: 10,
-          }}
-        >
-          <Avatar sx={{ width: 35, height: 35 }} />
-          <div style={textStyle}>
-            Hey, How can I help you?Hey, How can I help you? Hey, How can I help
-            you?Hey, How can I help you?Hey, How can I help you?Hey, How can I
-            help you?Hey, How can I help you?Hey, How can I help you?Hey, How
-            can I help you?
-          </div>
-        </div>
-        <div
-          style={{
-            paddingLeft: 8,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginBottom: 10,
-            marginRight: 10,
-          }}
-        >
-          <Avatar sx={{ width: 35, height: 35 }} />
-          <div style={textStyle}>
-            Hey, How can I help you?Hey, How can I help you? Hey, How can I help
-            you?Hey, How can I help you?Hey, How can I help you?Hey, How can I
-            help you?Hey, How can I help you?Hey, How can I help you?Hey, How
-            can I help you?
-          </div>
-        </div>
+        {messages.map((message) => (
+          <Fragment key={message?._id}>
+            <div
+              style={{
+                paddingLeft: 8,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginBottom: 10,
+                marginRight: 10,
+              }}
+            >
+              <Avatar sx={{ width: 35, height: 35 }} />
+              <div style={textStyle}>{message?.message_data}</div>
+            </div>
+          </Fragment>
+        ))}
       </div>
       <div style={contentStyle}>
         <div>
