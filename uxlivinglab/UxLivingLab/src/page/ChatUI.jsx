@@ -1,156 +1,208 @@
-import { BsArrowLeft } from "react-icons/bs";
-// import Avatar from "@material-ui/core/Avatar";
 import Avatar from "@mui/material/Avatar";
 import "./chatuiform.css";
 import { AiOutlineSend } from "react-icons/ai";
 import { PiSmileyLight } from "react-icons/pi";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
+import CreateRoom from "../lib/api/createRoom";
+import { useUserInfo } from "../lib/fetchUserInfo";
+import { useStateContext } from "../Contexts/Context";
+import FetchMessage from "../lib/api/fetchMessages";
+import { Fragment } from "react";
+import CreateMessage from "../lib/api/createMessage";
 
 export default function ChatUI() {
-  // function ChatMessage(image_url, message) {
-  //   return (
-  //     <div>
-  //       <Avatar
-  //         src={image_url ? image_url : null}
-  //         sx={{ width: 35, height: 35 }}
-  //       />
-  //       <div style={textStyle}>{message}</div>
-  //     </div>
-  //   );
-  // }
+  const { sessionId, messages, setMessages } = useStateContext();
+  const [showEmoji, setShowEmoji] = useState(false);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(false);
+  const { data: userData } = useUserInfo(sessionId);
+  const [roomId, setroomId] = useState("");
+
+  useEffect(() => {
+    if (userData) {
+      const room_id = Cookies.get("roomId");
+      if (!room_id) {
+        const handleCreateRoom = async () => {
+          try {
+            const roomData = {
+              user_id: userData?.data?.userinfo?.userID,
+              product_name: "EXTENSION",
+              portfolio_name: "extension",
+              org_id: userData?.data?.portfolio_info[0]?.org_id,
+            };
+            const response = await CreateRoom(roomData);
+            setroomId(response.data.response._id);
+            Cookies.set("roomId", response.data.response._id);
+          } catch (error) {
+            console.error("Error creating room:", error);
+          }
+        };
+        handleCreateRoom();
+      }
+      const fetchMessages = async () => {
+        const response = await FetchMessage(room_id);
+        setMessages(response.data.response.data);
+        setLoading(false);
+      };
+      fetchMessages();
+    }
+  }, [userData, roomId]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (input.length <= 0) {
+      return;
+    }
+    try {
+      setSending(true);
+      const roomId = Cookies.get("roomId");
+      const messageData = {
+        type: "create_message",
+        room_id: roomId,
+        message_data: input,
+        side: true,
+        author: userData?.data?.userinfo?.username,
+        message_type: "text",
+      };
+      const res = await CreateMessage(messageData);
+      if (res.data.success) {
+        const response = await FetchMessage(roomId);
+        setMessages(response.data.response.data);
+      }
+    } catch (error) {
+      console.log("error creating message", error);
+    } finally {
+      setSending(false);
+      setInput("");
+    }
+  };
+
+  const handleEmoji = (emoji) => {
+    setInput(input + emoji);
+    setShowEmoji(false);
+  };
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div style={mainContainerStyle}>
-        {/* Header component */}
-        <div
-          style={{
-            paddingTop: 20,
-            paddingLeft: 8,
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <BsArrowLeft
-            style={{ cursor: "pointer" }}
-            size={22}
-            color="#005734"
-            // onClick={() => navigation}
-          />
-          <div
-            style={{
-              color: "#005734",
-              fontSize: 20,
-              fontWeight: 600,
-              height: 20,
-              letterSpacing: 0,
-              lineHeight: "normal",
-              alignItems: "center",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          ></div>
-        </div>
-
-        <div>
-          <div style={avatarStyle}></div>
-          <div style={chatSectionStyle}>
+    <div style={mainContainerStyle}>
+      <div
+        style={{
+          overflow: "scroll",
+          overflowX: "hidden",
+          height: 300,
+          display: "flex",
+          flexDirection: "column-reverse",
+        }}
+      >
+        {messages.map((message) => (
+          <Fragment key={message?._id}>
             <div
               style={{
-                paddingTop: 20,
                 paddingLeft: 8,
                 display: "flex",
                 flexDirection: "row",
+                alignItems: "center",
+                marginBottom: 10,
+                marginRight: 10,
               }}
             >
               <Avatar sx={{ width: 35, height: 35 }} />
-              <div style={textStyle}>Hey, How can I help you?</div>
+              <div style={textStyle}>{message?.message_data}</div>
             </div>
-          </div>
-
-          <div style={contentStyle}>
-            <div>
-              <Avatar sx={{ width: 25, height: 25 }} />
-            </div>
-            <form action="#">
-              <input
-                style={innerfieldStyle}
-                placeholder="Typing..."
-                type="text"
-              />
-              <PiSmileyLight
-                color="#005734"
-                style={{ margin: "13px 5px 5px 5px" }}
-              />
-              <AiOutlineSend
-                color="#005734"
-                style={{ margin: "13px 5px 5px 5px" }}
-              />
-            </form>
-            {/* <p>{value}</p> */}
-          </div>
-        </div>
+          </Fragment>
+        ))}
       </div>
-
-    </>
+      <div style={contentStyle}>
+        <div>
+          <Avatar sx={{ width: 25, height: 25 }} />
+        </div>
+        <form style={{ width: "100%" }} onSubmit={(e) => handleSubmit(e)}>
+          <input
+            type="text"
+            placeholder="Typing..."
+            style={{ border: "none", paddingLeft: 10, marginRight: "auto" }}
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+            disabled={sending}
+          />
+          <PiSmileyLight
+            color="#005734"
+            style={{ marginRight: 10 }}
+            onClick={() => setShowEmoji(!showEmoji)}
+          />
+          {showEmoji && (
+            <div style={{ position: "absolute", top: 7, right: 10 }}>
+              <Picker
+                data={data}
+                onEmojiSelect={(emoji) => handleEmoji(emoji.native)}
+              />
+            </div>
+          )}
+          <AiOutlineSend
+            color="#005734"
+            style={{ marginRight: 10 }}
+            onClick={(e) => handleSubmit(e)}
+          />
+        </form>
+      </div>
+    </div>
   );
 }
-
-const avatarStyle = {};
-const chatSectionStyle = {
-  height: "200px",
-};
 
 const contentStyle = {
   backgroundColor: "#ffffff",
   borderRadius: "100px",
   boxShadow: "3px 3px 3px 0px #9C9C9C7A inset",
-  height: "37px",
-  width: "240px",
   fontSize: 15,
   display: "flex",
-  marginTop: 0,
+  marginTop: 20,
+  marginBottom: 10,
   marginLeft: 15,
-  paddingLeft: 10,
+  padding: 6,
   flexDirection: "row",
   alignItems: "center",
   border: "1px",
 };
 
 const textStyle = {
-  width: "200px",
-  borderRadius: "100px",
-  // boxShadow: "3px 3px 3px 0px #9C9C9C7A inset",
+  width: "100%",
+  borderRadius: "10px",
   backgroundColor: "#005734",
   color: "white",
-  padding: "8px 5px 5px 2px",
-  textAlign: "center",
+  padding: "8px 5px 5px 5px",
   fontSize: 10,
   marginLeft: 11,
+  marginRight: 11,
   marginTop: 4,
 };
 
-const innerfieldStyle = {
-  backgroundColor: "#ffffff",
-  // borderRadius: "100px",
-  // boxShadow: "3px 3px 3px 0px #9C9C9C7A inset",
-  height: "28px",
-  fontSize: 12,
-  display: "flex",
-  margin: "5px 5px 5px 5px",
-  borderWidth: 0,
-};
-
 const mainContainerStyle = {
-  // marginLeft: "50px",
-  marginTop: "40px",
-  // width:300,
-  height: 293,
+  marginTop: 40,
   marginLeft: 10,
+  marginRight: 10,
   borderRadius: "8px",
-  width: 283,
+  maxHeight: 350,
+  display: "flex",
+  flexDirection: "column",
   border: "solid #ffffff",
   boxShadow:
     "0px 0px 0px #0000001a, 0px 1px 3px #0000001a, 2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent",
-
-  // border:"solid 3px black"
 };

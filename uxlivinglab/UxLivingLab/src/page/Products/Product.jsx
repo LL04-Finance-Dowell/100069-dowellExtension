@@ -33,6 +33,7 @@ export default function Product() {
     setOrgs(orgs);
     if (!org) {
       setOrg(orgs[0]?.org_name);
+      console.log("first", orgs[0]);
       setProducts(getProducts(orgs[0]?.org_name, updatedData));
     }
     return updatedData;
