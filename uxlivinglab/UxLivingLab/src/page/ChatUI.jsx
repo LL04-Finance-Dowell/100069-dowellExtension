@@ -5,58 +5,86 @@ import { PiSmileyLight } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
 import CreateRoom from "../lib/api/createRoom";
 import { useUserInfo } from "../lib/fetchUserInfo";
 import { useStateContext } from "../Contexts/Context";
 import FetchMessage from "../lib/api/fetchMessages";
 import { Fragment } from "react";
+import CreateMessage from "../lib/api/createMessage";
 
 export default function ChatUI() {
   const { sessionId } = useStateContext();
   const [showEmoji, setShowEmoji] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(true);
-  const { data } = useUserInfo(sessionId);
+  const [sending, setSending] = useState(false);
+  const { data: userData } = useUserInfo(sessionId);
   const [roomId, setroomId] = useState("");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    if (data) {
+    if (userData) {
       const room_id = Cookies.get("roomId");
-      setroomId(room_id);
+      // setroomId(room_id);
       if (!room_id) {
+        console.log("I am here", room_id);
         const handleCreateRoom = async () => {
           try {
             const roomData = {
-              user_id: data?.data?.userinfo?.userID,
+              user_id: userData?.data?.userinfo?.userID,
               product_name: "EXTENSION",
               portfolio_name: "extension",
-              org_id: data?.data?.portfolio_info[0]?.org_id,
+              org_id: userData?.data?.portfolio_info[0]?.org_id,
             };
             const response = await CreateRoom(roomData);
-            setroomId(response.data.response.room_id);
-            Cookies.set("roomId", response.data.response.room_id);
+            setroomId(response.data.response._id);
+            Cookies.set("roomId", response.data.response._id);
           } catch (error) {
             console.error("Error creating room:", error);
           }
         };
         handleCreateRoom();
       }
+      console.log("room", room_id);
       const fetchMessages = async () => {
-        const response = await FetchMessage(roomId);
+        const response = await FetchMessage(room_id);
         setMessages(response.data.response.data);
         setLoading(false);
       };
       fetchMessages();
     }
-  }, [data, roomId]);
+  }, [userData, roomId]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (input.length <= 0) {
       return;
     }
-    console.log("first");
+    try {
+      setSending(true);
+      const roomId = Cookies.get("roomId");
+      // console.log("rooms", roomId);
+      const messageData = {
+        type: "create_message",
+        room_id: roomId,
+        message_data: input,
+        side: true,
+        author: userData?.data?.userinfo?.username,
+        message_type: "text",
+      };
+      const res = await CreateMessage(messageData);
+      if (res.data.success) {
+        const response = await FetchMessage(roomId);
+        setMessages(response.data.response.data);
+      }
+      // console.log("message created", res.data);
+    } catch (error) {
+      console.log("error creating message", error);
+    } finally {
+      setSending(false);
+      setInput("");
+    }
   };
 
   const handleEmoji = (emoji) => {
@@ -65,12 +93,31 @@ export default function ChatUI() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   return (
     <div style={mainContainerStyle}>
-      <div style={{ overflow: "scroll", overflowX: "hidden", maxHeight: 300 }}>
+      <div
+        style={{
+          overflow: "scroll",
+          overflowX: "hidden",
+          height: 300,
+          display: "flex",
+          flexDirection: "column-reverse",
+        }}
+      >
         {messages.map((message) => (
           <Fragment key={message?._id}>
             <div
@@ -100,6 +147,7 @@ export default function ChatUI() {
             style={{ border: "none", paddingLeft: 10, marginRight: "auto" }}
             onChange={(e) => setInput(e.target.value)}
             value={input}
+            disabled={sending}
           />
           <PiSmileyLight
             color="#005734"

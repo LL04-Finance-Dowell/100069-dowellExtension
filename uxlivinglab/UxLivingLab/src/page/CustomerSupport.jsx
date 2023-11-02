@@ -19,7 +19,7 @@ export default function CustomerSupport() {
       <ChatUI />
       <div
         style={{
-          marginTop: 20,
+          marginTop: 10,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
