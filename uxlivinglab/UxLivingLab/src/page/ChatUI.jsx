@@ -26,7 +26,6 @@ export default function ChatUI() {
     if (userData) {
       const room_id = Cookies.get("roomId");
       if (!room_id) {
-        console.log("I am here", room_id);
         const handleCreateRoom = async () => {
           try {
             const roomData = {
@@ -37,7 +36,6 @@ export default function ChatUI() {
             };
             const response = await CreateRoom(roomData);
             setroomId(response.data.response._id);
-            console.log("created room", response.data.response._id);
             Cookies.set("roomId", response.data.response._id);
           } catch (error) {
             console.error("Error creating room:", error);
@@ -45,7 +43,6 @@ export default function ChatUI() {
         };
         handleCreateRoom();
       }
-      console.log("room", room_id);
       const fetchMessages = async () => {
         const response = await FetchMessage(room_id);
         setMessages(response.data.response.data);
@@ -63,7 +60,6 @@ export default function ChatUI() {
     try {
       setSending(true);
       const roomId = Cookies.get("roomId");
-      // console.log("rooms", roomId);
       const messageData = {
         type: "create_message",
         room_id: roomId,
@@ -77,7 +73,6 @@ export default function ChatUI() {
         const response = await FetchMessage(roomId);
         setMessages(response.data.response.data);
       }
-      // console.log("message created", res.data);
     } catch (error) {
       console.log("error creating message", error);
     } finally {
