@@ -4,13 +4,16 @@ import HeaderComponent from "../components/HeaderComponent";
 import "../components/ScrollbarStyles.css";
 // import { useStateContext } from "../contexts/Context";
 import ChatUI from "./ChatUI";
+import { useStateContext } from "../Contexts/Context";
 
 export default function CustomerSupport() {
-  const handleDeleteRoom = (e) => {
+  const { setMessages } = useStateContext();
+
+  const handleDeleteRoom = async (e) => {
     e.preventDefault();
+    setMessages([]);
     Cookies.remove("roomId");
-    // console.log("rr", Cookies.get("roomId"));
-    // window.location.reload();
+    console.log(Cookies.get("roomId"));
   };
 
   return (

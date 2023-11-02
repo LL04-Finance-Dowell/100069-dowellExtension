@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [sessionId, setSessionId] = useState(
     "ilenru1vxwllyvdq3auq0aal626yprka"
   );
+  const [messages, setMessages] = useState([]);
 
   // useEffect(() => {
   //   function logCookies(cookies) {
@@ -27,7 +28,7 @@ export const ContextProvider = ({ children }) => {
   // }, []);
 
   return (
-    <StateContext.Provider value={{ sessionId }}>
+    <StateContext.Provider value={{ sessionId, setMessages, messages }}>
       {children}
     </StateContext.Provider>
   );

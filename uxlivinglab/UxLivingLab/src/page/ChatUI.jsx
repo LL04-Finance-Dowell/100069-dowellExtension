@@ -14,19 +14,17 @@ import { Fragment } from "react";
 import CreateMessage from "../lib/api/createMessage";
 
 export default function ChatUI() {
-  const { sessionId } = useStateContext();
+  const { sessionId, messages, setMessages } = useStateContext();
   const [showEmoji, setShowEmoji] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const { data: userData } = useUserInfo(sessionId);
   const [roomId, setroomId] = useState("");
-  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     if (userData) {
       const room_id = Cookies.get("roomId");
-      // setroomId(room_id);
       if (!room_id) {
         console.log("I am here", room_id);
         const handleCreateRoom = async () => {
@@ -39,6 +37,7 @@ export default function ChatUI() {
             };
             const response = await CreateRoom(roomData);
             setroomId(response.data.response._id);
+            console.log("created room", response.data.response._id);
             Cookies.set("roomId", response.data.response._id);
           } catch (error) {
             console.error("Error creating room:", error);
