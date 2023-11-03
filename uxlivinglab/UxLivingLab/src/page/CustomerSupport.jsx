@@ -1,24 +1,24 @@
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import HeaderComponent from "../components/HeaderComponent";
 import "../components/ScrollbarStyles.css";
 import ChatUI from "./ChatUI";
-import { useStateContext } from "../Contexts/Context";
+// import { useStateContext } from "../Contexts/Context";
 
 export default function CustomerSupport() {
-  const { setMessages } = useStateContext();
+  // const { setMessages } = useStateContext();
 
-  const handleDeleteRoom = async (e) => {
-    e.preventDefault();
-    setMessages([]);
-    Cookies.remove("roomId");
-    console.log(Cookies.get("roomId"));
-  };
+  // const handleDeleteRoom = async (e) => {
+  //   e.preventDefault();
+  //   setMessages([]);
+  //   Cookies.remove("roomId");
+  //   console.log(Cookies.get("roomId"));
+  // };
 
   return (
     <div style={mainDiv}>
       <HeaderComponent title="Customer Support" />
       <ChatUI />
-      <div
+      {/* <div
         style={{
           marginTop: 10,
           display: "flex",
@@ -32,7 +32,7 @@ export default function CustomerSupport() {
         >
           delete room
         </span>
-      </div>
+      </div> */}
     </div>
   );
 }

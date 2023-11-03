@@ -20,7 +20,7 @@ export default function ChatUI() {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const { data: userData } = useUserInfo(sessionId);
-  const [roomId, setroomId] = useState("");
+  const [roomId, setroomId] = useState(undefined);
 
   useEffect(() => {
     if (userData) {
@@ -44,13 +44,13 @@ export default function ChatUI() {
         handleCreateRoom();
       }
       const fetchMessages = async () => {
-        const response = await FetchMessage(room_id);
+        const response = await FetchMessage(roomId ?? room_id);
         setMessages(response.data.response.data);
         setLoading(false);
       };
       fetchMessages();
     }
-  }, [userData, roomId]);
+  }, [userData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -145,7 +145,7 @@ export default function ChatUI() {
           />
           <PiSmileyLight
             color="#005734"
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 10, cursor: "pointer" }}
             onClick={() => setShowEmoji(!showEmoji)}
           />
           {showEmoji && (
@@ -158,7 +158,7 @@ export default function ChatUI() {
           )}
           <AiOutlineSend
             color="#005734"
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 10, cursor: "pointer" }}
             onClick={(e) => handleSubmit(e)}
           />
         </form>
