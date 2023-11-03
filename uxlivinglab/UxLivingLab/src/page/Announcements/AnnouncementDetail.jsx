@@ -10,7 +10,7 @@ export default function AnnouncementDetail() {
 
   const data = location.state?.data;
   return (
-    <div >
+    <div>
       <div>
         <HeaderComponent
           title="Notification"
@@ -19,35 +19,35 @@ export default function AnnouncementDetail() {
         />
       </div>
       <div style={{ marginLeft: 15 }}>
-      <div style={headerLabelStyle}>
-        <div style={headerTextWrapperStyle}>{title}</div>
-      </div>
+        <div style={headerLabelStyle}>
+          <div style={headerTextWrapperStyle}>{title}</div>
+        </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "wrap",
-          gap: 15,
-          cursor: "pointer",
-          marginTop: "10px",
-        }}
-      >
-        <div style={descriptionTextWrapperStyle}>{data.description}</div>
-        {data.link && (
-          <div style={descriptionTextWrapperStyle}>
-            For more information:
-            <a
-              href={data.link}
-              style={{ marginLeft: 10 }}
-              rel="noreferrer"
-              target="_blank"
-            >
-              {data.link}
-            </a>
-          </div>
-        )}
-      </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flexWrap: "wrap",
+            gap: 15,
+            cursor: "pointer",
+            marginTop: "10px",
+          }}
+        >
+          <div style={descriptionTextWrapperStyle}>{data.description}</div>
+          {data.link && (
+            <div style={descriptionTextWrapperStyle}>
+              For more information:
+              <a
+                href={data.link}
+                style={{ marginLeft: 10 }}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {data.link}
+              </a>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
