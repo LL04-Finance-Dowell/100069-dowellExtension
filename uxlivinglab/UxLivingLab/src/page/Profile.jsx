@@ -44,7 +44,7 @@ export default function Profile() {
   });
 
   const handleArrows = (show, bool) => {
-    console.log(show);
+    // console.log(show);
     setaArrows({ [show]: bool });
   };
 
@@ -58,12 +58,6 @@ export default function Profile() {
     queryFn: async () => await FetchProfile(userinfo?.data?.userinfo?.username),
   });
 
-  {
-    console.log(userinfo?.data?.userinfo?.username);
-  }
-  {
-    console.log(profile);
-  }
   const profile_data = profile?.data;
 
   function renderProfileData(data) {

@@ -18,8 +18,8 @@ export default function HeaderComponent({
         borderRadius: "10px 0px 0px 0px",
         width: "100%",
         borderBottom: "1px solid #0057344D",
-        borderBottomLeftRadius: title === "Customer Support" ? 20 : 0,
-        borderBottomRightRadius: title === "Customer Support" ? 10 : 0,
+        // borderBottomLeftRadius: title === "Customer Support" ? 20 : 0,
+        // borderBottomRightRadius: title === "Customer Support" ? 10 : 0,
       }}
     >
       {type && (

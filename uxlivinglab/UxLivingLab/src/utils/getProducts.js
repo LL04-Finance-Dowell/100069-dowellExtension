@@ -1,12 +1,13 @@
 import Fuse from "fuse.js";
 
-export function getProducts(orgName, data) {
+export function getProducts(data) {
   const orgData = {};
 
   const fuse = new Fuse(products, {
     keys: ["title"],
     threshold: 0.3,
   });
+  if (!data) return;
   data?.forEach((item) => {
     const orgId = item.org_name;
     if (!orgData[orgId]) {
@@ -185,7 +186,7 @@ export const products = [
     id: crypto.randomUUID(),
     image:
       "https://uxlivinglab.com/wp-content/uploads/2023/01/Living-Lab-Admin-2.png",
-    title: "Secure Repositories",
+    title: "Secure Github Repository",
   },
   {
     image: "https://uxlivinglab.com/wp-content/uploads/2023/01/secure-data.png",

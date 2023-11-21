@@ -22,9 +22,6 @@ export default function Product() {
   const { data } = useQuery("userInfo", async () => {
     const userInfo = await FetchUserInfo(sessionId);
 
-    //own_org gets the org/product details belonging in the user's workspace from the "portfolio_info" key in the user_info API response object
-    //other_org gets the org/product details of the other workspaces from the "other_org" key in the user_info API response object
-
     const other_org = userInfo.data.other_org || [];
     const own_org = userInfo.data.own_organisations || [];
     const portfolioInfo = userInfo.data.portfolio_info || [];
@@ -33,7 +30,6 @@ export default function Product() {
     setOrgs(orgs);
     if (!org) {
       setOrg(orgs[0]?.org_name);
-      console.log("first", orgs[0]);
       setProducts(getProducts(orgs[0]?.org_name, updatedData));
     }
     return updatedData;
@@ -41,7 +37,7 @@ export default function Product() {
 
   const handleChange = (selectedOrg) => {
     setOrg(selectedOrg.value);
-    setProducts(getProducts(selectedOrg.value, data));
+    setProducts(getProducts(data));
   };
 
   return (
@@ -50,7 +46,7 @@ export default function Product() {
       <div style={{ marginLeft: 20 }}>
         <Dropdown
           className={styles.dropdownRoot}
-          options={orgs?.map((item) => item.org_name) || []}
+          options={orgs?.map((item) => item.org_name) ?? []}
           value={org}
           onChange={handleChange}
           controlClassName={styles.controlClassName}
@@ -78,7 +74,6 @@ export default function Product() {
             marginLeft: 20,
             flexWrap: "wrap",
             width: 300,
-            // flexDirection: "column",
           }}
         >
           {products
