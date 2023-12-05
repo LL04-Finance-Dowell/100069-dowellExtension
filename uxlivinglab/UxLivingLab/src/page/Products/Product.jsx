@@ -30,7 +30,7 @@ export default function Product() {
     setOrgs(orgs);
     if (!org) {
       setOrg(orgs[0]?.org_name);
-      setProducts(getProducts(orgs[0]?.org_name, updatedData));
+      setProducts(getProducts(updatedData));
     }
     return updatedData;
   });

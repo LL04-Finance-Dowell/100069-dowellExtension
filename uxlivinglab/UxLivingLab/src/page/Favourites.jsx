@@ -24,7 +24,7 @@ export default function Favourites() {
     isError: isSecondApiError,
   } = useQuery(
     "favourites",
-    () => FetchFavourites(firstApiData?.data?.userinfo?.userID),
+    () => FetchFavourites(firstApiData?.data?.userinfo?.username),
     {
       enabled: !!firstApiData, // Enable the query only when firstApiData is available
     }
@@ -185,13 +185,14 @@ const rectangle = {
 };
 
 const imageStyle = {
-  width: 102,
+  width: 110,
   height: 158,
   boxShadow:
     "0px 0px 0px #0000001a, 0px 1px 3px #0000001a, 2px 5px 5px #00000017, 4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent",
   borderRadius: "10px",
   marginRight: "15px",
   marginTop: "10px",
+  marginBottom: "10px",
   objectFit: "cover",
 };
 
