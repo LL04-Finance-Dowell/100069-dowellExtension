@@ -117,8 +117,10 @@ export default function AddFavourite() {
           <span className={styles.spanStyle}>Select Product:</span>
           <ProductDropdown
             options={
-              products?.filter((pro) => pro?.org_name === org?.org_name)[0]
-                .products ?? []
+              products
+                ? products?.filter((pro) => pro?.org_name === org?.org_name)[0]
+                    .products
+                : []
             }
             setProduct={setProduct}
             isLoading={isLoading}

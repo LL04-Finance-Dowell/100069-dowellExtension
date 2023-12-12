@@ -2,8 +2,8 @@
 import Dropdown from "react-dropdown";
 import styles from "./style.module.css";
 import { LiaAngleRightSolid, LiaAngleDownSolid } from "react-icons/lia";
-import { getProducts } from "../../utils/getProducts";
 import useStore from "../../hooks/use-hook";
+import { getProductByorg } from "../../utils/getProductByorg";
 
 export default function DropdownComponent({
   options,
@@ -14,7 +14,7 @@ export default function DropdownComponent({
   const setProducts = useStore((state) => state.setProducts);
   const handleChange = (item) => {
     setOrg(options.find((opt) => opt.org_name === item.value));
-    setProducts(getProducts(item.value, data));
+    setProducts(getProductByorg(item.value, data));
   };
 
   return (

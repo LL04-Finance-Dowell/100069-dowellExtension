@@ -25,7 +25,7 @@
     4px 11px 7px #0000000d, 8px 19px 8px #00000003, 12px 29px 9px transparent;
   padding-left: 10px;
   padding-top: 7px;
-  position: absolute;
+  position: relative;
   width: 280px;
   background-color: white;
   row-gap: 10px;
