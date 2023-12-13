@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderComponent from "../../components/HeaderComponent";
 import DropdownComponent from "./Dropdown";
 import styles from "./style.module.css";
@@ -27,6 +27,7 @@ export default function AddFavourite() {
   const [open, setOpen] = useState(false);
   const [Uploading, setUploading] = useState();
   const [userInfo, setUserInfo] = useState();
+  const [productsDrop, setProductsDrop] = useState([]);
 
   const products = useStore((state) => state.products);
   const setOrgs = useStore((state) => state.setOrgs);
@@ -72,6 +73,14 @@ export default function AddFavourite() {
     mutate(data);
   };
 
+  useEffect(() => {
+    if (org && products) {
+      setProductsDrop(
+        products?.filter((pro) => pro?.org_name === org?.org_name)[0].products
+      );
+    }
+  }, [org, products]);
+
   const handleImageUpload = async (file) => {
     try {
       const formData = new FormData();
@@ -116,12 +125,7 @@ export default function AddFavourite() {
         <div style={{ marginTop: 20 }}>
           <span className={styles.spanStyle}>Select Product:</span>
           <ProductDropdown
-            options={
-              products
-                ? products?.filter((pro) => pro?.org_name === org?.org_name)[0]
-                    .products
-                : []
-            }
+            options={productsDrop}
             setProduct={setProduct}
             isLoading={isLoading}
           />
@@ -204,6 +208,7 @@ export default function AddFavourite() {
             style={{
               marginTop: 20,
               marginBottom: 20,
+              marginLeft: 50,
             }}
             onClick={handleSubmit}
             aria-disabled={isLoading}

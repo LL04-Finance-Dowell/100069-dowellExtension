@@ -30,7 +30,8 @@ export default function Product() {
     setOrgs(orgs);
     if (!org) {
       setOrg(orgs[0]?.org_name);
-      setProducts(getProducts(updatedData));
+      const products = getProducts(updatedData);
+      setProducts(products);
     }
     return updatedData;
   });
@@ -66,30 +67,32 @@ export default function Product() {
             />
           }
         />
-        <div
-          style={{
-            display: "flex",
-            columnGap: 50,
-            rowGap: 10,
-            marginLeft: 20,
-            flexWrap: "wrap",
-            width: 300,
-          }}
-        >
-          {products
-            ?.filter((pro) => pro.org_name === org)[0]
-            .products?.map((item) => (
-              <div className={styles.products} key={item.id}>
-                <Link to={`/productDetail/${item.id}`}>
-                  <img
-                    className={styles.product_image}
-                    alt="product"
-                    src={item.image}
-                  />
-                </Link>
-              </div>
-            ))}
-        </div>
+        {products !== undefined && org && (
+          <div
+            style={{
+              display: "flex",
+              columnGap: 50,
+              rowGap: 10,
+              marginLeft: 20,
+              flexWrap: "wrap",
+              width: 300,
+            }}
+          >
+            {products
+              ?.filter((pro) => pro?.org_name === org)[0]
+              .products?.map((item) => (
+                <div className={styles.products} key={item.id}>
+                  <Link to={`/productDetail/${item.id}`}>
+                    <img
+                      className={styles.product_image}
+                      alt="product"
+                      src={item.image}
+                    />
+                  </Link>
+                </div>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

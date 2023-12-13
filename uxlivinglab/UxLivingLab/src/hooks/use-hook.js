@@ -3,7 +3,7 @@ import { create } from "zustand";
 const useStore = create((set) => ({
   org: null,
   setOrg: (org) => set({ org }),
-  products: null,
+  products: [],
   setProducts: (products) => set({ products }),
   orgs: null,
   setOrgs: (orgs) => set({ orgs }),

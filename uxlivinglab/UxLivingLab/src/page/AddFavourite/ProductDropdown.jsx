@@ -10,7 +10,7 @@ export default function ProductDropdown({ options, setProduct, isLoading }) {
 
   return (
     <Dropdown
-      options={options.map((item) => item.product)}
+      options={options?.map((item) => item?.product)}
       onChange={handleChange}
       disabled={isLoading}
       className={styles.controlStyle}

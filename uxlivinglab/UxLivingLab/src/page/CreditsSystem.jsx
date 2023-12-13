@@ -87,13 +87,13 @@ export default function CreditSystem() {
       <div style={boxStyle}>
         <div className="rectangle" style={rectangleStyle}>
           <div style={apiKeyTextWrapperStyle}>
-            {creditsVisible ? (
-              <span style={{ fontSize: 11, width: 50, fontWeight: "bold" }}>
-                {creditDataQuery?.data?.data?.api_key}
-              </span>
-            ) : (
-              "**************************"
-            )}
+            <span
+              style={{ fontSize: 12, fontWeight: "bold", marginRight: "auto" }}
+            >
+              {creditsVisible
+                ? creditDataQuery?.data?.data?.api_key
+                : "*****************************"}
+            </span>
             <span
               style={{
                 marginLeft: creditsVisible ? "7px" : "79px",
@@ -208,7 +208,7 @@ export default function CreditSystem() {
 
 const boxStyle = {
   height: "37px",
-  width: "310px",
+  width: "320px",
   marginTop: "0px",
   marginRight: "10px",
   marginLeft: "0px",

@@ -14,7 +14,7 @@ export default function DropdownComponent({
   const setProducts = useStore((state) => state.setProducts);
   const handleChange = (item) => {
     setOrg(options.find((opt) => opt.org_name === item.value));
-    setProducts(getProductByorg(item.value, data));
+    setProducts(getProductByorg(item.value, data) ?? []);
   };
 
   return (
