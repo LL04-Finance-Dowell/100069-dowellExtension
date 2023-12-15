@@ -90,10 +90,11 @@ export default function ChatUI() {
     return (
       <div
         style={{
+          width: "100%",
+          height: 400,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          flex: 1,
         }}
       >
         Loading...

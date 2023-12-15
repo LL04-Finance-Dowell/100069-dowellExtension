@@ -9,18 +9,18 @@ import FetchMemberAnnouncements from "../../lib/api/fetchMemberAnnouncement";
 import FetchUserAnnouncements from "../../lib/api/fetchUserAnnouncement";
 import FetchUserInfo from "../../lib/api/fetchUserInfo";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 import { useStateContext } from "../../Contexts/Context";
 
 export default function AnnouncementList() {
   const { sessionId } = useStateContext();
   const { title } = useParams();
   const navigate = useNavigate();
-  const [detail, setDetail] = useState("");
+  // const [detail, setDetail] = useState("");
 
-  const handleClick = (text) => {
-    setDetail(text);
-  };
+  // const handleClick = (text) => {
+  //   setDetail(text);
+  // };
   const { data } = useQuery({
     queryKey: "userInfo",
     queryFn: async () => await FetchUserInfo(sessionId),
@@ -60,7 +60,7 @@ export default function AnnouncementList() {
         : publicAnnouncementQuery
       ).data?.data?.data?.map((value) => (
         <div
-          onClick={() => handleClick(value.announcement.description)}
+          // onClick={() => handleClick(value.announcement.description)}
           key={value._id}
         >
           <Link
@@ -80,7 +80,7 @@ export default function AnnouncementList() {
   }
 
   return (
-    <div >
+    <div>
       <div>
         <HeaderComponent
           title="Notification"
@@ -89,24 +89,24 @@ export default function AnnouncementList() {
         />
       </div>
       <div style={{ marginLeft: 15 }}>
-      <div style={headerLabelStyle}>
-        <div style={headerTextWrapperStyle}>{title}</div>
-      </div>
-
-      {title == "Public" || title === "Member" || title === "User" ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flexWrap: "wrap",
-            gap: 15,
-            cursor: "pointer",
-            marginTop: "10px",
-          }}
-        >
-          <AnnouncementLister title={title} />
+        <div style={headerLabelStyle}>
+          <div style={headerTextWrapperStyle}>{title}</div>
         </div>
-      ) : null}
+
+        {title == "Public" || title === "Member" || title === "User" ? (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flexWrap: "wrap",
+              gap: 15,
+              cursor: "pointer",
+              marginTop: "10px",
+            }}
+          >
+            <AnnouncementLister title={title} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -51,9 +51,9 @@ export default function ProductDetail() {
   return (
     <div
       style={{
-        marginLeft: 15,
         display: "flex",
         flexDirection: "column",
+        position: "relative",
       }}
     >
       <HeaderComponent
@@ -61,7 +61,17 @@ export default function ProductDetail() {
         navigation={() => navigate(-1)}
         type="detail"
       />
-      <div style={{ alignSelf: "center", backgroundColor: "white" }}>
+      <div
+        style={{
+          marginLeft: 50,
+          alignSelf: "center",
+          backgroundColor: "white",
+          position: "absolute",
+          top: 100,
+          left: 0,
+          zIndex: 1,
+        }}
+      >
         <ProductDropdownComponent
           listProducts={listProducts ?? []}
           setProduct={setProduct}
@@ -74,7 +84,6 @@ export default function ProductDetail() {
         src={product?.image}
         alt=""
         style={{
-          // width: "100%",
           opacity: 0.4,
           marginTop: 20,
           position: "fixed",
@@ -87,6 +96,7 @@ export default function ProductDetail() {
           ...rectangleStyle,
           position: "fixed",
           top: 210,
+          left: 30,
         }}
       >
         <div style={headerStyle}>{product?.product}</div>

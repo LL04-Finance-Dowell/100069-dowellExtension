@@ -74,8 +74,16 @@ export default function Logout() {
             </div>
           </div>
         ) : (
-          <div style={{}}>
-            <p>Loading...</p>
+          <div
+            style={{
+              width: "100%",
+              height: 400,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Loading...
           </div>
         )}
       </div>

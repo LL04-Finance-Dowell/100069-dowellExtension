@@ -6,8 +6,8 @@ import HeaderComponent from "../components/HeaderComponent";
 import NotificationSkeleton from "../components/NotificationSkeleton";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 import { useState } from "react";
-import { useStateContext } from "../contexts/Context";
 import { Link } from "react-router-dom";
+import { useStateContext } from "../Contexts/Context";
 
 export default function Notification() {
   const [title, setTitle] = useState("Announcement");
@@ -89,87 +89,85 @@ export default function Notification() {
       <div onClick={() => revertTitle()}>
         <HeaderComponent title="Notification" />
       </div>
-      <div  style={{ marginLeft: 15 }}>
-      <div style={headerLabelStyle}>
-        <div style={headerTextWrapperStyle}>{title}</div>
-      </div>
-      {title &&
-        (title == "Announcement" ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              gap: 15,
-              cursor: "pointer",
-            }}
-          >
-            <div style={{ height: 50, width: 150 }}>
-              <Link
-                to={`/announcements/${"Member"}`}
-                style={{textDecoration:"none"}}
-              >
-              <div
-                style={containerStyle}
-              >
-
-                <div style={textWrapperStyle}>
-                  Team Member ({memberAnnouncementQuery.data.data.data.length})
-                </div>
-              </div>
-            </Link>
-            </div>
-            <div style={{ height: 50, width: 150 }}>
-                <Link 
-                  to={`/announcements/${"User"}`}
-                  style={{textDecoration:"none"}}>
-                <div
-                style={containerStyle} 
-              >
-                <div style={textWrapperStyle}>
-                  User ({userAnnouncementQuery.data.data.data.length})
-                </div>
-                </div>
+      <div style={{ marginLeft: 15 }}>
+        <div style={headerLabelStyle}>
+          <div style={headerTextWrapperStyle}>{title}</div>
+        </div>
+        {title &&
+          (title == "Announcement" ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: 15,
+                cursor: "pointer",
+              }}
+            >
+              <div style={{ height: 50, width: 150 }}>
+                <Link
+                  to={`/announcements/${"Member"}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div style={containerStyle}>
+                    <div style={textWrapperStyle}>
+                      Team Member (
+                      {memberAnnouncementQuery.data.data.data.length})
+                    </div>
+                  </div>
                 </Link>
-            </div>
-            <div style={{ height: 50, width: 150 }}>
-              <div style={containerStyle}>
-                <div style={textWrapperStyle}>UX Living Lab (0)</div>
               </div>
-            </div>
-            <div style={{ height: 50, width: 150 }}>
-              <Link 
-                to={`/announcements/${"Public"}`}
-                style={{textDecoration:"none"}}>
-              <div
-                style={containerStyle} 
-              >
-                <div style={textWrapperStyle}>
-                  Public ({publicAnnouncementQuery.data.data.data.length})
+              <div style={{ height: 50, width: 150 }}>
+                <Link
+                  to={`/announcements/${"User"}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div style={containerStyle}>
+                    <div style={textWrapperStyle}>
+                      User ({userAnnouncementQuery.data.data.data.length})
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div style={{ height: 50, width: 150 }}>
+                <div style={containerStyle}>
+                  <div style={textWrapperStyle}>UX Living Lab (0)</div>
                 </div>
               </div>
-              </Link>
+              <div style={{ height: 50, width: 150 }}>
+                <Link
+                  to={`/announcements/${"Public"}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div style={containerStyle}>
+                    <div style={textWrapperStyle}>
+                      Public ({publicAnnouncementQuery.data.data.data.length})
+                    </div>
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
-        ) : title == "Public" || title === "Team Member" || title === "User" ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              flexWrap: "wrap",
-              gap: 15,
-              cursor: "pointer",
-            }}
-          >
-            {/* {title==="Public"?(publicAnnouncementQuery.data.data.data?.map(
+          ) : title == "Public" ||
+            title === "Team Member" ||
+            title === "User" ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                flexWrap: "wrap",
+                gap: 15,
+                cursor: "pointer",
+              }}
+            >
+              {/* {title==="Public"?(publicAnnouncementQuery.data.data.data?.map(
         (value)=> (<div>
             {console.log(value.announcement.title)}
         </div>)
       )):null} */}
-            <AnnouncementList title={title} />
-          </div>
-        ) : null)}
-        </div>
+              <AnnouncementList title={title} />
+            </div>
+          ) : null)}
+      </div>
     </div>
   );
 }

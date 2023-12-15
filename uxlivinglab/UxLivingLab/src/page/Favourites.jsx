@@ -7,6 +7,7 @@ import FetchFavourites from "../lib/api/fetchFavourites";
 import FetchUserInfo from "../lib/api/fetchUserInfo";
 import Logo from "../assets/mdi_null-off.png";
 import { useStateContext } from "../Contexts/Context";
+import Loading from "../components/Loading";
 
 export default function Favourites() {
   const navigate = useNavigate();
@@ -31,19 +32,7 @@ export default function Favourites() {
   );
 
   if (isFirstApiLoading || isSecondApiLoading) {
-    return (
-      <div
-        style={{
-          width: "100%",
-          height: 500,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <Loading />;
   }
 
   if (isFirstApiError || isSecondApiError) {
@@ -82,7 +71,11 @@ export default function Favourites() {
           <AiOutlinePlus
             size={15}
             color="#005734"
-            style={{ marginLeft: "10px", marginRight: "20px" }}
+            style={{
+              marginLeft: "10px",
+              marginRight: "20px",
+              cursor: "pointer",
+            }}
             onClick={() => navigate("/addFavourite")}
           />
         </div>

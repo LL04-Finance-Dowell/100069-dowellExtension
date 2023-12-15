@@ -12,6 +12,7 @@ import FetchUserInfo from "../lib/api/fetchUserInfo";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useStateContext } from "../Contexts/Context";
+import Loading from "../components/Loading";
 
 export default function CreditSystem() {
   const fields = ["Service Key", "Credit", "Status"];
@@ -65,21 +66,7 @@ export default function CreditSystem() {
   );
 
   if (creditLoading || userInfoLoading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-          width: "100px",
-          marginLeft: 50,
-          fontSize: 20,
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <Loading />;
   }
 
   const ServiceKeyField = () => {

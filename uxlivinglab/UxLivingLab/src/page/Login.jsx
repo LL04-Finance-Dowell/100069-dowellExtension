@@ -44,7 +44,5 @@ const iframeContainerStyles = {
   marginLeft: "10px",
   marginRight: "24px",
   marginBottom: "50px",
-  // border:"3px",
-  // borderRadius : "26px",
   height: "270px",
 };

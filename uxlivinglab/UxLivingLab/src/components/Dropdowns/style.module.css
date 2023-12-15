@@ -1,6 +1,7 @@
 .dropdownRoot {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   width: 290px;
+  /* z-index: 1; */
 }
 
 .controlClassName {
@@ -33,6 +34,7 @@
   letter-spacing: 0;
   line-height: normal;
   cursor: pointer;
+  /* z-index: 1; */
 }
 .placeholderClassName {
   margin-right: auto;

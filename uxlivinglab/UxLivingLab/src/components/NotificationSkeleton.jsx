@@ -2,34 +2,36 @@ import HeaderComponent from "./HeaderComponent";
 
 export default function NotificationSkeleton() {
   return (
-    <div style={{ marginLeft: 15 }}>
+    <div>
       <HeaderComponent title="Notification" />
-      <div style={headerLabelStyle}>
-        <div style={headerTextWrapperStyle}>Announcement</div>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          gap: 15,
-        }}
-      >
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle}>
-            <div style={textWrapperStyle} />
+      <div style={{ marginLeft: 15 }}>
+        <div style={headerLabelStyle}>
+          <div style={headerTextWrapperStyle}>Announcement</div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: 15,
+          }}
+        >
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle}>
+              <div style={textWrapperStyle} />
+            </div>
           </div>
-        </div>
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle}>
-            <div style={textWrapperStyle} />
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle}>
+              <div style={textWrapperStyle} />
+            </div>
           </div>
-        </div>
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle} />
-        </div>
-        <div style={{ height: 50, width: 150 }}>
-          <div style={containerStyle} />
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle} />
+          </div>
+          <div style={{ height: 50, width: 150 }}>
+            <div style={containerStyle} />
+          </div>
         </div>
       </div>
     </div>
